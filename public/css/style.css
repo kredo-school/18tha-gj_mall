@@ -1,0 +1,35 @@
+.style-seet {
+    &.color1 {
+        background-color: #FF3A3A;
+    }
+
+    &.color2 {
+        background-color: #FFD700;
+    }
+
+    &.color3 {
+        background-color: #0AA873;
+    }
+
+    &.color4 {
+        background-color: #F2F2F2;
+    }
+
+    &.color5 {
+        background-color: #333333;
+    }
+}
+
+/* Secondary Font */
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* navbar-icon */
+.navbar-icon {
+    color: #fff;
+    font-size: 1.5rem;
+}

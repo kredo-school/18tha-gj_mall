@@ -1,35 +1,5 @@
-<style>
-     #navbar-search.form-control:focus {
-        border-color: white; 
-        box-shadow: none;
-    }
-
-    #navbar-dropdown {
-        background-color: #FFD700;
-        transition: none !important;
-        -webkit-transition: none !important; /* For Safari */
-        -moz-transition: none !important; /* For Firefox */
-        -o-transition: none !important; /* For Opera */
-    }
-
-    /* Remove border and box shadow when dropdown button is clicked */
-    #navbar-dropdown:focus,
-    #navbar-dropdown:active,
-    #navbar-dropdown:hover {
-        border-color: transparent !important;
-        box-shadow: none !important;
-    }
-
-    @media (max-width: 767px) {
-        #left-navbar {
-            display: none !important;
-        }
-
-        #search-bar {
-            display: none !important;
-        }
-    }
-</style>
+{{-- Navbar CSS --}}
+<link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0">
     <div class="container-fluid style-seet color1 pt-2">

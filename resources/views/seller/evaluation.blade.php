@@ -8,7 +8,7 @@
             <h1>Evaluation Products List</h1>
 
             {{-- Search bar --}}
-            <div class="col-8 mt-2">
+            <div class="col-8 my-2">
                 <div class="navbar-nav">
                     <form action="#" style="width: 300px">
                         <input type="search" name="search" placeholder="Search..." style="width: 500px"  class="form-control form-control-sm">

@@ -63,5 +63,13 @@
                 </tbody>
             </table>
         </div>
+        <div class="row">
+            <div class="banner mt-4">
+                <a href="#">
+                    <img src="{{ asset('images/banner/banner1.png')}}" style="width: 970px">
+                </a>
+            </div>
+        </div>
+
     </div>
 @endsection

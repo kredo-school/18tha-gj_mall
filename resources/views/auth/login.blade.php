@@ -40,8 +40,12 @@
                     <a href="#" class="h5 text-danger fw-bold">Create an account</a>
                 </div>
             </div>
+
+            <!-- Sign-in Form -->
             <form method="POST" action="#">
                 @csrf
+
+                <!-- E-mail -->
                 <div class="row mb-0">
                     <div class="col-8 mx-auto ">
                         <label for="email" class="h4 form-label text-me-start fw-bold">{{ __('E-Mail') }}</label>
@@ -59,12 +63,12 @@
                     </div>
                 </div>
 
+                <!-- Password -->
                 <div class="row mb-0">
                     <div class="col-8 mx-auto">
                         <label for="password" class="h4 form-label text-start fw-bold">{{ __('Password') }}</label>
                     </div>
                 </div>
-
                 <div class="row mb-5">
                     <div class="col-8 mx-auto">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder=" ">
@@ -77,15 +81,19 @@
                     </div>
                 </div>
 
+                <!-- Sign-in Button -->
                 <div class="row mb-3">
                     <div class="col-auto mx-auto">
                         <button type="submit" class="btn btn-dark btn-signIn">
-                            <p class="font-size24 fw-bold text-white" style="font-size: 24px;">Sign in</p>
+                            <p class="fw-bold text-white" style="font-size: 24px;">Sign in</p>
                         </button>
 
                     </div>
                 </div>
+
             </form>
+
+            <!-- Go to Seller's Sign-in page -->
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
@@ -93,6 +101,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
@@ -100,6 +109,7 @@
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
     

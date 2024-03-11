@@ -42,11 +42,15 @@ main {
 }
 
 /* form-bg empty */
-input[type="email"], input[type="password"] {
+input[type="email"], 
+input[type="password"], 
+input[type="text"] {
     background-color: #F2F2F2; /* Default color when empty */
 }
 
 /* form-bg not empty */
-input[type="email"]:not(:placeholder-shown) input[type="password"]:not(:placeholder-shown) {
+input[type="email"]:not(:placeholder-shown), 
+input[type="password"]:not(:placeholder-shown), 
+input[type="text"]:not(:placeholder-shown) {
     background-color: #ffffff; /* Change color when text is entered */
 }

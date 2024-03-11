@@ -1,12 +1,3 @@
-<style>
-.sidebar {
-    width: 250px;
-    margin: 10px 0 0 20px;
-    border-radius: 3px;
-    float: left;
-}
-</style>
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -25,15 +16,15 @@
     {{-- Font Awsome  --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    {{-- Original CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- Sidebar CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div class="app-body">
-        <div class="sidebar">
+        <div class="sidebar shadow">
             <a href="#">
                 <img src="{{ asset('images/common/Logo.png')}}">
             </a>
@@ -67,8 +58,8 @@
                 </ul>
             </nav>
         </div>
-        {{-- <main class="py-4"> --}}
-            <main>
+
+         <main>
             @yield('content')
         </main>
     </div>

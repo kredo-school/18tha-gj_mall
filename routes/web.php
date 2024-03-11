@@ -28,3 +28,7 @@ Route::get('/seller/evaluation', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/seller/profile/showedit', function () {
+    return view('seller.profile.showedit');
+});

@@ -1,40 +1,12 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('seller.layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name') }} | @yield('title')</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    {{-- Font Awsome  --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-
-    {{-- Original CSS --}}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+@section('content')
     <style>
 
         .card-parent {
             position: relative;
             display: inline-block;"
         }
-
         .rank-num {
             position: absolute;
             top: 0%;
@@ -50,22 +22,24 @@
             /* Ensure text is above the image */
             "
         }
-
         .rank-image {
             width: 160px;
             height: 160px
+        }
+        .table-thead {
+            backgroundcolor: #F2F2F2;
         }
     </style>
 
 </head>
 
 <body>
-    <main class="py-4 bg-white">
+    <main class="bg-white">
         {{-- @yield('content') --}}
         <div class="container">
             <div class="row justify-content-end">
-                <div class="col-10 mb-4">
-                    <h2>Products Dashboard</h2>
+                <div class="col mb-4 border-start ps-5">
+                    <h2 class="py-4">Products Dashboard</h2>
                     <div class="row">
                         {{-- show top5 sold items in the shop --}}
                         <div class="col-auto">
@@ -202,7 +176,7 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                             {{-- get data from products table of the seller --}}
                             <tr>
                                 <td>1234</td>
@@ -215,8 +189,8 @@
                                 <td>50</td>
                                 <td>Kitchen Tools</td>
                                 <td>Shipping</td>
-                                <td><i class="fa-regular fa-pen-to-square"></i></td>
-                                <td><i class="fa-solid fa-trash"></i></td>
+                                <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
+                                <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -230,3 +204,4 @@
 </body>
 
 </html>
+@endsection

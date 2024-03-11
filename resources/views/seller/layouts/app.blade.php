@@ -1,8 +1,10 @@
 <style>
 .sidebar {
     width: 250px;
+    height:100%;
     margin: 10px 0 0 20px;
     border-radius: 3px;
+    border-right: solid;
     float: left;
 }
 </style>

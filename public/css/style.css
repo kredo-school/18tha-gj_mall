@@ -20,6 +20,13 @@
     }
 }
 
+/* Main Font */
+main {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 /* Secondary Font */
 .montserrat {
     font-family: "Montserrat", sans-serif;
@@ -32,4 +39,14 @@
 .icon {
     color: #fff;
     font-size: 1.5rem;
+}
+
+/* form-bg empty */
+input[type="email"], input[type="password"] {
+    background-color: #F2F2F2; /* Default color when empty */
+}
+
+/* form-bg not empty */
+input[type="email"]:not(:placeholder-shown) input[type="password"]:not(:placeholder-shown) {
+    background-color: #ffffff; /* Change color when text is entered */
 }

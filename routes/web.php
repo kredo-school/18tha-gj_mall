@@ -32,7 +32,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/seller/profile/showedit', function () {
     return view('seller.profile.showedit');
 });
-
-Route::get('/seller/products/dashboard', function () {
-    return view('seller.products.dashboard');
-});

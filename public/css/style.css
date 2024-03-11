@@ -33,3 +33,21 @@
     color: #fff;
     font-size: 1.5rem;
 }
+
+/* Carousel image size */
+.custom-card-img-top {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+}
+
+/* Heart Icon  */
+.heart-icon {
+    color: #FF3A3A;
+    font-size: 1.5rem;
+}
+
+.heart-icon-no-favorite {
+    color: #333333;
+    font-size: 1.5rem;
+}

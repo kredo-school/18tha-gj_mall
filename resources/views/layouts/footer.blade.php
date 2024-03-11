@@ -1,19 +1,19 @@
-<nav class="navbar sticky-bottom style-seet color1" style="background-color: #FF3A3A;">
+<nav class="navbar sticky-bottom style-seet color1">
     <div class="container-fluid">
         <ul class="navbar-nav ms-auto list-group-horizontal align-items-center">
             <li class="nav-item me-4">
                 <a class="nav-link" href="">
-                    <i class="fa-brands fa-x-twitter navbar-icon" style="font-size: 1.5rem; color: white;"></i>
+                    <i class="fa-brands fa-x-twitter icon"></i>
                 </a>
             </li>
             <li class="nav-item me-4">
                 <a class="nav-link" href="">
-                    <i class="fa-brands fa-facebook navbar-icon" style="font-size: 1.5rem; color: white;"></i>
+                    <i class="fa-brands fa-facebook icon"></i>
                 </a>
             </li>
             <li class="nav-item me-4">
                 <a class="nav-link" href="">
-                    <i class="fa-brands fa-instagram navbar-icon" style="font-size: 1.5rem; color: white;"></i>
+                    <i class="fa-brands fa-instagram icon"></i>
                 </a>
             </li>
             <li class="nav-item me-4">

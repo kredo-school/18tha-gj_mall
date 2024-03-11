@@ -17,7 +17,7 @@
                     <a class="nav-link" href="">
                         <div class="row align-items-center">
                             <div class="col-auto px-0">
-                                <i class="fa-solid fa-location-dot navbar-icon"></i>
+                                <i class="fa-solid fa-location-dot icon"></i>
                             </div>
                             <div class="col-10 px-3">
                                 <strong class="text-white text-wrap">
@@ -57,13 +57,13 @@
             <ul class="navbar-nav ms-auto align-items-center" style="display: flex; justify-content: space-between;">
                 <li class="nav-item text-center">
                     <a href="" class="nav-link">
-                        <i class="fa-solid fa-globe navbar-icon"></i>
+                        <i class="fa-solid fa-globe icon"></i>
                         <span class="text-white m-0">EN</span>
                     </a>
                 </li>
                 
                 <li class="nav-item text-center dropdown">
-                    <i class="fa-solid fa-user navbar-icon"></i>
+                    <i class="fa-solid fa-user icon"></i>
                     <a id="navbarDropdown" class="d-inline nav-link text-white p-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         Account
                     </a>
@@ -97,13 +97,13 @@
                
                 <li class="nav-item text-center">
                     <a href="" class="nav-link">
-                        <i class="fa-solid fa-heart navbar-icon"></i>
+                        <i class="fa-solid fa-heart icon"></i>
                         <span class="text-white m-0">Favorite</span>
                     </a>
                 </li>
                 <li class="nav-item text-center">
                     <a href="" class="nav-link">
-                        <i class="fa-solid fa-cart-shopping navbar-icon"></i>
+                        <i class="fa-solid fa-cart-shopping icon"></i>
                         <span class="text-white m-0">Cart</span>
                     </a>
                 </li>

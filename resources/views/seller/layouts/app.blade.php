@@ -45,7 +45,7 @@
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-user"></i> Profile</a>
                 </ul>
-                
+
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-shirt"></i> Products Dashboard</a>
                 </ul>
@@ -65,9 +65,10 @@
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-headset"></i> Customer Support</a>
                 </ul>
-            </nav>                
+            </nav>
         </div>
-        <main class="py-4">
+        {{-- <main class="py-4"> --}}
+            <main>
             @yield('content')
         </main>
     </div>

@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="app-body">
-        <div class="sidebar">
+        <div class="sidebar shadow">
             <a href="#">
                 <img src="{{ asset('images/common/Logo.png')}}">
             </a>
@@ -36,7 +36,7 @@
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-user"></i> Profile</a>
                 </ul>
-                
+
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-shirt"></i> Products Dashboard</a>
                 </ul>
@@ -56,9 +56,9 @@
                 <ul class="nav-item mt-4">
                     <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-headset"></i> Customer Support</a>
                 </ul>
-            </nav>                
+            </nav>
         </div>
-        <main>
+         <main>
             @yield('content')
         </main>
     </div>

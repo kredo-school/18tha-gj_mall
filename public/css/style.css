@@ -42,12 +42,16 @@ main {
 }
 
 /* form-bg empty */
-input[type="email"], input[type="password"] {
+input[type="email"], 
+input[type="password"], 
+input[type="text"] {
     background-color: #F2F2F2; /* Default color when empty */
 }
 
 /* form-bg not empty */
-input[type="email"]:not(:placeholder-shown) input[type="password"]:not(:placeholder-shown) {
+input[type="email"]:not(:placeholder-shown), 
+input[type="password"]:not(:placeholder-shown), 
+input[type="text"]:not(:placeholder-shown) {
     background-color: #ffffff; /* Change color when text is entered */
 }
 
@@ -67,3 +71,24 @@ input[type="email"]:not(:placeholder-shown) input[type="password"]:not(:placehol
 .heart-icon-no-favorite {
     color: #333333;
     font-size: 1.5rem;
+}
+
+/* Radio Button  */
+input[type=radio]:checked {
+    background-color: #FF3A3A;
+    border: 2px solid #FF3A3A;
+    box-shadow: none;
+}
+
+/* Edit Button  */
+.edit-button {
+    background-color: #0AA873;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-button:hover,.edit-button:active {
+    background-color: white;
+    color: #0AA873;
+    border: 1px solid #0AA873; 
+}

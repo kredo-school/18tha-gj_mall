@@ -36,3 +36,7 @@ Route::get('/seller/profile/showedit', function () {
 Route::get('/seller/products/create', function () {
     return view('seller.products.create');
 });
+
+Route::get('/customer/profile/showedit', function () {
+    return view('customer.profile');
+});

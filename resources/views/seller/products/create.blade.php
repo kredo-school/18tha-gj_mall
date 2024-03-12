@@ -54,7 +54,7 @@
 
                     <div class="col-5">
                         <label for="category" class="form-label">Category</label>
-                        <select name="category" id="category" class="form-control">
+                        <select name="category" id="category" class="form-control" style="background-color:#F2F2F2;">
                             <option disabled selected>Select Category</option>
                             <option value="">category1</option>
                             <option value="">category2</option>

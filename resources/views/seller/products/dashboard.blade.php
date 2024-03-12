@@ -122,7 +122,7 @@
                         </div>
                         <div class="col mt-1">
                             <a href="">
-                                <button class=" btn custom-button w-100">Create Product
+                                <button class=" btn custom-button w-100 shadow-sm">Create Product
                         </div>
                         </a>
                     </div>
@@ -148,7 +148,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody class="text-center">
+                            <tbody class="text-center bg-white">
                                 {{-- get data from products table of the seller --}}
                                 <tr>
                                     <td>1234</td>

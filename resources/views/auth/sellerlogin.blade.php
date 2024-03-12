@@ -15,7 +15,7 @@
             <div class="">
                 <div class="ms-0">
                     <a  href="{{ url('/') }}" class="logo-img">
-                        <img src="images/common/Logo.png" alt="logo" style="width: 150px; height:150px;">
+                        <img src="{{ asset('images/common/Logo.png') }}" alt="logo" style="width: 150px; height:150px;">
                     </a>
                 </div>
             </div>
@@ -93,20 +93,16 @@
 
             </form>
 
-            <!-- Go to Seller's Sign-in page -->
+            <!-- Go to Admin's Sign-in page -->
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
-                    </div>
+                    <a href="#" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
                 </div>
             </div>
 
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
-                    <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
-                    </div>
+                    <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
                 </div>
             </div>
             

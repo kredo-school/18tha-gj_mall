@@ -8,7 +8,7 @@
 @section('title', 'Sign in')
 
 @section('content')
-<div class="container-fluid login-background-image">
+<div class="container-fluid" style="background-image: url(/images/account/bg-seller.png)">
     <!-- Logo-->
     <div class="row">
         <div class="col-md-6 mb-3">
@@ -37,7 +37,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 text-danger fw-bold">Create an account</a>
+                    <h1 class="h2 fw-bold">Business Account</h1>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
+                        <a href="#" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
                     </div>
                 </div>
             </div>

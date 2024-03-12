@@ -1,0 +1,44 @@
+.banner-container {
+    position: relative;
+    display: inline-block;
+}
+
+.banner-image {
+    width: 800px;
+    display: block;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px; /* Adjust as needed */
+    box-sizing: border-box;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin-right: 10px; /* Adjust as needed */
+}
+
+.text-content {
+    display: inline-block;
+    vertical-align: top;
+    color: #333333;
+    text-shadow: 1px 1px 2px white;
+}
+
+.text-content h1 {
+    font-size: 36px; /* Adjust as needed */
+}
+
+.text-content .description {
+    margin-top: 10px; /* Adjust as needed */
+}
+
+.text-content p {
+    font-size: 18px; /* Adjust as needed */
+}

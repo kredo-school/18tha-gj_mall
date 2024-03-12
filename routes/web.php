@@ -40,3 +40,8 @@ Route::get('/seller/products/dashboard', function () {
 Route::get('/customer/profile/showedit', function () {
     return view('customer.profile');
 });
+
+Route::get('/customer/payment', function () {
+    return view('customer.payment');
+});
+

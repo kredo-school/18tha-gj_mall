@@ -3,7 +3,7 @@
     <div class="card-body border-bottom">
         <div class="row align-items-center">
             <div class="col-auto">
-                <img src=https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/corporate-user-icon.png class="rounded-5 border" style="object-fit: cover; width: 64px; height: 64px;">
+                <img src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/corporate-user-icon.png" class="rounded-5 border" style="object-fit: cover; width: 64px; height: 64px;">
             </div>
             <div class="col">
                 <h5 class="card-title">John Doe</h5>

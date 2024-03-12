@@ -50,29 +50,27 @@ label {
 /* form-bg empty */
 input[type="text"],
 input[type="number"],
-textarea {
-    background-color: #F2F2F2;
+textarea,
+input[type="checkbox"]:focus {
+    background-color:#fff ;
     /* Default color when empty */
 }
 
+
 /* form-bg not empty */
 input[type="text"]:not(:placeholder-shown),
-input[type="number"]:not(:placeholder-shown) {
-    background-color: #ffffff;
-    /* Change color when text is entered */
+input[type="number"]:not(:placeholder-shown),
+textarea:not(:placeholder-shown),
+input[type="checkbox"] {
+    background-color: #f2f2f2;
 }
 
 
 /* selecet form selected */
-.selected {
+select {
     background-color: #f2f2f2;
     /* Change this to the desired background color */
 }
-
-/* checkbox */
-.checked {
-    background-color: #f2f2f2; /* Background color when checkbox is checked */
-  }
 
 /* form-button */
 
@@ -114,5 +112,3 @@ input[type="number"]:not(:placeholder-shown) {
     /* Border color on hover */
     color: #30567A;
 }
-
-

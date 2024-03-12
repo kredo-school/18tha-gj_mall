@@ -49,13 +49,13 @@
                 <div class="row mt-4">
                     <div class="col-5">
                         <label for="title" class="form-label">Title</label>
-                        <input type="text" class="form-control">
+                        <input type="text" id="title" name="title" class="form-control">
                     </div>
 
                     <div class="col-5">
                         <label for="category" class="form-label">Category</label>
                         <select name="category" id="category" class="form-control">
-                            {{-- <option selected>Select Category</option> --}}
+                            <option disabled selected>Select Category</option>
                             <option value="">category1</option>
                             <option value="">category2</option>
                             <option value="">ategory3</option>
@@ -64,7 +64,7 @@
 
                     <div class="col-auto">
                         <label for="is_fragile" class="form-label">Is Fragile</label><br>
-                        <input type="checkbox" name="is_fragile" id="is_fragile" class="form-check-input" checked>
+                        <input type="checkbox" name="is_fragile" id="is_fragile" class="form-check-input">
                     </div>
 
                 </div>
@@ -72,7 +72,7 @@
                 <div class="row mt-4">
                     <div class="col">
                         <label for="description" class="form-label">Description</label>
-                        <textarea name="desc" id="description" rows="5" class="form-control" placeholder="Describe here..."></textarea>
+                        <textarea name="desc" id="description" rows="5" class="form-control"></textarea>
                     </div>
                 </div>
 
@@ -113,7 +113,6 @@
                 </div>
             </div>
         </div>
+
     </div>
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
-    <script src="{{ asset('js/create-product.js') }}"></script>
 @endsection

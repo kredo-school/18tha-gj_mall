@@ -15,7 +15,7 @@
             <div class="">
                 <div class="ms-0">
                     <a  href="{{ url('/') }}" class="logo-img">
-                        <img src="images/common/Logo.png" alt="logo" style="width: 150px; height:150px;">
+                        <img src="{{ asset('images/common/Logo.png') }}" alt="logo" style="width: 150px; height:150px;">
                     </a>
                 </div>
             </div>

@@ -71,3 +71,11 @@ input[type="text"]:not(:placeholder-shown) {
 .heart-icon-no-favorite {
     color: #333333;
     font-size: 1.5rem;
+}
+
+/* Radio Button  */
+input[type=radio]:checked {
+    background-color: #FF3A3A;
+    border: 2px solid #FF3A3A;
+    box-shadow: none;
+}

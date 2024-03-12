@@ -33,6 +33,10 @@ Route::get('/seller/profile/showedit', function () {
     return view('seller.profile.showedit');
 });
 
+Route::get('/seller/products/dashboard', function () {
+    return view('seller.products.dashboard');
+});
+
 Route::get('/seller/products/create', function () {
     return view('seller.products.create');
 });
@@ -40,3 +44,9 @@ Route::get('/seller/products/create', function () {
 Route::get('/customer/profile/showedit', function () {
     return view('customer.profile');
 });
+
+
+Route::get('/customer/payment', function () {
+    return view('customer.payment');
+});
+

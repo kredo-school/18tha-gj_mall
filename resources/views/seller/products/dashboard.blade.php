@@ -1,44 +1,13 @@
 @extends('seller.layouts.app')
 
 @section('content')
-    <style>
+    <link rel="stylesheet" href="{{ asset('css/seller/product-dashboard.css') }}">
 
-        .card-parent {
-            position: relative;
-            display: inline-block;"
-        }
-        .rank-num {
-            position: absolute;
-            top: 0%;
-            left: 0%;
-            color: #000000;
-            /* Text color */
-            font-size: 20px;
-            /* Adjust font size as needed */
-            font-weight: bold;
-            /* Adjust font weight as needed */
-            background-color: #F2F2F2;
-            z-index: 1;
-            /* Ensure text is above the image */
-            "
-        }
-        .rank-image {
-            width: 160px;
-            height: 160px
-        }
-        .table-thead {
-            backgroundcolor: #F2F2F2;
-        }
-    </style>
 
-</head>
-
-<body>
     <main class="bg-white">
-        {{-- @yield('content') --}}
         <div class="container">
             <div class="row justify-content-end">
-                <div class="col mb-4 border-start ps-5">
+                <div class="col mb-4 ps-5">
                     <h2 class="py-4">Products Dashboard</h2>
                     <div class="row">
                         {{-- show top5 sold items in the shop --}}
@@ -139,69 +108,100 @@
                             </div>
                             {{-- card item 5 end --}}
                         </div>
-
-
                     </div>
 
-                    {{-- search bar --}}
+                    {{-- Search bar --}}
                     <div class="row mt-4">
-                        <div class="col-8">
-                            <form action="" method="get">
-                                <input type="text" name="search" id="search" class="border rounded rounded-3 mt-4 form-control" placeholder="Search here ..." >
+                        <div class="col-8 my-2">
+
+                            <form action="#">
+                                <input type="search" name="search" placeholder="Search..."
+                                    class="form-control form-control-sm">
                             </form>
+
                         </div>
-                        {{-- create button --}}
-                        <div class="col-auto mt-4">
+                        <div class="col mt-1">
                             <a href="">
-                                <div class="button btn text-white w-100" style="background-color: #30567A">Create Product</div>
-                            </a>
+                                <button class=" btn custom-button w-100">Create Product
                         </div>
+                        </a>
                     </div>
-
-                    {{-- product lists --}}
-                    <table class="table mt-4">
-                        <thead>
-                            <tr>
-                                <th>Product ID</th>
-                                <th>Title</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Is fragile</th>
-                                <th>Wigth</th>
-                                <th>Size</th>
-                                <th>Maximum Stock</th>
-                                <th>Category</th>
-                                <th>Delivery Type</th>
-                                <th></th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-                            {{-- get data from products table of the seller --}}
-                            <tr>
-                                <td>1234</td>
-                                <td>Owan</td>
-                                <td>$100</td>
-                                <td>Awsome Product</td>
-                                <td>○</td>
-                                <td>200 g</td>
-                                <td>φ100mm H80mm</td>
-                                <td>50</td>
-                                <td>Kitchen Tools</td>
-                                <td>Shipping</td>
-                                <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
-                                <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
-                            </tr>
-                        </tbody>
-                    </table>
-
                 </div>
+
+                {{-- product lists --}}
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-hover align-middle bg-white border mt-2">
+                            <thead class="small table-secondary text-light">
+                                <tr>
+                                    <th>Product ID</th>
+                                    <th>Title</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Is fragile</th>
+                                    <th>Wigth</th>
+                                    <th>Size</th>
+                                    <th>Maximum Stock</th>
+                                    <th>Category</th>
+                                    <th>Delivery Type</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                {{-- get data from products table of the seller --}}
+                                <tr>
+                                    <td>1234</td>
+                                    <td>Owan</td>
+                                    <td>$100</td>
+                                    <td>Awsome Product</td>
+                                    <td>○</td>
+                                    <td>200 g</td>
+                                    <td>φ100mm H80mm</td>
+                                    <td>50</td>
+                                    <td>Kitchen Tools</td>
+                                    <td>Shipping</td>
+                                    <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
+                                    <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                                </tr>
+
+                                <tr>
+                                    <td>5678</td>
+                                    <td>fan</td>
+                                    <td>$30</td>
+                                    <td>Awsome Products</td>
+                                    <td>○</td>
+                                    <td>50 g</td>
+                                    <td>L: 10cm W: 3cm H: 1cm </td>
+                                    <td>100</td>
+                                    <td>Kitchen Tools</td>
+                                    <td>Shipping</td>
+                                    <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
+                                    <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                                </tr>
+
+                                <tr>
+                                    <td>9123</td>
+                                    <td>Kimono</td>
+                                    <td>$1000</td>
+                                    <td>Awsome Product</td>
+                                    <td>×</td>
+                                    <td>2 kg</td>
+                                    <td>160cm</td>
+                                    <td>2</td>
+                                    <td>Traditional Clothes</td>
+                                    <td>Shipping</td>
+                                    <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
+                                    <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
             </div>
         </div>
 
     </main>
-    </div>
-</body>
-
-</html>
 @endsection

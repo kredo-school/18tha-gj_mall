@@ -1,0 +1,144 @@
+.image-md {
+    height: 200px;
+    width: 200px;
+}
+
+.image-num {
+    position: absolute;
+    top: 8%;
+    left: 6%;
+    background-color: #333333;
+    color: #FFFFFF;
+    z-index: 1;
+    padding: 10px 15px;
+    font-size: 12px;
+    opacity: 50%;
+}
+
+.plus-circle {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    color: #FFFFFF;
+    font-size: 64px;
+    background-color: #F2F2F2;
+    font-weight: bold;
+    padding: 10px 40px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+.plus-circle-overlay {
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    color: #000;
+    font-size: 64px;
+    background-color: #F2F2F2;
+    font-weight: bold;
+    padding: 10px 40px;
+    border-radius: 100%;
+    text-align: center;
+    opacity: 50%;
+}
+
+.pen-circle-overlay {
+    position: absolute;
+    top: 8%;
+    left: 85%;
+    color: #fff;
+    font-size: 12px;
+    background-color: #FFD700;
+    font-weight: bold;
+    padding: 1px 4px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+
+
+/* form text */
+label {
+    font-size: 24px;
+}
+
+
+/* form-button */
+
+/* Custom button styles */
+.custom-button-cancel {
+    background-color: #FFFFFF;
+    /* Your custom color */
+    color: #30567A;
+    /* Text color */
+    border-color: #30567A;
+    font-weight:bold ;
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Hover styles */
+.custom-button-cancel:hover {
+    background-color: #30567A;
+    /* Your custom hover color */
+    color: #FFFFFF;
+}
+
+.custom-button-save {
+    background-color: #30567A;
+    /* Your custom color */
+    color: #FFFFFF;
+    /* Text color */
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Hover styles */
+.custom-button-save:hover {
+    background-color: #FFFFFF;
+    /* Your custom hover color */
+    border-color: #30567A;
+    /* Border color on hover */
+    color: #30567A;
+}
+
+/* Custom button styles */
+.custom-edit-cancel {
+    background-color: #FFFFFF;
+    /* Your custom color */
+    color: #0AA873;
+    /* Text color */
+    border-color: #0AA873;
+    font-weight:bold ;
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Hover styles */
+.custom-edit-cancel:hover {
+    background-color: #0AA873;
+    /* Your custom hover color */
+    color: #FFFFFF;
+}
+
+.custom-edit-update {
+    background-color: #0AA873;
+    /* Your custom color */
+    color: #FFFFFF;
+    /* Text color */
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Optional: Hover styles */
+.custom-edit-update:hover {
+    background-color: #FFFFFF;
+    /* Your custom hover color */
+    border-color: #0AA873;
+    /* Border color on hover */
+    color: #0AA873;
+}

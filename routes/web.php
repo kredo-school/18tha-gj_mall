@@ -49,3 +49,7 @@ Route::get('/seller/ads/create', function () {
     return view('seller.ads.create');
 });
 
+Route::get('/seller/ads/edit', function () {
+    return view('seller.ads.edit');
+});
+

@@ -5,7 +5,7 @@
 
     <div class="row justify-content-end bg-white">
         <div class="col mt-4">
-            <h2>Create Advertisment</h2>
+            <h2>Edit Advertisment -- {{ __("Ad ID xxxx") }}</h2>
             <div class="form">
                 <div class="row">
                     <h3>Image</h3>
@@ -18,22 +18,12 @@
                         <div class="mt-3">
                             <img src="{{ asset('images/items/item1.jpg') }}" alt="" class="image-md">
                         </div>
-                        <label class="d-inline plus-circle-overlay">
+                        <label class="d-inline pen-circle-overlay">
                             {{-- this appears if the images are selected in order to change the images --}}
                             <input type="file" style="display: none;">
-                            +
+                            <i class="fa-solid fa-pen"></i>
                         </label>
                     </div>
-
-
-                    {{-- when the images isn't in the database, only the below component will show up --}}
-                    <div class="col-auto align-middle ps-5" style="position: relative; display: inline-block;">
-                        <label class="d-inline plus-circle">
-                            <input type="file" style="display: none;">
-                            +
-                        </label>
-                    </div>
-                </div>
 
                 <div class="row mt-4">
                     <div class="col-6">
@@ -63,10 +53,10 @@
                 <div class="row my-4">
                     <div class="col-6"></div>
                     <div class="col-3">
-                        <button class="btn custom-button-cancel w-100">Cancel</button>
+                        <button class="btn custom-edit-cancel w-100">Cancel</button>
                     </div>
                     <div class="col-3">
-                        <button type="submit" class="btn custom-button-save w-100">Save</button>
+                        <button type="submit" class="btn custom-edit-update w-100">Update</button>
                     </div>
                 </div>
             </div>

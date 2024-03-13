@@ -41,6 +41,10 @@ Route::get('/seller/products/create', function () {
     return view('seller.products.create');
 });
 
+Route::get('/seller/products/edit', function () {
+    return view('seller.products.edit');
+});
+
 Route::get('/customer/profile/showedit', function () {
     return view('customer.profile');
 });

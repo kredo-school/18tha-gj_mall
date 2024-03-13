@@ -1,0 +1,31 @@
+.overlay-plus {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    /* Text color */
+    font-size: 20px;
+    /* Adjust font size as needed */
+    font-weight: bold;
+    /* Adjust font weight as needed */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Background color with transparency */
+    padding: 10px 20px;
+    /* Adjust padding as needed */
+    z-index: 1;
+    /* Ensure text is above the image */
+}
+/* form-bg empty */
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    background-color: #F2F2F2; /* Default color when empty */
+}
+
+/* form-bg not empty */
+input[type="email"]:not(:placeholder-shown),
+input[type="password"]:not(:placeholder-shown),
+input[type="text"]:not(:placeholder-shown) {
+    background-color: #ffffff; /* Change color when text is entered */
+}

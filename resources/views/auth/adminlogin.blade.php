@@ -8,7 +8,7 @@
 @section('title', 'Sign in')
 
 @section('content')
-<div class="container-fluid login-background-image">
+<div class="container-fluid" style="background-image: url(/images/account/bg-admin.png)">
     <!-- Logo-->
     <div class="row">
         <div class="col-md-6 mb-3">
@@ -37,7 +37,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 text-danger fw-bold">Create an account</a>
+                    <h1 class="h2 fw-bold">Admin Account</h1>
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
                 </div>
 
                 <!-- Sign-in Button -->
-                <div class="row mb-3">
+                <div class="row mb-5">
                     <div class="col-auto mx-auto">
                         <button type="submit" class="btn btn-dark btn-signIn">
                             <p class="fw-bold text-white" style="font-size: 24px;">Sign in</p>
@@ -93,20 +93,9 @@
 
             </form>
 
-            <!-- Go to Seller's Sign-in page -->
-            <div class="row mb-3">
-                <div class="col-auto mx-auto">
-                    <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
-                    </div>
-                </div>
-            </div>
-
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
-                    <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
-                    </div>
+                    <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
                 </div>
             </div>
             

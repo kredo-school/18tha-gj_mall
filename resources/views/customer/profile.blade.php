@@ -4,7 +4,7 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/customer-profile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customerProfile.css') }}">
 
     @include('layouts.navbar')
     

@@ -45,3 +45,7 @@ Route::get('/customer/payment', function () {
     return view('customer.payment');
 });
 
+Route::get('/seller/ads/create', function () {
+    return view('seller.ads.create');
+});
+

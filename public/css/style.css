@@ -1,3 +1,7 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
+
 .style-seet {
     &.color1 {
         background-color: #FF3A3A;
@@ -55,6 +59,16 @@ input[type="text"]:not(:placeholder-shown) {
     background-color: #ffffff; /* Change color when text is entered */
 }
 
+/* textarea not empty */
+textarea#comment {
+    background-color: #F2F2F2; /* Default color when empty */
+}
+
+/* textarea empty */
+textarea#comment:not(:placeholder-shown) {
+    background-color: #ffffff; /* Change color when text is entered */
+}
+
 /* Carousel image size */
 .custom-card-img-top {
     object-fit: cover;
@@ -80,6 +94,40 @@ input[type=radio]:checked {
     box-shadow: none;
 }
 
+/* Normal Button  */
+.normal-button {
+    background-color: #333333;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.normal-button:hover,.normal-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #333333;
+    border: 1px solid #333333; 
+}
+
+/* Create Button  */
+.create-button {
+    background-color: #30567A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.create-button:hover,.create-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #30567A;
+    border: 1px solid #30567A; 
+}
+
 /* Edit Button  */
 .edit-button {
     background-color: #0AA873;
@@ -94,10 +142,64 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: #0AA873;
-    border: 1px solid #0AA873; 
+    border: 1px solid #0AA873;
+}
+
+/* Edit Cancel Button  */
+.edit-cancel-button {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #0AA873;
+    border: 1px solid #0AA873;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-cancel-button:hover,.edit-cancel-button:active {
+    background-color: #0AA873;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    border: 1px solid white;
+}
+
+/* Delete Button  */
+.delete-button {
+    background-color: #FF3A3A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.delete-button:hover,.delete-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #FF3A3A;
+    border: 1px solid #FF3A3A; 
+}
+
+/* Delete Cancel Button  */
+.delete-cancel-button {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #FF3A3A;
+    border: 1px solid #FF3A3A;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.delete-cancel-button:hover,.delete-cancel-button:active {
+    background-color: #FF3A3A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    border: 1px solid white;
 }
 
 /* label  */
 label {
     font-size: 24px;
+    font-weight: 600;
 }

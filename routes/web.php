@@ -25,6 +25,10 @@ Route::get('/seller/evaluation', function () {
     return view('seller.evaluation');
 });
 
+Route::get('/admin/assessor/evaluation', function () {
+    return view('admin.assessor.evaluation');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -54,3 +58,6 @@ Route::get('/customer/payment', function () {
     return view('customer.payment');
 });
 
+Route::get('/customer/orderHistory', function () {
+    return view('customer.orderHistory');
+});

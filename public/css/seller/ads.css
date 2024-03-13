@@ -3,6 +3,11 @@
     width: 200px;
 }
 
+.image-sm {
+    height: 100px;
+    width: 100px;
+}
+
 .image-num {
     position: absolute;
     top: 8%;
@@ -66,6 +71,25 @@ label {
 /* form-button */
 
 /* Custom button styles */
+.custom-button {
+    background-color: #30567A;
+    /* Your custom color */
+    color: #fff;
+    /* Text color */
+    border-color: #30567A;
+    /* Border color (optional) */
+    height: 32px;
+}
+
+/* Optional: Hover styles */
+.custom-button:hover {
+    background-color: #fff;
+    /* Your custom hover color */
+    border-color: #30567A;
+    /* Border color on hover */
+    color: #30567A;
+}
+
 .custom-button-cancel {
     background-color: #FFFFFF;
     /* Your custom color */
@@ -118,7 +142,8 @@ label {
 }
 
 /* Optional: Hover styles */
-.custom-edit-cancel:hover {
+.custom-edit-cancel:hover,
+.custom-delete-cancel:hover {
     background-color: #0AA873;
     /* Your custom hover color */
     color: #FFFFFF;
@@ -135,10 +160,75 @@ label {
 }
 
 /* Optional: Hover styles */
-.custom-edit-update:hover {
+.custom-edit-update:hover,
+.custom-delete:hover {
     background-color: #FFFFFF;
     /* Your custom hover color */
     border-color: #0AA873;
     /* Border color on hover */
     color: #0AA873;
+}
+
+.custom-delete-cancel {
+    background-color: #FFFFFF;
+    /* Your custom color */
+    color: #0AA873;
+    /* Text color */
+    border-color: #0AA873;
+    font-weight:bold ;
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    width: 210px;
+}
+
+.custom-delete {
+    background-color: #0AA873;
+    /* Your custom color */
+    color: #FFFFFF;
+    /* Text color */
+    font-size: 24px;
+    height: 50px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    height: 50px;
+    width: 210px;
+}
+
+/* brand banner layouts */
+.brand-banner {
+    width: 1260px;
+    height: 200px;
+    position:relative;
+    border: solid 1px ;
+    background-image: url("../../../images/banner/banner4.png");
+}
+
+.logo {
+    height: 128px;
+    width: 128px;
+}
+
+.gj-mall {
+    font-size: 64px;
+    font-weight: bold;
+    /* -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.05px; */
+}
+
+.sub-title {
+    font-size: 24px;
+    font-weight: bold;
+    /* -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.05px; */
+}
+
+.modal-head {
+    background-color: #FF3A3A;
+    border-radius: 0;
+}
+
+.modal-foot {
+    background-color: #F2F2F2;
+    border-radius: 0;
 }

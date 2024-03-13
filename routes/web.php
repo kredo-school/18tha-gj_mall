@@ -49,3 +49,6 @@ Route::get('/customer/payment', function () {
     return view('customer.payment');
 });
 
+Route::get('/customer/orderHistory', function () {
+    return view('customer.orderHistory');
+});

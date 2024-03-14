@@ -21,8 +21,8 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/seller/evaluation', function () {
-    return view('seller.evaluation');
+Route::get('/seller/evaluation/show', function () {
+    return view('seller.evaluation.show');
 });
 
 Route::get('/admin/assessor/evaluation', function () {
@@ -33,8 +33,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/seller/profile/showedit', function () {
-    return view('seller.profile.showedit');
+Route::get('/seller/profile/showEdit', function () {
+    return view('seller.profile.showEdit');
 });
 
 Route::get('/seller/products/dashboard', function () {

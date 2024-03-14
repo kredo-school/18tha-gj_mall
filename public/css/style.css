@@ -46,15 +46,15 @@ main {
 }
 
 /* form-bg empty */
-input[type="email"], 
-input[type="password"], 
+input[type="email"],
+input[type="password"],
 input[type="text"] {
     background-color: #F2F2F2; /* Default color when empty */
 }
 
 /* form-bg not empty */
-input[type="email"]:not(:placeholder-shown), 
-input[type="password"]:not(:placeholder-shown), 
+input[type="email"]:not(:placeholder-shown),
+input[type="password"]:not(:placeholder-shown),
 input[type="text"]:not(:placeholder-shown) {
     background-color: #ffffff; /* Change color when text is entered */
 }
@@ -100,7 +100,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: white;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .normal-button:hover,.normal-button:active {
@@ -108,7 +108,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: #333333;
-    border: 1px solid #333333; 
+    border: 1px solid #333333;
 }
 
 /* Create Button  */
@@ -117,7 +117,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: white;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .create-button:hover,.create-button:active {
@@ -125,7 +125,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: #30567A;
-    border: 1px solid #30567A; 
+    border: 1px solid #30567A;
 }
 
 /* Edit Button  */
@@ -134,7 +134,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: white;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .edit-button:hover,.edit-button:active {
@@ -152,7 +152,7 @@ input[type=radio]:checked {
     height: 50px;
     color: #0AA873;
     border: 1px solid #0AA873;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .edit-cancel-button:hover,.edit-cancel-button:active {
@@ -169,7 +169,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: white;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .delete-button:hover,.delete-button:active {
@@ -177,7 +177,7 @@ input[type=radio]:checked {
     font-size: 24px;
     height: 50px;
     color: #FF3A3A;
-    border: 1px solid #FF3A3A; 
+    border: 1px solid #FF3A3A;
 }
 
 /* Delete Cancel Button  */
@@ -187,7 +187,7 @@ input[type=radio]:checked {
     height: 50px;
     color: #FF3A3A;
     border: 1px solid #FF3A3A;
-    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .delete-cancel-button:hover,.delete-cancel-button:active {

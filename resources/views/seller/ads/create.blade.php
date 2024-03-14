@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
 
-    <div class="row justify-content-end bg-white">
+    <div class="row justify-content-end me-4">
         <div class="col mt-4">
             <h2>Create Advertisment</h2>
             <div class="form">
@@ -27,12 +27,12 @@
 
 
                     {{-- when the images isn't in the database, only the below component will show up --}}
-                    <div class="col-auto align-middle ps-5" style="position: relative; display: inline-block;">
+                    {{-- <div class="col-auto align-middle ps-5" style="position: relative; display: inline-block;">
                         <label class="d-inline plus-circle">
                             <input type="file" style="display: none;">
                             +
                         </label>
-                    </div>
+                    </div> --}}
                 </div>
 
                 <div class="row mt-4">

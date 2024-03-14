@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
 
-    <div class="row justify-content-end bg-white">
+    <div class="row justify-content-end">
         <div class="col mt-4">
             <h2>Edit Advertisment -- {{ __("Ad ID xxxx") }}</h2>
             <div class="form">

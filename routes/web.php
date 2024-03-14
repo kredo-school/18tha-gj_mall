@@ -25,6 +25,10 @@ Route::get('/seller/evaluation', function () {
     return view('seller.evaluation');
 });
 
+Route::get('/admin/assessor/evaluation', function () {
+    return view('admin.assessor.evaluation');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -45,6 +49,10 @@ Route::get('/customer/payment', function () {
     return view('customer.payment');
 });
 
+Route::get('/customer/orderHistory', function () {
+    return view('customer.orderHistory');
+});
+
 Route::get('/seller/ads/dashboard', function () {
     return view('seller.ads.dashboard');
 });
@@ -58,3 +66,19 @@ Route::get('/seller/ads/edit', function () {
     return view('seller.ads.edit');
 });
 
+Route::get('/seller/ads/dashboard', function () {
+    return view('seller.ads.dashboard');
+});
+
+
+Route::get('/seller/ads/create', function () {
+    return view('seller.ads.create');
+});
+
+Route::get('/seller/ads/edit', function () {
+    return view('seller.ads.edit');
+});
+
+Route::get('/customer/orderHistory', function () {
+    return view('customer.orderHistory');
+});

@@ -25,8 +25,13 @@ Route::get('/seller/evaluation/show', function () {
     return view('seller.evaluation.show');
 });
 
+
+Route::get('/admin/delivery', function () {
+    return view('admin.delivery.deliveryList');
+
 Route::get('/admin/assessor/evaluation', function () {
     return view('admin.assessor.evaluation');
+
 });
 
 Auth::routes();

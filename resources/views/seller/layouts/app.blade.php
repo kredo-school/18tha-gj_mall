@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="app-body">
-        <div class="sidebar shadow">
+        <div class="sidebar">
             <a href="#">
                 <img src="{{ asset('images/common/Logo.png')}}">
             </a>

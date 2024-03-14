@@ -3,7 +3,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/products.css') }}">
 
-    <div class="row justify-content-end bg-white">
+    <div class="row justify-content-end">
         <div class="col mt-4">
             <h2>Edit Product - {{ __("Product ID XXXX")  }}</h2>
             <div class="form">
@@ -62,9 +62,11 @@
                         </select>
                     </div>
 
-                    <div class="col-auto">
-                        <label for="is_fragile" class="form-label">Is Fragile</label><br>
-                        <input type="checkbox" name="is_fragile" id="is_fragile" class="form-check-input" checked>
+                    <div class="col-auto mx-auto">
+                        <label for="is_fragile">Is Fragile</label>
+                        <p>
+                            <input type="checkbox" name="is_fragile" id="is_fragile" class="form-check-input">
+                        </p>
                     </div>
 
                 </div>

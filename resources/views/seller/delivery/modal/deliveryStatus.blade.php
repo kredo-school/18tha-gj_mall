@@ -21,17 +21,19 @@
               <p><strong class="fw-bold">Description: </strong><br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure aliquid esse illo cum! Veniam at soluta, quas eaque odio laborum atque officiis numquam doloribus culpa dolor libero impedit veritatis voluptatem?</p>
 
               <div class="status">
-                  <form action="#">
-                      <label for="status" class="h5 fw-bold">Status:</label>
-                      <select name="stauts" id="status" style="width: 400px">
-                          <option value="select">Select the status here...</option>
-                          <option value="first">1: Waiting for Acceptance</option>
-                          <option value="second">2: Completing Acceptance</option>
-                          <option value="third">3: During Transportation</option>
-                          <option value="forth">4: Completing Shipment</option>
-                      </select>
-                  </form>
-              </div>
+                <form action="#">
+                    <label for="status" class="h5 fw-bold">Status:</label>
+                    <select name="stauts" id="status" style="width: 400px">
+                        {{-- Seller can change only first and second action --}}
+                        <option value="select">Select the status here...</option>
+                        <option value="first">1: Waiting for Acceptance</option>
+                        <option value="second">2: Completing Acceptance</option>
+                        
+                        {{-- <option value="third">3: During Transportation</option> --}}
+                        {{-- <option value="forth">4: Completing Shipment</option> --}}
+                    </select>
+                </form>
+            </div>
               
               
           </div>

@@ -11,9 +11,9 @@
     {{-- content  --}}
     <div class="container-fluid">
         {{-- Search Bar Header  --}}
-        <div class="row align-items-center" style="background-color: #f2f2f2; height: 50px;">
+        <div class="row align-items-center" id="search_bar_header">
             <div class="col">
-                <strong class="search-header text-truncate">1-48 over 2,000 results for <span style="color: #FF3A3A;">“kimono”</span></strong>
+                <strong class="search-header text-truncate">1-48 over 2,000 results for <span id="extra-font">“kimono”</span></strong>
             </div>
             <div class="col-auto d-sm-none d-md-block d-none d-sm-block">
                 {{-- Check: Might be necessary to fix dropdown when we create back-end --}}
@@ -38,7 +38,7 @@
             {{-- item --}}
             <div class="row row-cols-xxl-5 row-cols-lg-4 row-cols-md-3 row-cols-xs-1 g-3 mb-5" id="card-row">
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
                         
@@ -72,7 +72,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                         
@@ -106,7 +106,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
                         
@@ -140,7 +140,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                         
@@ -174,7 +174,7 @@
                 </div>
 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
                         
@@ -208,7 +208,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                         
@@ -242,7 +242,7 @@
                 </div>
 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://plus.unsplash.com/premium_photo-1705091981891-6a3819ead86e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
                         
@@ -276,7 +276,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://plus.unsplash.com/premium_photo-1705091981891-6a3819ead86e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                         
@@ -310,7 +310,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://plus.unsplash.com/premium_photo-1705091981891-6a3819ead86e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
                         
@@ -344,7 +344,7 @@
                 </div>
                 
                 <div class="col">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" id="card-item">
                         <img src="https://plus.unsplash.com/premium_photo-1705091981891-6a3819ead86e?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
                         <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                         

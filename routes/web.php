@@ -41,9 +41,18 @@ Route::get('/seller/products/dashboard', function () {
     return view('seller.products.dashboard');
 });
 
+Route::get('/seller/products/create', function () {
+    return view('seller.products.create');
+});
+
+Route::get('/seller/products/edit', function () {
+    return view('seller.products.edit');
+});
+
 Route::get('/customer/profile/showedit', function () {
     return view('customer.profile');
 });
+
 
 Route::get('/customer/payment', function () {
     return view('customer.payment');
@@ -64,21 +73,4 @@ Route::get('/seller/ads/create', function () {
 
 Route::get('/seller/ads/edit', function () {
     return view('seller.ads.edit');
-});
-
-Route::get('/seller/ads/dashboard', function () {
-    return view('seller.ads.dashboard');
-});
-
-
-Route::get('/seller/ads/create', function () {
-    return view('seller.ads.create');
-});
-
-Route::get('/seller/ads/edit', function () {
-    return view('seller.ads.edit');
-});
-
-Route::get('/customer/orderHistory', function () {
-    return view('customer.orderHistory');
 });

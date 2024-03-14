@@ -1,0 +1,205 @@
+body {
+    overflow: hidden; /* Hide scrollbars */
+}
+
+.style-seet {
+    &.color1 {
+        background-color: #FF3A3A;
+    }
+
+    &.color2 {
+        background-color: #FFD700;
+    }
+
+    &.color3 {
+        background-color: #0AA873;
+    }
+
+    &.color4 {
+        background-color: #F2F2F2;
+    }
+
+    &.color5 {
+        background-color: #333333;
+    }
+}
+
+/* Main Font */
+main {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Secondary Font */
+.montserrat {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* icon */
+.icon {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+/* form-bg empty */
+input[type="email"], 
+input[type="password"], 
+input[type="text"] {
+    background-color: #F2F2F2; /* Default color when empty */
+}
+
+/* form-bg not empty */
+input[type="email"]:not(:placeholder-shown), 
+input[type="password"]:not(:placeholder-shown), 
+input[type="text"]:not(:placeholder-shown) {
+    background-color: #ffffff; /* Change color when text is entered */
+}
+
+/* textarea not empty */
+textarea#comment {
+    background-color: #F2F2F2; /* Default color when empty */
+}
+
+/* textarea empty */
+textarea#comment:not(:placeholder-shown) {
+    background-color: #ffffff; /* Change color when text is entered */
+}
+
+/* Carousel image size */
+.custom-card-img-top {
+    object-fit: cover;
+    width: 250px;
+    height: 250px;
+}
+
+/* Heart Icon  */
+.heart-icon {
+    color: #FF3A3A;
+    font-size: 1.5rem;
+}
+
+.heart-icon-no-favorite {
+    color: #333333;
+    font-size: 1.5rem;
+}
+
+/* Radio Button  */
+input[type=radio]:checked {
+    background-color: #FF3A3A;
+    border: 2px solid #FF3A3A;
+    box-shadow: none;
+}
+
+/* Normal Button  */
+.normal-button {
+    background-color: #333333;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.normal-button:hover,.normal-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #333333;
+    border: 1px solid #333333; 
+}
+
+/* Create Button  */
+.create-button {
+    background-color: #30567A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.create-button:hover,.create-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #30567A;
+    border: 1px solid #30567A; 
+}
+
+/* Edit Button  */
+.edit-button {
+    background-color: #0AA873;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-button:hover,.edit-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #0AA873;
+    border: 1px solid #0AA873;
+}
+
+/* Edit Cancel Button  */
+.edit-cancel-button {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #0AA873;
+    border: 1px solid #0AA873;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.edit-cancel-button:hover,.edit-cancel-button:active {
+    background-color: #0AA873;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    border: 1px solid white;
+}
+
+/* Delete Button  */
+.delete-button {
+    background-color: #FF3A3A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.delete-button:hover,.delete-button:active {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #FF3A3A;
+    border: 1px solid #FF3A3A; 
+}
+
+/* Delete Cancel Button  */
+.delete-cancel-button {
+    background-color: white;
+    font-size: 24px;
+    height: 50px;
+    color: #FF3A3A;
+    border: 1px solid #FF3A3A;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.delete-cancel-button:hover,.delete-cancel-button:active {
+    background-color: #FF3A3A;
+    font-size: 24px;
+    height: 50px;
+    color: white;
+    border: 1px solid white;
+}
+
+/* label  */
+label {
+    font-size: 24px;
+    font-weight: 600;
+}

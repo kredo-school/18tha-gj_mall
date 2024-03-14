@@ -1,7 +1,7 @@
 @extends('seller.layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/seller/profile-showedit.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/seller/profileShowedit.css') }}">
 
     <div class="row justify-content-end me-3">
         <div class="col mb-4 ps-5">

@@ -15,8 +15,8 @@
                                     First Name
                                 </label>
                                 {{-- <input type="text" name="fname" id="fname" class="form-control" value="{{$first_name}} style="background-color: #FFFFFF;" >  --}}
-                                <input type="text" name="fname" id="fname" class="form-control"
-                                    placeholder="Merhab" style="background-color: #FFFFFF;">
+                                <input type="text" name="fname" id="fname" class="form-control bg-white"
+                                    placeholder="Merhab">
                             </div>
                             <div class="col-6">
                                 <label for="lname" class="form-label">
@@ -24,7 +24,7 @@
                                 </label>
                                 {{-- <input type="text" name="lname" id="lname" class="form-control" value="{{$last_name}} style="background-color: #FFFFFF;" >  --}}
                                 <input type="text" placeholder="Bozorgi" name="lname" id="lname"
-                                    class="form-control" style="background-color: #FFFFFF;">
+                                    class="form-control bg-white">
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -33,8 +33,8 @@
                                     Email
                                 </label>
                                 {{-- <input type="text" name="fname" id="fname" class="form-control" value="{{$email}}" style="background-color: FFFFFF;"> --}}
-                                <input type="text" name="email" id="email" class="form-control"
-                                    placeholder="merhabbozorgi@email.com" style="background-color: #FFFFFF;">
+                                <input type="text" name="email" id="email" class="form-control bg-white"
+                                    placeholder="merhabbozorgi@email.com">
                             </div>
                         </div>
                         <div class="row mb-4">

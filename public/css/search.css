@@ -1,0 +1,20 @@
+strong.search-header {
+    font-size: 24px;
+}
+
+.dropdown-item:active {
+    background-color: #333333;/
+}
+
+#search_bar_header {
+    background-color: #f2f2f2; 
+    height: 50px;
+}
+
+#extra-font {
+    color: #FF3A3A;
+}
+
+#card-item { 
+    width: 18rem;
+}

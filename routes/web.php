@@ -76,6 +76,15 @@ Route::get('/search', function () {
     return view('customer.search');
 });
 
-Route::get('/product/detail', function () {
-    return view('customer.productDetail');
+Route::get('/seller/ads/dashboard', function () {
+    return view('seller.ads.dashboard');
 });
+
+Route::get('/seller/ads/create', function () {
+    return view('seller.ads.create');
+});
+
+Route::get('/seller/ads/edit', function () {
+    return view('seller.ads.edit');
+});
+

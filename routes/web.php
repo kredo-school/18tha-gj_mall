@@ -42,6 +42,10 @@ Route::get('/admin/assessor/evaluation', function () {
 
 });
 
+Route::get('/admin/customersupport', function () {
+    return view('admin.inquiry.customerSupport');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

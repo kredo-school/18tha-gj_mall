@@ -1,5 +1,5 @@
 {{-- Login Register CSS --}}
-<link rel="stylesheet" href="{{ asset('css/authpage.css') }}">
+<link rel="stylesheet" href="{{ asset('css/customer/auth/authPage.css') }}">
 
 <script src="/js/app.js"></script>
 

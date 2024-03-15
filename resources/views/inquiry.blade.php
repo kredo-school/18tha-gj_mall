@@ -7,7 +7,7 @@
     @include('layouts.navbar')
 
     {{-- content  --}}
-    <div class="container-fluid bg-white">
+    <div class="container-fluid bg-white">        
         {{-- welcome banner  --}}
         <div class="row mb-3">
             <div class="col-auto">
@@ -116,6 +116,7 @@
             </div>
         </div>
         {{-- Inquiry Form end --}}
+        
     </div>
     {{-- content end --}}
 

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Seller Profile')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">

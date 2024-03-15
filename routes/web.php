@@ -25,8 +25,13 @@ Route::get('/seller/evaluation', function () {
     return view('seller.evaluation');
 });
 
+
+Route::get('/admin/delivery', function () {
+    return view('admin.delivery.deliveryList');
+
 Route::get('/admin/assessor/evaluation', function () {
     return view('admin.assessor.evaluation');
+
 });
 
 Auth::routes();
@@ -50,16 +55,27 @@ Route::get('/seller/products/edit', function () {
 });
 
 Route::get('/customer/profile/showedit', function () {
-    return view('customer.profile');
+    return view('customer.profile.profile');
 });
 
-
 Route::get('/customer/payment', function () {
-    return view('customer.payment');
+    return view('customer.profile.payment');
 });
 
 Route::get('/customer/orderHistory', function () {
-    return view('customer.orderHistory');
+    return view('customer.profile.orderHistory');
+});
+
+Route::get('/customer/payment/paymentConfirmation', function () {
+    return view('customer.payment.paymentConfirmation');
+});
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
+});
+
+Route::get('/search', function () {
+    return view('customer.search');
 });
 
 Route::get('/seller/ads/dashboard', function () {

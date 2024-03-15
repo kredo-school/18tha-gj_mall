@@ -67,3 +67,11 @@ Route::get('/customer/payment', function () {
 Route::get('/customer/orderHistory', function () {
     return view('customer.orderHistory');
 });
+
+Route::get('/search', function () {
+    return view('customer.search');
+});
+
+Route::get('/seller/dashboard', function () {
+    return view('seller.dashboard');
+});

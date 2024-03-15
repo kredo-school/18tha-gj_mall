@@ -23,7 +23,6 @@ Route::get('/seller/evaluation', function () {
     return view('seller.evaluation');
 });
 
-
 Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
 });

@@ -18,9 +18,9 @@ Route::get('/', function () {
 });
 
 
-// Seller Page
-Route::get('/seller/evaluation', function () {
-    return view('seller.evaluation');
+
+Route::get('/seller/evaluation/show', function () {
+    return view('seller.evaluation.show');
 });
 
 Route::get('/seller/delivery', function () {

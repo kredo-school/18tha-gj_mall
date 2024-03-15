@@ -1,12 +1,11 @@
-@extends('admin.layouts.app')
+@extends('seller.layouts.app')
 
-@section('title', 'Delivery Status Page')
+@section('title', 'Delivery Status Page(Seller)')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/delivery.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  
-    <div class="container main">
+
+    <div class="container">
         <div class="row justify-content-center pt-3">
             <h1>Delivery Order List</h1>
 
@@ -50,7 +49,7 @@
                             <td>1: Waiting for Acceptance</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                                @include('admin.delivery.modal.deliveryStatus')
+                                @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
                         {{-- No.2 --}}
@@ -63,8 +62,8 @@
                             <td>Dish</td>
                             <td>2: Completing Acceptance</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                                @include('admin.delivery.modal.deliveryStatus')
+                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
                         {{-- No.3 --}}
@@ -77,8 +76,8 @@
                             <td>Glass</td>
                             <td>3: During Transportation</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                                @include('admin.delivery.modal.deliveryStatus')
+                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
                         
@@ -92,8 +91,8 @@
                             <td>Doll</td>
                             <td>4: Completing Shipment</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                                @include('admin.delivery.modal.deliveryStatus')
+                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
 
@@ -107,12 +106,10 @@
                             <td>Pot</td>
                             <td>4: Completing Shipment</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                                @include('admin.delivery.modal.deliveryStatus')
+                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
-
-                      
                     </tbody>
                 </table>
             </div>

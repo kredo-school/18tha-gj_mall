@@ -17,14 +17,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
 
 Route::get('/seller/evaluation/show', function () {
     return view('seller.evaluation.show');
 });
 
+Route::get('/seller/delivery', function () {
+    return view('seller.delivery.showList');
+});
+
+
+// Admin Page
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
 
 Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
@@ -56,16 +62,23 @@ Route::get('/seller/products/edit', function () {
 });
 
 Route::get('/customer/profile/showedit', function () {
-    return view('customer.profile');
+    return view('customer.profile.profile');
 });
 
-
 Route::get('/customer/payment', function () {
-    return view('customer.payment');
+    return view('customer.profile.payment');
 });
 
 Route::get('/customer/orderHistory', function () {
-    return view('customer.orderHistory');
+    return view('customer.profile.orderHistory');
+});
+
+Route::get('/customer/payment/paymentConfirmation', function () {
+    return view('customer.payment.paymentConfirmation');
+});
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
 });
 
 Route::get('/search', function () {

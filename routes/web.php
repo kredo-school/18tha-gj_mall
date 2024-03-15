@@ -17,12 +17,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
 
+// Seller Page
 Route::get('/seller/evaluation', function () {
     return view('seller.evaluation');
+});
+
+Route::get('/seller/delivery', function () {
+    return view('seller.delivery.showList');
+});
+
+// Admin Page
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
 });
 
 Route::get('/admin/delivery', function () {

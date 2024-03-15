@@ -23,16 +23,6 @@ Route::get('/seller/evaluation/show', function () {
     return view('seller.evaluation.show');
 });
 
-Route::get('/seller/delivery', function () {
-    return view('seller.delivery.showList');
-});
-
-
-// Admin Page
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
-
 Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
 });
@@ -86,3 +76,6 @@ Route::get('/search', function () {
     return view('customer.search');
 });
 
+Route::get('/product/detail', function () {
+    return view('customer.productDetail');
+});

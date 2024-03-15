@@ -14,7 +14,7 @@
         <div class="col">
             <h2 class="mt-4">Sales Dashboard</h2>
             <div class="row mt-4">
-                <div class="col-3">
+                <div class="col-3 py-3">
                     <h3>Today's Date</h3>
                     <div class="card shadow-sm mt-2">
                         <div class="card-body">
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-9">
+                <div class="col-8 text-center">
                     {{-- Search bar --}}
                     <div class="row mb-4">
                         <div class="col-8">
@@ -97,7 +97,7 @@
                     </table>
                 </div>
             </div>
-            <div class="row mt-4">
+            <div class="row mt-5">
 
                 <div class="col-6">
                     <h3>Monthly Sales</h3>

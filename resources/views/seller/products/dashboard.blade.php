@@ -153,12 +153,12 @@
                             <td>Kitchen Tools</td>
                             <td>Shipping</td>
                             <td>
-                                <a href="" class="btn text-decoration-none" style="color: #0AA873;">
+                                <a href="" class="btn text-decoration-none edit-icon">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none" data-bs-toggle="modal" data-bs-target="#DeleteProduct" style="color: #FF3A3A;">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -176,12 +176,12 @@
                             <td>Kitchen Tools</td>
                             <td>Shipping</td>
                             <td>
-                                <a href="" class="btn text-decoration-none" style="color: #0AA873;">
+                                <a href="" class="btn text-decoration-none edit-icon">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none" data-bs-toggle="modal" data-bs-target="#DeleteProduct" style="color: #FF3A3A;">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -199,12 +199,12 @@
                             <td>Traditional Clothes</td>
                             <td>Shipping</td>
                             <td>
-                                <a href="" class="btn text-decoration-none" style="color: #0AA873;">
+                                <a href="" class="btn text-decoration-none edit-icon">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none" data-bs-toggle="modal" data-bs-target="#DeleteProduct" style="color: #FF3A3A;">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>

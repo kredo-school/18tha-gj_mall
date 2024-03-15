@@ -49,14 +49,24 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
+<<<<<<< HEAD
                                         <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+=======
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
+>>>>>>> main
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
+<<<<<<< HEAD
                                     <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
                                         <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+=======
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#DeleteModal">
+                                        <i class="fa-solid fa-trash"></i>
+>>>>>>> main
                                     </button>
                                 </td>
                             </tr>
@@ -69,14 +79,24 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
+<<<<<<< HEAD
                                         <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+=======
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
+>>>>>>> main
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
+<<<<<<< HEAD
                                     <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
                                         <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+=======
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#DeleteModal">
+                                        <i class="fa-solid fa-trash"></i>
+>>>>>>> main
                                     </button>
                                 </td>
                             </tr>
@@ -89,14 +109,24 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
+<<<<<<< HEAD
                                         <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+=======
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
+>>>>>>> main
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
+<<<<<<< HEAD
                                     <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
                                         <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+=======
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
+                                        data-bs-target="#DeleteModal">
+                                        <i class="fa-solid fa-trash"></i>
+>>>>>>> main
                                     </button>
                                 </td>
                             </tr>
@@ -121,6 +151,9 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> main
 @endsection

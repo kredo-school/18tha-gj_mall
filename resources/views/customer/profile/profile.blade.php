@@ -4,11 +4,11 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/customerProfile.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customer/profile/customerProfile.css') }}">
 
     @include('layouts.navbar')
     
-    <main class="container-fluid">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-xl-3 col-md-4 col-sm-5 p-0 border border-1" style="height: 100vh;">
                 @include('layouts.sidebar')
@@ -17,7 +17,7 @@
                 <div class="mt-5">
                     <h1 class="text-center mb-4">User Profile</h1>
                     {{-- usr profile --}}
-                    <div class="main w-75 mx-auto">
+                    <div class="w-75 mx-auto">
                         <form action="" method="post">
                             @csrf
 
@@ -78,5 +78,5 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 @endsection

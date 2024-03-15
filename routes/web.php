@@ -17,14 +17,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
+
 
 Route::get('/seller/evaluation/show', function () {
     return view('seller.evaluation.show');
 });
-
 
 Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
@@ -39,8 +36,8 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/seller/profile/showEdit', function () {
-    return view('seller.profile.showEdit');
+Route::get('/seller/profile/showedit', function () {
+    return view('seller.profile.showedit');
 });
 
 Route::get('/seller/products/dashboard', function () {
@@ -56,17 +53,41 @@ Route::get('/seller/products/edit', function () {
 });
 
 Route::get('/customer/profile/showedit', function () {
-    return view('customer.profile');
+    return view('customer.profile.profile');
 });
 
-
 Route::get('/customer/payment', function () {
-    return view('customer.payment');
+    return view('customer.profile.payment');
 });
 
 Route::get('/customer/orderHistory', function () {
-    return view('customer.orderHistory');
+    return view('customer.profile.orderHistory');
 });
+
+Route::get('/customer/payment/paymentConfirmation', function () {
+    return view('customer.payment.paymentConfirmation');
+});
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
+});
+
+Route::get('/search', function () {
+    return view('customer.search');
+});
+
+Route::get('/seller/ads/dashboard', function () {
+    return view('seller.ads.dashboard');
+});
+
+Route::get('/seller/ads/create', function () {
+    return view('seller.ads.create');
+});
+
+Route::get('/seller/ads/edit', function () {
+    return view('seller.ads.edit');
+});
+
 
 Route::get('/search', function () {
     return view('customer.search');

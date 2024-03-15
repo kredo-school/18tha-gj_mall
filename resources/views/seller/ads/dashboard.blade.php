@@ -49,14 +49,14 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
-                                        <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
-                                    <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
-                                        <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -69,14 +69,14 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
-                                        <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
-                                    <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
-                                        <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -89,20 +89,20 @@
                                 {{-- go to edit page --}}
                                 <td>
                                     <a href="" class="text-decoration-none">
-                                        <i class="fa-regular fa-pen-to-square" style="color: #0AA873;"></i>
+                                        <i class="fa-regular fa-pen-to-square icon-edit" ></i>
                                     </a>
                                 </td>
                                 {{-- go to delete modal --}}
                                 <td>
-                                    <button class="btn text-decoration-none" type="button" data-bs-toggle="modal"
+                                    <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
                                         data-bs-target="#DeleteModal">
-                                        <i class="fa-solid fa-trash" style="color: #FF3A3A;"></i>
+                                        <i class="fa-solid fa-trash"></i>
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    @include('seller.ads.delete-modal')
+                    @include('seller.modalSeller.deleteAd')
                 </div>
             </div>
 

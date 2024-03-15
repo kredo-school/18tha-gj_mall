@@ -1,0 +1,86 @@
+.thumbnail {
+    width: 70px;
+    height: 70px;
+}
+
+.inner-image {
+    width: 700px;
+    height: 500px;
+    object-fit: cover; 
+}
+
+#bar_main {
+    background-color: #f2f2f2;
+    width: 50%;
+}
+
+#bar_progress {
+    background-color: #ff3a3a;
+    height: 10px;
+    width: 75%;
+}
+
+button:focus,
+input:focus {
+    outline: none;
+    box-shadow: none;
+    line-height: none;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+/*--------------------------*/
+.qty-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d4d4d4;
+}
+.qty-container .input-qty {
+    text-align: center;
+    padding: 6px 10px;
+    width: 100%;
+    border: none;
+}
+.qty-container .qty-btn-minus,
+.qty-container .qty-btn-plus {
+    border: none;
+    padding: 10px 13px;
+    font-size: 10px;
+    height: 38px;
+    width: 38px;
+    transition: 0.3s;
+    background-color: white;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+#table-title {
+    background-color: #f2f2f2;
+} 
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+#overflow-scroll {
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+#product_detail_card {
+    background-color: #f2f2f2;
+    height: 250px;
+}
+
+.card {
+    padding: 15px;
+    height: 200px;
+}

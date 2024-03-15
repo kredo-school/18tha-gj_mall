@@ -232,3 +232,11 @@ label {
     background-color: #F2F2F2;
     border-radius: 0;
 }
+
+.icon-edit {
+    color: #0AA873;
+}
+
+.icon-trash {
+    color: #FF3A3A;
+}

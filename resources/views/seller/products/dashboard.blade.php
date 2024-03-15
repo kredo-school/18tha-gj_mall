@@ -1,8 +1,7 @@
 @extends('seller.layouts.app')
 
 @section('content')
-    <link rel="stylesheet" href="{{ asset('css/seller/product-dashboard.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/seller/productDashboard.css') }}">
 
     <div class="row justify-content-end">
         <div class="col mb-4 ps-5">
@@ -153,8 +152,16 @@
                             <td>50</td>
                             <td>Kitchen Tools</td>
                             <td>Shipping</td>
-                            <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
-                            <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                            <td>
+                                <a href="" class="btn text-decoration-none edit-icon">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
 
                         <tr>
@@ -168,8 +175,16 @@
                             <td>100</td>
                             <td>Kitchen Tools</td>
                             <td>Shipping</td>
-                            <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
-                            <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                            <td>
+                                <a href="" class="btn text-decoration-none edit-icon">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
 
                         <tr>
@@ -183,11 +198,20 @@
                             <td>2</td>
                             <td>Traditional Clothes</td>
                             <td>Shipping</td>
-                            <td style="color: #0AA873;"><i class="fa-regular fa-pen-to-square"></i></td>
-                            <td style="color: #FF3A3A;"><i class="fa-solid fa-trash"></i></td>
+                            <td>
+                                <a href="" class="btn text-decoration-none edit-icon">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                @include("seller.modalSeller.deleteProduct")
             </div>
         </div>
     @endsection

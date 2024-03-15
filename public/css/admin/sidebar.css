@@ -1,0 +1,13 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  margin: 0 0 0 20px;
+  float: left;
+}
+
+.nav-item {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+}

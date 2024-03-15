@@ -55,18 +55,26 @@ Route::get('/seller/products/edit', function () {
 });
 
 Route::get('/customer/profile/showedit', function () {
-    return view('customer.profile');
+    return view('customer.profile.profile');
 });
 
-
 Route::get('/customer/payment', function () {
-    return view('customer.payment');
+    return view('customer.profile.payment');
 });
 
 Route::get('/customer/orderHistory', function () {
-    return view('customer.orderHistory');
+    return view('customer.profile.orderHistory');
+});
+
+Route::get('/customer/payment/paymentConfirmation', function () {
+    return view('customer.payment.paymentConfirmation');
+});
+
+Route::get('/inquiry', function () {
+    return view('inquiry');
 });
 
 Route::get('/search', function () {
     return view('customer.search');
 });
+

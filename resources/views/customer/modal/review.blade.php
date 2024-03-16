@@ -60,9 +60,9 @@
                 </form>   
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn edit-cancel-button" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn edit-button">Send Review</button>
+            <div class="modal-footer d-flex justify-content-around">
+                <button type="button" class="btn edit-cancel-button w-25" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn edit-button w-25">Send</button>
             </div>
         </div>
     </div>
@@ -129,9 +129,9 @@
                 </form>   
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn edit-cancel-button" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn edit-button">Save Review</button>
+            <div class="modal-footer d-flex justify-content-around">
+                <button type="button" class="btn edit-cancel-button w-25" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn edit-button w-25">Save</button>
             </div>
         </div>
     </div>
@@ -195,9 +195,9 @@
                  
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn delete-cancel-button" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn delete-button">Delete Review</button>
+            <div class="modal-footer d-flex justify-content-around">
+                <button type="button" class="btn delete-cancel-button w-25" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn delete-button w-25">Delete</button>
             </div>
         </div>
     </div>

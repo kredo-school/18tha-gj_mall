@@ -84,6 +84,14 @@ Route::get('/search', function () {
     return view('customer.search');
 });
 
+Route::get('/product/detail', function () {
+    return view('customer.productDetail');
+});
+
+Route::get('/product/payment', function () {
+    return view('customer.payment/payment');
+});
+
 Route::get('/seller/ads/dashboard', function () {
     return view('seller.ads.dashboard');
 });
@@ -96,7 +104,6 @@ Route::get('/seller/ads/edit', function () {
     return view('seller.ads.edit');
 });
 
-
 Route::get('/search', function () {
     return view('customer.search');
 });
@@ -104,3 +111,4 @@ Route::get('/search', function () {
 Route::get('/seller/dashboard', function () {
     return view('seller.dashboard');
 });
+

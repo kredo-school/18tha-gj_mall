@@ -1,5 +1,5 @@
 {{-- Change Status --}}
-<link rel="stylesheet" href="{{ asset('css/admin/delivery_status.css') }}">
+<link rel="stylesheet" href="{{ asset('css/admin/deliveryStatus.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <div class="modal fade " id="change-status-">
@@ -23,7 +23,7 @@
               <div class="status">
                   <form action="#">
                       <label for="status" class="h5 fw-bold">Status:</label>
-                      <select name="stauts" id="status" style="width: 400px">
+                      <select name="stauts" id="status" class="form-select">
                           <option value="select">Select the status here...</option>
                           <option value="first">1: Waiting for Acceptance</option>
                           <option value="second">2: Completing Acceptance</option>

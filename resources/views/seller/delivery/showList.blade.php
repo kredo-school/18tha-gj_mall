@@ -4,6 +4,8 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/delivery.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
 
     <div class="container">
         <div class="row justify-content-center pt-3">
@@ -114,11 +116,19 @@
                 </table>
             </div>
         </div>
-        <div class="row">
-            <div class="banner">
-                <a href="#">
-                    <img src="{{ asset('images/banner/banner3.png')}}" class="banner">
-                </a>
+
+        {{-- Banner --}}
+        <div class="row my-5">
+            <div class="col banner mx-auto">
+                <div class="row mt-3">
+                    <div class="col-auto">
+                        <img src="{{ asset('images/common/Logo.png') }}" alt="gj-mall-logo" class="logo">
+                    </div>
+                    <div class="col">
+                        <h2 class="gj-mall">GJ-MALL</h2>
+                        <h4 class="sub-title">Japanese HighQuality Products E-commerce Site</h4>
+                    </div>
+                </div>
             </div>
         </div>
 

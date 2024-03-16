@@ -3,6 +3,11 @@
   display: inline;
 }
 
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
 /* Fliter - Status */
 .custom-button1 {
   background-color: #333333;
@@ -59,14 +64,14 @@ color: #0AA873;
 
 
 /* Content */
-.table {
+table {
  font-size: 16px;
  width: fit-content;
 }
 
 /* banner  */
 .banner {
-    width: 100%;
+    width: fit-content;
     height: 200px;
     position:relative;
     border: solid 1px ;

@@ -2,6 +2,11 @@
     font-size: 24px;
 }
 
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
 /* Fliter - Status */
 .custom-button1 {
     background-color: #333333;
@@ -10,7 +15,7 @@
     font-size: 16px;
     width:160px;
     height: 40px
- 
+
 }
 
 .custom-button1:hover {
@@ -39,14 +44,14 @@
 }
 
 /* Content */
-.table {
+table {
    font-size: 16px;
-   width: 100%;
+   width: fit-content;
 }
 
 /* banner  */
 .banner {
-    width: 100%;
+    width: fit-content;
     height: 200px;
     position:relative;
     border: solid 1px ;

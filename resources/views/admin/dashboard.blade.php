@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-4">
-                                <i class="fa-solid fa-sack-dollar icon-lg"></i>
+                                <img src="{{ asset('images/seller/totalSales.png') }}">
                             </div>
                             <div class="col-auto">
                                 <h2 class="fw-bold">$128</h2>
@@ -160,11 +160,11 @@
         {{-- Graph  --}}
         <div class="row">
             <div class="col-6">
-                <h3>Monthly Sales</h3>
+                <h3 class="fw-bold">Monthly Sales</h3>
                 <canvas id="monthlyPlot" style="width:100%;max-width:700px"></canvas>
             </div>
             <div class="col-6">
-                <h3>Daily Sales</h3>
+                <h3 class="fw-bold">Daily Sales</h3>
                 <canvas id="dailyPlot" style="width:100%;max-width:700px"></canvas>
             </div>
         </div>

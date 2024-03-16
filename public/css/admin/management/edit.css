@@ -1,0 +1,49 @@
+/* header part */
+.edit-header {
+    background-color: #0AA873;
+}
+/* header part */
+.modal-title {
+    font-size: 32px;
+}
+
+/* body part */
+.modal-body {
+    font-size:18px;
+}
+
+input {
+    font-size: 18px;
+}
+
+/* Butoon - Cancel */
+.cancel-button {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0AA873;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.cancel-button:hover {
+  background-color: #0AA873;
+  border-color: #0AA873;
+  color: #ffffff;
+}
+
+/* Button - Complete */
+.update-button {
+  background-color: #0AA873;
+  border-color: #0AA873;
+  color: #ffffff;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.update-button:hover {
+background-color: #ffffff;
+border-color: #0AA873;
+color: #0AA873;
+}

@@ -29,3 +29,17 @@ span {
     width: 150px;
     height: 150px;
 }
+
+.input-with-icon {
+    position: relative;
+}
+
+.card-logo {
+    position: absolute;
+    right: 30px;
+    top: 40%;
+    transform: translateY(-50%);
+    width: 30px; 
+    height: 30px;
+    background-size: cover;
+}

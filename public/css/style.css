@@ -48,14 +48,20 @@ main {
 /* form-bg empty */
 input[type="email"],
 input[type="password"],
-input[type="text"] {
+input[type="text"],
+input[type="number"],
+input[type="tel"],
+input[type="date"] {
     background-color: #F2F2F2; /* Default color when empty */
 }
 
 /* form-bg not empty */
 input[type="email"]:not(:placeholder-shown),
 input[type="password"]:not(:placeholder-shown),
-input[type="text"]:not(:placeholder-shown) {
+input[type="text"]:not(:placeholder-shown),
+input[type="number"]:not(:placeholder-shown),
+input[type="tel"]:not(:placeholder-shown),
+input[type="date"]:not(:placeholder-shown) {
     background-color: #ffffff; /* Change color when text is entered */
 }
 

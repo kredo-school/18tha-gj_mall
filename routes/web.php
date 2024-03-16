@@ -79,3 +79,7 @@ Route::get('/search', function () {
 Route::get('/product/detail', function () {
     return view('customer.productDetail');
 });
+
+Route::get('/product/payment', function () {
+    return view('customer.payment/payment');
+});

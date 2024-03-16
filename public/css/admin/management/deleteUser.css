@@ -1,0 +1,51 @@
+/* header part */
+.delete-header {
+  background-color: #FF3A3A;
+  color: #ffffff;
+}
+
+.modal-title {
+    font-size: 32px;
+}
+
+.small-title {
+  font-size:18px;
+
+}
+
+/* Body Part */
+.modal-body {
+    font-size: 18px;
+}
+
+/* Button - Cancel */
+.custom-button4 {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #FF3A3A;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.custom-button4:hover {
+background-color: #FF3A3A;
+border-color: #FF3A3A;
+color: #ffffff;
+}
+
+/* Butoon - Delete User */
+.custom-button5 {
+  background-color: #FF3A3A;
+  background-color: #FF3A3A;
+  color: #ffffff;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.custom-button5:hover {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #FF3A3A;
+}

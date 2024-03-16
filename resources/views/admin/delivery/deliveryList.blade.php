@@ -49,7 +49,7 @@
                             <td>Cloth</td>
                             <td>1: Waiting for Acceptance</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('admin.delivery.modal.deliveryStatus')
                             </td>
                         </tr>

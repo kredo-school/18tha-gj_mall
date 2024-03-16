@@ -49,6 +49,10 @@ Route::get('/seller/customersupport', function () {
     return view('seller.inquiry.customerSupport');
 });
 
+Route::get('/admin/management', function () {
+    return view('admin.management.managementUser');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

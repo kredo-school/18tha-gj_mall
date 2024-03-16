@@ -1,0 +1,50 @@
+/* header part */
+.modal-header {
+  background-color: #0AA873;
+}
+/* header part */
+.modal-title {
+    font-size: 32px;
+}
+
+/* body part */
+.inquiry-title {
+  font-size:24px;
+  font-weight: bold;
+}
+
+.inquiry-content {
+    font-size: 18px;
+}
+
+/* Butoon - Cancel */
+.custom-button4 {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #0AA873;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.custom-button4:hover {
+  background-color: #0AA873;
+  border-color: #0AA873;
+  color: #ffffff;
+}
+
+/* Button - Complete */
+.custom-button5 {
+  background-color: #0AA873;
+  border-color: #0AA873;
+  color: #ffffff;
+  font-size: 24px;
+  height: 40px;
+  width:210px;
+}
+
+.custom-button5:hover {
+background-color: #ffffff;
+border-color: #0AA873;
+color: #0AA873;
+}

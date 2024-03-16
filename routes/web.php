@@ -32,6 +32,10 @@ Route::get('/admin/assessor/evaluation', function () {
 
 });
 
+Route::get('/admin/customersupport', function () {
+    return view('admin.inquiry.customerSupport');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -82,4 +86,16 @@ Route::get('/product/detail', function () {
 
 Route::get('/product/payment', function () {
     return view('customer.payment/payment');
+});
+
+Route::get('/seller/ads/dashboard', function () {
+    return view('seller.ads.dashboard');
+});
+
+Route::get('/seller/ads/create', function () {
+    return view('seller.ads.create');
+});
+
+Route::get('/seller/ads/edit', function () {
+    return view('seller.ads.edit');
 });

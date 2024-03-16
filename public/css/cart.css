@@ -1,0 +1,13 @@
+.cartItem-card {
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2); 
+}
+
+.order-card {
+    background-color: #f2f2f2;
+    border: 1px solid #000000;
+    position: sticky;
+}
+
+.trash-icon {
+    color: #FF3A3A;
+}

@@ -1,0 +1,88 @@
+.filter {
+    font-size: 24px;
+    display: inline;
+}
+
+.header {
+    font-size: 48px;
+}
+
+/* Content */
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+table {
+    font-size: 16px;
+    width: fit-content;
+ }
+
+/* Button - Create User */
+.create-button {
+    background-color: #30567A;
+    border-color: #30567A;
+    color: #ffffff;
+    font-size: 16px;
+    width:400px;
+    height: 50px
+}
+
+.create-button:hover {
+    background-color: #ffffff;
+    border-color: #30567A;
+    color: #30567A;
+}
+
+/* Button - edit user */
+.edit-button {
+    background-color: #ffffff;
+    color: #0AA873;
+
+}
+
+/* .edit-button:hover {
+    background-color: #0AA873;
+    border-color: #0AA873;
+    color: #ffffff;
+} */
+
+/* Button - delete user */
+.delete-button {
+    /* background-color: #FF3A3A;
+    border-color: #FF3A3A; */
+    color: #FF3A3A;
+
+}
+
+.delete-button:hover {
+    background-color: #ffffff;
+    border-color: #FF3A3A;
+    color: #FF3A3A;
+} 
+
+/* banner  */
+.banner {
+    width: fit-content;
+    height: 200px;
+    position:relative;
+    border: solid 1px ;
+    background-image: url("../../../images/banner/banner5.png");
+}
+
+.logo {
+    height: 128px;
+    width: 128px;
+}
+
+.gj-mall {
+    font-size: 64px;
+    font-weight: bold;
+    /* -webkit-text-stroke-color: white;
+    -webkit-text-stroke-width: 0.05px; */
+}
+
+.sub-title {
+    font-size: 24px;
+    font-weight: bold;
+}

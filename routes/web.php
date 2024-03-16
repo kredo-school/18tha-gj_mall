@@ -36,6 +36,10 @@ Route::get('/admin/customersupport', function () {
     return view('admin.inquiry.customerSupport');
 });
 
+Route::get('/seller/customersupport', function () {
+    return view('seller.inquiry.customerSupport');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -27,6 +27,10 @@ Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
 });
 
+Route::get('/seller/delivery', function () {
+    return view('seller.delivery.showList');
+});
+
 Route::get('/admin/assessor/evaluation', function () {
     return view('admin.assessor.evaluation');
 

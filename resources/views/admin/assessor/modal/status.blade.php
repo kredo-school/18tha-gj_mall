@@ -23,7 +23,7 @@
               <div class="status">
                   <form action="#">
                       <label for="status" class="h5 fw-bold">Status:</label>
-                      <select name="stauts" id="status" style="width:400px">
+                      <select name="stauts" id="status" class="form-select">
                           <option value="select">Select the status here...</option>
                           <option value="first">1: Waiting for Evaluation</option>
                           <option value="second">2: Evaluating</option>

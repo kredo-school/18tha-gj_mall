@@ -36,6 +36,11 @@ Route::get('/admin/customersupport', function () {
     return view('admin.inquiry.customerSupport');
 });
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+
 Route::get('/seller/customersupport', function () {
     return view('seller.inquiry.customerSupport');
 });

@@ -99,3 +99,12 @@ Route::get('/seller/ads/create', function () {
 Route::get('/seller/ads/edit', function () {
     return view('seller.ads.edit');
 });
+
+Route::get('/search', function () {
+    return view('customer.search');
+});
+
+Route::get('/seller/dashboard', function () {
+    return view('seller.dashboard');
+});
+

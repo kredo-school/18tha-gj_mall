@@ -1,0 +1,32 @@
+.icon-lg {
+    font-size: 3rem;
+    background-color: #0AA873;
+    color: #ffffff;
+    border-radius: 50%;
+    padding: 20px;
+}
+
+.card-parent {
+    position: relative;
+    height: 250px;
+}
+
+.rank-num {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    color: #000000;
+    /* Text color */
+    font-size: 20px;
+    /* Adjust font size as needed */
+    font-weight: bold;
+    /* Adjust font weight as needed */
+    background-color: #F2F2F2;
+    z-index: 1;
+    /* Ensure text is above the image */
+}
+
+.rank-image {
+    width: 160px;
+    height: 160px
+}

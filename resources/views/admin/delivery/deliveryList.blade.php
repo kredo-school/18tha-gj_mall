@@ -8,7 +8,7 @@
   
     <div class="container main">
         <div class="row justify-content-center pt-3">
-            <h1>Delivery Order List</h1>
+            <h1 class="h2 fw-bold">Delivery Order List</h1>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">

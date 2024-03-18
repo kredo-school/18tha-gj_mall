@@ -8,7 +8,7 @@
 
     <div class="container main">
         <div class="row justify-content-center pt-2">
-            <h1>Evaluation Products List</h1>
+            <h1 class="h2 fw-bold">Evaluation Products List</h1>
 
             {{-- Search bar --}}
             <div class="col-6 my-2">
@@ -38,6 +38,7 @@
                             <th>Seller Name</th>
                             <th>Description</th>
                             <th>Status</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,6 +53,7 @@
                             <td>No</td>
                             <td>Kimono Shop</td>
                             <td>This is a tradistional cloth</td>
+                            <td>1: Waiting for Evaluation</td>
                             <td>
                             <button class="btn btn-sm custom-button3 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Change Status</button>
                             @include('admin.assessor.modal.status')
@@ -68,6 +70,8 @@
                             <td>Yes</td>
                             <td>Dish Shop</td>
                             <td>This is a tradistional dish</td>
+                            <td>2: Evaluating</td>
+
                             <td>
                                 <button class="btn btn-sm custom-button3 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Change Status</button>
 
@@ -85,6 +89,7 @@
                             <td>Yes</td>
                             <td>Yunomi Shop</td>
                             <td>This is a kind of glass</td>
+                            <td>3: Waiting for Display</td>
                             <td>
                                 <button class="btn btn-sm custom-button3 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Change Status</button>
 
@@ -103,6 +108,7 @@
                             <td>No</td>
                             <td>Doll Shop</td>
                             <td>This is a tradistional Japanese culture</td>
+                            <td>3: Waiting for Display</td>
                             <td>
                                 <button class="btn btn-sm custom-button3 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Change Status</button>
 
@@ -121,6 +127,7 @@
                             <td>Yes</td>
                             <td>Pot Store</td>
                             <td>This is a tradistional pot</td>
+                            <td>4: Suspended</td>
                             <td>
                                 <button class="btn btn-sm custom-button3 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Change Status</button>
 

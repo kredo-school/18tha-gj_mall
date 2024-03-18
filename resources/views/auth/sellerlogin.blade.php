@@ -8,7 +8,7 @@
 @section('title', 'Sign in')
 
 @section('content')
-<div class="container-fluid" style="background-image: url(/images/account/bg-seller.png)">
+<div class="container-fluid seller-login-background-image">
     <!-- Logo-->
     <div class="row">
         <div class="col-md-6 mb-3">

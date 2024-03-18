@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Evaluation')
+@section('title', 'Seller Evaluation')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/evaluation.css') }}">
@@ -8,7 +8,7 @@
 
     <div class="container main">
         <div class="row justify-content-center pt-3">
-            <h1>Evaluation Products List</h1>
+            <h1 class="h2 fw-bold">Evaluation Products List</h1>
 
             {{-- Search bar --}}
             <div class="col-6 my-2">
@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="col-6 mb-2">
-                <div class="fw-bold filter montserrat ">Filtered By </div> 
+                <span class="fw-bold montserrat">Filtered By </span> 
                 <button class="btn btn-sm custom-button1 rounded-pill">Status</button>
                 <button class="btn btn-sm custom-button2 rounded-pill">Category</button>
             </div>

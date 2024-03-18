@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Cutomer Support Page(Seller)')
+@section('title', 'Seller Cutomer Support')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/customerSupport.css') }}">
@@ -8,7 +8,7 @@
   
     <div class="container main">
         <div class="row justify-content-center pt-3">
-            <h1>Customer Support</h1>
+            <h1 class="h2 fw-bold">Customer Support</h1>
 
             {{-- Search bar --}}
             <div class="col-6 my-2">

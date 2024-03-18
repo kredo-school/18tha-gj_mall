@@ -1,6 +1,6 @@
 @extends('seller.layouts.app')
 
-@section('title', 'Delivery Status Page(Seller)')
+@section('title', 'Seller Delivery Status')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/admin/delivery.css') }}">
@@ -9,7 +9,7 @@
 
     <div class="container">
         <div class="row justify-content-center pt-3">
-            <h1>Delivery Order List</h1>
+            <h1 class="h2 fw-bold">Delivery Order List</h1>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">

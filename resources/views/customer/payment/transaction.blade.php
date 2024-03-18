@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Payment')
+@section('title', 'Transaction')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/customer/payment/payment.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/customer/payment/transaction.css') }}">
 
     @include('layouts.navbar')
     

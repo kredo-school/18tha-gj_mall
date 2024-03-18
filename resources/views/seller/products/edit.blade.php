@@ -1,5 +1,7 @@
 @extends('seller.layouts.app')
 
+@section('title', 'Seller Product Edit')
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/products.css') }}">
 

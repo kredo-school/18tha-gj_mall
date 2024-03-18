@@ -1,5 +1,7 @@
 @extends('seller.layouts.app')
 
+@section('title', 'Seller Ads Create')
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
 

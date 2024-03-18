@@ -1,12 +1,14 @@
 @extends('seller.layouts.app')
 
+@section('title', 'Seller Profile Edit')
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/profileShowedit.css') }}">
 
     <div class="row justify-content-end me-3">
         <div class="col mb-4 ps-5">
             <form action="">
-                <h2 class="pt-4">Edit Profile</h2>
+                <h2 class="pt-4 fw-bold mb-3">Edit Profile</h2>
                 <div class="row mb-4">
                     <div class="col ms-10">
                         <div class="row mb-4">
@@ -57,7 +59,7 @@
                     </div>
                 </div>
 
-                <h2 class="mt-6">Address</h2>
+                <h2 class="fw-bold mb-3">Address</h2>
                 <label for="address1" class="form-label">Address1</label>
                 <input type="text" name="address1" id="address1" class="form-control mb-4">
                 <label for="address2" class="form-label">Address2</label>

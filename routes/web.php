@@ -12,55 +12,117 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Auth::routes();
 
+// Note: We might delete later
 Route::get('/', function () {
     return view('welcome');
 });
 
+// Customer Register
+Route::get('/customer/register', function () {
+    return view('auth.register');
+});
 
+// Customer Login
+Route::get('/customer/signIn', function () {
+    return view('auth.login');
+});
 
-Route::get('/seller/evaluation/show', function () {
-    return view('seller.evaluation.show');
+// Seller Login
+Route::get('/seller/signIn', function () {
+    return view('auth.sellerLogin');
+});
+
+// Admin Login
+Route::get('/admin/signIn', function () {
+    return view('auth.adminLogin');
+});
+
+// Home
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Search
+Route::get('/search', function () {
+    return view('customer.search');
+});
+
+// Product Detail / {product_id}
+Route::get('/productDetail', function () {
+    return view('customer.productDetail');
+});
+
+// Profile
+Route::get('/customer/profile', function () {
+    return view('customer.profile.profile');
+});
+
+Route::get('/customer/profile/address', function () {
+    return view('customer.profile.address');
+});
+
+Route::get('/customer/profile/payment', function () {
+    return view('customer.profile.payment');
+});
+
+Route::get('/customer/profile/orderHistory', function () {
+    return view('customer.profile.orderHistory');
+});
+
+// Inquiry
+Route::get('/inquiry', function () {
+    return view('inquiry');
+});
+
+// Payment
+Route::get('/customer/cart', function () {
+    return view('customer.cart');
+});
+
+Route::get('/customer/transaction', function () {
+    return view('customer.payment.transaction');
+});
+
+Route::get('/customer/transaction/confirmation', function () {
+    return view('customer.payment.confirmation');
+});
+
+// Admin
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+Route::get('/admin/managementUser', function () {
+    return view('admin.management.managementUser');
+});
+
+Route::get('/admin/evaluation', function () {
+    return view('admin.assessor.evaluation');
 });
 
 Route::get('/admin/delivery', function () {
     return view('admin.delivery.deliveryList');
 });
 
-Route::get('/seller/delivery', function () {
-    return view('seller.delivery.showList');
-});
-
-Route::get('/admin/assessor/evaluation', function () {
-    return view('admin.assessor.evaluation');
-
-});
-
-Route::get('/admin/customersupport', function () {
+Route::get('/admin/customerSupport', function () {
     return view('admin.inquiry.customerSupport');
 });
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
+// Seller
+Route::get('/seller/dashboard', function () {
+    return view('seller.dashboard');
 });
 
-
-Route::get('/seller/customersupport', function () {
-    return view('seller.inquiry.customerSupport');
+// Seller Profile
+Route::get('/seller/profile', function () {
+    return view('seller.profile.sellerProfile');
 });
 
-Route::get('/admin/management', function () {
-    return view('admin.management.managementUser');
+Route::get('/seller/profile/editProfile', function () {
+    return view('seller.profile.editProfile');
 });
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/seller/profile/showedit', function () {
-    return view('seller.profile.showedit');
-});
-
+// Seller Product
 Route::get('/seller/products/dashboard', function () {
     return view('seller.products.dashboard');
 });
@@ -73,38 +135,7 @@ Route::get('/seller/products/edit', function () {
     return view('seller.products.edit');
 });
 
-Route::get('/customer/profile/showedit', function () {
-    return view('customer.profile.profile');
-});
-
-Route::get('/customer/payment', function () {
-    return view('customer.profile.payment');
-});
-
-Route::get('/customer/orderHistory', function () {
-    return view('customer.profile.orderHistory');
-});
-
-Route::get('/customer/payment/paymentConfirmation', function () {
-    return view('customer.payment.paymentConfirmation');
-});
-
-Route::get('/inquiry', function () {
-    return view('inquiry');
-});
-
-Route::get('/search', function () {
-    return view('customer.search');
-});
-
-Route::get('/product/detail', function () {
-    return view('customer.productDetail');
-});
-
-Route::get('/product/payment', function () {
-    return view('customer.payment/payment');
-});
-
+// Seller Ads
 Route::get('/seller/ads/dashboard', function () {
     return view('seller.ads.dashboard');
 });
@@ -117,11 +148,16 @@ Route::get('/seller/ads/edit', function () {
     return view('seller.ads.edit');
 });
 
-Route::get('/search', function () {
-    return view('customer.search');
+// Seller Evaluation
+Route::get('/seller/evaluation', function () {
+    return view('seller.evaluation.show');
 });
 
-Route::get('/seller/dashboard', function () {
-    return view('seller.dashboard');
+Route::get('/seller/delivery', function () {
+    return view('seller.delivery.show');
+});
+
+Route::get('/seller/customerSupport', function () {
+    return view('seller.inquiry.customerSupport');
 });
 

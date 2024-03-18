@@ -1,9 +1,9 @@
-.filter {
+span {
   font-size: 24px;
   display: inline;
 }
 
-h1 {
+.h2 {
     font-size: 48px;
     font-weight: bold;
 }

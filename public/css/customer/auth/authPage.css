@@ -7,6 +7,22 @@
     background-position: center;
 }
 
+/* Seller login,register bg-img */
+.seller-login-background-image {
+    background-image: url(/images/account/bg-seller.png);
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+}
+
+/* Admin login,register bg-img */
+.admin-login-background-image {
+    background-image: url(/images/account/bg-admin.png);
+    background-size: cover;
+    height: 100%;
+    background-position: center;
+}
+
 /* form-button */
 .btn-signIn, 
 .btn-register {

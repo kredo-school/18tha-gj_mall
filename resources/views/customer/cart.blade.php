@@ -299,13 +299,337 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ms-2">
+                        <div class="col">
+                            <div class="card cartItem-card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-1">
+                                            <div class="row align-items-center text-center h-100 border-end">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <h4 class="fw-bold">Kimono Art</h4>
+                                            <p>Kimono Art Shop</p>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">1</h4>
+                                                </div>
+                                                <div class="col text-start">
+                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
+                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col text-end">
+                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <div class="row align-items-center text-center h-100">
+                                                <div class="col">
+                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
             {{-- Order Summary --}}
             <div class="col">
-                    <div class="row mt-5">
+                    <div class="row sticky-top mt-5">
                         <div class="col">
                             <div class="card mt-4 mx-auto order-card" style="width: 550px; height: 370px;">
                                 <div class="card-body">

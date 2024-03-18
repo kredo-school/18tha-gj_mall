@@ -1,14 +1,9 @@
 @extends('seller.layouts.app')
 
+@section('title', 'Seller DashBoard')
+    
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/sellerDashboard.css') }}">
-
-    {{-- plotly --}}
-    {{-- <script src='https://cdn.plot.ly/plotly-2.30.0.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script> --}}
-
-    {{-- chart.js --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
     <div class="container p-5">
         <div class="row justify-content-end">

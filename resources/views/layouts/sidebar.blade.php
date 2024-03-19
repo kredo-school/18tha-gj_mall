@@ -23,16 +23,6 @@
     </li>
     <li class="list-group-item border-0 mt-4">
         <a href="" class="text-decoration-none text-secondary">
-            <i class="fa-solid fa-location-dot icon text-secondary"></i>&nbsp; Address Information
-        </a>
-    </li>
-    <li class="list-group-item border-0 mt-4">
-        <a href="" class="text-decoration-none text-secondary">
-            <i class="fa-solid fa-wallet icon text-secondary"></i>&nbsp; Payment Information
-        </a>
-    </li>
-    <li class="list-group-item border-0 mt-4">
-        <a href="" class="text-decoration-none text-secondary">
             <i class="fa-solid fa-list icon text-secondary"></i>&nbsp; Order History
         </a>
     </li>

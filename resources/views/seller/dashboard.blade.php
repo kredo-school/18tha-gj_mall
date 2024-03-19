@@ -1,7 +1,7 @@
 @extends('seller.layouts.app')
 
 @section('title', 'Seller DashBoard')
-    
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/sellerDashboard.css') }}">
 
@@ -9,6 +9,8 @@
         <div class="row justify-content-end">
             <div class="col">
                 <h1 class="fw-bold">Sales Dashboard</h1>
+                <p>Hi User! Welcome to Sales Dashboard!</p>
+
                 <div class="row mt-4">
                     <div class="col-3 py-3">
                         <h3 class="fw-bold">Today's Date</h3>
@@ -18,7 +20,7 @@
                                     <div class="col-4">
                                         <img src="{{ asset('images/seller/totalOrder.png') }}">
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-auto ms-3">
                                         {{-- insert total number of sales order in that day of the shop --}}
                                         <h5>Total Orders</h5>
                                         <h2>75</h2>
@@ -32,7 +34,7 @@
                                     <div class="col-4">
                                         <img src="{{ asset('images/seller/totalSales.png') }}">
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-auto ms-3">
                                         {{-- insert total sales in that day of the shop --}}
                                         <h5>Total Sales</h5>
                                         <h2>$1,500</h2>
@@ -41,7 +43,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8 text-center">
+                    <div class="col-8 text-center py-3">
                         {{-- Search bar --}}
                         <div class="row mb-4">
                             <div class="col-8">
@@ -55,8 +57,8 @@
                                 <button class="btn btn-sm bg-dark rounded-pill text-white mx-2 shadow">Date</button>
                             </div>
                         </div>
-    
-    
+
+
                         <table class="table text-center table-hover align-middle bg-white border">
                             <thead class="small table-secondary text-light">
                                 <tr>
@@ -94,7 +96,7 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-    
+
                     <div class="col-6">
                         <h3 class="fw-bold">Monthly Sales</h3>
                         {{-- <div id="monthlyPlot"></div> --}}
@@ -105,9 +107,9 @@
                         {{-- <div id='dailyPlot'></div> --}}
                         <canvas id="dailyPlot" style="width:100%;max-width:700px"></canvas>
                     </div>
-    
+
                 </div>
-    
+
             </div>
         </div>
     </div>

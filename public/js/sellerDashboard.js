@@ -16,7 +16,7 @@ const yValues2 = [100, 30, 65 , 200 , 72 , 49 , 89];
 const barColors2 = ["#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873"];
 
 new Chart("dailyPlot", {
-    type: "line",
+    type: "bar",
     data: {
         labels: xValues2,
         datasets: [{
@@ -50,7 +50,7 @@ const yValues = [10, 15, 18, 20, 29, 49, 90, 150];
 const barColors = ["#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873", "#0AA873"];
 
 new Chart("monthlyPlot", {
-    type: "bar",
+    type: "line",
     data: {
         labels: xValues,
         datasets: [{

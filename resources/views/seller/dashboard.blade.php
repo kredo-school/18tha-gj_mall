@@ -1,7 +1,7 @@
 @extends('seller.layouts.app')
 
 @section('title', 'Seller DashBoard')
-    
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/sellerDashboard.css') }}">
 
@@ -9,8 +9,10 @@
         <div class="row justify-content-end">
             <div class="col">
                 <h1 class="fw-bold">Sales Dashboard</h1>
+                <p>Hi User! Welcome to Sales Dashboard!</p>
+
                 <div class="row mt-4">
-                    <div class="col-3 py-3">
+                    <div class="col-auto py-3">
                         <h3 class="fw-bold">Today's Date</h3>
                         <div class="card shadow-sm mt-2">
                             <div class="card-body">
@@ -18,10 +20,12 @@
                                     <div class="col-4">
                                         <img src="{{ asset('images/seller/totalOrder.png') }}">
                                     </div>
-                                    <div class="col-auto">
-                                        {{-- insert total number of sales order in that day of the shop --}}
-                                        <h5>Total Orders</h5>
-                                        <h2>75</h2>
+                                    <div class="col-auto ps-5">
+                                        <h2 class="fw-bold">75</h2>
+                                        <h5>Total Sales</h5>
+                                        <span class="text-muted">
+                                            <i class="fa-regular fa-circle-up text-success"></i> 4%(30days)
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -32,16 +36,18 @@
                                     <div class="col-4">
                                         <img src="{{ asset('images/seller/totalSales.png') }}">
                                     </div>
-                                    <div class="col-auto">
-                                        {{-- insert total sales in that day of the shop --}}
+                                    <div class="col-auto ps-5">
+                                        <h2 class="fw-bold">$128</h2>
                                         <h5>Total Sales</h5>
-                                        <h2>$1,500</h2>
+                                        <span class="text-muted">
+                                            <i class="fa-regular fa-circle-down text-danger"></i> 12%(30days)
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-8 text-center">
+                    <div class="col text-center py-3">
                         {{-- Search bar --}}
                         <div class="row mb-4">
                             <div class="col-8">
@@ -55,8 +61,8 @@
                                 <button class="btn btn-sm bg-dark rounded-pill text-white mx-2 shadow">Date</button>
                             </div>
                         </div>
-    
-    
+
+
                         <table class="table text-center table-hover align-middle bg-white border">
                             <thead class="small table-secondary text-light">
                                 <tr>
@@ -94,20 +100,20 @@
                     </div>
                 </div>
                 <div class="row mt-5">
-    
+
                     <div class="col-6">
                         <h3 class="fw-bold">Monthly Sales</h3>
                         {{-- <div id="monthlyPlot"></div> --}}
-                        <canvas id="monthlyPlot" style="width:100%;max-width:700px"></canvas>
+                        <canvas id="monthlyPlot"></canvas>
                     </div>
                     <div class="col-6">
                         <h3 class="fw-bold">Daily Sales</h3>
                         {{-- <div id='dailyPlot'></div> --}}
-                        <canvas id="dailyPlot" style="width:100%;max-width:700px"></canvas>
+                        <canvas id="dailyPlot"></canvas>
                     </div>
-    
+
                 </div>
-    
+
             </div>
         </div>
     </div>

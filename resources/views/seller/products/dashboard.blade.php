@@ -7,102 +7,78 @@
 
     <div class="row justify-content-end">
         <div class="col mb-4 ps-5">
-            <h2 class="py-4">Products Dashboard</h2>
-            <div class="row">
-                {{-- show top5 sold items in the shop --}}
-                <div class="col-auto">
+            <h2 class="py-4 fw-bold">Products Dashboard</h2>
+            {{-- Top5 Ranking --}}
+            <div class="row mb-5">
+                <h2 class="fw-bold h3">Top5 BestSeller</h2>
+
+                <div class="col">
                     {{-- card item 1 start --}}
                     <div class="border rounded-0 p-2 card-parent">
-
-                        <div class="rank-num px-2">
-                            1
-                        </div>
+                        <div class="rank-num px-2">1</div>
                         <img src="{{ asset('images/items/item1.jpg') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="row mx-1 mt-2">
-                            <div class="col-6 text-start">
-                                <h5>Card title</h5>
-                            </div>
-                            <div class="col-6 text-end px-1">
-                                <h5>Price</h5>
-                            </div>
+
+                        <div class="product_detail mt-2">
+                            <h5 class="text-truncate">Card title</h5>
+                            <h5>Price</h5>
                         </div>
-
-
                     </div>
                     {{-- card item 1 end --}}
+                </div>
 
+                <div class="col">
                     {{-- card item 2 start --}}
                     <div class="border rounded-0 p-2 card-parent">
-
-                        <div class="rank-num px-2">
-                            2
-                        </div>
+                        <div class="rank-num px-2">2</div>
                         <img src="{{ asset('images/items/item2.png') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="row mx-1 mt-2">
-                            <div class="col-6 text-start">
-                                <h5>Card title</h5>
-                            </div>
-                            <div class="col-6 text-end px-1">
-                                <h5>Price</h5>
-                            </div>
+                        <div class="product_detail mt-2">
+                            <h5 class="text-truncate">Card title</h5>
+                            <h5>Price</h5>
                         </div>
                     </div>
                     {{-- card item 2 end --}}
+                </div>
 
+                <div class="col">
                     {{-- card item 3 start --}}
                     <div class="border rounded-0 p-2 card-parent">
-
-                        <div class="rank-num px-2">
-                            3
-                        </div>
+                        <div class="rank-num px-2">3</div>
                         <img src="{{ asset('images/items/item3.png') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="row mx-1 mt-2">
-                            <div class="col-6 text-start">
-                                <h5>Card title</h5>
-                            </div>
-                            <div class="col-6 text-end px-1">
-                                <h5>Price</h5>
-                            </div>
+                        <div class="product_detail mt-2">
+                            <h5 class="text-truncate">Card title</h5>
+                            <h5>Price</h5>
                         </div>
                     </div>
                     {{-- card item 3 end --}}
+                </div>
 
+                <div class="col">
                     {{-- card item 4 start --}}
                     <div class="border rounded-0 p-2 card-parent">
-
-                        <div class="rank-num px-2">
-                            4
-                        </div>
+                        <div class="rank-num px-2">4</div>
                         <img src="{{ asset('images/items/item4.png') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="row mx-1 mt-2">
-                            <div class="col-6 text-start">
-                                <h5>Card title</h5>
-                            </div>
-                            <div class="col-6 text-end px-1">
-                                <h5>Price</h5>
-                            </div>
+                        <div class="product_detail mt-2">
+                            <h5 class="text-truncate">Card title</h5>
+                            <h5>Price</h5>
                         </div>
                     </div>
                     {{-- card item 4 end --}}
+                </div>
+
+                <div class="col">
                     {{-- card item 5 start --}}
                     <div class="border rounded-0 p-2 card-parent">
-
-                        <div class="rank-num px-2">
-                            5
-                        </div>
+                        <div class="rank-num px-2">5</div>
                         <img src="{{ asset('images/items/item5.png') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="row mx-1 mt-2">
-                            <div class="col-6 text-start">
-                                <h5>Card title</h5>
-                            </div>
-                            <div class="col-6 text-end px-1">
-                                <h5>Price</h5>
-                            </div>
+                        <div class="product_detail mt-2">
+                            <h5 class="text-truncate">Card title</h5>
+                            <h5>Price</h5>
                         </div>
                     </div>
                     {{-- card item 5 end --}}
                 </div>
             </div>
+            {{-- Top5 Ranking end --}}
 
             {{-- Search bar --}}
             <div class="row mt-4">
@@ -160,7 +136,8 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
+                                    data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -183,7 +160,8 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
+                                    data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
@@ -206,14 +184,15 @@
                                 </a>
                             </td>
                             <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct">
+                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
+                                    data-bs-target="#DeleteProduct">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                @include("seller.modalSeller.deleteProduct")
+                @include('seller.modalSeller.deleteProduct')
             </div>
         </div>
     @endsection

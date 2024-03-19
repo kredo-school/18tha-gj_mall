@@ -6,7 +6,9 @@
     /* Text color */
     border-color: #30567A;
     /* Border color (optional) */
-    height: 32px;
+    height: 28px;
+    margin-top: 4px;
+    line-height: 2px;
 }
 
 /* Optional: Hover styles */

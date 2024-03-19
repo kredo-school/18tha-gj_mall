@@ -1,7 +1,7 @@
 {{-- Navbar CSS --}}
 <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm p-0">
+<nav class="navbar navbar-expand-md navbar-light sticky-top bg-white shadow-sm p-0">
     <div class="container-fluid style-seet color1 pt-2">
         <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('images/common/Logo.png') }}" alt="logo" style="width: 50px; height:50px;">
@@ -14,14 +14,14 @@
             <!-- Left Side Of Navbar -->
             <ul id="left-navbar" class="navbar-nav me-4">
                 <li class="nav-item">
-                    <a class="nav-link" href="">
+                    <a class="nav-link">
                         <div class="row align-items-center">
-                            <div class="col-auto px-0">
-                                <i class="fa-solid fa-location-dot icon"></i>
+                            <div class="col-2 px-0">
+                                <span class="fi fi-ph border"></span>
                             </div>
-                            <div class="col-10 px-3">
-                                <strong class="text-white text-wrap">
-                                    Deliver to Japan
+                            <div class="col-10 p-2">
+                                <strong class="text-white">
+                                    Deliver to Philippines   
                                 </strong>
                             </div>
                         </div>
@@ -33,22 +33,8 @@
             <!-- Search Bar-->
             <div id="search-bar" class="row align-items-center w-75">
                 <div class="col-xl-11 col-lg-9 col-md-9 px-0">
-                    <input type="text" class="form-control rounded-start-2 rounded-end-0" name="search_term" 
-                           id="navbar-search" placeholder="What are you looking for ?"
-                    >
-                </div>
-                <div class="col-xl-1 col-lg-1 col-md-3 px-0">
-                    <div class="btn-group">
-                        <button type="button" id="navbar-dropdown" class="btn dropdown-toggle rounded-start-0 rounded-end-2 style-seet color2" data-bs-toggle="dropdown">
-                            All
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Art</a></li>
-                            <li><a class="dropdown-item" href="#">Beauty</a></li>
-                            <li><a class="dropdown-item" href="#">Clothes</a></li>
-                            <li><a class="dropdown-item" href="#">Other</a></li>
-                        </ul>
-                    </div>
+                    <input type="text" class="form-control rounded-1" name="search_term" 
+                           id="navbar-search" placeholder="What are you looking for ?">
                 </div>
             </div>
             <!-- Search Bar End-->
@@ -77,7 +63,7 @@
                             @endif
 
                             @if (Route::has('login'))
-                                <a class="nav-link dropdown-item" href="">
+                                <a class="nav-link dropdown-item" href="{{ url('/customer/profile') }}">
                                     <i class="fa-solid fa-gear"></i> {{ __('Setting') }}
                                 </a>
                             @endif
@@ -96,13 +82,13 @@
                 </li>
                
                 <li class="nav-item text-center">
-                    <a href="" class="nav-link">
+                    <a href="{{ url('/home#my-favorite') }}" class="nav-link">
                         <i class="fa-solid fa-heart icon"></i>
                         <span class="text-white m-0">Favorite</span>
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a href="" class="nav-link">
+                    <a href="{{ url('/customer/cart') }}" class="nav-link">
                         <i class="fa-solid fa-cart-shopping icon"></i>
                         <span class="text-white m-0">Cart</span>
                     </a>

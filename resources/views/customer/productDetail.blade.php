@@ -42,8 +42,8 @@
             </div>
 
             <div class="col">
-                <h1>Product Name</h1>
-                <a class="text-muted text-decoration-none">Shop Name</a>
+                <h1 class="fw-bold">Product Name</h1>
+                <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
                 <span class="fs-3 mt-2 d-block text-danger">$20.00</span>
 
                 {{-- Check: Creating backend, might recreate this part --}}
@@ -86,7 +86,7 @@
                                 @csrf
 
                                 <button type="submit" class="btn create-button w-100">
-                                    <i class="fa-solid fa-heart"></i> Whishlist
+                                    <i class="fa-solid fa-heart"></i> WishList
                                 </button>
                             </form>
                         </div>

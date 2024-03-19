@@ -43,7 +43,7 @@
     </div>
 
     {{-- Recommend --}}
-    <section class="pt-5 pb-5">
+    <section class="pt-5 pb-5" id="my-favorite">
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-auto">

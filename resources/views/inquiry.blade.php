@@ -9,10 +9,8 @@
     {{-- content  --}}
     <div class="container-fluid bg-white">        
         {{-- welcome banner  --}}
-        <div class="row mb-3">
-            <div class="col-auto">
-                <img src="{{ asset('images/banner/welcom-inquiry.png') }}" alt="welcome banner">
-            </div>
+        <div class="row mb-3" id="welcome_banner">
+            <div class="col-1"></div>
             <div class="col pt-4">
                 <h1>FAQ</h1>
                 <p class="fs-4">How can I help you ?</p>
@@ -80,7 +78,7 @@
         {{-- Inquiry Form --}}
         <div class="row">
             <div class="col px-5">
-                <h3 class="h1 text-center">Get In Touch With Me!</h3>
+                <h3 class="h1 fw-bold mb-3">Get In Touch With Me!</h3>
 
                 <form action="" method="POST">
                     @csrf

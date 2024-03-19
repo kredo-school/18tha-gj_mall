@@ -8,14 +8,14 @@
 
     @include('layouts.navbar')
     
-    <div class="container vh-100 p-5">
+    <div class="container-fluid vh-100 p-5">
         <div class="row">
             {{-- address and payment info --}}
             <div class="col-7">
                 {{-- address content  --}}
                 <div class="row mb-3 p-2" id="header">
                     <div class="col align-self-center">
-                        <h1 class="h2 mb-0">Address Information</h1>
+                        <h2 class="mb-0">Address Information</h2>
                     </div>
                     <div class="col text-end">
                         <button class="btn edit-button" data-bs-toggle="modal" data-bs-target="#edit_address">Change</button>
@@ -44,7 +44,7 @@
                 {{-- Payment content  --}}
                 <div class="row mb-3 p-2" id="header">
                     <div class="col align-self-center">
-                        <h1 class="h2 mb-0">Payment Information</h1>
+                        <h2 class="mb-0">Payment Information</h2>
                     </div>
                     <div class="col text-end">
                         <button class="btn edit-button" data-bs-toggle="modal" data-bs-target="#edit_payment">
@@ -76,7 +76,7 @@
                 {{-- Payment content  --}}
                 <div class="row mb-3 p-2" id="header">
                     <div class="col align-self-center">
-                        <h1 class="h2 mb-0">Gift Box Options</h1>
+                        <h2 class="mb-0">Gift Box Options</h2>
                     </div>
                 </div>
 
@@ -95,7 +95,7 @@
             {{-- address and payment info end --}}
 
             {{-- Checkout --}}
-            <div class="col-5">
+            <div class="col">
                 <div class="card mt-4 mx-auto order-card">
                     <div class="card-body">
                         <div class="row mx-auto mb-5">

@@ -22,29 +22,29 @@
             <div class="container">
                 <div class="row justify-content-center mt-2">
                     <div class="col-8">
-                        <strong>Order Number</strong>
+                        <strong class="label">Order Number</strong>
                         <span class="d-block">123456789-123</span>
                     </div>
                 </div>
 
                 <div class="row justify-content-center mt-2">
                     <div class="col-8">
-                        <strong>Approximate Deliver Date</strong>
+                        <strong class="label">Approximate Deliver Date</strong>
                         <span class="d-block">Sun, April 9, 2024</span>
                     </div>
                 </div>
 
                 <div class="row justify-content-center mt-2">
                     <div class="col-8">
-                        <strong>Amount</strong>
+                        <strong class="label">Amount</strong>
                         <span class="d-block">$20,000</span>
                     </div>
                 </div>
 
                 <div class="row justify-content-center mt-2">
                     <div class="col-8">
-                        <a href="" class="btn normal-button me-3">Go Home Page</a>
-                        <a href="" class="btn edit-button">Ordered ListPage</a>
+                        <a href="{{ url('/home') }}" class="btn normal-button me-3">Go Home Page</a>
+                        <a href="{{ url('/customer/profile/orderHistory') }}" class="btn edit-button">Ordered ListPage</a>
                     </div>
                 </div>
             </div>

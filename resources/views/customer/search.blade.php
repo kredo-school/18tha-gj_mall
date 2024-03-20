@@ -61,113 +61,11 @@
                             <div class="row">
                                 <div class="col">
                                     <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
+                                        <h3>Product Name</h3>
                                     </a>
                                 </div>
                                 <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
+                                    <h4>$50</h4>
                                 </div>
                             </div>
                         
@@ -197,113 +95,11 @@
                             <div class="row">
                                 <div class="col">
                                     <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
+                                        <h3>Product Name</h3>
                                     </a>
                                 </div>
                                 <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
-                                </div>
-                            </div>
-                        
-                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                            
-                            <div class="d-flex justify-content-between align-items-center mt-2">
-                                <div class="ratings">
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star text-warning"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-
-                                    <strong>(25)</strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col">
-                    <div class="card" id="card-item">
-                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                        
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
-                                    </a>
-                                </div>
-                                <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
+                                    <h4>$50</h4>
                                 </div>
                             </div>
                         
@@ -333,11 +129,249 @@
                             <div class="row">
                                 <div class="col">
                                     <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                        <h1 class="h3">Product Name</h1>
+                                        <h3>Product Name</h3>
                                     </a>
                                 </div>
                                 <div class="col-auto">
-                                    <h2 class="h4">$50</h2>
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
+                                </div>
+                            </div>
+                        
+                            <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
+                            
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="ratings">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+
+                                    <strong>(25)</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="card" id="card-item">
+                        <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
+                        <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
+                                        <h3>Product Name</h3>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <h4>$50</h4>
                                 </div>
                             </div>
                         

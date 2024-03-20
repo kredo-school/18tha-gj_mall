@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Cart')
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
@@ -8,9 +8,9 @@
 
     @include('layouts.navbar')
     
-    <div class="container-fluid">
+    <div class="container-fluid p-0 vh-100">
 
-        <div class="row mb-4 mx-auto">
+        <div class="row px-3 mb-4 mx-auto">
 
             {{-- Cart --}}
             <div class="col-7">
@@ -42,7 +42,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -54,236 +54,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ms-2">
-                        <div class="col">
-                            <div class="card cartItem-card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-1">
-                                            <div class="row align-items-center text-center h-100 border-end">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ms-2">
-                        <div class="col">
-                            <div class="card cartItem-card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-1">
-                                            <div class="row align-items-center text-center h-100 border-end">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ms-2">
-                        <div class="col">
-                            <div class="card cartItem-card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-1">
-                                            <div class="row align-items-center text-center h-100 border-end">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <p class="mt-2 h4"><i class="fa-solid fa-trash trash-icon"></i></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3 ms-2">
-                        <div class="col">
-                            <div class="card cartItem-card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-1">
-                                            <div class="row align-items-center text-center h-100 border-end">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="row align-items-center text-center h-100">
-                                                <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -308,7 +96,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -320,24 +108,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -362,7 +150,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -374,24 +162,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -416,7 +204,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -428,24 +216,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -470,7 +258,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -482,24 +270,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -524,7 +312,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -536,24 +324,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -578,7 +366,7 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="Unchecked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -590,24 +378,24 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h4 class="fw-bold">Kimono Art</h4>
-                                            <p>Kimono Art Shop</p>
+                                            <a href="{{ url('productDetail') }}" class="text-decoration-none text-dark">
+                                                <h4 class="fw-bold">Kimono Art</h4>
+                                            </a>
+                                            <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
+                                                <p>Kimono Art Shop</p>
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">1</h4>
-                                                </div>
-                                                <div class="col text-start">
-                                                    <a href="#"><img src="{{ asset('images/customer/caretUp.png') }}" alt="Increment"></a><br>
-                                                    <a href="#"><img src="{{ asset('images/customer/caretDown.png') }}" alt="Decrement"></a>
+                                                    <input type="number" name="quantity" id="quantity" class="form-control" min="0"  value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col text-end">
-                                                    <h4 class="mt-2">$ 120.00</h4>
+                                                    <h4 class="mt-2">$ <span class="prodcut_price">120.00</span></h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -629,62 +417,59 @@
 
             {{-- Order Summary --}}
             <div class="col">
-                    <div class="row sticky-top mt-5">
-                        <div class="col">
-                            <div class="card mt-4 mx-auto order-card" style="width: 550px; height: 370px;">
-                                <div class="card-body">
-                                    <div class="row mx-auto mb-5">
-                                        <div class="col">
-                                            <div class="row mt-3">
-                                                <div class="col">
-                                                    <h3 class="fw-bold text-center text-decoration-underline">Order Summary</h3>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3 mx-auto">
-                                                <div class="col">
-                                                    <h4 class="fw-bold text-start">Subtotal : </h4>
-                                                </div>
-                                                <div class="col">
-                                                    <h4 class="text-end">$ <span>220.00</span></h4>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3 mx-auto">
-                                                <div class="col-7">
-                                                    <h4 class="fw-bold text-start">Estimated Shipping : </h4>
-                                                </div>
-                                                <div class="col">
-                                                    <h4 class="text-end">$ <span>5.00</span></h4>
-                                                </div>
-                                            </div>
-                                            <div class="row mt-3 mx-auto">
-                                                <div class="col-7">
-                                                    <h4 class="fw-bold text-start">Total : </h4>
-                                                </div>
-                                                <div class="col">
-                                                    <h4 class="text-end">$ <span>225.00</span></h4>
-                                                </div>
+                <div class="row sticky-top mt-5" id="sticky_card">
+                    <div class="col">
+                        <div class="card mt-4 mx-auto order-card">
+                            <div class="card-body">
+                                <div class="row mx-auto mb-5">
+                                    <div class="col">
+                                        <div class="row mt-3">
+                                            <div class="col">
+                                                <h3 class="fw-bold text-center text-decoration-underline">Order Summary</h3>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row text-center">
-                                        <div class="col">
-                                            <button type="button" class="btn create-button w-50 fw-bold">Checkout</button>
+                                        <div class="row mt-3 mx-auto">
+                                            <div class="col">
+                                                <h4 class="fw-bold text-start">Subtotal : </h4>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="text-end">$ <span class="sub_total">220.00</span></h4>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3 mx-auto">
+                                            <div class="col-7">
+                                                <h4 class="fw-bold text-start">Estimated Shipping : </h4>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="text-end">$ <span>5.00</span></h4>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3 mx-auto">
+                                            <div class="col-7">
+                                                <h4 class="fw-bold text-start">Total : </h4>
+                                            </div>
+                                            <div class="col">
+                                                <h4 class="text-end">$ <span class="total_price">225.00</span></h4>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="row text-center">
+                                    <div class="col">
+                                        <button type="button" class="btn create-button w-50 fw-bold">Checkout</button>
+                                    </div>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
+                </div>
             </div>
-
         </div>
-
+        
+        @include('layouts.footer')
     </div>
 
-    @include('layouts.footer')
-
     <script src="{{ asset('js/cart.js') }}"></script>
-
 @endsection
 

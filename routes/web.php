@@ -57,12 +57,8 @@ Route::get('/customer/profile', function () {
     return view('customer.profile.profile');
 });
 
-Route::get('/customer/profile/address', function () {
-    return view('customer.profile.address');
-});
-
-Route::get('/customer/profile/payment', function () {
-    return view('customer.profile.payment');
+Route::get('/customer/profile/editProfile', function () {
+    return view('customer.profile.profileEdit');
 });
 
 Route::get('/customer/profile/orderHistory', function () {

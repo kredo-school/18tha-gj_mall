@@ -14,7 +14,7 @@
         <div class="col-md-6 mb-3">
             <div class="">
                 <div class="ms-0">
-                    <a  href="{{ url('/') }}" class="logo-img">
+                    <a  href="{{ url('/home') }}" class="logo-img">
                         <img src="{{ asset('images/common/Logo.png') }}" alt="logo" style="width: 150px; height:150px;">
                     </a>
                 </div>

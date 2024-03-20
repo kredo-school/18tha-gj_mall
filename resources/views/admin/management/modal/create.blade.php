@@ -38,7 +38,7 @@
               {{-- Status --}}
               <div class="status">
                   <form action="#">
-                      <label for="status" class="fw-bold">Status:</label>
+                      <label for="status" class="status fw-bold">Status:</label>
                       <select name="stauts" id="status" class="form-select">
                           <option value="select">Select the role here...</option>
                           <option value="zero">0: Seller</option>
@@ -55,10 +55,10 @@
               <form action="#" method="#">
                   @csrf
                   {{-- @method('') --}}
-                  <button type="button" class="btn btn-sm cancel-button shadow me-1" data-bs-dismiss="modal">
+                  <button type="button" class="btn btn-sm cancel-user-button shadow me-1" data-bs-dismiss="modal">
                       Cancel
                   </button>
-                  <button type="submit" class="btn btn-sm update-button shadow ms-1">Register User</button>
+                  <button type="submit" class="btn btn-sm register-user-button shadow ms-1">Register User</button>
               </form>
           </div>
       </div>

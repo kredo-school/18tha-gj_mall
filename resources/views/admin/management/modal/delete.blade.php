@@ -11,9 +11,19 @@
           </div>
 
         <div class="modal-body">
-            <p><strong class="fw-bold"> Name: </strong> John Smith</p>
-            <p><strong class="fw-bold">E-mail: </strong>johnsmith@gmail.com</p>
-            <p><strong class="fw-bold">Role: </strong>Admin</p>                
+            <div class="pb-5">
+                <p><strong class="fw-bold"> Name: </strong> John Smith</p>
+            </div>
+            <div class="pb-5">
+                <p><strong class="fw-bold">E-mail: </strong>johnsmith@gmail.com</p>
+            </div>
+            <div class="pb-5">
+                <p><strong class="fw-bold">Role: </strong>Admin</p>
+            </div>
+
+            {{-- <p><strong class="fw-bold mb-4"> Name: </strong> John Smith</p>
+            <p><strong class="fw-bold mb-4">E-mail: </strong>johnsmith@gmail.com</p>
+            <p><strong class="fw-bold mb-4">Role: </strong>Admin</p>                 --}}
         </div>
         <div class="modal-footer border-0 mx-auto montserrat">
             <form action="#" method="#">

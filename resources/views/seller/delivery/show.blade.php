@@ -9,19 +9,31 @@
 
     <div class="container">
         <div class="row justify-content-center pt-3">
-            <h1 class="h2 fw-bold">Delivery Order List</h1>
+            <h2 class="fw-bold">Delivery Order List</h2>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">
                 <div class="navbar-nav">
                     <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
+                        <input type="search" name="search" placeholder="Search..." class="form-control">
                     </form>
                 </div>
             </div>
             {{-- Filter button --}}
-            <div class="col-4 mt-2">
-                <strong class="fw-bold filter">Filtered By </strong> <button class="btn btn-sm custom-button1 rounded-pill shadow ms-2 mb-2">Status</button>
+            <div class="col-4 mb-2">
+                <div class="h4 fw-bold filter">Filtered By </div>
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Status
+                    </a>
+                  
+                    <ul class="dropdown-menu h4">
+                      <li><a class="dropdown-item" href="#">1: Waiting for Acceptance</a></li>
+                      <li><a class="dropdown-item" href="#">2: Completing Acceptance</a></li>
+                      <li><a class="dropdown-item" href="#">3: During Transportation</a></li>
+                      <li><a class="dropdown-item" href="#">4: Completing Shipment</a></li>
+                    </ul>
+                </div>            
             </div>
 
             {{-- Table of Delivery Order List --}}
@@ -50,7 +62,7 @@
                             <td>Cloth</td>
                             <td>1: Waiting for Acceptance</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
@@ -64,7 +76,7 @@
                             <td>Dish</td>
                             <td>2: Completing Acceptance</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
@@ -78,7 +90,7 @@
                             <td>Glass</td>
                             <td>3: During Transportation</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
@@ -93,7 +105,7 @@
                             <td>Doll</td>
                             <td>4: Completing Shipment</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>
@@ -108,7 +120,7 @@
                             <td>Pot</td>
                             <td>4: Completing Shipment</td>
                             <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
+                                <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
                                 @include('seller.delivery.modal.deliveryStatus')
                             </td>
                         </tr>

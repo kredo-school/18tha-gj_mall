@@ -8,19 +8,19 @@
 
     <div class="container main">
         <div class="row justify-content-center pt-2">
-            <h1>Management User</h1>
+            <h2 class="fw-bold">Management User</h2>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">
                 <div class="navbar-nav">
                     <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
+                        <input type="search" name="search" placeholder="Search..." class="form-control">
                     </form>
                 </div>
             </div>
             {{-- Create User --}}
-            <div class="col-4 mb-4">
-                <button class="btn btn-sm create-button shadow montserrat" data-bs-toggle="modal" data-bs-target="#create-user-">Create User</button>
+            <div class="col-4 my-2">
+                <button class="btn create-user-button rounded-pill shadow w-100 montserrat" data-bs-toggle="modal" data-bs-target="#create-user-">Create User</button>
                 @include('admin.management.modal.create')
             </div>
 
@@ -44,14 +44,14 @@
                             <td>johnsmith@gmail.com</td>
                             <td>Admin</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -64,13 +64,13 @@
                             <td>willsmith@gmail.com</td>
                             <td>Seller</td>
                             <td>
-                                <button class="btn btn-sm shadow edit-button" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -83,14 +83,14 @@
                             <td>marktwain@gmail.com</td>
                             <td>Stuff</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -104,14 +104,14 @@
                             <td>john-f-kennedy@gmail.com</td>
                             <td>Translator</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -125,14 +125,14 @@
                             <td>sutan-sjahrir@gmail.com</td>
                             <td>Assessor</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -146,14 +146,14 @@
                             <td>taroyamada@gmail.com</td>
                             <td>Delivery</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
@@ -167,21 +167,19 @@
                             <td>jackiechan@gmail.com</td>
                             <td>User</td>
                             <td>
-                                <button class="btn btn-sm edit-button shadow" data-bs-toggle="modal" data-bs-target="#edit-user-">
-                                    <i class="fa-solid fa-pen-to-square"></i>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
+                                    <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
                                 @include('admin.management.modal.edit')
     
                             </td>
                             <td>
-                                <button class="btn btn-sm delete-button shadow" data-bs-toggle="modal" data-bs-target="#delete-user-">
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                                 @include('admin.management.modal.delete')
                             </td>
                         </tr>
-                        
-                        
                     </tbody>
                 </table>
             </div>

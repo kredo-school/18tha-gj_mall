@@ -29,36 +29,48 @@
 <body>
     <div class="app-body">
         <div class="sidebar">
-            <a href="#">
+            <a href="{{ route('home') }}">
                 <img src="{{ asset('images/common/Logo.png')}}">
             </a>
             <nav class="sidebar-nav">
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-chess-board"></i> Dashboard</a>
+                    <a href="{{ url('/seller/dashboard') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-chess-board"></i> Dashboard</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-user"></i> Profile</a>
+                    <a href="{{ url('/seller/profile/editProfile') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-user"></i> Profile</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-shirt"></i> Products Dashboard</a>
+                    <a href="{{ url('/seller/products/dashboard') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-shirt"></i> Products Dashboard</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-newspaper"></i> Ads Dashboard</a>
+                    <a href="{{ url('/seller/ads/dashboard') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-newspaper"></i> Ads Dashboard</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-truck"></i> Delivery Status</a>
+                    <a href="{{ url('/seller/delivery') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-truck"></i> Delivery Status</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-check-double"></i> Evaluation</a>
+                    <a href="{{ url('/seller/evaluation') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-check-double"></i> Evaluation</a>
                 </ul>
 
                 <ul class="nav-item mt-4">
-                    <a href="#" class="text-decoration-none text-dark"><i class="fa-solid fa-headset"></i> Customer Support</a>
+                    <a href="{{ url('/seller/customerSupport') }}" class="text-decoration-none text-dark"><i class="fa-solid fa-headset"></i> Customer Support</a>
+                </ul>
+
+                <ul class="nav-item mt-4">
+                    {{-- logout --}}
+                    <a class="text-decoration-none text-dark" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>{{ __('Logout') }}
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </ul>
             </nav>
         </div>

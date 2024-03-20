@@ -1,12 +1,7 @@
 .filter {
-  font-size: 24px;
   display: inline;
 }
 
-h1 {
-    font-size: 48px;
-    font-weight: bold;
-}
 
 .dropdown {
     background-color: #ffffff;
@@ -14,10 +9,13 @@ h1 {
     font-size: 18px;
     display: inline;
 }
+
 .dropdown-toggle {
-  background-color: #ffffff;
-  border-color: #333333;
+  background-color: #333333;
+  border-color: #ffffff;
+  color: #ffffff;
   width: 150px;
+  font-size: 18px;
 }
 
 .dropdown-item {

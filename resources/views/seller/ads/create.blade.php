@@ -3,11 +3,13 @@
 @section('title', 'Seller Ads Create')
 
 @section('content')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
+
+    <h1 class="my-4">Create Advertisment</h1>
 
     <div class="row justify-content-end me-4">
         <div class="col mt-4">
-            <h2>Create Advertisment</h2>
             <div class="form">
                 <div class="row">
                     <h3>Image</h3>
@@ -73,6 +75,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 @endsection

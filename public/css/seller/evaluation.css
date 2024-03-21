@@ -81,3 +81,7 @@ table {
   font-size: 24px;
   font-weight: bold;
 }
+
+.vertical-center {
+  vertical-align: middle !important;
+}

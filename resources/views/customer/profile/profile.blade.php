@@ -13,7 +13,7 @@
             <div class="col">
                 {{-- Edit button --}}
                 <div class="text-end mt-5 mb-3 me-5">
-                    <a href="{{ url('customer/profileEdit') }}">
+                    <a href="{{ url('/customer/profile/editProfile') }}">
                         <button type="submit" class="btn edit-button">
                             <i class="fa-regular fa-pen-to-square"></i> Edit
                         </button>

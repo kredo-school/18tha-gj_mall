@@ -137,7 +137,7 @@
                     <form action="#" method="POST">
                         @csrf
 
-                        <div class="row">
+                        <div class="row mb-3">
                             <div class="col">
                                 <div class="row mb-4">
                                     <div class="col">
@@ -163,15 +163,14 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="text-center mb-5">
+                            <button type="submit" class="btn edit-button w-25">Save</button>
+                        </div>
                     </form>
                 </div>
                 {{-- Payment end --}}
-            </div>
-
-            <div class="text-center mb-5">
-                <button type="submit" class="btn edit-button w-25">Save</button>
-            </div>
-            
+            </div>           
         </div>
     </div>
 

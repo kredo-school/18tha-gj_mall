@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }); 
     }); 
 
+
+
     function toggleCheckbox(checkbox) {
         
         if (checkbox.classList.contains('checked')) { 
@@ -32,8 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
         checkboxes.forEach(function(checkbox) { 
             
             if (checkbox.classList.contains('checked')) { 
-    
-                const itemId = checkbox.getAttribute('data-item-id'); 
+                // const itemId = checkbox.getAttribute('data-item-id'); 
+                
                 // const item = @json($cartItems->where('id', itemId)->first()); 
                 // total += item.price * item.quantity; 
             }  

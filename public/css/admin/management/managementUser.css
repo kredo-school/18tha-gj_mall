@@ -1,65 +1,33 @@
-.filter {
-    font-size: 24px;
-    display: inline;
-}
-
-.header {
-    font-size: 48px;
-}
-
 /* Content */
-h1 {
-    font-size: 48px;
-    font-weight: bold;
-}
-
 table {
     font-size: 16px;
     width: fit-content;
  }
 
 /* Button - Create User */
-.create-button {
+.create-user-button {
     background-color: #30567A;
     border-color: #30567A;
     color: #ffffff;
     font-size: 16px;
-    width:400px;
-    height: 50px
+    height: 32px
 }
 
-.create-button:hover {
+.create-user-button:hover {
     background-color: #ffffff;
     border-color: #30567A;
     color: #30567A;
 }
 
 /* Button - edit user */
-.edit-button {
-    background-color: #ffffff;
+.edit-icon {
     color: #0AA873;
-
 }
-
-/* .edit-button:hover {
-    background-color: #0AA873;
-    border-color: #0AA873;
-    color: #ffffff;
-} */
 
 /* Button - delete user */
-.delete-button {
-    /* background-color: #FF3A3A;
-    border-color: #FF3A3A; */
+.delete-icon {
     color: #FF3A3A;
-
 }
-
-.delete-button:hover {
-    background-color: #ffffff;
-    border-color: #FF3A3A;
-    color: #FF3A3A;
-} 
 
 /* banner  */
 .banner {

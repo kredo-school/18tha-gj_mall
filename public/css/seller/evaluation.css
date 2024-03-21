@@ -1,28 +1,34 @@
-span {
+.filter {
   font-size: 24px;
   display: inline;
 }
 
-.h2 {
-    font-size: 48px;
-    font-weight: bold;
-}
-
-/* Fliter - Status */
-.custom-button1 {
-  background-color: #333333;
-  border-color: #333333;
-  color: #ffffff;
-  font-size: 16px;
-  width:160px;
-  height: 40px
-
-}
-
-.custom-button1:hover {
+.dropdown {
   background-color: #ffffff;
   border-color: #333333;
+  display: inline;
+}
+
+.dropdown-toggle {
+background-color: #333333;
+border-color: #333333;
+color: #ffffff;
+width: 200px;
+font-size: 18px;
+display: inline;
+}
+
+.dropdown-toggle#dropdown-category {
+  background-color: #ffffff;
+  border-color: #ffffff;
   color: #333333;
+  width: 200px;
+  font-size: 18px;
+  display: inline;
+  }
+
+.dropdown-item {
+font-size: 18px;
 }
 
 /* Button - Show Detail */

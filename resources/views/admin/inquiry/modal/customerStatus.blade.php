@@ -11,29 +11,30 @@
               </h3>
           </div>
           <div class="modal-body">
-              <p class="inquiry-title">Question</p>
-              <div>
-                  <p class="inquiry-title">Title</p>
-                  <p class="inquiry-content">Refund</p>
+              <p class="question fw-bold">Question</p>
+              
+              <div class="pt-2">
+                  <p class="inquiry-title">Title:</p>
+                  <p class="inquiry-content">About Stock</p>
               </div>
 
-              <div>
-                <p class="inquiry-title">Inquiry Category</p>
-                <p class="inquiry-content">Refund</p>
+              <div class="pt-2">
+                <p class="inquiry-title">Inquiry Category:</p>
+                <p class="inquiry-content">Question for the product</p>
               </div>
 
-              <div>
-                <p class="inquiry-title">Content</p>
-                <p class="inquiry-content">I misordered the size.</p>
+              <div class="pt-2">
+                <p class="inquiry-title">Content:</p>
+                <p class="inquiry-content">Is there any bigger size. I find bigger size than S size.</p>
               </div>
 
-              <div>
+              <div class="pt-2">
                 {{-- css - style.css --}}
-                <label for="content" class="form-label inquiry-title">Answer</label>
-                <textarea name="content" id="content" rows="5" class="form-control" placeholder="Please write the answer here..."></textarea>
+                <label for="content" class="form-label inquiry-title">Answer:</label>
+                <textarea name="comment" id="comment" rows="5" class="form-control" placeholder="Please write the answer here..."></textarea>
               </div>
 
-              <div class="status">
+              <div class="status pt-2">
                   <form action="#">
                       <label for="status" class="inquiry-title">Status:</label><br>
                       <select name="stauts" id="status" class="inquiry-content form-control">
@@ -51,10 +52,10 @@
               <form action="#" method="#">
                   @csrf
                   {{-- @method('') --}}
-                  <button type="button" class="btn btn-sm custom-button4 shadow me-1" data-bs-dismiss="modal">
+                  <button type="button" class="btn btn-sm cancel-answer-button shadow me-1" data-bs-dismiss="modal">
                       Cancel
                   </button>
-                  <button type="submit" class="btn btn-sm custom-button5 shadow ms-1">Complete</button>
+                  <button type="submit" class="btn btn-sm complete-answer-button shadow ms-1">Complete</button>
               </form>
           </div>
       </div>

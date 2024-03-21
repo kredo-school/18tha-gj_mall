@@ -7,21 +7,50 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <div class="container main">
-        <div class="row justify-content-center pt-3">
-            <h1 class="h2 fw-bold">Evaluation Products List</h1>
+        <div class="row justify-content-center pt-2">
+            <h2 class="fw-bold">Evaluation Products List</h2>
 
             {{-- Search bar --}}
             <div class="col-6 my-2">
                 <div class="navbar-nav">
                     <form action="#">
-                        <input type="search" name="search" placeholder="Search..." style="width: 500px"  class="form-control form-control-sm">
+                        <input type="search" name="search" placeholder="Search..." class="form-control">
                     </form>
                 </div>
             </div>
-            <div class="col-6 mb-2">
-                <span class="fw-bold montserrat">Filtered By </span> 
-                <button class="btn btn-sm custom-button1 rounded-pill">Status</button>
-                <button class="btn btn-sm custom-button2 rounded-pill">Category</button>
+
+            {{-- Filter Button --}}
+            <div class="col-6 my-2">
+                <div class="h4 fw-bold filter">Filtered By </div>
+
+                {{-- Status --}}
+                <div class="dropdown">
+                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Status
+                    </a>
+                    
+                    <ul class="dropdown-menu h4">
+                        <li><a class="dropdown-item" href="#">1: Waiting for Evaluation</a></li>
+                        <li><a class="dropdown-item" href="#">2: Evaluating</a></li>
+                        <li><a class="dropdown-item" href="#">3: Waiting for Display</a></li>
+                        <li><a class="dropdown-item" href="#">4: Suspended</a></li>
+                    </ul>
+                </div>
+
+                {{-- Category --}}
+                <div class="dropdown" id="dropdown-category">
+                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat rounded-pill" id="dropdown-category" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </a>
+                    
+                    <ul class="dropdown-menu h4">
+                        <li><a class="dropdown-item" href="#">1: Cloth</a></li>
+                        <li><a class="dropdown-item" href="#">2: Dish</a></li>
+                        <li><a class="dropdown-item" href="#">3: Glass</a></li>
+                        <li><a class="dropdown-item" href="#">4: Doll</a></li>
+                        <li><a class="dropdown-item" href="#">5: Pot</a></li>
+                    </ul>
+                </div>
             </div>
 
             {{-- Table - Evaluation Product List --}}
@@ -36,7 +65,7 @@
                             <th>Price</th>
                             <th>Size</th>
                             <th>Weight</th>
-                            <th>is Fragile</th>
+                            <th>Fragile</th>
                             <th>Seller Name</th>
                             <th>Description</th>
                             <th>Status</th>

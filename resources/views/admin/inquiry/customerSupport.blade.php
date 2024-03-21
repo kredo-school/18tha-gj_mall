@@ -6,36 +6,37 @@
     <link rel="stylesheet" href="{{ asset('css/admin/customerSupport.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   
-    <div class="container main">
+    <div class="container">
         <div class="row justify-content-center pt-3">
-            <h1 class="h2 fw-bold">Customer Support</h1>
+            <h2 class="fw-bold">Customer Support</h2>
 
             {{-- Search bar --}}
-            <div class="col-6 my-2">
+            <div class="col-8 my-2">
                 <div class="navbar-nav">
                     <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
+                        <input type="search" name="search" placeholder="Search..." class="form-control">
                     </form>
                 </div>
             </div>
+
             {{-- Filter button --}}
-            <div class="col-6">
-                <div class="fw-bold filter main">Filtered By </div> 
+            <div class="col-4 mb-2">
+                <div class="h4 fw-bold filter">Filtered By </div>
                 <div class="dropdown">
-                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       ALL
                     </a>
                   
-                    <ul class="dropdown-menu main">
-                      <li><a class="dropdown-item" href="#">1: Unsolved</a></li>
-                      <li><a class="dropdown-item" href="#">2: Answer</a></li>
-                      <li><a class="dropdown-item" href="#">3: Solved</a></li>
+                    <ul class="dropdown-menu h4">
+                        <li><a class="dropdown-item" href="#">1: Unsolved</a></li>
+                        <li><a class="dropdown-item" href="#">2: Answer</a></li>
+                        <li><a class="dropdown-item" href="#">3: Solved</a></li>  
                     </ul>
                 </div>            
             </div>
 
             {{-- Table of Delivery Order List --}}
-            <div class="table main">
+            <div class="table">
                 <table class="table table-hover align-middle bg-white border">
                     <thead class="table-secondary text-light fw-bold">
                         <tr>
@@ -57,7 +58,7 @@
                             <td>Question for the product</td>
                             <td>Is there any bigger size. I find bigger size than S size.</td>
                             <td>Taro Tanaka</td>
-                            <td>1: Unsolved</td>
+                            <td>1:Unsolved</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Answer</button>
                                 @include('admin.inquiry.modal.customerStatus')
@@ -73,7 +74,7 @@
                             <td>Question for the product</td>
                             <td>I want to buy another color. Is there any color option?</td>
                             <td>Will Smith</td>
-                            <td>2: Answer</td>
+                            <td>2:Answer</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#translate-status-">Answer</button>
                                 @include('admin.inquiry.modal.translateStatus')
@@ -89,7 +90,7 @@
                             <td>Shipment</td>
                             <td>How much is the shipment cost to UK?</td>
                             <td>Mark Twain</td>
-                            <td>2: Answer</td>
+                            <td>2:Answer</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#translate-status-">Answer</button>
                                 @include('admin.inquiry.modal.translateStatus')
@@ -106,7 +107,7 @@
                             <td>Question for the product</td>
                             <td>I want to buy the latest product. When will be it restocked? </td>
                             <td>John F. Kennedy</td>
-                            <td>3: Solved</td>
+                            <td>3:Solved</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Answer</button>
                                 @include('admin.inquiry.modal.customerStatus')
@@ -123,7 +124,7 @@
                             <td>Delivery Time</td>
                             <td>I need to get the dishes for a party. How long will it take to get?</td>
                             <td>Sutan Sjahrir</td>
-                            <td>1: Unsolved</td>
+                            <td>1:Unsolved</td>
                             <td>
                                 <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-">Answer</button>
                                 @include('admin.inquiry.modal.customerStatus')

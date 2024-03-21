@@ -8,32 +8,32 @@
   
     <div class="container main">
         <div class="row justify-content-center pt-3">
-            <h1 class="h2 fw-bold">Customer Support</h1>
+            <h2 class="fw-bold">Customer Support</h2>
 
             {{-- Search bar --}}
-            <div class="col-6 my-2">
+            <div class="col-8 my-2">
                 <div class="navbar-nav">
                     <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
+                        <input type="search" name="search" placeholder="Search..." class="form-control">
                     </form>
                 </div>
             </div>
             {{-- Filter button --}}
-            <div class="col-6">
-                <div class="fw-bold filter main">Filtered By </div> 
+            <div class="col-4 mb-2">
+                <div class="h4 fw-bold filter">Filtered By </div>
                 <div class="dropdown">
-                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="btn dropdown-toggle ms-2 mb-2 montserrat rounded-pill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                       ALL
                     </a>
                   
-                    <ul class="dropdown-menu main">
-                      <li><a class="dropdown-item" href="#">1: Unsolved</a></li>
-                      <li><a class="dropdown-item" href="#">2: Answer</a></li>
-                      <li><a class="dropdown-item" href="#">3: Solved</a></li>
+                    <ul class="dropdown-menu h4">
+                        <li><a class="dropdown-item" href="#">1: Unsolved</a></li>
+                        <li><a class="dropdown-item" href="#">2: Answer</a></li>
+                        <li><a class="dropdown-item" href="#">3: Solved</a></li>  
                     </ul>
                 </div>            
             </div>
-
+            
             {{-- Table of Delivery Order List --}}
             <div class="table main">
                 <table class="table table-hover align-middle bg-white border">

@@ -37,7 +37,7 @@
             </div>
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 text-danger fw-bold">Create an account</a>
+                    <a href="{{ url('/register') }}" class="h5 text-danger fw-bold">Create an account</a>
                 </div>
             </div>
 
@@ -97,7 +97,7 @@
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
+                        <a href="{{ url('/seller/signIn') }}" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
-                        <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
+                        <a href="{{ route('password.request') }}" class="h5 fw-bold text-secondary">Forget your password click here.</a>
                     </div>
                 </div>
             </div>

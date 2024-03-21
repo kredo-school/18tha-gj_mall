@@ -145,7 +145,7 @@
                             </div>
                         </div>
 
-                        <form action="" method="post">
+                        <form action="{{ url('/customer/transaction/confirmation') }}" method="#">
                             @csrf
 
                             <div class="row text-center">

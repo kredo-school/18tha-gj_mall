@@ -49,9 +49,8 @@
                 </li>
                 
                 <li class="nav-item text-center dropdown">
-                    <i class="fa-solid fa-user icon"></i>
                     <a id="navbarDropdown" class="d-inline nav-link text-white p-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        Account
+                        <i class="fa-solid fa-user icon"></i>Account
                     </a>
                 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

@@ -4,10 +4,12 @@
 
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/seller/products.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+    <h1 class="my-4">Edit Product - {{ __("Product ID XXXX")  }}</h1>
 
     <div class="row justify-content-end">
         <div class="col mt-4">
-            <h2>Edit Product - {{ __("Product ID XXXX")  }}</h2>
             <div class="form">
                 <div class="row">
                     <h3>Images</h3>

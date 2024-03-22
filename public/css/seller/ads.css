@@ -78,7 +78,7 @@ label {
     /* Text color */
     border-color: #30567A;
     /* Border color (optional) */
-    height: 32px;
+    height: 40px;
 }
 
 /* Optional: Hover styles */
@@ -197,11 +197,10 @@ label {
 
 /* brand banner layouts */
 .brand-banner {
-    width: 1260px;
     height: 200px;
-    position:relative;
-    border: solid 1px ;
     background-image: url("../../../images/banner/banner4.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .logo {
@@ -210,17 +209,15 @@ label {
 }
 
 .gj-mall {
-    font-size: 64px;
-    font-weight: bold;
-    /* -webkit-text-stroke-color: white;
-    -webkit-text-stroke-width: 0.05px; */
+    font-size: 48px;
+    font-weight: bold; 
+    text-shadow: 3px 5px 3px #FFFFFF;
 }
 
 .sub-title {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: bold;
-    /* -webkit-text-stroke-color: white;
-    -webkit-text-stroke-width: 0.05px; */
+    text-shadow: 3px 5px 3px #FFFFFF;
 }
 
 .modal-head {
@@ -239,4 +236,10 @@ label {
 
 .icon-trash {
     color: #FF3A3A;
+}
+
+#table_image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
 }

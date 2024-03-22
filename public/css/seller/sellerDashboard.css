@@ -3,3 +3,7 @@
     color: #0AA873;
 }
 
+.btn-sm {
+    height: 40px;
+    width: 150px;
+}

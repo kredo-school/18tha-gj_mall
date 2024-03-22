@@ -64,7 +64,7 @@
                 {{-- Profile end --}}
 
                 {{-- Address --}}
-                <div class="mt-3">
+                <div class="mt-4">
                     <h1 class="text-center mb-3">Address</h1>
                 </div>
                 <div class="w-75 mx-auto">
@@ -118,7 +118,7 @@
                 {{-- Address end --}}
 
                 {{-- Payment --}}
-                <div class="mt-3">
+                <div class="mt-4">
                     <h1 class="text-center mb-3">Payment Information</h1>
                 </div>
                 <div class="w-75 mx-auto">

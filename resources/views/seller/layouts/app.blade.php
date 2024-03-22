@@ -34,11 +34,12 @@
             {{-- sidebar  --}}
             <div class="col-3">
                 <div class="sidebar">
-                    <a href="#">
+                    <a href="{{ url('/home') }}">
                         <img src="{{ asset('images/common/Logo.png')}}">
                     </a>
                     <nav class="sidebar-nav">
                         <ul class="list-group rounded-0 ps-3">
+                            {{-- Start Dashboard --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -51,6 +52,8 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Dashboard --}}
+                            {{-- Start Profile --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -63,6 +66,24 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Profile --}}
+
+                            {{-- Start Products Dashboard --}}
+                            <li class="list-group-item border-0 mt-4">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <i class="fa-solid fa-shirt"></i>
+                                    </div>
+                                    <div class="col">
+                                        <a href="{{ url('/seller/products/dashboard') }}" class="text-decoration-none text-secondary">
+                                            Products Dadboard
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                            {{-- End Products Dashboard --}}
+                            
+                            {{-- Start Ads Dashboard --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -75,6 +96,9 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Ads Dashboard --}}
+
+                            {{-- Start Delivery Status --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -87,6 +111,9 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Delivery Status --}}
+
+                            {{-- Start Evaluation --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -99,6 +126,9 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Evaluation --}}
+
+                            {{-- Start Customer Support --}}
                             <li class="list-group-item border-0 mt-4">
                                 <div class="row align-items-center">
                                     <div class="col-2">
@@ -111,6 +141,7 @@
                                     </div>
                                 </div>
                             </li>
+                            {{-- End Customer Support --}}
                         </ul>
                     </nav>
                 </div>

@@ -42,14 +42,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/checkedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item1.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -96,14 +96,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item2.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -150,14 +150,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item3.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -204,14 +204,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item4.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -258,14 +258,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item5.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -312,14 +312,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item6.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>
@@ -366,14 +366,14 @@
                                         <div class="col-1">
                                             <div class="row align-items-center text-center h-100 border-end">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/customer/uncheckedIcon.png') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
+                                                    <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="1" style="width: 23px; height: 23px;">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col">
                                             <div class="row align-items-center text-center h-100">
                                                 <div class="col">
-                                                    <img src="{{ asset('images/account/bg-admin.png') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                    <img src="{{ asset('images/items/item1.svg') }}" alt="product image" style="width: 140px; height: 100px;">
                                                 </div>
                                             </div>
                                         </div>

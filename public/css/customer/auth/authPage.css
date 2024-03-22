@@ -1,26 +1,26 @@
 /* login,register bg-img */
 .login-background-image, 
 .register-background-image {
-    background-image: url(/images/account/bg-customer.png);
-    background-size: cover;
+    background-image: url(/images/account/bgCustomer.svg);
+    /* background-size: cover; */
     height: 100%;
-    background-position: center;
+    /* background-position: center; */
 }
 
 /* Seller login,register bg-img */
 .seller-login-background-image {
-    background-image: url(/images/account/bg-seller.png);
-    background-size: cover;
+    background-image: url(/images/account/bgSeller.svg);
+    /* background-size: cover; */
     height: 100%;
-    background-position: center;
+    /* background-position: center; */
 }
 
 /* Admin login,register bg-img */
 .admin-login-background-image {
-    background-image: url(/images/account/bg-admin.png);
-    background-size: cover;
+    background-image: url(/images/account/bgAdmin.svg);
+    /* background-size: cover; */
     height: 100%;
-    background-position: center;
+    /* background-position: center; */
 }
 
 /* form-button */

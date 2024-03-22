@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (checkbox.classList.contains('checked')) { 
             
-            checkbox.src = "../images/customer/uncheckedIcon.png";
+            checkbox.src = "../images/customer/uncheckedIcon.svg";
             checkbox.classList.remove('checked'); 
 
         } else { 
             
-            checkbox.src = "../images/customer/checkedIcon.png"; 
+            checkbox.src = "../images/customer/checkedIcon.svg"; 
             checkbox.classList.add('checked'); 
 
         } 

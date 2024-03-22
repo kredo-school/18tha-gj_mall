@@ -12,7 +12,7 @@
             <div class="modal-body">   
                 <div class="row mb-4">
                     <div class="col-5 text-center">
-                        <img src="{{ asset('images/account/bg-admin.png') }}" class="product-image">
+                        <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
                         <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
@@ -81,7 +81,7 @@
             <div class="modal-body">   
                 <div class="row mb-4">
                     <div class="col-5 text-center">
-                        <img src="{{ asset('images/account/bg-admin.png') }}" class="product-image">
+                        <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
                         <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
@@ -150,7 +150,7 @@
             <div class="modal-body">   
                 <div class="row mb-4">
                     <div class="col-5 text-center">
-                        <img src="{{ asset('images/account/bg-admin.png') }}" class="product-image">
+                        <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
                         <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>

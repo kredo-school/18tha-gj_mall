@@ -58,11 +58,11 @@ table {
 
 /* banner  */
 .banner {
-    width: fit-content;
-    height: 200px;
-    position:relative;
-    border: solid 1px ;
-    background-image: url("../../../images/banner/banner1.png");
+    /* width: fit-content; */
+    /* height: 200px; */
+    /* position:relative;
+    border: solid 1px ; */
+    background-image: url(/images/banner/banner1.svg);
 }
 
 .logo {

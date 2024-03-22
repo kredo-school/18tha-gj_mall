@@ -16,21 +16,21 @@
             <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" style="height: 450px;">
-                        <img src="{{ asset('images/account/bg-admin.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/account/bgAdmin.svg') }}" class="d-block w-100" alt="...">
                         <div id="content" class="carousel-caption d-block text-white">
                             <h4>Ads Title</h4>
                             <p class="lead">Description here.</p>
                         </div>
                     </div>
                     <div class="carousel-item" style="height: 450px;">
-                        <img src="{{ asset('images/account/bg-seller.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/account/bgSeller.svg') }}" class="d-block w-100" alt="...">
                         <div id="content" class="carousel-caption d-none d-md-block text-white">
                             <h4>Ads Title</h4>
                             <p class="lead">Description here.</p>
                         </div>
                     </div>
                     <div class="carousel-item" style="height: 450px;">
-                        <img src="{{ asset('images/account/bg-customer.png') }}" class="d-block w-100" alt="...">
+                        <img src="{{ asset('images/account/bgCustomer.svg') }}" class="d-block w-100" alt="...">
                         <div id="content" class="carousel-caption d-none d-md-block text-white">
                             <h4>Ads Title</h4>
                             <p class="lead">Description here.</p>

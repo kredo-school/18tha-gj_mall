@@ -20,7 +20,7 @@
                             1
                         </div>
                         <div class="mt-3">
-                            <img src="{{ asset('images/items/item1.jpg') }}" alt="" class="image-md">
+                            <img src="{{ asset('images/items/item1.svg') }}" alt="" class="image-md">
                         </div>
                         <label class="d-inline pen-circle-overlay">
                             {{-- this appears if the images are selected in order to change the images --}}

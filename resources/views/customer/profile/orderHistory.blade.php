@@ -42,7 +42,7 @@
                             <div class="card-body text-dark">
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-0 d-lg-block text-center">
-                                        <img src="{{ asset('images/account/bg-admin.png') }}" alt="product photo" style="width: 200px; height: 200px;">
+                                        <img src="{{ asset('images/items/item2.svg') }}" alt="product photo" style="width: 200px; height: 200px;">
                                     </div>
                                     <div class="col-xl-4 col-lg-auto">
                                         <a href="" class="mb-2 d-block">Product Name</a>
@@ -91,7 +91,7 @@
                             <div class="card-body text-dark">
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-0 d-lg-block text-center">
-                                        <img src="{{ asset('images/account/bg-seller.png') }}" alt="product photo" style="width: 200px; height: 200px;">
+                                        <img src="{{ asset('images/items/item3.svg') }}" alt="product photo" style="width: 200px; height: 200px;">
                                     </div>
                                     <div class="col-xl-4 col-lg-auto">
                                         <a href="" class="mb-2 d-block">Product Name</a>
@@ -125,6 +125,7 @@
             </div>
         </div>
     </div>
+    @include('layouts.footer')
     
     @include('customer.modal.review')
 @endsection

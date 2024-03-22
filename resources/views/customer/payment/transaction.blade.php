@@ -102,7 +102,7 @@
                             <div class="col">
                                 <div class="row mt-3">
                                     <div class="col text-center">
-                                        <h3 class="fw-bold text-decoration-underline">Order Summary</h3>
+                                        <h3 class="fw-bold text-decoration-underline">Order Detail</h3>
                                         <p id="estimated_date_font">Estimated Delivery Date : March, 24, 2024</p>
                                     </div>
                                 </div>

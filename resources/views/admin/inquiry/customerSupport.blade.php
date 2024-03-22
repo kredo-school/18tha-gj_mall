@@ -143,7 +143,7 @@
             <div class="col banner mx-auto">
                 <div class="row mt-3">
                     <div class="col-auto">
-                        <img src="{{ asset('images/common/Logo.png') }}" alt="gj-mall-logo" class="logo">
+                        <img src="{{ asset('images/common/logo.svg') }}" alt="gj-mall-logo" class="logo">
                     </div>
                     <div class="col">
                         <h2 class="gj-mall">GJ-MALL</h2>

@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-md navbar-light sticky-top bg-white shadow-sm p-0">
     <div class="container-fluid style-seet color1 pt-2">
         <a class="navbar-brand" href="{{ url('/home') }}">
-            <img src="{{ asset('images/common/Logo.png') }}" alt="logo" style="width: 50px; height:50px;">
+            <img src="{{ asset('images/common/logo.svg') }}" alt="logo" style="width: 50px; height:50px;">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>

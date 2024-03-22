@@ -18,7 +18,7 @@
 
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="country" class="form-label">country</label>
+                            <label for="country" class="form-label">Country</label>
                             <select name="country" id="country" class="form-select">
                                 <option value="" hidden>Select Country</option>
                                 <option value="" selected>USA</option>

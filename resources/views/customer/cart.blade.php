@@ -456,7 +456,9 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="col">
-                                        <button type="button" class="btn create-button w-50 fw-bold">Checkout</button>
+                                        <a href="{{ url('/customer/transaction') }}">
+                                            <button type="button" class="btn create-button w-50 fw-bold">Checkout</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

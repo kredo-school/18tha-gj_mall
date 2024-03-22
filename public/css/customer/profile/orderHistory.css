@@ -2,6 +2,7 @@ th.bg-orignal, td.bg-orignal {
     background-color: #f2f2f2;
     border: none;
     padding-bottom: 0px;
+    font-size: 18px;
 }
 
 .card-body a {

@@ -13,7 +13,7 @@
             <div class="col-xl-3 col-md-4 col-sm-5 p-0 border border-1" style="height: 100vh;">
                 @include('layouts.sidebar')
             </div>
-            <div class="col-xl-9 col-md-8 col-sm-7">
+            <div class="col">
                 <div class="mt-3 px-4">
                     <h1 class="mb-4">Order History</h1>
                     
@@ -22,7 +22,7 @@
                         <div class="card rounded-0 border-dark mb-3" style="max-width: 1500px;">
                             <div class="card-header pb-0" style="background-color: #f2f2f2;">
                                 <table class="table"> 
-                                    <tr class="bg-orignal">
+                                    <tr>
                                         <th class="bg-orignal">Order Placed</th>
                                         <th class="bg-orignal">Total Price</th>
                                         <th class="bg-orignal">Ship To</th>

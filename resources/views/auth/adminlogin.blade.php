@@ -95,7 +95,7 @@
 
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
+                    <a href="{{ route('password.request') }}" class="h5 fw-bold text-secondary">Forget your password click here.</a>
                 </div>
             </div>
             

@@ -96,13 +96,13 @@
             <!-- Go to Admin's Sign-in page -->
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
+                    <a href="{{ url('/admin/signIn') }}" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
                 </div>
             </div>
 
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 fw-bold text-secondary">Forget your password click here.</a>
+                    <a href="{{ route('password.request') }}" class="h5 fw-bold text-secondary">Forget your password click here.</a>
                 </div>
             </div>
             

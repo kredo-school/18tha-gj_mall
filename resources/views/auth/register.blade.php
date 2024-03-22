@@ -32,7 +32,7 @@
             </div>
             <div class="row mb-5">
                 <div class="col-auto mx-auto">
-                    <a href="#" class="h5 text-danger fw-bold fs-none">Do you already have an account ?</a>
+                    <a href="{{ url('/customer/signIn') }}" class="h5 text-danger fw-bold fs-none">Do you already have an account ?</a>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
                     <div class="col-8 mx-auto">
                         <div class="row">
                             <div class="col">
-                                <label for="f-name" class="h4 form-label text-me-start fw-bold">{{ __('First name') }}</label>
+                                <label for="f-name" class="h4 form-label text-me-start fw-bold">{{ __('First Name') }}</label>
                                 <input id="f-name" type="text" class="form-control @error('f-name') is-invalid @enderror" name="f-name" value="{{ old('f-name') }}" required autofocus placeholder=" ">
         
                                 @error('f-name')
@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                             <div class="col">
-                                <label for="l-name" class="h4 form-label text-me-start fw-bold">{{ __('Last name') }}</label>
+                                <label for="l-name" class="h4 form-label text-me-start fw-bold">{{ __('Last Name') }}</label>
                                 <input id="l-name" type="text" class="form-control @error('l-name') is-invalid @enderror" name="l-name" value="{{ old('l-name') }}" required placeholder=" ">
         
                                 @error('l-name')

@@ -11,7 +11,7 @@
 <div class="container-fluid register-background-image">
     <!-- Logo-->
     <div class="row">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6">
             <div class="">
                 <div class="ms-0">
                     <a  href="{{ url('/home') }}" class="logo-img">
@@ -24,7 +24,7 @@
 
     <!-- Contents-->
     <div class="row align-items-center">
-        <div class="col-md-6 mb-5">
+        <div class="col-md-6 mb-4">
             <div class="row mb-0">
                 <div class="col-auto mx-auto mt-5">
                     <h2 class="h1 fw-bold">Create an Account</h2>
@@ -92,7 +92,7 @@
                         <label for="password" class="h4 form-label text-start fw-bold">{{ __('Password') }}</label>
                     </div>
                 </div>
-                <div class="row mb-5">
+                <div class="row mb-3">
                     <div class="col-8 mx-auto">
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder=" ">
 
@@ -101,6 +101,18 @@
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="row mb-0">
+                    <div class="col-8 mx-auto">
+                        <label for="password-confirm" class="h4 form-label text-start fw-bold">{{ __('Confrim Password') }}</label>
+                    </div>
+                </div>
+                <div class="row mb-5">
+                    <div class="col-8 mx-auto">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="current-password" placeholder=" ">
                     </div>
                 </div>
 

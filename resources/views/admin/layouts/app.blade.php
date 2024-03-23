@@ -113,6 +113,25 @@
                                 </div>
                             </li>
                             {{-- End Customer Support --}}
+
+                            {{-- Start Logout --}}
+                            <li class="list-group-item border-0 mt-4">
+                                <div class="row align-items-center">
+                                    <div class="col-2">
+                                        <i class="fa-solid fa-right-from-bracket sidebar_icon me-3"></i>
+                                    </div>
+                                    <div class="col">
+                                        <a class="text-decoration-none text-secondary" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                            {{-- End Logout --}}                            
                         </ul>
                     </nav>
                 </div>

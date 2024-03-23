@@ -3,42 +3,42 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <div class="modal fade " id="create-user">
-  <div class="modal-dialog main">
+  <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header edit-header">
-              <h3 class="modal-title text-light fw-bold mx-auto">
+              <h2 class="text-light fw-bold m-auto">
                   Create Seller or Admin Users
-              </h3>
+              </h2>
           </div>
           <div class="modal-body">
               {{-- Name part --}}
               <div class="row mb-3">
                   <div class="col">
-                      <label for="first-name" class="form-label">First Name</label>
+                      <label for="first-name" class="form-label fw-bold">First Name</label>
                       <input type="text" name="first_name" id="first_name" class="form-control">
                   </div>
                   <div class="col">
-                      <label for="last-name" class="form-label">Last Name</label>
+                      <label for="last-name" class="form-label fw-bold">Last Name</label>
                       <input type="text" name="last_name" id="last_name" class="form-control">
                   </div>
               </div>
 
               {{-- Email --}}
               <div class="mb-3">
-                <label for="recipient" class="form-label">E-mail</label>
+                <label for="recipient" class="form-label fw-bold">E-mail</label>
                 <input type="email" name="email" id="email" class="form-control">
               </div>
 
               {{-- password --}}
               <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
+                <label for="password" class="form-label fw-bold">Password</label>
                 <input type="password" name="password" id="password" class="form-control">
               </div>
               
               {{-- Status --}}
               <div class="status">
                   <form action="#">
-                      <label for="status" class="status fw-bold">Status:</label>
+                      <label for="status" id="status" class="fw-bold">Status:</label>
                       <select name="stauts" id="status" class="form-select">
                           <option value="select">Select the role here...</option>
                           <option value="zero">0: Seller</option>

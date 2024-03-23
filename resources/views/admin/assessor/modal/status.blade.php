@@ -3,8 +3,8 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <div class="modal fade " id="change-status">
-    <div class="modal-dialog main">
-        <div class="modal-content">
+    <div class="modal-dialog">
+        <div class="modal-content text-start">
             <div class="modal-header">
                 <h3 class="modal-title fw-bold text-white mx-auto">
                     Evaluation Status Detail

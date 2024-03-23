@@ -17,7 +17,7 @@
         </div>
         <div class="col mt-1">
             <a href="">
-                <button class="btn custom-button w-100 shadow-sm">Create Advertisment</button>
+                <button class="btn custom-button w-100 shadow-sm montserrat">Create Advertisment</button>
             </a>
         </div>
     </div>

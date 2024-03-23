@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/customerStatus.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade" id="translate-status-">
+<div class="modal fade" id="translate-status">
   <div class="modal-dialog main">
       <div class="modal-content">
           <div class="modal-header">

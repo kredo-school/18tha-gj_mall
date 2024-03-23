@@ -107,7 +107,7 @@
                             <th>Title</th>
                             <th>Price</th>
                             <th>Description</th>
-                            <th>Is fragile</th>
+                            <th>Fragile</th>
                             <th>Wigth</th>
                             <th>Size</th>
                             <th>Maximum Stock</th>

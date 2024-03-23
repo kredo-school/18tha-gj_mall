@@ -7,7 +7,7 @@
 
     <div class="row justify-content-end">
         <div class="col mb-4 ps-5">
-            <h2 class="py-4 fw-bold">Products Dashboard</h2>
+            <h1 class="py-4 fw-bold">Products Dashboard</h1>
             {{-- Top5 Ranking --}}
             <div class="row mb-5">
                 <h4 class="fw-bold">Top5 BestSeller</h4>

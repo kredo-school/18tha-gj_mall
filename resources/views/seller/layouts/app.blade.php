@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="col">
                                         <a href="{{ url('/seller/products/dashboard') }}" class="text-decoration-none text-secondary">
-                                            Products Dadboard
+                                            Products Dashboard
                                         </a>
                                     </div>
                                 </div>

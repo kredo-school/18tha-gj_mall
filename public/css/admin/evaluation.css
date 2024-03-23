@@ -78,11 +78,11 @@ table {
 
 /* banner  */
 .banner {
-    width: fit-content;
-    height: 200px;
-    position:relative;
-    border: solid 1px ;
-    background-image: url("../../../images/banner/banner1.svg");
+  height: 200px;
+  background-image: url("../../../images/banner/banner1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid 1px;
 }
 
 .logo {
@@ -91,13 +91,13 @@ table {
 }
 
 .gj-mall {
-  font-size: 64px;
-  font-weight: bold;
-  /* -webkit-text-stroke-color: white;
-  -webkit-text-stroke-width: 0.05px; */
+  font-size: 48px;
+  font-weight: bold; 
+  text-shadow: 3px 5px 3px #FFFFFF;
 }
 
 .sub-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
+  text-shadow: 3px 5px 3px #FFFFFF;
 }

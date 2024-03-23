@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/deliveryStatus.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade" id="change-status-">
+<div class="modal fade" id="change-status">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">

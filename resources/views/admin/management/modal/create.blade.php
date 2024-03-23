@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/management/edit.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade " id="create-user-">
+<div class="modal fade " id="create-user">
   <div class="modal-dialog main">
       <div class="modal-content">
           <div class="modal-header edit-header">

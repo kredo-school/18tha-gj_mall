@@ -48,11 +48,11 @@ table {
 
 /* banner  */
 .banner {
-    width: fit-content;
-    height: 200px;
-    position:relative;
-    border: solid 1px;
-    background-image: url("../../../images/banner/banner3.svg");
+  height: 200px;
+  background-image: url("../../../images/banner/banner3.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  border: solid 1px;
 }
 
 .logo {

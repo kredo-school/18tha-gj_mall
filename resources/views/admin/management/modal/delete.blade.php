@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/management/deleteUser.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade " id="delete-user-">
+<div class="modal fade " id="delete-user">
   <div class="modal-dialog">
       <div class="modal-content">
           <div class="modal-header flex-column delete-header">

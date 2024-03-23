@@ -4,7 +4,7 @@
 
 <div class="modal fade" id="change-status">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content text-start">
             <div class="modal-header">
                 <h3 class="modal-title text-light fw-bold mx-auto">
                     Delivery Status Detail

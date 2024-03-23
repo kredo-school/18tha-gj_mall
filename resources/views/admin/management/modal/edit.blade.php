@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 <div class="modal fade " id="edit-user">
-  <div class="modal-dialog main">
+  <div class="modal-dialog main text-start">
       <div class="modal-content">
           <div class="modal-header edit-header">
               <h3 class="modal-title text-light fw-bold mx-auto">
@@ -39,7 +39,7 @@
                 {{-- Status --}}
                 <div class="status">
                     <form action="#">
-                        <label for="status" class="fw-bold">Status:</label>
+                        <label for="status" id="status">Status:</label>
                         <select name="stauts" id="status" class="form-select">
                             <option value="select" hidden>Select the role here...</option>
                             <option value="zero">0: Seller</option>

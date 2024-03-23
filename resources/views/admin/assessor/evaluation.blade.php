@@ -8,15 +8,13 @@
 
     <div class="container">
         <div class="row justify-content-center pt-2">
-            <h2 class="fw-bold">Evaluation Products List</h2>
+            <h2 class="my-4">Evaluation Products List</h2>
 
             {{-- Search bar --}}
-            <div class="col-6 my-2">
-                <div class="navbar-nav">
-                    <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control">
-                    </form>
-                </div>
+            <div class="col-6">
+                <form action="#">
+                    <input type="search" name="search" placeholder="Search..." class="form-control">
+                </form>
             </div>
 
             {{-- Filter button --}}

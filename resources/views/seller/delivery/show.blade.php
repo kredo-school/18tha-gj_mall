@@ -7,16 +7,14 @@
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <h1 class="my-4">Delivery Order List</h1>
+    <h2 class="my-4">Delivery Order List</h2>
 
     <div class="row justify-content-center pt-3 mb-4">
         {{-- Search bar --}}
         <div class="col-8 my-2">
-            <div class="navbar-nav">
-                <form action="#">
-                    <input type="search" name="search" placeholder="Search..." class="form-control">
-                </form>
-            </div>
+            <form action="#">
+                <input type="search" name="search" placeholder="Search..." class="form-control">
+            </form>
         </div>
         {{-- Filter button --}}
         <div class="col-4 mb-2">
@@ -62,7 +60,6 @@
                 <td>1: Waiting for Acceptance</td>
                 <td>
                     <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                    @include('seller.delivery.modal.deliveryStatus')
                 </td>
             </tr>
             {{-- No.2 --}}
@@ -76,7 +73,6 @@
                 <td>2: Completing Acceptance</td>
                 <td>
                     <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                    @include('seller.delivery.modal.deliveryStatus')
                 </td>
             </tr>
             {{-- No.3 --}}
@@ -90,7 +86,6 @@
                 <td>3: During Transportation</td>
                 <td>
                     <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                    @include('seller.delivery.modal.deliveryStatus')
                 </td>
             </tr>
             
@@ -105,7 +100,6 @@
                 <td>4: Completing Shipment</td>
                 <td>
                     <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                    @include('seller.delivery.modal.deliveryStatus')
                 </td>
             </tr>
 
@@ -120,11 +114,11 @@
                 <td>4: Completing Shipment</td>
                 <td>
                     <button class="btn btn-sm show-button rounded-pill shadow" data-bs-toggle="modal" data-bs-target="#change-status-">Show Detail</button>
-                    @include('seller.delivery.modal.deliveryStatus')
                 </td>
             </tr>
         </tbody>
     </table>
+    @include('seller.delivery.modal.deliveryStatus')
     
     {{-- Banner --}}
     <div class="row brand-banner mx-1">

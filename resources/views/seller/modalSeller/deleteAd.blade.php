@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
+
 <div class="modal fade " id="DeleteModal">
     <div class="modal-dialog ">
         <div class="modal-content">
@@ -21,9 +23,9 @@
             <div class="row">
                 <div class="col text-start py-2">
                     <div class="modal-body">
-                        <p class="h5"><strong class="fw-bold"> Title: </strong> Awsome craft is coming soon!!</p>
-                        <p class="h5"><strong class="fw-bold">Products ID - Name: </strong>ID - Kimono</p>
-                        <p class="h5"><strong class="fw-bold">Description: </strong><br>Lorem ipsum, dolor sit amet
+                        <p class="h5 py-5"><strong class="fw-bold"> Title: </strong> Awsome craft is coming soon!!</p>
+                        <p class="h5 pb-5"><strong class="fw-bold">Products ID - Name: </strong>ID - Kimono</p>
+                        <p class="h5 pb-2"><strong class="fw-bold">Description: </strong><br>Lorem ipsum, dolor sit amet
                             consectetur adipisicing elit. Iure aliquid esse illo cum! Veniam at soluta, quas eaque odio
                             laborum
                             atque officiis numquam doloribus culpa dolor libero impedit veritatis voluptatem?</p>

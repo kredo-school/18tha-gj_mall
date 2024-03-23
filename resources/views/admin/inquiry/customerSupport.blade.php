@@ -8,7 +8,7 @@
   
     <div class="container">
         <div class="row justify-content-center pt-3">
-            <h2 class="fw-bold">Customer Support</h2>
+            <h2 class="my-4">Customer Support</h2>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">

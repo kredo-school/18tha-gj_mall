@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <h1 class="my-4">Evaluation Products List</h1>
+    <h2 class="my-4">Evaluation Products List</h2>
     
     <div class="row justify-content-center pt-2 mb-4">
         {{-- Search bar --}}

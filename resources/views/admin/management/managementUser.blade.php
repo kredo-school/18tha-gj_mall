@@ -6,17 +6,15 @@
     <link rel="stylesheet" href="{{ asset('css/admin/management/managementUser.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <div class="container main">
+    <div class="container">
         <div class="row justify-content-center pt-2">
-            <h2 class="fw-bold">Management User</h2>
+            <h2 class="my-4">Management User</h2>
 
             {{-- Search bar --}}
             <div class="col-8 my-2">
-                <div class="navbar-nav">
-                    <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control">
-                    </form>
-                </div>
+                <form action="#">
+                    <input type="search" name="search" placeholder="Search..." class="form-control">
+                </form>
             </div>
             {{-- Create User --}}
             <div class="col-4 my-2">
@@ -46,15 +44,15 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                    
+                                </button>   
+                                @include('admin.management.modal.edit') 
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
+                                @include('admin.management.modal.delete') 
                             </td>
                         </tr>
                         {{-- No.2 --}}
@@ -67,13 +65,11 @@
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </button>
-                                @include('admin.management.modal.edit')
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
                         {{-- No.3 --}}
@@ -85,15 +81,12 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                </button>    
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
 
@@ -106,15 +99,12 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                </button>    
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
 
@@ -127,15 +117,12 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                </button>    
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
 
@@ -148,15 +135,12 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                </button>    
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
 
@@ -169,15 +153,12 @@
                             <td>
                                 <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" data-bs-target="#edit-user-">
                                     <i class="fa-regular fa-pen-to-square"></i>
-                                </button>
-                                @include('admin.management.modal.edit')
-    
+                                </button>    
                             </td>
                             <td>
                                 <button class="btn btn-sm delete-icon" data-bs-toggle="modal" data-bs-target="#delete-user-">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                                @include('admin.management.modal.delete')
                             </td>
                         </tr>
                     </tbody>

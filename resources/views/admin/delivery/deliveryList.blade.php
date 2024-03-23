@@ -8,15 +8,13 @@
   
     <div class="container">
         <div class="row justify-content-center pt-3">
-            <h2 class="fw-bold">Delivery Order List</h2>
+            <h2 class="my-4">Delivery Order List</h2>
 
             {{-- Search bar --}}
             <div class="col-8">
-                <div class="navbar-nav">
-                    <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control">
-                    </form>
-                </div>
+                <form action="#">
+                    <input type="search" name="search" placeholder="Search..." class="form-control">
+                </form>
             </div>
             {{-- Filter button --}}
             <div class="col-4 mb-2">

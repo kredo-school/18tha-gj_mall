@@ -5,8 +5,9 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ads.css') }}">
 
-    <h1 class="my-4">Advertisment Dashboard</h1>
+    <h2 class="my-4">Advertisment Dashboard</h2>
 
     {{-- Search bar --}}
     <div class="row mb-4">
@@ -16,6 +17,7 @@
             </form>
         </div>
         <div class="col mt-1">
+
             <a href="">
                 <button class="btn custom-button w-100 shadow-sm montserrat">Create Advertisment</button>
             </a>
@@ -46,7 +48,7 @@
                         <td>CONTENT</td>
                         <td>PRDOCUT ID</td>
                         <td>
-                            <a href="" class="text-decoration-none">
+                            <a href="{{ url('/seller/ads/edit') }}" class="text-decoration-none">
                                 <i class="fa-regular fa-pen-to-square icon-edit" ></i>
                             </a>
 
@@ -117,6 +119,7 @@
                         </td>
                     </tr>
                 </tbody>
+                @include('seller.modalSeller.deleteAd')
             </table>
         </div>
     </div>

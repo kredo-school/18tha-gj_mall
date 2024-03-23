@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="{{ asset('css/seller/products.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <h1 class="my-4">Edit Product - {{ __("Product ID XXXX")  }}</h1>
+    <h2 class="my-4">Edit Product - {{ __("Product ID XXXX")  }}</h2>
 
     <div class="row justify-content-end">
         <div class="col mt-4">
             <div class="form">
                 <div class="row">
-                    <h3>Images</h3>
+                    <h4>Images</h4>
 
                     {{-- create images --}}
                     <div class="col-auto" style="position: relative; display: inline-block;">
@@ -52,12 +52,12 @@
 
                 <div class="row mt-4">
                     <div class="col-5">
-                        <label for="title" class="form-label">Title</label>
+                        <label for="title" class="form-label h4 fw-bold">Title</label>
                         <input type="text" id="title" name="title" class="form-control" placeholder="title">
                     </div>
 
                     <div class="col-5">
-                        <label for="category" class="form-label">Category</label>
+                        <label for="category" class="form-label h4 fw-bold">Category</label>
                         <select name="category" id="category" class="form-control">
                             <option disabled selected>Select Category</option>
                             <option value="">category1</option>
@@ -67,9 +67,9 @@
                     </div>
 
                     <div class="col-auto mx-auto">
-                        <label for="is_fragile">Is Fragile</label>
+                        <label for="fragile h4 fw-bold">Fragile</label>
                         <p>
-                            <input type="checkbox" name="is_fragile" id="is_fragile" class="form-check-input">
+                            <input type="checkbox" name="fragile" id="fragile" class="form-check-input">
                         </p>
                     </div>
 
@@ -77,31 +77,31 @@
 
                 <div class="row mt-4">
                     <div class="col">
-                        <label for="description" class="form-label">Description</label>
+                        <label for="description" class="form-label h4 fw-bold">Description</label>
                         <textarea name="desc" id="description" rows="5" class="form-control">describe somthing here...</textarea>
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-3">
-                        <label for="price" class="form-label">Price</label>
+                        <label for="price" class="form-label h4 fw-bold">Price</label>
                         <input type="text" name="price" id="price" class="form-control" placeholder="30$">
                     </div>
 
                     <div class="col-3">
-                        <label for="size" class="form-label">Size</label>
+                        <label for="size" class="form-label h4 fw-bold">Size</label>
                         <input type="text" name="size" id="size" class="form-control" placeholder="L:30cm W:15cm H:10cm">
                         <p class="text-muted text-small">ex.L:30cm W:15cm H:10cm</p>
                     </div>
 
                     <div class="col-3">
-                        <label for="weight" class="form-label">Weight</label>
+                        <label for="weight" class="form-label h4 fw-bold">Weight</label>
                         <input type="text" name="weight" id="weight" class="form-control" placeholder="300g">
                         <p class="text-muted text-small">ex.300g, 20kg</p>
                     </div>
 
                     <div class="col-3">
-                        <label for="stock" class="form-label">Maximum Stock</label>
+                        <label for="stock" class="form-label h4 fw-bold">Maximum Stock</label>
                         <input type="number" name="stock" id="stock" class="form-control" placeholder="10">
                         <p class="text-muted text-small">ex.100</p>
                     </div>

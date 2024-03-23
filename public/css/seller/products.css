@@ -59,6 +59,7 @@
 /* form text */
 label {
     font-size: 24px;
+    font-weight: bold;
 }
 
 
@@ -71,7 +72,6 @@ label {
     color: #30567A;
     /* Text color */
     border-color: #30567A;
-    font-weight:bold ;
     font-size: 24px;
     height: 50px;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
@@ -110,15 +110,13 @@ label {
     color: #0AA873;
     /* Text color */
     border-color: #0AA873;
-    font-weight:bold ;
     font-size: 24px;
     height: 50px;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Optional: Hover styles */
-.custom-edit-cancel:hover,
-.custom-delete-cancel:hover {
+.custom-edit-cancel:hover {
     background-color: #0AA873;
     /* Your custom hover color */
     color: #FFFFFF;
@@ -135,8 +133,7 @@ label {
 }
 
 /* Optional: Hover styles */
-.custom-edit-update:hover,
-.custom-delete:hover {
+.custom-edit-update:hover {
     background-color: #FFFFFF;
     /* Your custom hover color */
     border-color: #0AA873;
@@ -144,13 +141,13 @@ label {
     color: #0AA873;
 }
 
+/* Cancel Button - Delete Products Modal */
 .custom-delete-cancel {
     background-color: #FFFFFF;
     /* Your custom color */
-    color: #0AA873;
+    color: #FF3A3A;
     /* Text color */
-    border-color: #0AA873;
-    font-weight:bold ;
+    border-color: #FF3A3A;
     font-size: 24px;
     height: 50px;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
@@ -158,8 +155,15 @@ label {
     width: 210px;
 }
 
+.custom-delete-cancel:hover {
+    background-color: #FF3A3A;
+    /* Your custom hover color */
+    color: #FFFFFF;
+}
+
+/* Delete Button - Delete Products Modal */
 .custom-delete {
-    background-color: #0AA873;
+    background-color: #FF3A3A;
     /* Your custom color */
     color: #FFFFFF;
     /* Text color */
@@ -168,6 +172,13 @@ label {
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
     height: 50px;
     width: 210px;
+}
+.custom-delete:hover {
+    background-color: #FFFFFF;
+    /* Your custom hover color */
+    border-color: #FF3A3A;
+    /* Border color on hover */
+    color: #FF3A3A;
 }
 
 
@@ -179,4 +190,13 @@ label {
 .modal-foot {
     background-color: #F2F2F2;
     border-radius: 0;
+    border: none;
+}
+
+input[type=checkbox] {
+	width:			24px;
+	height:			24px;
+	-moz-transform:		scale(1.4);
+	-webkit-transform:	scale(1.4);
+	transform:		scale(1.4);
 }

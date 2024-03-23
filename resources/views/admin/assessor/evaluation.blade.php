@@ -9,6 +9,7 @@
     <h1 class="my-4">Evaluation Products List</h1>
 
     <div class="row mb-4">
+>>>>>>> main
 
         {{-- Search bar --}}
         <div class="col-6 my-2">

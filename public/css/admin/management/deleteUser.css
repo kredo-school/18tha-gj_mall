@@ -24,8 +24,9 @@
   border-color: #ffffff;
   color: #FF3A3A;
   font-size: 24px;
-  height: 40px;
   width:210px;
+  height: 50px;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .custom-button4:hover {
@@ -40,8 +41,10 @@ color: #ffffff;
   background-color: #FF3A3A;
   color: #ffffff;
   font-size: 24px;
-  height: 40px;
+  height: 50px;
   width:210px;
+  border: 1px solid #FF3A3A;
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
 }
 
 .custom-button5:hover {

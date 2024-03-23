@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/admin/management/managementUser.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-
     <h1 class="my-4">Management User</h1>
 
     <div class="row mb-4">
@@ -175,6 +174,7 @@
     <div class="row banner mx-1">
         <div class="col-auto p-0">
             <img src="{{ asset('images/common/logo.svg') }}" alt="gj-mall-logo" class="logo">
+
         </div>
         <div class="col pt-4">
             <h3 class="gj-mall">GJ-MALL</h3>

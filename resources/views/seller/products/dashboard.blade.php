@@ -10,7 +10,7 @@
             <h1 class="py-4 fw-bold">Products Dashboard</h1>
             {{-- Top5 Ranking --}}
             <div class="row mb-5">
-                <h2 class="fw-bold h3">Top5 BestSeller</h2>
+                <h4 class="fw-bold">Top5 BestSeller</h4>
 
                 <div class="col">
                     {{-- card item 1 start --}}
@@ -90,7 +90,7 @@
 
                 </div>
                 <div class="col mt-1">
-                    <a href="">
+                    <a href="{{ url('/seller/products/create') }}">
                         <button class=" btn custom-button w-100 shadow-sm">Create Product
                 </div>
                 </a>
@@ -107,7 +107,7 @@
                             <th>Title</th>
                             <th>Price</th>
                             <th>Description</th>
-                            <th>Is fragile</th>
+                            <th>Fragile</th>
                             <th>Wigth</th>
                             <th>Size</th>
                             <th>Maximum Stock</th>
@@ -124,14 +124,14 @@
                             <td>Owan</td>
                             <td>$100</td>
                             <td>Awsome Product</td>
-                            <td>○</td>
+                            <td>Yes</td>
                             <td>200 g</td>
                             <td>φ100mm H80mm</td>
                             <td>50</td>
                             <td>Kitchen Tools</td>
                             <td>Shipping</td>
                             <td>
-                                <a href="" class="btn text-decoration-none edit-icon">
+                                <a href="{{ url('/seller/products/edit') }}" class="btn text-decoration-none edit-icon">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                 </a>
                             </td>
@@ -148,7 +148,7 @@
                             <td>fan</td>
                             <td>$30</td>
                             <td>Awsome Products</td>
-                            <td>○</td>
+                            <td>Yes</td>
                             <td>50 g</td>
                             <td>L: 10cm W: 3cm H: 1cm </td>
                             <td>100</td>
@@ -172,7 +172,7 @@
                             <td>Kimono</td>
                             <td>$1000</td>
                             <td>Awsome Product</td>
-                            <td>×</td>
+                            <td>No</td>
                             <td>2 kg</td>
                             <td>160cm</td>
                             <td>2</td>

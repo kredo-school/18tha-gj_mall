@@ -6,11 +6,15 @@
     <link rel="stylesheet" href="{{ asset('css/admin/delivery.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   
+
         <h1 class="my-4">Delivery Order List</h1>
+
 
         <div class="row mb-4">
             {{-- Search bar --}}
+
             <div class="col-8 my-2">
+
                 <form action="#">
                     <input type="search" name="search" placeholder="Search..." class="form-control">
                 </form>

@@ -16,7 +16,7 @@
                     {{-- card item 1 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">1</div>
-                        <img src="{{ asset('images/items/item1.jpg') }}" class="card-img-top rank-image" alt="owan">
+                        <img src="{{ asset('images/items/item1.svg') }}" class="card-img-top rank-image" alt="owan">
 
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
@@ -30,7 +30,7 @@
                     {{-- card item 2 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">2</div>
-                        <img src="{{ asset('images/items/item2.png') }}" class="card-img-top rank-image" alt="owan">
+                        <img src="{{ asset('images/items/item2.svg') }}" class="card-img-top rank-image" alt="owan">
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
                             <h5>Price</h5>
@@ -43,7 +43,7 @@
                     {{-- card item 3 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">3</div>
-                        <img src="{{ asset('images/items/item3.png') }}" class="card-img-top rank-image" alt="owan">
+                        <img src="{{ asset('images/items/item3.svg') }}" class="card-img-top rank-image" alt="owan">
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
                             <h5>Price</h5>
@@ -56,7 +56,7 @@
                     {{-- card item 4 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">4</div>
-                        <img src="{{ asset('images/items/item4.png') }}" class="card-img-top rank-image" alt="owan">
+                        <img src="{{ asset('images/items/item4.svg') }}" class="card-img-top rank-image" alt="owan">
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
                             <h5>Price</h5>
@@ -69,7 +69,7 @@
                     {{-- card item 5 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">5</div>
-                        <img src="{{ asset('images/items/item5.png') }}" class="card-img-top rank-image" alt="owan">
+                        <img src="{{ asset('images/items/item5.svg') }}" class="card-img-top rank-image" alt="owan">
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
                             <h5>Price</h5>

@@ -41,7 +41,7 @@
                         <td>ID</td>
                         <td>TITLE</td>
                         <td>
-                            <img src="{{ asset('images/banner/banner1.png') }}" alt="product_image" id="table_image">
+                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
                         </td>
                         <td>CONTENT</td>
                         <td>PRDOCUT ID</td>
@@ -61,7 +61,7 @@
                         <td>ID</td>
                         <td>TITLE</td>
                         <td>
-                            <img src="{{ asset('images/banner/banner1.png') }}" alt="product_image" id="table_image">
+                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
                         </td>
                         <td>CONTENT</td>
                         <td>PRDOCUT ID</td>
@@ -81,7 +81,7 @@
                         <td>ID</td>
                         <td>TITLE</td>
                         <td>
-                            <img src="{{ asset('images/banner/banner1.png') }}" alt="product_image" id="table_image">
+                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
                         </td>
                         <td>CONTENT</td>
                         <td>PRDOCUT ID</td>
@@ -101,7 +101,7 @@
                         <td>ID</td>
                         <td>TITLE</td>
                         <td>
-                            <img src="{{ asset('images/banner/banner1.png') }}" alt="product_image" id="table_image">
+                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
                         </td>
                         <td>CONTENT</td>
                         <td>PRDOCUT ID</td>
@@ -123,7 +123,7 @@
 
     <div class="row brand-banner mx-1">
         <div class="col-auto p-0">
-            <img src="{{ asset('images/common/Logo.png') }}" alt="gj-mall-logo" class="logo">
+            <img src="{{ asset('images/common/logo.svg') }}" alt="gj-mall-logo" class="logo">
         </div>
         <div class="col pt-4">
             <h3 class="gj-mall">GJ-MALL</h3>

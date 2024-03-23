@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-auto" style="position: relative; display: inline-block;">
-                        <img src="{{ asset('images/seller/profile_image.jpg') }}" alt="man_picture"
+                        <img src="{{ asset('images/seller/profileImage.svg') }}" alt="man_picture"
                             class="rounded rounded-circle mx-auto d-block align-middle img-fluid">
 
                         <label class="rounded-circle text-white d-inline overlay-plus">

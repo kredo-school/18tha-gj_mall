@@ -37,7 +37,7 @@
                                     <p class="border-bottom">Grande</p>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
-                                    <img src="{{ asset('images/seller/profile_image.jpg') }}" alt="userprofile" class="rounded-circle img-fluid d-block" style="width: 150px; height: 150px;">
+                                    <img src="{{ asset('images/seller/profileImage.svg') }}" alt="userprofile" class="rounded-circle img-fluid d-block" style="width: 150px; height: 150px;">
                                 </div>
                             </div>
                             <div class="row mb-4">

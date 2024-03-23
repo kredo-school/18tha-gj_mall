@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <img src="{{ asset('images/seller/totalOrder.png') }}">
+                            <img src="{{ asset('images/seller/totalOrder.svg') }}" style="width: 88px; height: 88px;">
                         </div>
                         <div class="col-auto ps-5">
                             <h2>75</h2>
@@ -35,7 +35,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-4">
-                            <img src="{{ asset('images/seller/totalSales.png') }}">
+                            <img src="{{ asset('images/seller/totalSales.svg') }}" style="width: 88px; height: 88px;">
                         </div>
                         <div class="col-auto ps-5">
                             <h2>$128</h2>

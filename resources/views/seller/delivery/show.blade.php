@@ -129,7 +129,7 @@
     {{-- Banner --}}
     <div class="row brand-banner mx-1">
         <div class="col-auto p-0">
-            <img src="{{ asset('images/common/Logo.png') }}" alt="gj-mall-logo" class="logo">
+            <img src="{{ asset('images/common/logo.svg') }}" alt="gj-mall-logo" class="logo">
         </div>
         <div class="col pt-4">
             <h3 class="gj-mall">GJ-MALL</h3>

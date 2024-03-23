@@ -198,9 +198,10 @@ label {
 /* brand banner layouts */
 .brand-banner {
     height: 200px;
-    background-image: url("../../../images/banner/banner4.png");
+    background-image: url("../../../images/banner/banner4.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    border: solid 1px;
 }
 
 .logo {

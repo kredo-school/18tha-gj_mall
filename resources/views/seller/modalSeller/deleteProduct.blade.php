@@ -15,7 +15,7 @@
             {{-- body --}}
             <div class="row ">
                 <div class="col text-center pt-3">
-                    <img src="{{ asset('images/items/item2.png') }}" alt="" class="image-sm">
+                    <img src="{{ asset('images/items/item2.svg') }}" alt="" class="image-sm">
                 </div>
             </div>
             <div class="row">

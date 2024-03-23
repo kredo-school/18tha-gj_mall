@@ -31,7 +31,7 @@
                                         <input type="text" name="lname" id="lname" class="form-control" value="Grande">
                                     </div>
                                     <div class="col-6  d-flex flex-column align-items-center">
-                                        <img src="{{ asset('images/seller/profile_image.jpg') }}" alt="userprofile" class="rounded-circle img-fluid mb-3 d-block" style="width: 100px; height: 100px;">
+                                        <img src="{{ asset('images/seller/profileImage.svg') }}" alt="userprofile" class="rounded-circle img-fluid mb-3 d-block" style="width: 100px; height: 100px;">
     
                                         <label class="custom-file-upload montserrat">
                                             <input type="file"/>

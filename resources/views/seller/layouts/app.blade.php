@@ -35,7 +35,7 @@
             <div class="col-3">
                 <div class="sidebar">
                     <a href="{{ url('/home') }}">
-                        <img src="{{ asset('images/common/Logo.png')}}">
+                        <img src="{{ asset('images/common/logo.svg')}}">
                     </a>
                     <nav class="sidebar-nav">
                         <ul class="list-group rounded-0 ps-3">

@@ -18,7 +18,6 @@ return new class extends Migration
             $table->text('answer')->nullable();
             $table->text('translated_answer')->nullable();
             $table->unsignedBigInteger('customer_id');
-            $table->unsignedBigInteger('product_id')->nullable();
             $table->unsignedBigInteger('genre_id');
             $table->unsignedBigInteger('inquiry_status_id')->default(1);
             $table->timestamps();

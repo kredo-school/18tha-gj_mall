@@ -15,9 +15,9 @@
                         <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
-                        <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
-                        <strong class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
-                        <strong class="d-block">Price: <span class="fw-normal">$150</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
+                        <strong id="modal_strong" class="d-block">Price: <span class="fw-normal">$150</span></strong>
                     </div>
                 </div>
 
@@ -84,9 +84,9 @@
                         <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
-                        <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
-                        <strong class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
-                        <strong class="d-block">Price: <span class="fw-normal">$150</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
+                        <strong id="modal_strong"  class="d-block">Price: <span class="fw-normal">$150</span></strong>
                     </div>
                 </div>
 
@@ -153,9 +153,9 @@
                         <img src="{{ asset('images/account/bgAdmin.svg') }}" class="product-image">
                     </div>
                     <div class="col-7">
-                        <strong class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
-                        <strong class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
-                        <strong class="d-block">Price: <span class="fw-normal">$150</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Shop Name: <span class="fw-normal">Product Name</span></strong>
+                        <strong id="modal_strong" class="d-block mb-3">Category: <span class="fw-normal">Product Category</span></strong>
+                        <strong id="modal_strong" class="d-block">Price: <span class="fw-normal">$150</span></strong>
                     </div>
                 </div>
 

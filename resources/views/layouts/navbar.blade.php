@@ -42,7 +42,7 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ms-auto align-items-center" style="display: flex; justify-content: space-between;">
                 <li class="nav-item text-center">
-                    <a href="" class="nav-link">
+                    <a href="" class="nav-link d-inline p-0">
                         <i class="fa-solid fa-globe icon"></i>
                         <span class="text-white m-0">EN</span>
                     </a>
@@ -63,7 +63,13 @@
 
                             @if (Route::has('login'))
                                 <a class="nav-link dropdown-item" href="{{ url('/customer/profile') }}">
-                                    <i class="fa-solid fa-gear"></i> {{ __('Setting') }}
+                                    <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
+                                </a>
+                            @endif
+
+                            @if (Route::has('login'))
+                                <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">
+                                    <i class="fa-solid fa-clock-rotate-left"></i> {{ __('OrderHistory') }}
                                 </a>
                             @endif
                         @else
@@ -81,13 +87,13 @@
                 </li>
                
                 <li class="nav-item text-center">
-                    <a href="{{ url('/home#my-favorite') }}" class="nav-link">
+                    <a href="{{ url('/home#my-favorite') }}" class="nav-link d-inline p-0">
                         <i class="fa-solid fa-heart icon"></i>
                         <span class="text-white m-0">Favorite</span>
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a href="{{ url('/customer/cart') }}" class="nav-link">
+                    <a href="{{ url('/customer/cart') }}" class="nav-link d-inline p-0">
                         <i class="fa-solid fa-cart-shopping icon"></i>
                         <span class="text-white m-0">Cart</span>
                     </a>

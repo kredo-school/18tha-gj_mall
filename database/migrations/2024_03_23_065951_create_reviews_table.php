@@ -19,6 +19,9 @@ return new class extends Migration
             $table->unsignedBigInteger('order_line_id');
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
+
+            // $table->foreign('order_line_id')->references('order_lind')->on('id');
+            // $table->foreign('product_id')->references('products')->on('id');
         });
     }
 

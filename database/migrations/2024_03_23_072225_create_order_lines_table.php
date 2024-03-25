@@ -18,6 +18,9 @@ return new class extends Migration
             $table->unsignedBigInteger('qty');
             $table->unsignedBigInteger('price');
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('product_id')->references('products')->on('id');
         });
     }
 

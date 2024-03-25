@@ -21,7 +21,14 @@ return new class extends Migration
             $table->longText('avatar')->nullable();
             $table->unsignedBigInteger('payment_id');
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('id')->references('payments')->on('customer_id');
+            // $table->foreign('id')->references('customerAddress')->on('user_id');
+            // $table->foreign('id')->references('shopping_cart_items')->on('customer_id');
+            // $table->foreign('id')->references('favorites')->on('customer_id');
         });
+
     }
 
     /**

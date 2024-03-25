@@ -22,6 +22,10 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('address_id')->references('address')->on('id');
+            // $table->foreign('id')->references('products')->on('seller_id');
         });
     }
 

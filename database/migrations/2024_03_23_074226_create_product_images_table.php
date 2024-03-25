@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->longText('image');
             $table->timestamps();
+
+            // Foreign Key
+            $table->foreign('id')->references('product_image')->on('image_id');
         });
     }
 

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('product_image', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('image_id');
+
         });
     }
 

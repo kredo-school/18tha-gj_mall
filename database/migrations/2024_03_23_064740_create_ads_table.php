@@ -18,6 +18,8 @@ return new class extends Migration
             $table->longText('cover');
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
+
+            // $table->foreign('product_id')->references('products')->on('id');
         });
     }
 

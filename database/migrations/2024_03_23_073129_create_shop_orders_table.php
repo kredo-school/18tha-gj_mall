@@ -19,6 +19,13 @@ return new class extends Migration
             $table->unsignedBigInteger('status_id');
             $table->unsignedBigInteger('order_total');
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('shipping_method_id')->references('shipping_method')->on('id');
+            // $table->foreign('id')->references('order_line')->on('order_id');
+            // $table->foreign('customer_id')->references('customers')->on('id');
+            // $table->foreign('address_id')->references('address')->on('id');
+            // $table->foreign('status_id')->references('order_status')->on('id');
         });
     }
 

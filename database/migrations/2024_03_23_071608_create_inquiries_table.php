@@ -21,6 +21,12 @@ return new class extends Migration
             $table->unsignedBigInteger('genre_id');
             $table->unsignedBigInteger('inquiry_status_id')->default(1);
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('customer_id')->references('customers')->on('id');
+            // $table->foreign('product_id')->references('products')->on('id');
+            // $table->foreign('genre_id')->references('inquiry_genres')->on('id');
+            // $table->foreign('inquiry_status_id')->references('inquiry_status')->on('id');
         });
     }
 

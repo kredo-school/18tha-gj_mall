@@ -8,11 +8,8 @@
 
     @include('layouts.navbar')
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-3 col-md-4 col-sm-5 p-0 border border-1" style="height: 100vh;">
-                @include('layouts.sidebar')
-            </div>
+    <div class="container-fluid p-0 ">
+        <div class="row min-vh-100">
             <div class="col">
                 <div class="mt-3 px-4">
                     <h1 class="mb-4">Order History</h1>
@@ -124,8 +121,9 @@
                 </div>
             </div>
         </div>
+
+        @include('layouts.footer')
     </div>
-    @include('layouts.footer')
     
     @include('customer.modal.review')
 @endsection

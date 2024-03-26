@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('address_id');
             $table->unsignedBigInteger('shipping_method_id');
             $table->unsignedBigInteger('status_id');
-            $table->unsignedBigInteger('order_total');
+            $table->double('order_total');
             $table->timestamps();
 
             // Foreign Keys

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('qty');
-            $table->unsignedBigInteger('price');
+            $table->double('price');
             $table->timestamps();
 
             // Foreign Keys

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('product_status', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->unique()->comment('1:Exhibit request -> 2:Waiting for valuation -> 3:Evaluation -> (7:Suspended ->) 4:Waiting for display(Coming Soon) -> 5:Exhibited -> 6:Sold out');
+            $table->unsignedTinyInteger('status')->unique()->comment('1:Exhibit request -> 2:Waiting for valuation -> 3:Evaluation -> (7:Suspended ->) 4:Waiting for display(Coming Soon) -> 5:Exhibited -> 6:Sold out');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title', 50);
             $table->text('content');
             $table->text('answer')->nullable();
             $table->text('translated_answer')->nullable();

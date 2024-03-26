@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('ads', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title' , 50);
             $table->text('content');
-            $table->longText('cover');
+            $table->string('image_name', 15);  //file name of image
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
 

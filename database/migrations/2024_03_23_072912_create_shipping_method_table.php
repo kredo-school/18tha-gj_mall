@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('shipping_method', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->nullable();
-            $table->unsignedBigInteger('price');
+            $table->double('price');
             $table->timestamps();
         });
     }

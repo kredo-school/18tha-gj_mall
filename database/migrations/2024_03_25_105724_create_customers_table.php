@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
-            $table->longText('avatar')->nullable();
+            $table->string('avatar', 15)->nullable();
             $table->unsignedBigInteger('payment_id');
             $table->timestamps();
 

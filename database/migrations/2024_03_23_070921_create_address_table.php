@@ -19,9 +19,11 @@ return new class extends Migration
             $table->string('address_line2')->nullable();
             $table->string('city');
             $table->string('region');
-            $table->integer('postal_code');
-            $table->string('country_code');
+            $table->string('postal_code', 12);
+            $table->unsignedBigInteger('country_code');  // alphabet 3 letters
             $table->timestamps();
+
+            // $table->foreign('country_code')->references('alpha3')->on('countries');
         });
     }
 

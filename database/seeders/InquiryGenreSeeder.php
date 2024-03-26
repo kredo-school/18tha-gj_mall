@@ -25,22 +25,22 @@ class InquiryGenreSeeder extends Seeder
             [
                 'name' => 'Ordering',
                 'created_at' => now(),
-                'updated_at' => now();
+                'updated_at' => now()
             ],
             [
                 'name' => 'Returns & Exchanges',
                 'created_at' => now(),
-                'updated_at' => now();
+                'updated_at' => now()
             ],
             [
                 'name' => 'Shipping',
                 'created_at' => now(),
-                'updated_at' => now();
+                'updated_at' => now()
             ],
             [
                 'name' => 'Other',
                 'created_at' => now(),
-                'updated_at' => now();
+                'updated_at' => now()
             ]
         ];
 

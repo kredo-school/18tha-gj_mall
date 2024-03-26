@@ -22,19 +22,19 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Food';
+                'name' => 'Food'
             ],
             [
-                'name' => 'Cloth / Accessory';
+                'name' => 'Cloth / Accessory'
             ],
             [
-                'name' => 'Kitchen';
+                'name' => 'Kitchen'
             ],
             [
-                'name' => 'Home Decor';
+                'name' => 'Home Decor'
             ],
             [
-                'name' => 'Table';
+                'name' => 'Table'
             ]
         ];
 

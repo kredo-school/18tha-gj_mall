@@ -42,8 +42,10 @@
                 </div>
 
                 <div class="row justify-content-center mt-2">
-                    <div class="col-8">
+                    <div class="col text-end">
                         <a href="{{ url('/home') }}" class="btn normal-button ms-5 me-3">Go Home Page</a>
+                    </div>
+                    <div class="col">
                         <a href="{{ url('/customer/profile/orderHistory') }}" class="btn edit-button ms-3">Ordered ListPage</a>
                     </div>
                 </div>

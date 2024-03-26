@@ -8,8 +8,8 @@
 
     @include('layouts.navbar')
     
-    <div class="container-fluid vh-100 p-5">
-        <div class="row">
+    <div class="container-fluid p-0 min-vh-100">
+        <div class="row px-3 ">
             {{-- address and payment info --}}
             <div class="col-7">
                 {{-- address content  --}}
@@ -96,7 +96,7 @@
 
             {{-- Checkout --}}
             <div class="col">
-                <div class="card mt-4 mx-auto order-card">
+                <div class="card mt-4 mx-auto order-card mb-5">
                     <div class="card-body">
                         <div class="row mx-auto mb-5">
                             <div class="col">
@@ -159,8 +159,8 @@
             </div>
             {{-- Checkout end --}}  
         </div>
-    </div>
 
+    </div>
     @include('layouts.footer')
 
     <script src="{{ asset('js/payment.js') }}"></script>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('inquiry_status', function (Blueprint $table) {
             $table->id();
-            $table->unsignedTinyInteger('status')->unique()->comment('1:unsolved, 2:answer, 3:solved');
+            $table->string('status',15)->unique()->comment('1:unsolved, 2:answer, 3:solved');
             $table->timestamps();
         });
     }

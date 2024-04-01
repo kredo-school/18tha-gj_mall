@@ -1,4 +1,5 @@
-{{-- Ads CSS --}}
+{{-- CSS --}}
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/ads.css') }}">
 
 @extends('layouts.app')

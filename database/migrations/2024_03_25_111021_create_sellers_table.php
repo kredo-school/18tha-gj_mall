@@ -18,10 +18,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
-            $table->longText('avatar')->nullable();
+            $table->string('avatar', 15)->nullable();
             $table->text('description')->nullable();
             $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('address_id')->references('address')->on('id');
+            // $table->foreign('id')->references('products')->on('seller_id');
         });
     }
 

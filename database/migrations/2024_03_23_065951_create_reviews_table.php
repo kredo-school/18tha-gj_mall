@@ -13,12 +13,16 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title' , 50);
             $table->text('content');
-            $table->unsignedBigInteger('rating')->nullable()->comment('min:0, max:5');
+            $table->tinyInteger('rating')->nullable()->comment('min:0, max:5');
             $table->unsignedBigInteger('order_line_id');
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
+
+            // $table->foreign('order_line_id')->references('order_lind')->on('id');
+            // $table->foreign('product_id')->references('products')->on('id');
+
         });
     }
 

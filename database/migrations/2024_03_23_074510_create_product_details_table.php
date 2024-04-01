@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->id();
             $table->text('size');
-            $table->unsignedBigInteger('weight');
+            $table->text('weight');
             $table->boolean('is_fragile')->default(false); // type:tinyInt
             $table->timestamps();
         });

@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inquiry_genres', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 50)->unique();
+        Schema::create('countries', function (Blueprint $table) {
+            $table->string('alpha3', 3)->primary();
+            $table->string('name');
+            $table->string('region');
+            $table->string('sub_region');
             $table->timestamps();
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inquiry_genres');
+        Schema::dropIfExists('countries');
     }
 };

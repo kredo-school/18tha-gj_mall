@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
-            $table->unsignedBigInteger('role')->default(2)->comment('1:admin, 2:stuff, 3:translater, 4:assessor, 5:delivery');
+            $table->unsignedTinyInteger('role')->default(2)->comment('1:admin, 2:stuff, 3:translater, 4:assessor, 5:delivery');
             $table->timestamps();
         });
     }

@@ -1,12 +1,18 @@
 // DateRange
 $(function() {
     $('input[name="daterange"]').daterangepicker({
-        opens: 'left'
+        opens: 'left',
+        minDate: '1900-01-01', // Optionally restrict the range
+        maxDate: '2100-12-31', // Optionally restrict the range
+        startDate: moment().startOf('year'), // Start from the beginning of the current year
+        endDate: moment().endOf('year'), // End at the end of the current year
+        locale: {
+            format: 'YYYY', // Display only the year
+        }
     }, function(start, end, label) {
         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
 });
-
 // Multi Axis Line Chart
 const xValues = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const monthlyYValues = [10, 15, 18, 20, 29, 49, 90, 150, 50, 95, 20];
@@ -36,16 +42,6 @@ new Chart(monthlyPlot_ctx, {
         title: {
             display: true,
             text: "Monthly Sales"
-        },
-        scales: {
-            yAxes: [{
-                id: 'monthlyYAxis',
-                type: 'linear',
-                position: 'left',
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
         }
     }
 });
@@ -92,16 +88,6 @@ new Chart(dailyPlot_ctx, {
         title: {
             display: true,
             text: "Monthly Sales"
-        },
-        scales: {
-            yAxes: [{
-                id: 'monthlyYAxis',
-                type: 'linear',
-                position: 'left',
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
         }
     }
 });

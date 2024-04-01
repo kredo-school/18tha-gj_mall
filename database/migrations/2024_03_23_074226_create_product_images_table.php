@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->longText('image');
+            $table->string('image', 15);
             $table->timestamps();
+
+            // Foreign Key
+            // $table->foreign('id')->references('product_image')->on('image_id');
         });
     }
 

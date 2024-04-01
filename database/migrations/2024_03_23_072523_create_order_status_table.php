@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('order_status', function (Blueprint $table) {
             $table->id();
-            $table->string('status')->unique()->comment('1:Waiting for packing -> 2:Waiting for acceptance -> (6:Cancellation -> 7:Refund completed ->) 3:Acceptance complete -> 4:In transit -> 5:Delivery completed');
+            $table->string('status',15)->unique()->comment('1:Waiting for packing -> 2:Waiting for acceptance -> (6:Cancellation -> 7:Refund completed ->) 3:Acceptance complete -> 4:In transit -> 5:Delivery completed');
             $table->timestamps();
         });
     }

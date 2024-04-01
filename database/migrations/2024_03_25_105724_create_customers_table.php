@@ -18,9 +18,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
-            $table->longText('avatar')->nullable();
-            $table->unsignedBigInteger('payment_id');
+            $table->string('avatar', 15)->nullable();
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->timestamps();
+
+            // Foreign Keys
+            // $table->foreign('id')->references('payments')->on('customer_id');
+            // $table->foreign('id')->references('customerAddress')->on('user_id');
+            // $table->foreign('id')->references('shopping_cart_items')->on('customer_id');
+            // $table->foreign('id')->references('favorites')->on('customer_id');
         });
     }
 

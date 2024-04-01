@@ -12,7 +12,7 @@ class OrderStatusSeeder extends Seeder
 
     private function __construct(OrderStatus $table)
     {
-        $this->table = $order_status;
+        $this->table = $table;
     }
     /**
      * Run the database seeds.

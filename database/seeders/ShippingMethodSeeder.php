@@ -11,7 +11,7 @@ class ShippingMethodSeeder extends Seeder
 {
     private $table;
 
-    public function __construct(ShippingMethod $talbe)
+    public function __construct(ShippingMethod $table)
     {
         $this->table = $table;
     }

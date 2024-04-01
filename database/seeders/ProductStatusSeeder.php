@@ -8,11 +8,11 @@ use App\Models\Products\ProductStatus;
 
 class ProductStatusSeeder extends Seeder
 {
-    private $status;
+    private $table;
 
-    public function __construct(ProductStatus $status)
+    public function __construct(ProductStatus $table)
     {
-        $this->status = $status;
+        $this->table = $table;
     }
 
     /**
@@ -58,6 +58,6 @@ class ProductStatusSeeder extends Seeder
             ]
         ];
 
-        $this->status->insert($product_status); // insert the values to product_status table
+        $this->table->insert($product_status); // insert the values to product_status table
     }
 }

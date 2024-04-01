@@ -8,11 +8,11 @@ use App\Models\Products\ProductDetail;
 
 class ProductDetailSeeder extends Seeder
 {
-    private $product_detail;
+    private $table;
 
-    public function __construct(ProductDetail $product_detail)
+    public function __construct(ProductDetail $table)
     {
-        $this->product_detail = $product_detail;
+        $this->table = $table;
     }
 
     /**
@@ -44,6 +44,6 @@ class ProductDetailSeeder extends Seeder
             ]
         ];
 
-        $this->product_detail->insert($product_details); // insert the values to product_details table
+        $this->table->insert($product_details); // insert the values to product_details table
     }
 }

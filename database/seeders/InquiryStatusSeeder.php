@@ -8,11 +8,11 @@ use App\Models\Inquiries\InquiryStatus;
 
 class InquiryStatusSeeder extends Seeder
 {
-    private $inquiry_status;
+    private $table;
 
-    public function __construct(InquiryStatus $inquiry_status)
+    public function __construct(InquiryStatus $table)
     {
-        $this->inquiry_status = $inquiry_status;
+        $this->table = $table;
     }
 
     /**
@@ -38,6 +38,6 @@ class InquiryStatusSeeder extends Seeder
             ]
         ];
 
-        $this->inquiry_status->insert($inquiry_statuses); // insert the values to inquiry_status table
+        $this->table->insert($inquiry_statuses); // insert the values to inquiry_status table
     }
 }

@@ -9,11 +9,11 @@ use App\Models\Inquiries\Inquiry;
 
 class InquirySeeder extends Seeder
 {
-    private $inquiry;
+    private $table;
 
-    public function __construct(Inquiry $inquiry)
+    public function __construct(Inquiry $table)
     {
-        $this->inquiry = $inquiry;
+        $this->table = $table;
     }
 
     /**
@@ -72,6 +72,6 @@ class InquirySeeder extends Seeder
             ]
         ];
 
-        $this->inquiry->insert($inquiries); // insert the values to inquiry table
+        $this->table->insert($inquiries); // insert the values to inquiry table
     }
 }

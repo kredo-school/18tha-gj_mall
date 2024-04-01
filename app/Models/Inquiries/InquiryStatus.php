@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class InquiryStatus extends Model
 {
     use HasFactory;
+
+    protected $table = 'inquiry_status';
 }

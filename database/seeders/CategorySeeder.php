@@ -8,11 +8,11 @@ use App\Models\Products\Category;
 
 class CategorySeeder extends Seeder
 {
-    private $category;
+    private $table;
 
-    public function __construct(Category $category)
+    public function __construct(Category $table)
     {
-        $this->category = $category;
+        $this->table = $table;
     }
 
     /**
@@ -38,6 +38,6 @@ class CategorySeeder extends Seeder
             ]
         ];
 
-        $this->category->insert($categories); // insert the values to categories table
+        $this->table->insert($categories); // insert the values to categories table
     }
 }

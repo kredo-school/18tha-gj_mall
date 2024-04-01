@@ -8,11 +8,11 @@ use App\Models\Products\ProductImage;
 
 class ProductImageSeeder extends Seeder
 {
-    private $product_image;
+    private $table;
 
-    public function __construct(ProductImage $product_image)
+    public function __construct(ProductImage $table)
     {
-        $this->product_image = $product_image;
+        $this->table = $table;
     }
 
     /**
@@ -53,6 +53,6 @@ class ProductImageSeeder extends Seeder
             ]
         ];
 
-        $this->product_image->insert($product_images); // insert the values to product_images table
+        $this->table->insert($product_images); // insert the values to product_images table
     }
 }

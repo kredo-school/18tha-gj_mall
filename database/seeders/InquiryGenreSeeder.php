@@ -9,11 +9,11 @@ use App\Models\Inquiries\InquiryGenre;
 
 class InquiryGenreSeeder extends Seeder
 {
-    private $inquiry_genre;
+    private $table;
 
-    public function __construct(InquiryGenre $inquiry_genre)
+    public function __construct(InquiryGenre $table)
     {
-        $this->inquiry_genre = $inquiry_genre;
+        $this->table = $table;
     }
 
     /**
@@ -44,6 +44,6 @@ class InquiryGenreSeeder extends Seeder
             ]
         ];
 
-        $this->inquiry_genre->insert($inquiry_genres); // insert the values to categories table
+        $this->table->insert($inquiry_genres); // insert the values to categories table
     }
 }

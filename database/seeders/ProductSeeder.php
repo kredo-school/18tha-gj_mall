@@ -8,11 +8,11 @@ use App\Models\Products\Product;
 
 class ProductSeeder extends Seeder
 {
-    private $product;
+    private $table;
 
-    public function __construct(Product $product)
+    public function __construct(Product $table)
     {
-        $this->product = $product;
+        $this->table = $table;
     }
 
     /**
@@ -64,6 +64,6 @@ class ProductSeeder extends Seeder
             ]
         ];
 
-        $this->product->insert($products); // insert the values to products table
+        $this->table->insert($products); // insert the values to products table
     }
 }

@@ -54,35 +54,26 @@
                     </a>
                 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        @guest
-                            @if (Route::has('login'))
-                                <a class="nav-link dropdown-item" href="{{ route('login') }}">
-                                    <i class="fa-solid fa-arrow-right-to-bracket"></i> {{ __('Login') }}
-                                </a>
-                            @endif
-
-                            @if (Route::has('login'))
-                                <a class="nav-link dropdown-item" href="{{ url('/customer/profile') }}">
-                                    <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
-                                </a>
-                            @endif
-
-                            @if (Route::has('login'))
-                                <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">
-                                    <i class="fa-solid fa-clock-rotate-left"></i> {{ __('OrderHistory') }}
-                                </a>
-                            @endif
-                        @else
+                        @auth 
+                            <a class="nav-link dropdown-item" href="{{ url('/customer/profile') }}">
+                                <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
+                            </a>
+                            <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">
+                                <i class="fa-solid fa-clock-rotate-left"></i> {{ __('OrderHistory') }}
+                            </a>
                             <a class="nav-link dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
-                            </form>                
-                        @endguest
+                            </form>
+                        @else    
+                            <a class="nav-link dropdown-item" href="{{ route('login') }}">
+                                <i class="fa-solid fa-arrow-right-to-bracket"></i> {{ __('Login') }}
+                            </a>
+                        @endauth
                     </div>
                 </li>
                

@@ -42,7 +42,7 @@
             </div>
 
             <!-- Sign-in Form -->
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <!-- E-mail -->
@@ -87,7 +87,6 @@
                         <button type="submit" class="btn btn-dark btn-signIn">
                             <p class="fw-bold text-white" style="font-size: 24px;">Sign in</p>
                         </button>
-
                     </div>
                 </div>
 

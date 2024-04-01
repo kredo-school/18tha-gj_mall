@@ -42,7 +42,7 @@
             </div>
 
             <!-- Sign-in Form -->
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <!-- E-mail -->

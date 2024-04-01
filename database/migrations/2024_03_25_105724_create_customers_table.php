@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
             $table->string('avatar', 15)->nullable();
-            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->timestamps();
 
             // Foreign Keys

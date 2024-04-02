@@ -16,5 +16,6 @@ class Customer extends Model implements Authenticatable
         'last_name',
         'email',
         'password',
+
     ];
 }

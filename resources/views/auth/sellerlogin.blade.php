@@ -42,6 +42,7 @@
             </div>
 
             <!-- Sign-in Form -->
+
             <form method="POST" action="{{ route('seller.signIn') }}">
                 @csrf
 

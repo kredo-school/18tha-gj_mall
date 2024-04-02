@@ -28,7 +28,6 @@ return new class extends Migration
             // $table->foreign('id')->references('shopping_cart_items')->on('customer_id');
             // $table->foreign('id')->references('favorites')->on('customer_id');
         });
-
     }
 
     /**

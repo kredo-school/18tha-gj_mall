@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
             $table->string('avatar', 15)->nullable();
-            $table->unsignedBigInteger('payment_id');
+            $table->unsignedBigInteger('payment_id')->nullable();
             $table->timestamps();
 
             // Foreign Keys
@@ -28,7 +28,6 @@ return new class extends Migration
             // $table->foreign('id')->references('shopping_cart_items')->on('customer_id');
             // $table->foreign('id')->references('favorites')->on('customer_id');
         });
-
     }
 
     /**

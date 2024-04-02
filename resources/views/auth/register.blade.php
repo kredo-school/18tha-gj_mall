@@ -37,7 +37,7 @@
             </div>
 
             <!-- Register Form -->
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('register') }}">
                 @csrf
 
                 <!-- Name -->
@@ -45,20 +45,20 @@
                     <div class="col-8 mx-auto">
                         <div class="row">
                             <div class="col">
-                                <label for="f-name" class="h4 form-label text-me-start fw-bold">{{ __('First Name') }}</label>
-                                <input id="f-name" type="text" class="form-control @error('f-name') is-invalid @enderror" name="f-name" value="{{ old('f-name') }}" required autofocus placeholder=" ">
+                                <label for="first_name" class="h4 form-label text-me-start fw-bold">{{ __('First Name') }}</label>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" autofocus placeholder=" ">
         
-                                @error('f-name')
+                                @error('first_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="col">
-                                <label for="l-name" class="h4 form-label text-me-start fw-bold">{{ __('Last Name') }}</label>
-                                <input id="l-name" type="text" class="form-control @error('l-name') is-invalid @enderror" name="l-name" value="{{ old('l-name') }}" required placeholder=" ">
+                                <label for="last_name" class="h4 form-label text-me-start fw-bold">{{ __('Last Name') }}</label>
+                                <input id="last_name" type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" placeholder=" ">
         
-                                @error('l-name')
+                                @error('last_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-8 mx-auto">
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder=" ">
+                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email" placeholder=" ">
 
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-8 mx-auto">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder=" ">
+                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="current-password" placeholder=" ">
 
                         @error('password')
                             <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                 </div>
                 <div class="row mb-5">
                     <div class="col-8 mx-auto">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="current-password" placeholder=" ">
+                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="current-password" placeholder=" ">
                     </div>
                 </div>
 

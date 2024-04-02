@@ -80,8 +80,7 @@ class RegisterController extends Controller
             'last_name'  => $data['last_name'],
             'email'      => $data['email'],
             'password'   => Hash::make($data['password']),
-            // Have to remove payment_id
-            'payment_id' => 1,
+
         ]);        
     }
 }

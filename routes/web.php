@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Products\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,6 +110,7 @@ Route::get('/seller/dashboard', function () {
     return view('seller.dashboard');
 });
 
+
 // Seller Profile
 Route::get('/seller/profile', function () {
     return view('seller.profile.sellerProfile');
@@ -123,9 +125,12 @@ Route::get('/seller/products/dashboard', function () {
     return view('seller.products.dashboard');
 });
 
-Route::get('/seller/products/create', function () {
-    return view('seller.products.create');
-});
+
+Route::get('/seller/products/create' ,
+    [ProductController::class , 'show'])->name('seller.products.create');
+
+Route::post('/seller/products/store',
+    [ProductController::class , 'store'])->name('seller.products.store');
 
 Route::get('/seller/products/edit', function () {
     return view('seller.products.edit');

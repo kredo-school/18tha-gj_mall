@@ -22,6 +22,7 @@ return new class extends Migration
 
             // $table->foreign('order_line_id')->references('order_lind')->on('id');
             // $table->foreign('product_id')->references('products')->on('id');
+
         });
     }
 

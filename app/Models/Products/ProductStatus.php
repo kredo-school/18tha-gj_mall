@@ -5,10 +5,9 @@ namespace App\Models\Products;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class ProductStatus extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
-    public $timestamps = false;
+    protected $table = 'product_status';
 }

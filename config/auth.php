@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'customer',
         'passwords' => 'users',
     ],
 
@@ -36,9 +36,19 @@ return [
     */
 
     'guards' => [
-        'web' => [
+        'customer' => [ 
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'customer', 
+        ],
+
+        'seller' => [
+            'driver' => 'session',
+            'provider' => 'seller',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
         ],
     ],
 
@@ -60,15 +70,20 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'customer' => [ 
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model'  => App\Models\Users\Customer::class,
+        ],
+    
+        'seller' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Users\Seller::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'admin' => [
+            'driver' => 'eloquent',
+            'model'  => App\Models\Users\Admin::class,
+        ],
     ],
 
     /*
@@ -91,8 +106,22 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'customer' => [
+            'provider' => 'customer',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'seller' => [
+            'provider' => 'seller',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'admin' => [
+            'provider' => 'admin',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

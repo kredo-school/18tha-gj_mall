@@ -11,13 +11,13 @@
             {{-- Top5 Ranking --}}
             <div class="row mb-5">
                 <h2 class="fw-bold h3">Top5 BestSeller</h2>
-    
+
                 <div class="col-auto">
                     {{-- card item 1 start --}}
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">1</div>
                         <img src="{{ asset('images/items/item1.svg') }}" class="card-img-top rank-image" alt="owan">
-    
+
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate">Card title</h5>
                             <h5>Price</h5>
@@ -25,7 +25,7 @@
                     </div>
                     {{-- card item 1 end --}}
                 </div>
-                
+
                 <div class="col-auto">
                     {{-- card item 2 start --}}
                     <div class="border rounded-0 p-2 card-parent">
@@ -38,7 +38,7 @@
                     </div>
                     {{-- card item 2 end --}}
                 </div>
-    
+
                 <div class="col-auto">
                     {{-- card item 3 start --}}
                     <div class="border rounded-0 p-2 card-parent">
@@ -51,7 +51,7 @@
                     </div>
                     {{-- card item 3 end --}}
                 </div>
-    
+
                 <div class="col-auto">
                     {{-- card item 4 start --}}
                     <div class="border rounded-0 p-2 card-parent">
@@ -64,7 +64,7 @@
                     </div>
                     {{-- card item 4 end --}}
                 </div>
-    
+
                 <div class="col-auto">
                     {{-- card item 5 start --}}
                     <div class="border rounded-0 p-2 card-parent">
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            
+
             {{-- Top5 Ranking end --}}
 
             {{-- Search bar --}}
@@ -92,7 +92,7 @@
 
                 </div>
                 <div class="col mt-1">
-                    <a href="{{ url('/seller/products/create') }}">
+                    <a href="{{ route('seller.products.create') }}">
                         <button class=" btn custom-button w-100 shadow-sm">Create Product
                 </div>
                 </a>

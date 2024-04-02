@@ -8,7 +8,6 @@ use App\Models\Products\ProductDetail;
 use App\Models\Products\ProductImage;
 use App\Models\Products\ProductImages;
 use App\Models\Products\Category;
-use Faker\Guesser\Name;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,7 +31,7 @@ class ProductController extends Controller
         $this->category = $category;
     }
 
-    public function show()
+    public function create()
     {
         $categories = $this->category->orderBy('id', 'asc')->get();
 
@@ -59,7 +58,7 @@ class ProductController extends Controller
         $this->product->qty_in_stock = $request->stock;
         $this->product->description = $request->desc;
         $this->product->status_id = 2; // ('1:Exhibit request -> 2:Waiting for valuation -> 3:Evaluation -> (7:Suspended ->) 4:Waiting for display(Coming Soon) -> 5:Exhibited -> 6:Sold out')
-        $this->product->seller_id = Auth::seller()->id;
+        $this->product->seller_id = Auth::guard('seller')->id();
         $this->product->category_id = $request->category;
 
         // Product Detail Table

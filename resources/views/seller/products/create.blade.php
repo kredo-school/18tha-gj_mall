@@ -10,9 +10,6 @@
             max-height: 200px;
         }
     </style>
-    {{-- <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-        crossorigin="anonymous"></script> --}}
-
 
     <h2 class="my-4">Create Product</h2>
     <div class="row justify-content-end">

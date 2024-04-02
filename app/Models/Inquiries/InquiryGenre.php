@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Models\Products;
+namespace App\Models\Inquiries;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class InquiryGenre extends Model
 {
     use HasFactory;
 
-    protected $table = 'categories';
-    public $timestamps = false;
+    protected $table = 'inquiry_genres';
 }

@@ -11,6 +11,8 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'products';
+
     public function productDetail(){
         return $this->hasOne(ProductDetail::class);
     }

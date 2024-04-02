@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Inquiries;
+namespace App\Models\Orders;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Inquiry extends Model
+class OrderStatus extends Model
 {
     use HasFactory;
 
-    protected $inquiry = 'inquiries';
+    protected $table = 'order_status';
 }

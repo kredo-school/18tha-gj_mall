@@ -16,6 +16,15 @@ class Customer extends Model implements Authenticatable
         'last_name',
         'email',
         'password',
-
     ];
+
+    public function payment()
+    {
+        return $this->hasOne(Users/Payment::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(Users/Address::class);
+    }
 }

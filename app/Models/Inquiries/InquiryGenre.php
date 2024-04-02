@@ -9,5 +9,5 @@ class InquiryGenre extends Model
 {
     use HasFactory;
 
-    protected $inquiry_genre = 'inquiry_genres';
+    protected $table = 'inquiry_genres';
 }

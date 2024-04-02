@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('weight');
             $table->boolean('is_fragile')->default(false); // type:tinyInt
             $table->timestamps();
-
         });
     }
 

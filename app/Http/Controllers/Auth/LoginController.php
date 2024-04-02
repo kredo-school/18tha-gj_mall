@@ -39,16 +39,5 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    // Override the attemptLogin method to handle multiple guards
-    protected function attemptLogin(Request $request)
-    {
-        // Attempt login for customer
-        if (Auth::guard('customer')->attempt($this->credentials($request), $request->filled('remember'))) {
-            return true;
-        }
-
-        return false;
-    }
 }
 

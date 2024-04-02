@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamps();
 
             // $table->foreign('product_id')->references('products')->on('id');
+
         });
     }
 

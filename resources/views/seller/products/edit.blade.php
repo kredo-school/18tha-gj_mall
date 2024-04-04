@@ -28,13 +28,10 @@
                                 <img src="{{ asset('/images/items/' . $productImage->productImages->image) }}"
                                     alt="" class="image-md">
                             </div>
-                        {{$productImage->image_id}}
-                        {{$productImage->product_id}}
-
                             <form action="{{ route('seller.products.image.destroy',  ["i_id"=>$productImage->image_id, "p_id"=>$productImage->product_id] ) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="d-inline pen-trash-overlay border-0">
+                                <button type="submit" class="d-inline pen-trash-overlay border-0" onclick="return confirm('Do you really want to delete this image? If it is deleted and want to use the same image, you have to reupload the image again.')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>

@@ -14,10 +14,14 @@ class Product extends Model
     protected $table = 'products';
 
     public function productDetail(){
-        return $this->hasOne(ProductDetail::class);
+        return $this->hasOne(ProductDetail::class ,'id','product_detail_id');
     }
 
-    public function productImages(){
-        return $this->hasMany(ProductImages::class);
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function productImage(){
+        return $this->hasMany(ProductImage::class ,'product_id' , 'id');
     }
 }

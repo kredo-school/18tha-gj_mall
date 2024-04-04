@@ -1,18 +1,25 @@
 .image-md {
-    height: 200px;
-    width: 200px;
+    max-height: 150px;
+    height: auto;
+    width: 100%;
+}
+
+.image-delete {
+    max-height: 150px;
+    width:auto;
 }
 
 .image-num {
     position: absolute;
-    top: 8%;
-    left: 6%;
+    top: 10%;
+    left: 5%;
     background-color: #333333;
     color: #FFFFFF;
     z-index: 1;
-    padding: 10px 15px;
+    padding: 5px 12px;
     font-size: 12px;
     opacity: 50%;
+    border-radius: 100%;
 }
 
 .plus-circle {
@@ -48,6 +55,19 @@
     top: 8%;
     left: 85%;
     color: #FFD700;
+    font-size: 12px;
+    background-color: #fff;
+    font-weight: bold;
+    padding: 5px 8px;
+    border-radius: 100%;
+    text-align: center;
+}
+
+.pen-trash-overlay {
+    position: absolute;
+    top: 15%;
+    left: 85%;
+    color: #FF3A3A;
     font-size: 12px;
     background-color: #fff;
     font-weight: bold;
@@ -199,4 +219,32 @@ input[type=checkbox] {
 	-moz-transform:		scale(1.4);
 	-webkit-transform:	scale(1.4);
 	transform:		scale(1.4);
+}
+
+
+/* create images */
+.js-file {
+    font-size: small
+}
+
+.js-deleteBtn {
+    font-size: 0;
+    border: #FFFFFF 1px ;
+    background-color: #FF3A3A;
+    color: #FFFFFF;
+    border-radius: 2px;
+    box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.2);
+    text-align: right;
+}
+
+.js-deleteBtn:hover {
+    background-color: #FFFFFF;
+    border-color: #FF3A3A;
+    color: #FF3A3A;
+}
+
+/* to overwrite the text */
+.js-deleteBtn:before {
+    font-size: 16px;
+    content:'Delete';
 }

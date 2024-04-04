@@ -13,4 +13,8 @@ class ProductImage extends Model
     public $timestamps = false; //turn off timestamps
     protected $fillable = ['product_id','image_id']; //allows the columns written inside the brackets to accept data from the array
 
+    public function productImages(){
+        return $this->hasOne(ProductImages::class , 'id','image_id');
+    }
+
 }

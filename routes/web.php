@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Users\AdminController;
@@ -97,9 +98,8 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     });
 
     // Seller Product
-    Route::get('products/dashboard', function () {
-        return view('seller.products.dashboard');
-    });
+    Route::get('products/dashboard', [ProductController::class, 'show'])
+        ->name('products.dashboard');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');
@@ -107,9 +107,20 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::post('products/store',  [ProductController::class, 'store'])
         ->name('products.store');
 
-    Route::get('products/edit', function () {
-        return view('seller.products.edit');
-    });
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])
+        ->name('products.edit');
+
+    Route::patch('products/{id}/update', [ProductController::class, 'update'])
+        ->name('products.update');
+
+    Route::get('products/{id}/delete', [ProductController::class, 'delete'])
+        ->name('products.delete');
+
+    Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
+        ->name('products.destroy');
+
+    Route::delete('products/{image_id}/{product_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+        ->name('products.image.destroy');
 
     // Seller Ads
     Route::get('ads/dashboard', function () {

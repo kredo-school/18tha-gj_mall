@@ -10,6 +10,8 @@
             max-height: 200px;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 
     <h2 class="my-4">Create Product</h2>
     <div class="row justify-content-end">
@@ -19,8 +21,19 @@
                 <div class="row">
                     <h4>Images</h4>
 
-                    {{-- create images --}}
-                    <div class="col-auto">
+                    {{-- create images with JavascriptS --}}
+                    <div id="file_list" class="row">
+                        <label class="col-2 js-file" for="t">
+                            <input id="t" class="js-inputFile" type="file" name="images[]" accept="image/*" />
+                        </label>
+                    </div>
+                    @error('images')
+                        <div class="mt-2 small text-danger">{{ $message }}</div>
+                    @enderror
+
+
+                    {{-- mulpile input file version --}}
+                    {{-- <div class="col-auto">
                         <label for="files" class="btn custom-button-save mb-2 fs-6" style="height:35px;">+ add images</label>
                         <input type="file" accept="image/*" multiple style="display: none;" name="images[]"
                             id="files">
@@ -28,7 +41,9 @@
                         @error('images')
                             <div class="mt-2 small text-danger">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
+
+
 
                     <div class="row mt-4">
                         <div class="col-5">

@@ -20,4 +20,8 @@ class ProductImages extends Model
     public function targetProduct($id){
         return $this->product()->where('product_id',$id)->get();
     }
+
+    public function productImage(){
+        return $this->belongsTo(ProductImage::class);
+    }
 }

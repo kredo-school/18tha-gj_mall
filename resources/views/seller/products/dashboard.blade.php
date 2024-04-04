@@ -110,91 +110,50 @@
                             <th>Price</th>
                             <th>Description</th>
                             <th>Fragile</th>
-                            <th>Wigth</th>
+                            <th>Weight</th>
                             <th>Size</th>
                             <th>Maximum Stock</th>
                             <th>Category</th>
-                            <th>Delivery Type</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody class="text-center bg-white">
-                        {{-- get data from products table of the seller --}}
-                        <tr>
-                            <td>1234</td>
-                            <td>Owan</td>
-                            <td>$100</td>
-                            <td>Awsome Product</td>
-                            <td>Yes</td>
-                            <td>200 g</td>
-                            <td>φ100mm H80mm</td>
-                            <td>50</td>
-                            <td>Kitchen Tools</td>
-                            <td>Shipping</td>
-                            <td>
-                                <a href="{{ url('/seller/products/edit') }}" class="btn text-decoration-none edit-icon">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
-                                    data-bs-target="#DeleteProduct">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>5678</td>
-                            <td>fan</td>
-                            <td>$30</td>
-                            <td>Awsome Products</td>
-                            <td>Yes</td>
-                            <td>50 g</td>
-                            <td>L: 10cm W: 3cm H: 1cm </td>
-                            <td>100</td>
-                            <td>Kitchen Tools</td>
-                            <td>Shipping</td>
-                            <td>
-                                <a href="{{ url('/seller/products/edit') }}" class="btn text-decoration-none edit-icon">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
-                                    data-bs-target="#DeleteProduct">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>9123</td>
-                            <td>Kimono</td>
-                            <td>$1000</td>
-                            <td>Awsome Product</td>
-                            <td>No</td>
-                            <td>2 kg</td>
-                            <td>160cm</td>
-                            <td>2</td>
-                            <td>Traditional Clothes</td>
-                            <td>Shipping</td>
-                            <td>
-                                <a href="{{ url('/seller/products/edit') }}" class="btn text-decoration-none edit-icon">
-                                    <i class="fa-regular fa-pen-to-square"></i>
-                                </a>
-                            </td>
-                            <td>
-                                <button type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
-                                    data-bs-target="#DeleteProduct">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach ($products as $product)
+                            <tr>
+                                <td>{{ $product->id }}</td>
+                                <td>{{ $product->name }}</td>
+                                <td>{{ $product->price }}</td>
+                                <td>{{ $product->description }}</td>
+                                <td>
+                                    @if ($product->is_fragile == 1)
+                                        Yes
+                                    @else
+                                        No
+                                    @endif
+                                    {{ $product->is_fragile }}
+                                </td>
+                                <td>{{ $product->productDetail->weight }}</td>
+                                <td>{{ $product->productDetail->size }}</td>
+                                <td>{{ $product->qty_in_stock }}</td>
+                                <td>{{ $product->category->name }}</td>
+                                <td>
+                                    <a href="{{ route('seller.products.edit', $product->id) }}"
+                                        class="btn text-decoration-none edit-icon">
+                                        <i class="fa-regular fa-pen-to-square"></i>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('seller.products.delete', $product->id) }}" type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct-{{$product->id}}">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @include('seller.modalSeller.deleteProduct')
+                        @endforeach
                     </tbody>
                 </table>
-                @include('seller.modalSeller.deleteProduct')
+
             </div>
         </div>
     @endsection

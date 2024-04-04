@@ -28,143 +28,50 @@
                 <thead class="small table-secondary text-light">
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Last Name</th>
+                        <th>First Name</th>
                         <th>Email</th>
+                        <th>Phone Number</th>
                         <th>Role</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody >
-                    {{-- No.1 --}}
-                    <tr>
-                        <td>1</td>
-                        <td>John Smith</td>
-                        <td>johnsmith@gmail.com</td>
-                        <td>Admin</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-                    {{-- No.2 --}}
-                    <tr>
-                        <td>2</td>
-                        <td>Will Smith</td>
-                        <td>willsmith@gmail.com</td>
-                        <td>Seller</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" type="button" data-bs-toggle="modal" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" type="button" data-bs-toggle="modal" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-                    {{-- No.3 --}}
-                    <tr>
-                        <td>3</td>
-                        <td>Mark Twain</td>
-                        <td>marktwain@gmail.com</td>
-                        <td>Stuff</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-    
-                    {{-- No.4 --}}
-                    <tr>
-                        <td>4</td>
-                        <td>John F. Kennedy</td>
-                        <td>john-f-kennedy@gmail.com</td>
-                        <td>Translator</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-    
-                    {{-- No.5 --}}
-                    <tr>
-                        <td>5</td>
-                        <td>Sutan Sjahrir</td>
-                        <td>sutan-sjahrir@gmail.com</td>
-                        <td>Assessor</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-    
-                    {{-- No.6 --}}
-                    <tr>
-                        <td>6</td>
-                        <td>Taro Yamada</td>
-                        <td>taroyamada@gmail.com</td>
-                        <td>Delivery</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
-    
-                    {{-- No.7 --}}
-                    <tr>
-                        <td>7</td>
-                        <td>Jackie Chan</td>
-                        <td>jackiechan@gmail.com</td>
-                        <td>User</td>
-                        <td>
-                            <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            @include('admin.management.modal.edit')
-    
-                            <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            @include('admin.management.modal.delete')
-                        </td>
-                    </tr>
+                    {{-- Show all Admins --}}
+                    @foreach ($admins as $admin)
+                        <tr>
+                            {{-- ID --}}
+                            <td>{{ $admin->id }}</td>
+
+                            {{-- first name --}}
+                            <td>{{ $admin->first_name }}</td>
+
+                            {{-- last name --}}
+                            <td>{{ $admin->last_name }}</td>
+
+                            {{-- email --}}
+                            <td>{{ $admin->email }}</td>
+
+                            {{-- phone number --}}
+                            <td>{{ $admin->phone_number }}</td>
+
+                            {{-- role --}}
+                            <td>{{ $admin->role }}</td>
+
+                            {{-- Edit & Delete Button --}}
+                            <td>
+                                <button class="btn text-decoration-none edit-icon" data-bs-toggle="modal" type="button" data-bs-target="#edit-user-{{ $admin->id }}">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                </button>
+                                @include('admin.management.modal.edit')
+        
+                                <button class="btn btn-sm delete-icon" data-bs-toggle="modal" type="button" data-bs-target="#delete-user-{{ $admin->id }}">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                                @include('admin.management.modal.delete')
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

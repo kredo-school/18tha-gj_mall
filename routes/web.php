@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Users\ManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,9 +89,14 @@ Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 });
 
-Route::get('/admin/managementUser', function () {
-    return view('admin.management.managementUser');
-});
+// Route::get('/admin/managementUser', function () {
+//     return view('admin.management.managementUser');
+// });
+Route::get('/admin/managementUser', [ManagementController::class, 'index'])->name('admin.managementUser');
+Route::post('/admin/store', [ManagementController::class, 'store'])->name('admin.store');
+Route::patch('/admin/edit', [ManagementController::class, 'update'])->name('admin.update');
+
+
 
 Route::get('/admin/evaluation', function () {
     return view('admin.assessor.evaluation');

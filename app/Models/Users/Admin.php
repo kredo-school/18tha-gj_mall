@@ -17,7 +17,9 @@ class Admin extends Model implements Authenticatable
         'first_name',
         'last_name',
         'email',
+        'phone_number',
         'password',
+        'role',
         'payment_id',
     ];
 }

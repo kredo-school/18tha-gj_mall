@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\File;
+
 
 class ProductController extends Controller
 
@@ -166,36 +170,43 @@ class ProductController extends Controller
         $product->save();
 
         // store images to product_images table and pivot product_image tables
-        // $imageNames = [];
-        // $product_image_ids = [];
 
-        // foreach ($request->images as $image) {
-        //     $imageName = time() . '.' . $image->extension();
-        //     $imageNames[] =
-        //         [
-        //             "image" => $imageName,
-        //             "created_at" => now(),
-        //             "updated_at" => now(),
-        //         ];
-        //     $image->move(public_path('images/items/'), $imageName);
-        // }
 
-        // ProductImages::insert($imageNames);
+        if($request->images) {
+            $imageNames = [];
+            $product_image_ids = [];
+            $cnt = 0;
+            foreach ($request->images as $image) {
+                $imageName = time() .$cnt. '.' . $image->extension();
+                $imageNames[] =
+                    [
+                        "image" => $imageName,
+                        "created_at" => now(),
+                        "updated_at" => now(),
+                    ];
+                $image->move(public_path('images/items/'), $imageName);
+                $cnt++;
+            }
 
-        // get the image_id from the product_images table and define the number of data from the image name array
-        // $max_image_id = ProductImages::orderBy('id','desc')->first()->id;
+            ProductImages::insert($imageNames);
 
-        // $length = count($imageNames);
+            // get the image_id from the product_images table and define the number of data from the image name array
+            $max_image_id = ProductImages::orderBy('id','desc')->first()->id;
 
-        // for ($i =  $max_image_id - $length + 1; $i <= $max_image_id; $i++) {
-        //     $product_image_ids[] =
-        //         [
-        //             "product_id" => $this->product->id,
-        //             "image_id" => $i,
-        //         ];
-        // }
+            $length = count($imageNames);
 
-        // ProductImage::insert($product_image_ids);
+            for ($i =  $max_image_id - $length + 1; $i <= $max_image_id; $i++) {
+                $product_image_ids[] =
+                    [
+                        "product_id" => $id,
+                        "image_id" => $i,
+                    ];
+            }
+
+            ProductImage::insert($product_image_ids);
+        }
+
+
 
         return redirect()->route('seller.products.dashboard');
     }
@@ -219,14 +230,36 @@ class ProductController extends Controller
     }
 
 
-    public function imageDestroy($image_id , $product_id)
+    public function imageDestroy($i_id , $p_id)
     {
-        $image = $this->product_images->findOrfail($image_id);
+        // new $image();
+
+        $image = $this->product_images->findOrfail($i_id);
+
+        $filePath = public_path('images/items/' . $image->image);
+
+        // delete the file itself
+
+        if (File::exists($filePath)) {
+
+            if(File::delete($filePath)){
+                Log::info("File $filePath deleted successfully.");
+            } else {
+                Log::error("Failed to delete file $filePath.");
+            }
+            // Delete the file from storage
+
+        } else {
+            Log::warning("File $filePath does not exist.");
+        }
+
+        // delete the record in product_images
         $image->delete();
 
+        // delete the record in product_image
         $this->product_image
-            ->where('product_id' , $product_id)
-            ->where('image_id' , $image_id)
+            ->where('product_id' , $p_id)
+            ->where('image_id' , $i_id)
             ->delete();
 
         // or set the ondeletecascade to the migration file

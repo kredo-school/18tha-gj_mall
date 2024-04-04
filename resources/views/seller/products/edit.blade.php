@@ -28,14 +28,16 @@
                                 <img src="{{ asset('/images/items/' . $productImage->productImages->image) }}"
                                     alt="" class="image-md">
                             </div>
-                            <form
-                                action="{{ route('seller.products.image.destroy', ['image_id' => $productImage->image_id, 'product_id' => $productImage->product_id]) }}" method="post">
+                        {{$productImage->image_id}}
+                        {{$productImage->product_id}}
+
+                            <form action="{{ route('seller.products.image.destroy',  ["i_id"=>$productImage->image_id, "p_id"=>$productImage->product_id] ) }}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button type="submit" class="d-inline pen-trash-overlay border-0">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
-                            </from>
+                            </form>
 
                         </div>
                     @endforeach

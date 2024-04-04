@@ -119,7 +119,7 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
         ->name('products.destroy');
 
-    Route::delete('products/{image_id}/{product_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+    Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
         ->name('products.image.destroy');
 
     // Seller Ads

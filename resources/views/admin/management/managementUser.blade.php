@@ -77,6 +77,8 @@
         </div>
 
     </div>
+    {{ $admins->links() }}
+
 
     <div class="row banner mx-1">
         <div class="col-auto p-0">
@@ -88,5 +90,5 @@
             <h4 class="sub-title">Japanese HighQuality Products E-commerce Site</h4>
         </div>
     </div>
-    
+
 @endsection

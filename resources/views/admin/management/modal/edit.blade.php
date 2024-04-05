@@ -11,7 +11,7 @@
                 </h3>
             </div>
 
-            <form action="{{ route('admin.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.update', $admin->id) }}"  enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')
 
@@ -43,7 +43,7 @@
                     {{-- password --}}
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" name="password" id="password" class="form-control" value="{{ old('password', $admin->password) }}">
+                        <input type="password" name="password" id="password" class="form-control" value="{{ substr(old('password', $admin->password), 0, 8) }}" >
                     </div>
                     
                     {{-- Status --}}
@@ -51,12 +51,12 @@
                         <label for="role" id="role">Status:</label>
                         <select name="role" id="role" class="form-select">
                             <option hidden>{{old('role', $admin->role)}}</option>
-                            <option value="0: Seller">0: Seller</option>
-                            <option value="1: Admin">1: Admin</option>
-                            <option value="2: Stuff">2: Stuff</option>
-                            <option value="3: Translator">3: Translator</option>
-                            <option value="4: Assessor">4: Assessor</option>
-                            <option value="5: Delivery">5: Delivery</option>
+                            <option value="Seller">0: Seller</option>
+                            <option value="Admin">1: Admin</option>
+                            <option value="Stuff">2: Stuff</option>
+                            <option value="Translator">3: Translator</option>
+                            <option value="Assessor">4: Assessor</option>
+                            <option value="Delivery">5: Delivery</option>
                         </select>
                     </div>
                 </div>

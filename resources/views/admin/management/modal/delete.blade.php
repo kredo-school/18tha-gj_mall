@@ -10,9 +10,9 @@
                 <p class="mb-0 small-title">Are you sure you want to delete this user?</p>
             </div>
 
-            <form action="#" method="#">
+            <form action="{{ route('admin.destroy', $admin->id) }}" method="post">
                 @csrf
-                {{-- @method('DELETE') --}}
+                @method('DELETE')
 
                 <div class="modal-body">
                     <div class="pb-5">

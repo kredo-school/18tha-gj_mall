@@ -16,3 +16,16 @@
 .sidebar_icon {
   font-size: 1.2rem;
 }
+
+.dashboard, .management_user, .delivery, .evaluation, .customerSupport, .edit-profile, .product-dashboard, .ads-dashboard{
+  color: #333333;
+}
+.active i {
+    color: #0AA873;
+    background-color: none;
+}
+
+.active a{
+  color: #0AA873;
+  background-color: #ffffff;
+}

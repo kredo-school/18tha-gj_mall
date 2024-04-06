@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\AdminController;
 
+use App\Http\Controllers\Inquiries\InquiryController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,11 @@ Route::get('/search', function () { return view('customer.search'); });
 // Product Detail / {product_id}
 Route::get('/productDetail', function () { return view('customer.productDetail'); });
 // Inquiry
-Route::get('/inquiry', function () { return view('inquiry'); });
+Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
+Route::post('/inquiry/store', [InquiryController::class, 'store'])->name('inquiry.store');
+
+// Seller Profile
+Route::get('/profile/{seller_id}', [SellerController::class, 'showProfile'])->name('seller.profile');
 
 // Payment
 Route::get('/customer/cart', function () { return view('customer.cart'); });
@@ -73,11 +79,6 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
 
     // Seller
     Route::get('dashboard', [SellerController::class, 'showDashboard'] )->name('dashboard');
-
-    // Seller Profile
-    Route::get('profile', function () {
-        return view('seller.profile.sellerProfile');
-    });
 
     Route::get('profile/editProfile', function () {
         return view('seller.profile.editProfile');

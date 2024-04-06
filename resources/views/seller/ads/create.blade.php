@@ -55,11 +55,10 @@
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->id . ' -- ' . $product->name }}</option>
                             @endforeach
-                            @error('product_id')
-                                <div class="small text-danger">{{ $message }}</div>
-                            @enderror
-
                         </select>
+                        @error('product_id')
+                            <div class="small text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 

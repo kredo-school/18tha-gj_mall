@@ -46,18 +46,18 @@
                             <td>{{ $ad->id }}</td>
                             <td>{{ $ad->title }}</td>
                             <td>
-                                <img src="{{ asset('storage/app/public/images/ads/'.$ad->image_name ) }}" alt="product_image" id="table_image">
+                                <img src="{{ asset('storage/images/ads/'.$ad->image_name ) }}" alt="product_image" id="table_image">
                             </td>
                             <td>{{ $ad->content }}</td>
                             <td>{{ $ad->product_id }}</td>
                             <td>
-                                <a href="{{ route('seller.ads.edit', $ad->product_id) }}" class="text-decoration-none">
+                                <a href="{{ route('seller.ads.edit', $ad->id) }}" class="text-decoration-none">
                                     <i class="fa-regular fa-pen-to-square icon-edit"></i>
                                 </a>
                             </td>
                             <td>
                                 <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
-                                    data-bs-target="#DeleteModal">
+                                    data-bs-target="#Ad-Delete-Modal-{{$ad->id}}">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </td>

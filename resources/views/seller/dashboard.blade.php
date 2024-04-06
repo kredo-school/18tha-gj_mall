@@ -110,6 +110,6 @@
             <canvas id="dailyPlot"></canvas>
         </div>
     </div>
-  
+
     <script src="{{ asset('js/sellerDashboard.js') }}"></script>
 @endsection

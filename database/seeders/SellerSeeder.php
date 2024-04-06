@@ -9,17 +9,13 @@ use Illuminate\Support\Facades\Hash;
 
 class SellerSeeder extends Seeder
 {   
-    private $seller;
-
-    public function __construct(Seller $seller) {
-        $this->seller = $seller;
-    }
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $seller = new Seller();
+
         $sellers = [
             [
                 'first_name' => 'John',
@@ -63,6 +59,6 @@ class SellerSeeder extends Seeder
             ],
         ];
 
-        $this->seller->insert($sellers);
+        $seller->insert($sellers);
     }
 }

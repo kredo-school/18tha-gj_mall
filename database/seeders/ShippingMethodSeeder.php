@@ -24,13 +24,13 @@ class ShippingMethodSeeder extends Seeder
         $shipping_method = [
             [
                 'name'       => 'Air Mail',
-                'price'      => '$30',
+                'price'      => 30,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'name' => 'Sea Mail',
-                'price' => '$60',
+                'price' => 60,
                 'created_at' => now(),
                 'updated_at' => now()
             ]

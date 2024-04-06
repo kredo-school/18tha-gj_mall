@@ -9,8 +9,15 @@ class Payment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'card_name'  ,
+        'card_number',
+        'expiry_date',
+        'customer_id'
+    ];
+
     public function customer()
     {
-        return $this->belongsTo(Users/Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 }

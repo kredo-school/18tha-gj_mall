@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Users\AdminController;
@@ -73,22 +74,13 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
     });
-
-    Route::get('transaction', function () {
-        return view('customer.payment.transaction');
-    });
-
-    Route::get('transaction/confirmation', function () {
-        return view('customer.payment.confirmation');
-    });
-
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
+    // Seller
     Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
     Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
 
-    // Seller
     Route::get('/dashboard', function () {
         return view('seller.dashboard');
     })->name('dashboard');
@@ -169,8 +161,18 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
-    Route::get('managementUser', function () {
-        return view('admin.management.managementUser');
+    Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
+    Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
+    Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
+    Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+
+    Route::get('/admin/delivery', function () {
+        return view('admin.delivery.deliveryList');
+    });
+
+    Route::get('/admin/customerSupport', function () {
+        return view('admin.inquiry.customerSupport');
+
     });
 
     Route::get('evaluation', function () {

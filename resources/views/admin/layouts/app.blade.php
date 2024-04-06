@@ -42,101 +42,104 @@
                         <img src="{{ asset('images/common/logo.svg')}}">
                     </a>
                     <nav class="sidebar-nav">
-                        <ul class="list-group rounded-0 ps-3">
-                            {{-- Start Dashboard --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-chess-board sidebar_icon me-3" style="color: #0AA873;"></i>
+                        @if (request()->is('admin/*'))
+                            <ul class="list-group rounded-0 ps-3">
+                                {{-- Start Dashboard --}}
+                                <li class="list-group-item border-0 mt-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 {{ request()->is('admin/dashboard') || request()->is('admin/dashboard') ? 'active': '' }}">
+                                            <i class="fa-solid fa-chess-board sidebar_icon me-3"></i>
+                                        </div>
+                                        <div class="col {{ request()->is('admin/dashboard') || request()->is('admin/dashboard') ? 'active': '' }}">
+                                            <a href="{{ url('/admin/dashboard') }}" class="text-decoration-none dashboard">
+                                                Dashboard
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <a href="{{ url('/admin/dashboard') }}" class="text-decoration-none" style="color: #0AA873;">
-                                            Dashboard
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            {{-- End Dashboard --}}
+                                </li>
+                                {{-- End Dashboard --}}
 
-                            {{-- Start Profile --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-users-gear"></i>
+                                {{-- Start Profile --}}
+                                <li class="list-group-item border-0 mt-4 ">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 {{ request()->is('admin/managementUser') || request()->is('admin/managementUser') ? 'active': '' }}">
+                                            <i class="fa-solid fa-users-gear"></i>
+                                        </div>
+                                        <div class="col {{ request()->is('admin/managementUser') || request()->is('admin/managementUser') ? 'active': '' }}">
+                                            <a href="{{ url('/admin/managementUser') }}" class="text-decoration-none management_user">
+                                                Management User
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <a href="{{ url('/admin/managementUser') }}" class="text-decoration-none text-secondary">
-                                            Management User
-                                        </a>
+                                </li>
+                                {{-- End Profile --}}
+                                
+                                {{-- Start Delivery Status --}}
+                                <li class="list-group-item border-0 mt-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 {{ request()->is('admin/delivery') || request()->is('admin/delivery') ? 'active': '' }}">
+                                            <i class="fa-solid fa-truck sidebar_icon me-3"></i>
+                                        </div>
+                                        <div class="col {{ request()->is('admin/delivery') || request()->is('admin/delivery') ? 'active': '' }}">
+                                            <a href="{{ url('/admin/delivery') }}" class="text-decoration-none delivery">
+                                                Delivery Status
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                            {{-- End Profile --}}
-                            
-                            {{-- Start Delivery Status --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-truck sidebar_icon me-3"></i>
-                                    </div>
-                                    <div class="col">
-                                        <a href="{{ url('/admin/delivery') }}" class="text-decoration-none text-secondary">
-                                            Delivery Status
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            {{-- End Delivery Status --}}
+                                </li>
+                                {{-- End Delivery Status --}}
 
-                            {{-- Start Evaluation --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-check-double sidebar_icon me-3"></i>
+                                {{-- Start Evaluation --}}
+                                <li class="list-group-item border-0 mt-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-2  {{ request()->is('admin/evaluation') || request()->is('admin/evaluation') ? 'active': '' }}">
+                                            <i class="fa-solid fa-check-double sidebar_icon me-3"></i>
+                                        </div>
+                                        <div class="col {{ request()->is('admin/evaluation') || request()->is('admin/evaluation') ? 'active': '' }}">
+                                            <a href="{{ url('/admin/evaluation') }}" class="text-decoration-none evaluation">
+                                                Evaluation
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <a href="{{ url('/admin/evaluation') }}" class="text-decoration-none text-secondary">
-                                            Evaluation
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            {{-- End Evaluation --}}
+                                </li>
+                                {{-- End Evaluation --}}
 
-                            {{-- Start Customer Support --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-headset sidebar_icon me-3"></i>
+                                {{-- Start Customer Support --}}
+                                <li class="list-group-item border-0 mt-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-2 {{ request()->is('admin/customerSupport') || request()->is('admin/customerSupport') ? 'active': '' }}">
+                                            <i class="fa-solid fa-headset sidebar_icon me-3"></i>
+                                        </div>
+                                        <div class="col {{ request()->is('admin/customerSupport') || request()->is('admin/customerSupport') ? 'active': '' }}">
+                                            <a href="{{ url('/admin/customerSupport') }}" class="text-decoration-none customerSupport">
+                                                Customer Support
+                                            </a>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <a href="{{ url('/admin/customerSupport') }}" class="text-decoration-none text-secondary">
-                                            Customer Support
-                                        </a>
-                                    </div>
-                                </div>
-                            </li>
-                            {{-- End Customer Support --}}
+                                </li>
+                                {{-- End Customer Support --}}
 
-                            {{-- Start Logout --}}
-                            <li class="list-group-item border-0 mt-4">
-                                <div class="row align-items-center">
-                                    <div class="col-2">
-                                        <i class="fa-solid fa-right-from-bracket sidebar_icon me-3"></i>
+                                {{-- Start Logout --}}
+                                <li class="list-group-item border-0 mt-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <i class="fa-solid fa-right-from-bracket sidebar_icon me-3"></i>
+                                        </div>
+                                        <div class="col">
+                                            <a class="text-decoration-none text-secondary" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                            </a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <a class="text-decoration-none text-secondary" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                            @csrf
-                                        </form>
-                                    </div>
-                                </div>
-                            </li>
-                            {{-- End Logout --}}                            
-                        </ul>
+                                </li>
+                                {{-- End Logout --}}                            
+                            </ul>
+
+                        @endif
                     </nav>
                 </div>
             </div>

@@ -20,12 +20,6 @@
 .dashboard, .management_user, .delivery, .evaluation, .customerSupport, .edit-profile, .product-dashboard, .ads-dashboard{
   color: #333333;
 }
-.active i {
+.active i ,.active a {
     color: #0AA873;
-    background-color: none;
-}
-
-.active a{
-  color: #0AA873;
-  background-color: #ffffff;
 }

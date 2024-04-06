@@ -9,6 +9,9 @@ use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\AdminController;
 
+use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\AdController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +20,7 @@ use App\Http\Controllers\Users\AdminController;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the 'web' middleware group. Make something great!
 |
 */
 Auth::routes();
@@ -48,23 +51,23 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 
     // Profile
     Route::get('profile', function () { return view('customer.profile.profile'); });
-  
+
     Route::get('profile/editProfile', function () {
         return view('customer.profile.profileEdit');
     });
-    
+
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
-    });    
+    });
 
     Route::get('transaction', function () {
         return view('customer.payment.transaction');
     });
-    
+
     Route::get('transaction/confirmation', function () {
         return view('customer.payment.confirmation');
     });
-    
+
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -84,30 +87,51 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     });
 
     // Seller Product
-    Route::get('products/dashboard', function () {
-        return view('seller.products.dashboard');
-    });
+    Route::get('products/dashboard', [ProductController::class, 'show'])
+        ->name('products.dashboard');
 
-    Route::get('products/create', function () {
-        return view('seller.products.create');
-    });
+    Route::get('/products/create',  [ProductController::class, 'create'])
+        ->name('products.create');
 
-    Route::get('products/edit', function () {
-        return view('seller.products.edit');
-    });
+    Route::post('products/store',  [ProductController::class, 'store'])
+        ->name('products.store');
+
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])
+        ->name('products.edit');
+
+    Route::patch('products/{id}/update', [ProductController::class, 'update'])
+        ->name('products.update');
+
+    Route::get('products/{id}/delete', [ProductController::class, 'delete'])
+        ->name('products.delete');
+
+    Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
+        ->name('products.destroy');
+
+    Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+        ->name('products.image.destroy');
 
     // Seller Ads
-    Route::get('ads/dashboard', function () {
-        return view('seller.ads.dashboard');
-    });
+    Route::get('/ads/dashboard', [AdController::class, 'show'])
+        ->name('ads.dashboard');
 
-    Route::get('ads/create', function () {
-        return view('seller.ads.create');
-    });
+    Route::get('ads/create', [AdController::class, 'create'])
+        ->name('ads.create');
 
-    Route::get('ads/edit', function () {
-        return view('seller.ads.edit');
-    });
+    Route::post('ads/store', [AdController::class, 'store'])
+        ->name('ads.store');
+
+    Route::get('ads/{id}/edit', [AdController::class, 'edit'])
+        ->name('ads.edit');
+
+    Route::patch('ads/{id}/update', [AdController::class, 'update'])
+        ->name('ads.update');
+
+    Route::patch('ads/{id}/delete', [AdController::class, 'delete'])
+        ->name('ads.delete');
+
+    Route::patch('ads/{id}/destroy', [AdController::class, 'destroy'])
+        ->name('ads.destroy');
 
     // Seller Evaluation
     Route::get('evaluation', function () {

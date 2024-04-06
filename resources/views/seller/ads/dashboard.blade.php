@@ -18,7 +18,8 @@
         </div>
         <div class="col mt-1">
 
-            <a href="{{ url('seller/ads/create') }}">
+            {{-- <a href="{{ route('seller.ads.create') }}"> --}}
+            <a href="{{ route('seller.ads.create') }}">
                 <button class="btn custom-button w-100 shadow-sm montserrat">Create Advertisment</button>
             </a>
         </div>
@@ -35,91 +36,35 @@
                         <th>Content</th>
                         <th>Product ID</th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>ID</td>
-                        <td>TITLE</td>
-                        <td>
-                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
-                        </td>
-                        <td>CONTENT</td>
-                        <td>PRDOCUT ID</td>
-                        <td>
-                            <a href="{{ url('/seller/ads/edit') }}" class="text-decoration-none">
-                                <i class="fa-regular fa-pen-to-square icon-edit" ></i>
-                            </a>
-
-                            <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
-                            data-bs-target="#DeleteModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>ID</td>
-                        <td>TITLE</td>
-                        <td>
-                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
-                        </td>
-                        <td>CONTENT</td>
-                        <td>PRDOCUT ID</td>
-                        <td>
-                            <a href="" class="text-decoration-none">
-                                <i class="fa-regular fa-pen-to-square icon-edit" ></i>
-                            </a>
-
-                            <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
-                            data-bs-target="#DeleteModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>ID</td>
-                        <td>TITLE</td>
-                        <td>
-                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
-                        </td>
-                        <td>CONTENT</td>
-                        <td>PRDOCUT ID</td>
-                        <td>
-                            <a href="" class="text-decoration-none">
-                                <i class="fa-regular fa-pen-to-square icon-edit" ></i>
-                            </a>
-
-                            <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
-                            data-bs-target="#DeleteModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>ID</td>
-                        <td>TITLE</td>
-                        <td>
-                            <img src="{{ asset('images/banner/banner1.svg') }}" alt="product_image" id="table_image">
-                        </td>
-                        <td>CONTENT</td>
-                        <td>PRDOCUT ID</td>
-                        <td>
-                            <a href="" class="text-decoration-none">
-                                <i class="fa-regular fa-pen-to-square icon-edit" ></i>
-                            </a>
-
-                            <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
-                            data-bs-target="#DeleteModal">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </td>
-                    </tr>
+                    @foreach ($ads as $ad)
+                        <tr>
+                            <td>{{ $ad->id }}</td>
+                            <td>{{ $ad->title }}</td>
+                            <td>
+                                <img src="{{ asset('storage/app/public/images/ads/'.$ad->image_name ) }}" alt="product_image" id="table_image">
+                            </td>
+                            <td>{{ $ad->content }}</td>
+                            <td>{{ $ad->product_id }}</td>
+                            <td>
+                                <a href="{{ route('seller.ads.edit', $ad->product_id) }}" class="text-decoration-none">
+                                    <i class="fa-regular fa-pen-to-square icon-edit"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <button class="btn text-decoration-none icon-trash" type="button" data-bs-toggle="modal"
+                                    data-bs-target="#DeleteModal">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        @include('seller.modalSeller.deleteAd')
+                    @endforeach
                 </tbody>
-                @include('seller.modalSeller.deleteAd')
             </table>
         </div>
     </div>

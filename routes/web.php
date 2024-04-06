@@ -153,9 +153,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
-    Route::get('managementUser', function () {
-        return view('admin.management.managementUser');
-    });
+    Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
+    Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
+    Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
+    Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+
 
     Route::get('evaluation', function () {
         return view('admin.assessor.evaluation');

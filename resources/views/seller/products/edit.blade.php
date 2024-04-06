@@ -25,7 +25,7 @@
                                 {{ $loop->index + 1 }}
                             </div>
                             <div class="mt-3">
-                                <img src="{{ asset('/images/items/' . $productImage->productImages->image) }}"
+                                <img src="{{ asset('storage//images/items/' . $productImage->productImages->image) }}"
                                     alt="" class="image-md">
                             </div>
                             <form action="{{ route('seller.products.image.destroy',  ["i_id"=>$productImage->image_id, "p_id"=>$productImage->product_id] ) }}" method="POST">

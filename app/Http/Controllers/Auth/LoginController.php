@@ -36,7 +36,7 @@ class LoginController extends Controller
         if (Auth::guard('customer')->attempt($this->credentials($request), $request->filled('remember'))) {
             return true;
         }
-        
+
         // Attempt login for seller
         if (Auth::guard('seller')->attempt($this->credentials($request), $request->filled('remember'))) {
             return true;
@@ -46,7 +46,7 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt($this->credentials($request), $request->filled('remember'))) {
             return true;
         }
-        
+
         return false;
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
-use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Auth\AdminLoginController;
-
-use App\Http\Controllers\Users\SellerController;
+use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
-
+use App\Http\Controllers\Users\SellerController;
+use App\Http\Controllers\Products\ProductController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,6 +18,7 @@ use App\Http\Controllers\Users\CustomerController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Auth::routes();
 
 // Note: We might delete later
@@ -30,21 +29,33 @@ Route::get('/', function () {
 // Home
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Search
-Route::get('/search', function () { return view('customer.search'); });
+Route::get('/search', function () {
+    return view('customer.search');
+});
 // Product Detail / {product_id}
-Route::get('/productDetail', function () { return view('customer.productDetail'); });
+Route::get('/productDetail', function () {
+    return view('customer.productDetail');
+});
 // Inquiry
-Route::get('/inquiry', function () { return view('inquiry'); });
+Route::get('/inquiry', function () {
+    return view('inquiry');
+});
 
 // Payment
-Route::get('/customer/cart', function () { return view('customer.cart'); });
+Route::get('/customer/cart', function () {
+    return view('customer.cart');
+});
 
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     // Customer Register
-    Route::get('register', function () { return view('auth.register'); });
+    Route::get('register', function () {
+        return view('auth.register');
+    });
 
     // Customer Login
-    Route::get('signIn', function () { return view('auth.login'); });
+    Route::get('signIn', function () {
+        return view('auth.login');
+    });
 
     // Profile
     Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
@@ -52,18 +63,26 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
     Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
 
+    Route::get('profile', function () {
+        return view('customer.profile.profile');
+    });
+
+    Route::get('profile/editProfile', function () {
+        return view('customer.profile.profileEdit');
+    });
+
+
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
-    });    
+    });
 
     Route::get('transaction', function () {
         return view('customer.payment.transaction');
     });
-    
+
     Route::get('transaction/confirmation', function () {
         return view('customer.payment.confirmation');
     });
-    
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -71,7 +90,9 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
 
     // Seller
-    Route::get('dashboard', [SellerController::class, 'showDashboard'] )->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('seller.dashboard');
+    })->name('dashboard');
 
     // Seller Profile
     Route::get('profile', function () {
@@ -83,17 +104,29 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     });
 
     // Seller Product
-    Route::get('products/dashboard', function () {
-        return view('seller.products.dashboard');
-    });
+    Route::get('products/dashboard', [ProductController::class, 'show'])
+        ->name('products.dashboard');
 
-    Route::get('products/create', function () {
-        return view('seller.products.create');
-    });
+    Route::get('/products/create',  [ProductController::class, 'create'])
+        ->name('products.create');
 
-    Route::get('products/edit', function () {
-        return view('seller.products.edit');
-    });
+    Route::post('products/store',  [ProductController::class, 'store'])
+        ->name('products.store');
+
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])
+        ->name('products.edit');
+
+    Route::patch('products/{id}/update', [ProductController::class, 'update'])
+        ->name('products.update');
+
+    Route::get('products/{id}/delete', [ProductController::class, 'delete'])
+        ->name('products.delete');
+
+    Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
+        ->name('products.destroy');
+
+    Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+        ->name('products.image.destroy');
 
     // Seller Ads
     Route::get('ads/dashboard', function () {
@@ -120,7 +153,6 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('customerSupport', function () {
         return view('seller.inquiry.customerSupport');
     });
-
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

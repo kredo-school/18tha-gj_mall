@@ -23,10 +23,10 @@ return new class extends Migration
             $table->unsignedBigInteger('product_detail_id');
             $table->timestamps();
 
-            // $table->foreign('status_id')->references('id')->on('products_status');
-            // $table->foreign('seller_id')->references('id')->on('sellers');
-            // $table->foreign('category_id')->references('id')->on('categories');
-            // $table->foreign('product_detail_id')->references('id')->on('product_details');
+            $table->foreign('status_id')->references('id')->on('products_status');
+            $table->foreign('seller_id')->references('id')->on('sellers');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('product_detail_id')->references('id')->on('product_details');
         });
     }
 

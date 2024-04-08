@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Users\FavoriteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -170,4 +171,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('customerSupport', function () {
         return view('admin.inquiry.customerSupport');
     });
+});
+
+// Favorite
+Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
+    Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
+    Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
 });

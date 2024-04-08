@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Products\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -19,4 +20,8 @@ class Seller extends Model implements Authenticatable
         'password',
         'payment_id',
     ];
+
+    public function products() {
+        return $this->hasMany(Product::class);
+    }
 }

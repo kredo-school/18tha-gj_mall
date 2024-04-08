@@ -8,18 +8,12 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class OrderStatusSeeder extends Seeder
 {
-    private $table;
-
-    private function __construct(OrderStatus $table)
-    {
-        $this->table = $table;
-    }
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $order_status = [
+        $orderStatus = [
             [
                 'status' => '1',
                 'created_at' => now(),
@@ -57,7 +51,6 @@ class OrderStatusSeeder extends Seeder
             ]
         ];
 
-        $this->table->insert($order_status); 
-
+        OrderStatus::insert($orderStatus);
     }
 }

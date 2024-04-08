@@ -55,7 +55,7 @@
                 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         @auth 
-                            <a class="nav-link dropdown-item" href="{{ url('/customer/profile') }}">
+                            <a class="nav-link dropdown-item" href="{{ route('customer.profile', Auth::user()->id) }}">
                                 <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                             </a>
                             <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">

@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
-            $table->string('alpha3', 3)->primary();
-            $table->string('name');
-            $table->string('region');
-            $table->string('sub_region');
+        Schema::create('payments', function (Blueprint $table) {
+            $table->id();
+            $table->string('card_name');
+            $table->bigInteger('card_number');
+            $table->date('expiry_date');
+            $table->unsignedBigInteger('customer_id');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')->on('customers');
         });
     }
 
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('payments');
     }
 };

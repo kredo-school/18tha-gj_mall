@@ -46,4 +46,8 @@ class Product extends Model
             return false;
         }
     }
+    
+    public function ads(){
+        return $this->hasMany(Ad::class ,'product_id' , 'id');
+    }
 }

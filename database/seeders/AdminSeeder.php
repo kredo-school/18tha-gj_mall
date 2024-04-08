@@ -9,18 +9,26 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AdminSeeder extends Seeder
 {
-    private $admin;
+    // private $admin;
 
-    private function __construct(Admin $admin)
-    {
-        $this->admin = $admin;
-    }
+    // private function __construct(Admin $admin)
+    // {
+    //     $this->admin = $admin;
+    // }
 
     /**
      * Run the database seeds.
      */
+    // public function run(): void
+    // {
+    
+
+    //     $this->admin->insert($admins);
+    // }
     public function run(): void
     {
+        $admin = new Admin();
+
         $admins = 
         [
             [
@@ -28,8 +36,8 @@ class AdminSeeder extends Seeder
                 'last_name'    => 'Yamada',
                 'email'        => 'admin123@gmail.com',
                 'phone_number' => '01201112222',
-                'password '    => Hash::make('admin123'),
-                'role '        => '1',
+                'password'    => Hash::make('admin123'),
+                'role'        => 1,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -38,8 +46,8 @@ class AdminSeeder extends Seeder
                 'last_name'    => 'Smith',
                 'email'        => 'stuff123@gmail.com',
                 'phone_number' => '01201113333',
-                'password '    => Hash::make('stuff123'),
-                'role '        => '2',
+                'password'    => Hash::make('stuff123'),
+                'role'        => 2,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -48,8 +56,8 @@ class AdminSeeder extends Seeder
                 'last_name'    => 'Carlo',
                 'email'        => 'translater123@gmail.com',
                 'phone_number' => '01201114444',
-                'password '    => Hash::make('translater123'),
-                'role '        => '3',
+                'password'    => Hash::make('translater123'),
+                'role '        => 3,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -58,8 +66,8 @@ class AdminSeeder extends Seeder
                 'last_name'    => 'Trout',
                 'email'        => 'assessor123@gmail.com',
                 'phone_number' => '01201115555',
-                'password '    => Hash::make('assessor123'),
-                'role '        => '4:',
+                'password'    => Hash::make('assessor123'),
+                'role'        => 4,
                 'created_at' => now(),
                 'updated_at' => now()
             ],
@@ -67,14 +75,14 @@ class AdminSeeder extends Seeder
                 'first_name'   => 'David',
                 'last_name'    => 'Cruse',
                 'email'        => 'delivery123@gmail.com',
-                'phone_number' => '01201115555',
-                'password '    => Hash::make('delivery123'),
-                'role '        => '5',
+                'phone_number' => '012011155212',
+                'password'    => Hash::make('delivery123'),
+                'role'        => 5,
                 'created_at' => now(),
                 'updated_at' => now()
             ]
         ];
-
-        $this->admin->insert($admins);
+        
+        $admin->insert($admins);
     }
 }

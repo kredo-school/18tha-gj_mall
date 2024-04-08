@@ -18,7 +18,7 @@
             <div class="row ">
                 <div class="col text-center pt-3">
                     @foreach ($product->productImage->take(1) as $prodcutImage)
-                        <img src="{{ asset('/images/items/' . $prodcutImage->productImages->image) }}" alt=""
+                        <img src="{{ asset('storage/images/items/' . $prodcutImage->productImages->image) }}" alt=""
                             class="image-delete">
                     @endforeach
                 </div>

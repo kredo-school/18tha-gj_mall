@@ -5,12 +5,15 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/seller/ads.css') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 
     <h2 class="my-4">Create Advertisment</h2>
 
     <div class="row justify-content-end me-4">
         <div class="col mt-4">
-            <div class="form">
+            <form action="{{ route('seller.ads.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <h4>Image</h4>
 
@@ -19,49 +22,54 @@
                         <div class="image-num">
                             1
                         </div>
-                        <div class="mt-3">
-                            <img src="{{ asset('images/items/item1.svg') }}" alt="" class="image-md">
-                        </div>
                         <label class="d-inline plus-circle-overlay">
                             {{-- this appears if the images are selected in order to change the images --}}
-                            <input type="file" style="display: none;">
+                            <input type="file" id="cat_image" style="display: none;" name="image">
                             +
                         </label>
+                        <div class="mt-3 image-md">
+                            <img src="#" id="category-img-tag" />
+                        </div>
+
                     </div>
+                    @error('image')
+                        <div class="small text-danger">{{ $message }}</div>
+                    @enderror
 
-
-                    {{-- when the images isn't in the database, only the below component will show up --}}
-                    {{-- <div class="col-auto align-middle ps-5" style="position: relative; display: inline-block;">
-                        <label class="d-inline plus-circle">
-                            <input type="file" style="display: none;">
-                            +
-                        </label>
-                    </div> --}}
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-6">
                         <label for="title" class="form-label h4 fw-bold">Title</label>
-                        <input type="text" id="title" name="title" class="form-control">
+                        <input type="text" id="title" name="title" class="form-control"
+                            value="{{ old('title') }}">
                     </div>
+                    @error('title')
+                        <div class="small text-danger">{{ $message }}</div>
+                    @enderror
 
                     <div class="col-6">
                         <label for="product-id" class="form-label h4 fw-bold">Product Id</label>
-                        <select name="category" id="category" class="form-select">
+                        <select name="product_id" id="product-id" class="form-select">
                             <option disabled selected>Select Product ID</option>
-                            {{-- get from the database --}}
-                            <option value="">id1 -- name1</option>
-                            <option value="">id2 -- name2</option>
-                            <option value="">id3 -- name3</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->id . ' -- ' . $product->name }}</option>
+                            @endforeach
                         </select>
+                        @error('product_id')
+                            <div class="small text-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col">
                         <label for="content" class="form-label h4 fw-bold">Description</label>
-                        <textarea name="content" id="content" rows="5" class="form-control"></textarea>
+                        <textarea name="content" id="content" rows="5" class="form-control">{{ old('content') }}</textarea>
                     </div>
+                    @error('content')
+                        <div class="small text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="row my-4">
@@ -73,7 +81,8 @@
                         <button type="submit" class="btn custom-button-save w-100">Save</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+    <script src="{{ asset('js/sellerAdCreate.js') }}"></script>
 @endsection

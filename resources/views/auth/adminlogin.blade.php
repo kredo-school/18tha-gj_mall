@@ -42,8 +42,7 @@
             </div>
 
             <!-- Sign-in Form -->
-
-            <form method="POST" action="{{ route('admin.signIn') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <!-- E-mail -->

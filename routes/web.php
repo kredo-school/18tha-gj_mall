@@ -7,6 +7,7 @@ use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\AdController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| be assigned to the 'web' middleware group. Make something great!
 |
 */
 
@@ -60,7 +61,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
 
     // Profile
     Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
-  
+
     Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
     Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
 
@@ -76,17 +77,13 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
     });
-
-
-Route::get('/admin/delivery', function () {
-    return view('admin.delivery.deliveryList');
 });
 
-Route::get('/admin/customerSupport', function () {
-    return view('admin.inquiry.customerSupport');
-});
-
+Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller
+    Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
+    Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
+
     Route::get('/dashboard', function () {
         return view('seller.dashboard');
     })->name('dashboard');
@@ -126,17 +123,26 @@ Route::get('/admin/customerSupport', function () {
         ->name('products.image.destroy');
 
     // Seller Ads
-    Route::get('ads/dashboard', function () {
-        return view('seller.ads.dashboard');
-    });
+    Route::get('/ads/dashboard', [AdController::class, 'show'])
+        ->name('ads.dashboard');
 
-    Route::get('ads/create', function () {
-        return view('seller.ads.create');
-    });
+    Route::get('ads/create', [AdController::class, 'create'])
+        ->name('ads.create');
 
-    Route::get('ads/edit', function () {
-        return view('seller.ads.edit');
-    });
+    Route::post('ads/store', [AdController::class, 'store'])
+        ->name('ads.store');
+
+    Route::get('ads/{id}/edit', [AdController::class, 'edit'])
+        ->name('ads.edit');
+
+    Route::patch('ads/{id}/update', [AdController::class, 'update'])
+        ->name('ads.update');
+
+    Route::patch('ads/{id}/delete', [AdController::class, 'delete'])
+        ->name('ads.delete');
+
+    Route::delete('ads/{id}/destroy', [AdController::class, 'destroy'])
+        ->name('ads.destroy');
 
     // Seller Evaluation
     Route::get('evaluation', function () {
@@ -163,6 +169,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
     Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
 
+    Route::get('/admin/delivery', function () {
+        return view('admin.delivery.deliveryList');
+    });
+
+    Route::get('/admin/customerSupport', function () {
+        return view('admin.inquiry.customerSupport');
+
+    });
 
     Route::get('evaluation', function () {
         return view('admin.assessor.evaluation');

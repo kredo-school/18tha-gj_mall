@@ -13,12 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProductController extends Controller
 
 {
+
+    const LOCAL_FOLDER_PATH = 'public/images/items/';
     private $product;
     private $product_detail;
     private $product_image;
@@ -36,7 +38,7 @@ class ProductController extends Controller
 
     public function show()
     {
-        $products = $this->product->where('seller_id' ,Auth::guard('seller')->id())->orderBy('created_at', 'desc')->take(5)->get();
+        $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->take(5)->get();
 
         return view('seller.products.dashboard')->with('products', $products);
     }
@@ -90,14 +92,14 @@ class ProductController extends Controller
 
         $cnt = 0;
         foreach ($request->images as $image) {
-            $imageName = time() .$cnt. '.' . $image->extension();
+            $imageName = time() . $cnt . '.' . $image->extension();
             $imageNames[] =
                 [
                     "image" => $imageName,
                     "created_at" => now(),
                     "updated_at" => now(),
                 ];
-            $image->move(public_path('images/items/'), $imageName);
+            $image->storeAs(self::LOCAL_FOLDER_PATH, $imageName);
             $cnt++;
         }
 
@@ -171,26 +173,26 @@ class ProductController extends Controller
         // store images to product_images table and pivot product_image tables
 
 
-        if($request->images) {
+        if ($request->images) {
             $imageNames = [];
             $product_image_ids = [];
             $cnt = 0;
             foreach ($request->images as $image) {
-                $imageName = time() .$cnt. '.' . $image->extension();
+                $imageName = time() . $cnt . '.' . $image->extension();
                 $imageNames[] =
                     [
                         "image" => $imageName,
                         "created_at" => now(),
                         "updated_at" => now(),
                     ];
-                $image->move(public_path('images/items/'), $imageName);
+                $image->storeAs(self::LOCAL_FOLDER_PATH, $imageName);
                 $cnt++;
             }
 
             ProductImages::insert($imageNames);
 
             // get the image_id from the product_images table and define the number of data from the image name array
-            $max_image_id = ProductImages::orderBy('id','desc')->first()->id;
+            $max_image_id = ProductImages::orderBy('id', 'desc')->first()->id;
 
             $length = count($imageNames);
 
@@ -216,12 +218,19 @@ class ProductController extends Controller
         $product = $this->product->findOrfail($id);
 
         return view('seller.products.dashboard')
-            ->with('product',$product);
+            ->with('product', $product);
     }
 
     public function destroy($id)
     {
         $product = $this->product->findOrfail($id);
+
+        foreach ($product->productImage as $image) {
+            $filePath = self::LOCAL_FOLDER_PATH . $image->productImages->image;
+            if (Storage::disk('local')->exists($filePath)) {
+                Storage::disk('local')->delete($filePath);
+            }
+        }
 
         $product->delete();
 
@@ -229,19 +238,19 @@ class ProductController extends Controller
     }
 
 
-    public function imageDestroy($i_id , $p_id)
+    public function imageDestroy($i_id, $p_id)
     {
         // new $image();
 
         $image = $this->product_images->findOrfail($i_id);
 
-        $filePath = public_path('images/items/' . $image->image);
+        $filePath = self::LOCAL_FOLDER_PATH . $image->image;
 
         // delete the file itself
 
-        if (File::exists($filePath)) {
+        if (Storage::disk('local')->exists($filePath)) {
 
-            if(File::delete($filePath)){
+            if (Storage::disk('local')->delete($filePath)) {
                 Log::info("File $filePath deleted successfully.");
             } else {
                 Log::error("Failed to delete file $filePath.");
@@ -257,8 +266,8 @@ class ProductController extends Controller
 
         // delete the record in product_image
         $this->product_image
-            ->where('product_id' , $p_id)
-            ->where('image_id' , $i_id)
+            ->where('product_id', $p_id)
+            ->where('image_id', $i_id)
             ->delete();
 
         // or set the ondeletecascade to the migration file

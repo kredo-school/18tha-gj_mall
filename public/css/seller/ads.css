@@ -3,9 +3,14 @@
     width: 200px;
 }
 
+.image-banner {
+    max-height: 200px;
+    width: auto;
+}
+
 .image-sm {
-    height: 100px;
-    width: 100px;
+    height: auto;
+    width: 200px;
 }
 
 .image-num {
@@ -220,7 +225,7 @@ label {
 
 .gj-mall {
     font-size: 48px;
-    font-weight: bold; 
+    font-weight: bold;
     text-shadow: 3px 5px 3px #FFFFFF;
 }
 
@@ -250,7 +255,12 @@ label {
 }
 
 #table_image {
-    width: 100px;
+    width: auto;
     height: 100px;
     object-fit: cover;
+}
+
+#category-img-tag {
+    max-height: 200px;
+    width: auto;
 }

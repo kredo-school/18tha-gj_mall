@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('address', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('unit_number')->nullable();
             $table->string('street_number')->nullable();
@@ -20,10 +20,12 @@ return new class extends Migration
             $table->string('city');
             $table->string('region');
             $table->string('postal_code', 12);
-            $table->unsignedBigInteger('country_code');  // alphabet 3 letters
+            $table->string('country_code', 3);
+            $table->unsignedBigInteger('customer_id');
             $table->timestamps();
 
-            // $table->foreign('country_code')->references('alpha3')->on('countries');
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('country_code')->references('alpha3')->on('countries');
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('address');
+        Schema::dropIfExists('addresses');
     }
 };

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Users\Address;
 use App\Models\Users\Customer;
+use App\Models\Users\Payment;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,12 +77,36 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        return Customer::create([
-            'first_name' => $data['first_name'],
-            'last_name'  => $data['last_name'],
-            'email'      => $data['email'],
-            'password'   => Hash::make($data['password']),
+        $customer = Customer::create([
+            'first_name'   => $data['first_name'],
+            'last_name'    => $data['last_name'],
+            'email'        => $data['email'],
+            'password'     => Hash::make($data['password']),
+            'phone_number' => '',
+            'avatar'       => '',
+        ]);   
 
-        ]);        
+        $customer_id = $customer->id;
+
+        Address::create([
+            'unit_number'   => '',
+            'street_number' => '',
+            'address_line1' => '',
+            'address_line2' => '',
+            'region'        => '',
+            'postal_code'   => '', 
+            'city'          => 'Unknown', 
+            'country_code'  => 'NON',
+            'customer_id'   => $customer_id,
+        ]);
+
+        Payment::create([
+            'card_name'   => '',
+            'card_number' => 0,
+            'expiry_date' => '1970-01-01',
+            'customer_id' => $customer_id,
+        ]);
+
+        return $customer;
     }
 }

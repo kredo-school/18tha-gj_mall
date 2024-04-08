@@ -4,13 +4,12 @@
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Users\AdminController;
+use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\AdController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +60,10 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     });
 
     // Profile
-    Route::get('profile', function () { return view('customer.profile.profile'); });
+    Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
+
+    Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
+    Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
 
     Route::get('profile', function () {
         return view('customer.profile.profile');
@@ -70,6 +72,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('profile/editProfile', function () {
         return view('customer.profile.profileEdit');
     });
+
 
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');

@@ -8,18 +8,12 @@ use App\Models\Users\Customer;
 
 class CustomerSeeder extends Seeder
 {
-    private $customer;
-
-    public function __construct(Customer $customer)
-    {
-        $this->customer = $customer;
-    }
-
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
+        $customer = new Customer();
 
         $customers = [
             [
@@ -30,7 +24,6 @@ class CustomerSeeder extends Seeder
                 'phone_number' => '000-123-5678',
                 'password' => bcrypt('password'),
                 'avatar' => 'avatar1.svg', // public/images/customer/avatar1.svg
-                'payment_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -42,7 +35,6 @@ class CustomerSeeder extends Seeder
                 'phone_number' => '000-234-6789',
                 'password' => bcrypt('password'),
                 'avatar' => 'avatar1.svg',
-                'payment_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -54,13 +46,12 @@ class CustomerSeeder extends Seeder
                 'phone_number' => '000-345-7891',
                 'password' => bcrypt('password'),
                 'avatar' => 'avatar1.svg',
-                'payment_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
 
         ];
 
-        $this->customer->insert($customers); // insert the values to customers table
+        $customer->insert($customers); // insert the values to customers table
     }
 }

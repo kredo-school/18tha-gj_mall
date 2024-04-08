@@ -18,7 +18,7 @@
                 <div class="carousel-inner">
                     @foreach ($ads as $index => $ad)
                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}" style="height: 450px;">
-                            <img src="{{ asset('images/ads/'. $ad->image_name) }}" class="d-block w-100" alt="{{ $ad->title }}">
+                            <img src="{{ asset('storage/images/ads/'. $ad->image_name) }}" class="d-block w-100" alt="{{ $ad->title }}">
                             <div id="content" class="carousel-caption d-block text-white">
                                 <h4>{{ $ad->title }}</h4>
                                 <p class="lead text-truncate">{{ $ad->content }}</p>
@@ -56,7 +56,7 @@
                                             <div class="col-xl-2 col-lg-4 col-md-3 col-sm-6 p-0 ps-2">
                                                 <div class="card p-2 border-1 rounded-0 h-100">
                                                     @if ($product->productImage->isNotEmpty())
-                                                        <img src="{{ asset('images/items/'. $product->productImage->first()->productImages->image) }}" alt="Product Image" class="card-img-top custom-card-img-top">
+                                                        <img src="{{ asset('storage/images/items/'. $product->productImage->first()->productImages->image) }}" alt="Product Image" class="card-img-top custom-card-img-top">
                                                     @else
                                                         <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top custom-card-img-top">
                                                     @endif
@@ -154,7 +154,7 @@
                                             @if ($favorite)
                                                 <div class="card p-2 border-1 rounded-0 h-100">
                                                     @if ($favorite->productImage->isNotEmpty())
-                                                        <img src="{{ asset('images/items/'. $favorite->productImage->first()->productImages->image) }}" alt="Product Image" class="card-img-top custom-card-img-top">
+                                                        <img src="{{ asset('storage/images/items/'. $favorite->productImage->first()->productImages->image) }}" alt="Product Image" class="card-img-top custom-card-img-top">
                                                     @else
                                                         <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top custom-card-img-top">
                                                     @endif

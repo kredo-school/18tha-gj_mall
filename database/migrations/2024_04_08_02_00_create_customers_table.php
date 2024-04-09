@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_lines', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('order_id');
-            $table->unsignedBigInteger('qty');
-            $table->double('price');
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email')->unique();
+            $table->string('phone_number')->nullable()->unique();
+            $table->string('password');
+            $table->string('avatar', 15)->nullable();
             $table->timestamps();
 
-            // Foreign Keys
-            // $table->foreign('product_id')->references('products')->on('id');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_lines');
+        Schema::dropIfExists('customers');
     }
 };

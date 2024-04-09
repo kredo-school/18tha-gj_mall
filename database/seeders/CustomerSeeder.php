@@ -13,6 +13,7 @@ class CustomerSeeder extends Seeder
      */
     public function run(): void
     {
+
         $customer = new Customer();
 
         $customers = [
@@ -53,5 +54,7 @@ class CustomerSeeder extends Seeder
         ];
 
         $customer->insert($customers); // insert the values to customers table
+
+        Customer::factory(97)->create();
     }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\Inquiries\InquiryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -39,10 +40,10 @@ Route::get('/search', function () {
 Route::get('/productDetail', function () {
     return view('customer.productDetail');
 });
+
 // Inquiry
-Route::get('/inquiry', function () {
-    return view('inquiry');
-});
+Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
+Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 
 // Payment
 Route::get('/customer/cart', function () {

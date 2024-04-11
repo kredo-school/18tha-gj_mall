@@ -24,8 +24,9 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('country_code')->references('alpha3')->on('countries');
+            $table->foreign('customer_id')->on('customers')->references('id');
+            $table->foreign('country_code')->on('countries')->references('alpha3');
+            
         });
     }
 

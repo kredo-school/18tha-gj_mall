@@ -23,10 +23,10 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Keys
-            // $table->foreign('customer_id')->references('customers')->on('id');
-            // $table->foreign('product_id')->references('products')->on('id');
-            // $table->foreign('genre_id')->references('inquiry_genres')->on('id');
-            // $table->foreign('inquiry_status_id')->references('inquiry_status')->on('id');
+            $table->foreign('genre_id')->on('inquiry_genres')->references('id');
+            $table->foreign('inquiry_status_id')->on('inquiry_status')->references('id');
+            // $table->foreign('product_id')->on('products')->references('id');
+            $table->foreign('customer_id')->on('customers')->references('id');
         });
     }
 

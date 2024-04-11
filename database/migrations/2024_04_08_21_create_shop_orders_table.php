@@ -21,11 +21,10 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Keys
-            // $table->foreign('shipping_method_id')->references('shipping_method')->on('id');
-            // $table->foreign('id')->references('order_line')->on('order_id');
-            // $table->foreign('customer_id')->references('customers')->on('id');
-            // $table->foreign('address_id')->references('address')->on('id');
-            // $table->foreign('status_id')->references('order_status')->on('id');
+            $table->foreign('shipping_method_id')->on('shipping_method')->references('id');
+            $table->foreign('status_id')->on('order_status')->references('id');
+            $table->foreign('address_id')->on('addresses')->references('id');
+            $table->foreign('customer_id')->on('customers')->references('id');
         });
     }
 

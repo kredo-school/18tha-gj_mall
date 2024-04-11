@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('ads', function (Blueprint $table) {
             $table->id();
             $table->string('title' , 50);
             $table->text('content');
-            $table->tinyInteger('rating')->nullable()->comment('min:0, max:5');
-            $table->unsignedBigInteger('order_line_id');
+            $table->string('image_name', 15);  //file name of image
             $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
-            // $table->foreign('order_line_id')->references('order_lind')->on('id');
-            // $table->foreign('product_id')->references('products')->on('id');
+            $table->foreign('product_id')->on('products')->references('id');
 
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('ads');
     }
 };

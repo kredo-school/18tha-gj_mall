@@ -18,9 +18,11 @@ return new class extends Migration
             $table->tinyInteger('rating')->nullable()->comment('min:0, max:5');
             $table->unsignedBigInteger('order_line_id');
             $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('customer_id');
             $table->timestamps();
 
             $table->foreign('product_id')->on('products')->references('id');
+            $table->foreign('customer_id')->on('customers')->references('id');
             $table->foreign('order_line_id')->references('id')->on('shop_orders');
         });
     }

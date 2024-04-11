@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign Keys
-            
+            $table->foreign('address_id')->on('addresses')->references('id');
 
         });
     }

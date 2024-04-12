@@ -95,9 +95,11 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         return view('seller.profile.sellerProfile');
     });
 
-    Route::get('profile/editProfile', function () {
-        return view('seller.profile.editProfile');
-    });
+    Route::get('profile/editProfile', [SellerController::class, 'show'])
+        ->name('profile.editProfile');
+
+    Route::patch('profile/updateProfile', [SellerController::class, 'update'])
+        ->name('profile.updateProfile');
 
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])

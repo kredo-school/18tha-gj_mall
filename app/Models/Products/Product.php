@@ -46,8 +46,12 @@ class Product extends Model
             return false;
         }
     }
-    
+
     public function ads(){
         return $this->hasMany(Ad::class ,'product_id' , 'id');
+    }
+
+    public function orderLines(){
+        return $this->hasMany(OrderLine::class ,'product_id' , 'id');
     }
 }

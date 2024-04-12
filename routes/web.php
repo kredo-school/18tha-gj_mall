@@ -105,6 +105,9 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
 
+    Route::post('products/search', [ProductController::class, 'search'])
+        ->name('products.search');
+
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');
 

@@ -11,149 +11,105 @@
             {{-- Top5 Ranking --}}
             <div class="row mb-5">
                 <h2 class="fw-bold h3">Top5 BestSeller</h2>
+                @foreach ($products_ranking as $product_ranking)
+                    <div class="col-auto px-1">
+                        <div class="border rounded-0 p-2 card-parent">
+                            <div class="rank-num px-2">{{ $loop->index + 1 }}</div>
+                            @if ($product_ranking->productImage->isNotEmpty())
+                                <img src="{{ asset('storage/images/items/'. $product_ranking->productImage->first()->productImages->image) }}"
+                                    class="card-img-top rank-image img img-fluid" alt="owan">
+                            @else
+                                <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top rank-image img img-fluid">
+                            @endif
 
-                <div class="col-auto">
-                    {{-- card item 1 start --}}
-                    <div class="border rounded-0 p-2 card-parent">
-                        <div class="rank-num px-2">1</div>
-                        <img src="{{ asset('images/items/item1.svg') }}" class="card-img-top rank-image" alt="owan">
-
-                        <div class="product_detail mt-2">
-                            <h5 class="text-truncate">Card title</h5>
-                            <h5>Price</h5>
+                            <div class="product_detail mt-2">
+                                <h5 class="d-inline-block text-truncate" style="max-width: 180px;">
+                                    {{ $product_ranking->name }}</h5>
+                                <h5>$ {{ $product_ranking->price }}</h5>
+                                <p>Total Sales: {{ $product_ranking->total_sales }}</p>
+                            </div>
                         </div>
-                    </div>
-                    {{-- card item 1 end --}}
-                </div>
 
-                <div class="col-auto">
-                    {{-- card item 2 start --}}
-                    <div class="border rounded-0 p-2 card-parent">
-                        <div class="rank-num px-2">2</div>
-                        <img src="{{ asset('images/items/item2.svg') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="product_detail mt-2">
-                            <h5 class="text-truncate">Card title</h5>
-                            <h5>Price</h5>
-                        </div>
                     </div>
-                    {{-- card item 2 end --}}
-                </div>
+                @endforeach
+                {{-- Top5 Ranking end --}}
 
-                <div class="col-auto">
-                    {{-- card item 3 start --}}
-                    <div class="border rounded-0 p-2 card-parent">
-                        <div class="rank-num px-2">3</div>
-                        <img src="{{ asset('images/items/item3.svg') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="product_detail mt-2">
-                            <h5 class="text-truncate">Card title</h5>
-                            <h5>Price</h5>
-                        </div>
-                    </div>
-                    {{-- card item 3 end --}}
-                </div>
+                {{-- Search bar --}}
+                <div class="row mt-4">
+                    <div class="col-8 my-2">
 
-                <div class="col-auto">
-                    {{-- card item 4 start --}}
-                    <div class="border rounded-0 p-2 card-parent">
-                        <div class="rank-num px-2">4</div>
-                        <img src="{{ asset('images/items/item4.svg') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="product_detail mt-2">
-                            <h5 class="text-truncate">Card title</h5>
-                            <h5>Price</h5>
-                        </div>
-                    </div>
-                    {{-- card item 4 end --}}
-                </div>
+                        <form action="{{ route('seller.products.search') }}" method="POST">
+                            @csrf
+                            <input type="search" name="search" placeholder="Search..."
+                                class="form-control form-control-sm">
+                        </form>
 
-                <div class="col-auto">
-                    {{-- card item 5 start --}}
-                    <div class="border rounded-0 p-2 card-parent">
-                        <div class="rank-num px-2">5</div>
-                        <img src="{{ asset('images/items/item5.svg') }}" class="card-img-top rank-image" alt="owan">
-                        <div class="product_detail mt-2">
-                            <h5 class="text-truncate">Card title</h5>
-                            <h5>Price</h5>
-                        </div>
                     </div>
-                    {{-- card item 5 end --}}
+                    <div class="col mt-1">
+                        <a href="{{ route('seller.products.create') }}">
+                            <button class=" btn custom-button w-100 shadow-sm">Create Product
+                    </div>
+                    </a>
                 </div>
             </div>
 
-
-            {{-- Top5 Ranking end --}}
-
-            {{-- Search bar --}}
-            <div class="row mt-4">
-                <div class="col-8 my-2">
-
-                    <form action="#">
-                        <input type="search" name="search" placeholder="Search..." class="form-control form-control-sm">
-                    </form>
-
-                </div>
-                <div class="col mt-1">
-                    <a href="{{ route('seller.products.create') }}">
-                        <button class=" btn custom-button w-100 shadow-sm">Create Product
-                </div>
-                </a>
-            </div>
-        </div>
-
-        {{-- product lists --}}
-        <div class="row">
-            <div class="col">
-                <table class="table table-hover align-middle bg-white border mt-2">
-                    <thead class="small table-secondary text-light">
-                        <tr>
-                            <th>Product ID</th>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>Description</th>
-                            <th>Fragile</th>
-                            <th>Weight</th>
-                            <th>Size</th>
-                            <th>Maximum Stock</th>
-                            <th>Category</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-center bg-white">
-                        @foreach ($products as $product)
+            {{-- product lists --}}
+            <div class="row">
+                <div class="col">
+                    <table class="table table-hover align-middle bg-white border mt-2">
+                        <thead class="small table-secondary text-light">
                             <tr>
-                                <td>{{ $product->id }}</td>
-                                <td>{{ $product->name }}</td>
-                                <td>{{ $product->price }}</td>
-                                <td>{{ $product->description }}</td>
-                                <td>
-                                    @if ($product->is_fragile == 1)
-                                        Yes
-                                    @else
-                                        No
-                                    @endif
-                                    {{ $product->is_fragile }}
-                                </td>
-                                <td>{{ $product->productDetail->weight }}</td>
-                                <td>{{ $product->productDetail->size }}</td>
-                                <td>{{ $product->qty_in_stock }}</td>
-                                <td>{{ $product->category->name }}</td>
-                                <td>
-                                    <a href="{{ route('seller.products.edit', $product->id) }}"
-                                        class="btn text-decoration-none edit-icon">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="{{ route('seller.products.delete', $product->id) }}" type="button" class="btn text-decoration-none trash-icon" data-bs-toggle="modal" data-bs-target="#DeleteProduct-{{$product->id}}">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                </td>
+                                <th>Product ID</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Fragile</th>
+                                <th>Weight</th>
+                                <th>Size</th>
+                                <th>Maximum Stock</th>
+                                <th>Category</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                            @include('seller.modalSeller.deleteProduct')
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="text-center bg-white">
+                            @foreach ($products as $product)
+                                <tr>
+                                    <td>{{ $product->id }}</td>
+                                    <td>{{ $product->name }}</td>
+                                    <td>{{ $product->price }}</td>
+                                    <td>{{ $product->description }}</td>
+                                    <td>
+                                        @if ($product->productDetail->is_fragile == 1)
+                                            Yes
+                                        @else
+                                            No
+                                        @endif
+                                        {{ $product->productDetail->is_fragile }}
+                                    </td>
+                                    <td>{{ $product->productDetail->weight }}</td>
+                                    <td>{{ $product->productDetail->size }}</td>
+                                    <td>{{ $product->qty_in_stock }}</td>
+                                    <td>{{ $product->category->name }}</td>
+                                    <td>
+                                        <a href="{{ route('seller.products.edit', $product->id) }}"
+                                            class="btn text-decoration-none edit-icon">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('seller.products.delete', $product->id) }}" type="button"
+                                            class="btn text-decoration-none trash-icon" data-bs-toggle="modal"
+                                            data-bs-target="#DeleteProduct-{{ $product->id }}">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                @include('seller.modalSeller.deleteProduct')
+                            @endforeach
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
-        </div>
-    @endsection
+        @endsection

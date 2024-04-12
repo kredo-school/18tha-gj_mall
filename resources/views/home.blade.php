@@ -82,12 +82,13 @@
                                                     @endauth
                                                                                                         
                                                     <div class="card-body p-2">    
-                                                        <div class="mt-2 d-flex">
-                                                            <div class="flex-fill">
-                                                                <h4 class="card-title mb-0">{{ $product->name }}</h4>
-                                                            </div>
-                                                            <div class="flex-fill text-end">${{ $product->price }}</div>
-                                                        </div>
+                                                        <a href="{{ route('productDetail', $product->id) }}" class="text-decoration-none text-dark">
+                                                            <h4 class="card-title mb-0 text-truncate">
+                                                                {{ $product->name }}
+                                                            </h4>
+                                                        </a>
+                                                     
+                                                        <div class="d-block">${{ $product->price }}</div>
                                                         
                                                         <a href="" class="text-decoration-none" style="color: #FF3A3A;">{{ $product->seller->last_name }}{{ $product->seller->first_name }}</a>
                                                         
@@ -168,12 +169,13 @@
                                                     </form>
             
                                                     <div class="card-body p-2">    
-                                                        <div class="mt-2 d-flex">
-                                                            <div class="flex-fill">
-                                                                <h4 class="card-title mb-0">{{ $favorite->name }}</h4>
-                                                            </div>
-                                                            <div class="flex-fill text-end">${{ $favorite->price }}</div>
-                                                        </div>
+                                                        <a href="{{ route('productDetail', $product->id) }}" class="text-decoration-none text-dark">
+                                                            <h4 class="card-title mb-0 text-truncate">
+                                                                {{ $favorite->name }}
+                                                            </h4>
+                                                        </a>
+                                                        
+                                                        <div class="d-block">${{ $favorite->price }}</div>
                                                         
                                                         <a href="" class="text-decoration-none" style="color: #FF3A3A;">{{ $favorite->seller->last_name }}{{ $favorite->seller->first_name }}</a>
                                                         

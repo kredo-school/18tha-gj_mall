@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Products\Review;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,5 +31,9 @@ class Customer extends Model implements Authenticatable
     public function address()
     {
         return $this->hasOne(Address::class);
+    }
+
+    public function reviews() {
+        return $this->hasMany(Review::class);
     }
 }

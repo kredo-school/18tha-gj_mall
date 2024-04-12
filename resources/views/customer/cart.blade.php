@@ -50,7 +50,7 @@
                                                     <div class="col-1">
                                                         <div class="row align-items-center text-center h-100 border-end">
                                                             <div class="col">
-                                                                <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="item-checkbox" data-item-id="{{ $product->id }}" style="width: 23px; height: 23px;">
+                                                                <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="checked item-checkbox" data-item-id="{{ $product->id }}" style="width: 23px; height: 23px;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -78,7 +78,18 @@
                                                             <div class="col text-end">
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
-                                                                        <input type="number" name="quantity" id="quantity" class="form-control" min="0" max="{{ $product->qty_in_stock }}" value="{{ $item->qty }}">
+                                                                        <input type="number" name="quantity[{{ $item->id }}]" class="quantity form-control" min="1" max="{{ $product->qty_in_stock }}" value="{{ $item->qty }}">
+                                                                    @endif
+                                                                @endforeach
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="row align-items-center text-center h-100" style="display: none">
+                                                            <div class="col text-end">
+                                                                @foreach ($cart_items as $item)
+                                                                    @if ( $item->product_id === $product->id )
+                                                                        <h4 class="mt-2">$ <span class="product_price">{{ $product->price }}</span></h4>
                                                                     @endif
                                                                 @endforeach
                                                             </div>
@@ -89,7 +100,7 @@
                                                             <div class="col text-end">
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
-                                                                        <h4 class="mt-2">$ <span class="product_price" id="product_price">{{ $product->price }}</span></h4>
+                                                                        <h4 class="mt-2">$ <span class="total_price_for_item">{{ number_format($item->qty * $product->price, 2) }}</span></h4>
                                                                     @endif
                                                                 @endforeach
                                                             </div>

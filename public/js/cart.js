@@ -1,117 +1,131 @@
 
-// Checked/Unchecked button function
 document.addEventListener('DOMContentLoaded', function() {
+    //Step 1: Get all the cart card elements
+    const cartItems = document.querySelectorAll('.cartItem-card');
 
-    const checkboxes = document.querySelectorAll('.item-checkbox'); 
-
-    checkboxes.forEach(function(checkbox) { 
+    //For each cart element, listen if it was "changed", if its checked then add the value, if its not then subtract
+    cartItems.forEach(function(item) { 
+        const checkbox = item.querySelector('.item-checkbox'); 
         checkbox.addEventListener('click', function() { 
-            toggleCheckbox(this); 
-            updateSubtotal();
-
+            toggleCheckbox(this, item);  
         }); 
     }); 
 
-    function toggleCheckbox(checkbox) {
-        
+    function toggleCheckbox(checkbox, item) { 
         if (checkbox.classList.contains('checked')) { 
-            
             checkbox.src = "../images/customer/uncheckedIcon.svg";
-            checkbox.classList.remove('checked'); 
-
+            checkbox.classList.remove('checked');  
         } else { 
-            
             checkbox.src = "../images/customer/checkedIcon.svg"; 
             checkbox.classList.add('checked'); 
-
         } 
+        updateSubtotal();  
     } 
 
-    function updateSubtotal(checkbox) { 
+    function updateSubtotal() { 
+        //Fetcha ll cards
         const cartItems = document.querySelectorAll('.cartItem-card'); 
         let subTotal = 0; 
 
-        cartItems.forEach(function(item) { 
-            const priceElement = item.querySelector('.product_price'); 
-            const quantityElement = item.querySelector('#quantity'); 
-            const price = parseFloat(priceElement.textContent); 
-            const quantity = parseInt(quantityElement.value); 
-            const itemSubTotal = price * quantity; 
-            subTotal += itemSubTotal;
+        //Compute which ones are checked or not
+        cartItems.forEach(function(_item) { 
+            const checkbox = _item.querySelector('.item-checkbox');
+            if (checkbox.classList.contains('checked')) {
+                const priceElement = _item.querySelector('.product_price'); 
+                const quantityElement = _item.querySelector('.quantity'); 
+                const price = parseFloat(priceElement.textContent); 
+                const quantity = parseInt(quantityElement.value); 
+                const itemSubTotal = price * quantity; 
+                subTotal += itemSubTotal;
+            }
         });
 
         const subTotalElement = document.querySelector('.sub_total'); 
-        subTotalElement.textContent = subTotal.toFixed(2); 
-        updateTotal(subTotal); 
+        if (subTotalElement) {
+            subTotalElement.textContent = subTotal.toFixed(2);
+        }
+        updateTotal(subTotal);
     } 
 
-    function updateTotal() { 
-        let total = 0; 
-        checkboxes.forEach(function(checkbox) { 
-            
-            if (checkbox.classList.contains('checked')) { 
-                const itemId = checkbox.getAttribute('data-item-id'); 
-                
-                const item = JSON.perse(document.getElementById('id', itemId).textContent); 
-                total += item.price * item.qty; 
-            }  
-        }); 
-        document.getElementById('total').textContent = total.toFixed(2);
+    function updateTotal(subTotal) { 
+       const shippingPriceElement = document.querySelector('.shipping_price');
+        const shippingPrice = parseFloat(shippingPriceElement.textContent);
+        const total = subTotal + shippingPrice;
+
+        const totalElement = document.querySelector('.total_price');
+        if (totalElement) {
+            totalElement.textContent = total.toFixed(2);
+        }
     }
 });
 
+
+// Quantity calculator
 document.addEventListener('DOMContentLoaded', function() { 
-    updatePrice();
+    //Step 1: Get all cart cards
+    const cartItems = document.querySelectorAll('.cartItem-card');
+
+    //Step 2: Add listeners for each quanitity input fields
+    cartItems.forEach(function(item) {
+        const quantityInput = item.querySelector('.quantity');
+        quantityInput.addEventListener('change', function() {
+            //For each quantity input, whenever its changed, fire updatePrice(item)
+            updatePrice(item);
+        });
+    });
     updateSubtotal(); 
 
+    //Updates subtotal based on the quantity per item
     function updateSubtotal() { 
-        const cartItems = document.querySelectorAll('.cartItem-card'); 
         let subTotal = 0; 
 
         cartItems.forEach(function(item) { 
-            const priceElement = item.querySelector('.product_price'); 
-            const quantityElement = item.querySelector('#quantity'); 
-            const price = parseFloat(priceElement.textContent); 
-            const quantity = parseInt(quantityElement.value); 
-            const itemSubTotal = price * quantity; 
-            subTotal += itemSubTotal; 
+            const priceElement = item.querySelector('.product_price');
+            const quantityElement = item.querySelector('.quantity');
+
+            const price = parseFloat(priceElement.textContent);
+            const quantity = parseInt(quantityElement.value);
+            subTotal += price * quantity;
         }); 
         
-        const subTotalElement = document.querySelector('.sub_total'); 
-        subTotalElement.textContent = subTotal.toFixed(2); 
-        updateTotal(subTotal); 
+       const subtotalElement = document.querySelector('.sub_total');
+        if (subtotalElement) {
+            subtotalElement.textContent = subTotal.toFixed(2);
+        }
+
+        updateTotal(subTotal);
     } 
     
+    //Updates total price based on the quantity per item
     function updateTotal(subTotal) { 
-        const shippingPrice = parseFloat(document.querySelector('.shipping_price').textContent); 
-        const total = subTotal + shippingPrice; 
-        const totalElement = document.querySelector('.total_price'); 
-        totalElement.textContent = total.toFixed(2); 
+        const shippingPriceElement = document.querySelector('.shipping_price');
+        const shippingPrice = parseFloat(shippingPriceElement.textContent);
+        const total = subTotal + shippingPrice;
+
+        const totalElement = document.querySelector('.total_price');
+        if (totalElement) {
+            totalElement.textContent = total.toFixed(2);
+        }
     } 
 
-    function updatePrice() { 
-        const cartItems = document.querySelectorAll('.cartItem-card'); 
+    //Updates individual price based on the quantity per item
+    function updatePrice(item) {  
+        // Find the elements related to price and quantity within the same cart item card
+        const priceElement = item.querySelector('.product_price'); // Gets element
+        const quantityElement = item.querySelector('.quantity'); // Gets element
 
-        cartItems.forEach(function(item) {
-            const priceElement = item.querySelector('.product_price'); 
-            const quantityElement = item.querySelector('#quantity'); 
-            const price = parseFloat(priceElement.textContent); 
-            const quantity = parseInt(quantityElement.value); 
-            const itemTotal = price * quantity; 
+        const pricePerItem = parseFloat(priceElement.textContent); // Gets the text
+        const quantity = parseInt(quantityElement.value); // Gets the value
+        const totalItemPrice = pricePerItem * quantity; 
 
-            const itemTotalElement = item.querySelector('#product_price'); 
-            itemTotalElement.textContent = itemTotal.toFixed(2);
-        }); 
+        // Get the new element for total price * quantity and apply changes.
+        const totalPriceElement = item.querySelector('.total_price_for_item');
+        if (totalPriceElement) {
+            totalPriceElement.textContent = totalItemPrice.toFixed(2);
+        }
+
+        updateSubtotal();
     } 
-    
-    // Event listener for quantity changes
-    const quantityInputs = document.querySelectorAll('#quantity'); 
-    quantityInputs.forEach(function(input) { 
-        input.addEventListener('change', function() { 
-            updateSubtotal();
-            updatePrice();
-        }); 
-    }); 
 
 });
 

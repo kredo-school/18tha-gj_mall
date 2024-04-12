@@ -107,13 +107,15 @@ class CartController extends Controller
             'quantity.*' => 'required|integer|min:1'
         ]);
 
-        foreach ($request['quantity'] as $itemId => $quantity) 
+        $quantities = $request->input('quantity');
+
+        foreach ($quantities as $itemId => $quantity) 
         {
             $cart_item = $this->cart_item->findOrFail($itemId);
 
             if ($cart_item) 
             {
-                $cart_item->update(['quantity' => $quantity]);
+                $cart_item->update(['qty' => $quantity]);
             }
         }
     }

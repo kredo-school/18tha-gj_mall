@@ -75,7 +75,7 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     // Cart
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
     Route::get('/back', [CartController::class, 'back'])->name('back');
-    Route::post('/cart/update', [CartController::class, 'update']);
+    Route::get('/cart/update', [CartController::class, 'update']);
     Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
     Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
 

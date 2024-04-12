@@ -92,6 +92,13 @@ class ProductController extends Controller
         return $products_ranking;
     }
 
+    public function showProductDetail($id) {
+        $product = $this->product->findOrFail($id);
+        $product = $this->calculateRatingProperties($product);
+
+        return view('customer.productDetail')->with('product', $product);
+    }
+
     public function create()
     {
         $categories = $this->category->orderBy('id', 'asc')->get();
@@ -323,4 +330,16 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
+    
+    private function calculateRatingProperties($product)
+    {
+        $totalReviews = $product->reviews->count();
+        $averageRating = $totalReviews > 0 ? number_format($product->reviews->avg('rating'), 1) : 0;
+        
+        $product->averageRating = $averageRating;
+        $product->totalReviews = $totalReviews;
+        
+        return $product;
+    }
+    
 }

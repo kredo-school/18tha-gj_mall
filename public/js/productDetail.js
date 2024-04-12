@@ -3,7 +3,13 @@ var buttonMinus = $(".qty-btn-minus");
 
 buttonPlus.click(function() {
     var $n = $(this).parent(".qty-container").find(".input-qty");
-    $n.val(Number($n.val())+1 );
+    var currentValue = Number($n.val());
+    
+    if (currentValue < 5) {
+        $n.val(currentValue + 1);
+    } else {
+        alert("Maximum quantity reached");
+    }
 });
 
 buttonMinus.click(function() {

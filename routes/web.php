@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
@@ -31,12 +32,12 @@ Route::get('/', function () {
 });
 
 // Home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Search
-Route::get('/search', function () {
-    return view('customer.search');
-});
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 // Product Detail / {product_id}
+
+Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('productDetail');
 Route::get('/productDetail', function () {
     return view('customer.productDetail');
 });

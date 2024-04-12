@@ -10,6 +10,7 @@ use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\Inquiries\InquiryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -35,11 +36,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Search
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 // Product Detail / {product_id}
+
 Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('productDetail');
-// Inquiry
-Route::get('/inquiry', function () {
-    return view('inquiry');
+Route::get('/productDetail', function () {
+    return view('customer.productDetail');
 });
+
+// Inquiry
+Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
+Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 
 // Payment
 Route::get('/customer/cart', function () {
@@ -91,9 +96,11 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         return view('seller.profile.sellerProfile');
     });
 
-    Route::get('profile/editProfile', function () {
-        return view('seller.profile.editProfile');
-    });
+    Route::get('profile/editProfile', [SellerController::class, 'show'])
+        ->name('profile.editProfile');
+
+    Route::patch('profile/updateProfile', [SellerController::class, 'update'])
+        ->name('profile.updateProfile');
 
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])

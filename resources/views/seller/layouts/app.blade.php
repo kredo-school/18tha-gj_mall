@@ -61,7 +61,7 @@
                                             <i class="fa-solid fa-user sidebar_icon me-3"></i>
                                         </div>
                                         <div class="col {{ request()->is('seller/profile/editProfile') || request()->is('seller/profile/editProfile') ? 'active': '' }}">
-                                            <a href="{{ url('/seller/profile/editProfile') }}" class="text-decoration-none edit-profile">
+                                            <a href="{{ route('seller.profile.editProfile' ) }}" class="text-decoration-none edit-profile">
                                                 Profile
                                             </a>
                                         </div>
@@ -83,7 +83,7 @@
                                     </div>
                                 </li>
                                 {{-- End Products Dashboard --}}
-                                
+
                                 {{-- Start Ads Dashboard --}}
                                 <li class="list-group-item border-0 mt-4">
                                     <div class="row align-items-center">
@@ -143,7 +143,7 @@
                                     </div>
                                 </li>
                                 {{-- End Customer Support --}}
-                                
+
                                 {{-- Start Logout --}}
                                 <li class="list-group-item border-0 mt-4">
                                     <div class="row align-items-center">
@@ -161,8 +161,8 @@
                                         </div>
                                     </div>
                                 </li>
-                                {{-- End Logout --}}                            
-                                
+                                {{-- End Logout --}}
+
                             </ul>
                         @endif
                     </nav>

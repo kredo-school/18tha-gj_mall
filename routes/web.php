@@ -3,12 +3,16 @@
 
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Orders\CartController;
+use App\Http\Controllers\Inquiries\InquiryController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -30,18 +34,20 @@ Route::get('/', function () {
 });
 
 // Home
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 //Search
-Route::get('/search', function () {
-    return view('customer.search');
-});
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 // Product Detail / {product_id}
+
+Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('productDetail');
 Route::get('/productDetail', function () {
     return view('customer.productDetail');
 });
+
 // Inquiry
 Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
 Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+
 
 Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     // Customer Register
@@ -95,9 +101,11 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         return view('seller.profile.sellerProfile');
     });
 
-    Route::get('profile/editProfile', function () {
-        return view('seller.profile.editProfile');
-    });
+    Route::get('profile/editProfile', [SellerController::class, 'show'])
+        ->name('profile.editProfile');
+
+    Route::patch('profile/updateProfile', [SellerController::class, 'update'])
+        ->name('profile.updateProfile');
 
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
@@ -191,4 +199,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('customerSupport', function () {
         return view('admin.inquiry.customerSupport');
     });
+});
+
+// Favorite
+Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
+    Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
+    Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
 });

@@ -21,98 +21,84 @@
         {{-- most asked questions  --}}
         <div class="row mb-5">
             <div class="col px-5">
-                <div class="accordion" id="accordionPanelsStayOpenExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                            Most asked questions #1
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                            <div class="accordion-body">
-                                <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt placeat mollitia minus quo saepe distinctio itaque voluptate fugit et, ducimus inventore aliquam voluptatibus asperiores dicta animi expedita, reprehenderit ratione doloribus!</p>
+                <h1 class="my-3">Most Asked Questions</h1>
+                @forelse ($inquiries->take(5) as $inquiry)
+                    <div class="accordion" id="accordionPanels">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-panel{{ $inquiry->id }}" aria-expanded="false" aria-controls="accordion-panel{{ $inquiry->id }}">
+                                    {{ $inquiry->title }}
+                                </button>
+                            </h2>
+                            <div id="accordion-panel{{ $inquiry->id }}" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <p class="lead text-break">{{ $inquiry->content }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Most asked questions #2
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt placeat mollitia minus quo saepe distinctio itaque voluptate fugit et, ducimus inventore aliquam voluptatibus asperiores dicta animi expedita, reprehenderit ratione doloribus!</p>                                
-                            </div>
-                        </div>
+                @empty
+                    <div>
+                        <p class="fs-4">No results found.</p>
                     </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Most asked questions #3
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt placeat mollitia minus quo saepe distinctio itaque voluptate fugit et, ducimus inventore aliquam voluptatibus asperiores dicta animi expedita, reprehenderit ratione doloribus!</p>                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Most asked questions #4
-                        </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Deserunt placeat mollitia minus quo saepe distinctio itaque voluptate fugit et, ducimus inventore aliquam voluptatibus asperiores dicta animi expedita, reprehenderit ratione doloribus!</p>                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
         {{-- most asked questions end --}}
 
+
         {{-- Inquiry Form --}}
-        <div class="row">
-            <div class="col px-5">
-                <h3 class="h1 fw-bold mb-3">Get In Touch With Me!</h3>
+            <div class="row">
+                <div class="col px-5">
+                    <h1 class="mb-3">Get In Touch With Me!</h1>
 
-                <form action="" method="POST">
-                    @csrf
+                    <form action="{{ route('inquiry.store') }}" method="POST">
+                        @csrf
 
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Title</label>
-                        <input type="text" name="title" id="title" class="form-control" placeholder="Title" autofocus>
-                    </div>
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Title" autofocus>
+                        </div>
 
-                    <div class="mb-3">
-                        <label for="inquiry_type" class="form-label">Inquiry Type</label>
-                        {{-- Todo: Fix this part when we create back-end --}}
-                        <select name="inquiry_type" id="inquiry_type" class="form-select">
-                            <option value="" hidden>Select Inquiry Type</option>
-                            <option value="">Value1</option>
-                            <option value="">Value2</option>
-                            <option value="">Value3</option>
-                            <option value="">Value4</option>
-                        </select>
-                    </div>
+                        <div class="mb-3">
+                            <label for="inquiry_genre" class="form-label">Inquiry Genre</label>
 
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Content</label>
-                        <textarea name="content" id="content" rows="5" class="form-control" placeholder="Description your issue "></textarea>
-                    </div>
-                </form>
+                            <select name="inquiry_genre" id="inquiry_genre" class="form-select">
+                                <option value="" hidden>Select Inquiry Genre</option>
 
-                <div class="mb-3 text-center">
-                    <button type="submit" class="btn create-button">
-                        Send a message
-                    </button>
+                                @foreach ($inquiry_genres as $genre)
+                                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
+                                    {{-- error message area --}}
+                                    @error('genre')
+                                        <p class="text-danger small">{{ $message }}</p>
+                                    @enderror
+                                @endforeach
+                                
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="content" class="form-label">Content</label>
+                            <textarea name="content" id="content" rows="5" class="form-control" placeholder="Description your issue "></textarea>
+                        </div>
+
+                        @if ( Auth::id() )
+                            <div class="mb-3 text-center">
+                                <button type="submit" class="btn create-button">
+                                    Send a message
+                                </button>
+                            </div>
+                        @else
+                            <div class="mb-3 text-center">
+                                <p class="text-danger small mb-1">Please Sign-in first.</p>
+                                <button type="submit" class="btn create-button" disabled>
+                                    Send a message
+                                </button>
+                            </div>
+                        @endif
+                    </form>
                 </div>
             </div>
-        </div>
         {{-- Inquiry Form end --}}
         
     </div>

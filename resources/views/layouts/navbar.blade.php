@@ -33,8 +33,12 @@
             <!-- Search Bar-->
             <div id="search-bar" class="row align-items-center w-75">
                 <div class="col-xl-11 col-lg-9 col-md-9 px-0">
-                    <input type="text" class="form-control rounded-1" name="search_term" 
-                           id="navbar-search" placeholder="What are you looking for ?">
+                    <form action="{{ route('search') }}">
+                        <input type="text" class="form-control rounded-1" name="search_term" 
+                               id="navbar-search" placeholder="What are you looking for ?" 
+                               value="{{ $search ?? '' }}"
+                        >
+                    </form>
                 </div>
             </div>
             <!-- Search Bar End-->

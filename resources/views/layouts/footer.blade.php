@@ -1,4 +1,4 @@
-<nav class="navbar style-seet color1">
+<nav class="navbar style-seet color1" >
     <div class="container-fluid">
         <ul class="navbar-nav ms-auto list-group-horizontal align-items-center">
             <li class="nav-item me-4">

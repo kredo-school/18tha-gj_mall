@@ -15,39 +15,27 @@ class OrderStatusSeeder extends Seeder
     {
         $orderStatus = [
             [
-                'status' => '1',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '1:Waiting for packing',
+                // 'created_at' => now(),
+                // 'updated_at' => now()
             ],
             [
-                'status' => '2',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '2:Waiting for acceptance',
             ],
             [
-                'status' => '3',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '3:Acceptance complete',
             ],
             [
-                'status' => '4',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '4:In transit',
             ],
             [
-                'status' => '5',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '5:Delivery',
             ],
             [
-                'status' => '6',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '6:Cancellation',
             ],
             [
-                'status' => '7',
-                'created_at' => now(),
-                'updated_at' => now()
+                'status' => '7:Refund completed',
             ]
         ];
 

@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('sellers', function (Blueprint $table) {
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
@@ -19,11 +19,13 @@ return new class extends Migration
             $table->string('phone_number')->nullable()->unique();
             $table->string('password');
             $table->string('avatar', 15)->nullable();
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('address_id')->nullable();
             $table->timestamps();
-        
+
             // Foreign Keys
-            // $table->foreign('id')->references('shopping_cart_items')->on('customer_id');
-            // $table->foreign('id')->references('favorites')->on('customer_id');
+            $table->foreign('address_id')->on('addresses')->references('id');
+
         });
     }
 
@@ -32,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('sellers');
     }
 };

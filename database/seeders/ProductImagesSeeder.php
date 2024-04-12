@@ -4,13 +4,13 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Products\ProductImage;
+use App\Models\Products\ProductImages;
 
-class ProductImageSeeder extends Seeder
+class ProductImagesSeeder extends Seeder
 {
     private $table;
 
-    public function __construct(ProductImage $table)
+    public function __construct(ProductImages $table)
     {
         $this->table = $table;
     }

@@ -21,11 +21,12 @@ return new class extends Migration
             $table->string('region');
             $table->string('postal_code', 12);
             $table->string('country_code', 3);
-            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('customer_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('customer_id')->references('id')->on('customers');
-            $table->foreign('country_code')->references('alpha3')->on('countries');
+            $table->foreign('customer_id')->on('customers')->references('id');
+            $table->foreign('country_code')->on('countries')->references('alpha3');
+
         });
     }
 

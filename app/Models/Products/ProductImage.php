@@ -16,5 +16,4 @@ class ProductImage extends Model
     public function productImages(){
         return $this->hasOne(ProductImages::class , 'id','image_id');
     }
-
 }

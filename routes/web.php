@@ -87,9 +87,8 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
     Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
 
-    Route::get('/dashboard', function () {
-        return view('seller.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',  [SellerController::class, 'index'])
+    ->name('dashboard');
 
     // Seller Profile
     Route::get('profile', function () {

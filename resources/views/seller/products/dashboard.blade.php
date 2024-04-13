@@ -38,8 +38,8 @@
                 <div class="row mt-4">
                     <div class="col-8 my-2">
 
-                        <form action="{{ route('seller.products.search') }}" method="POST">
-                            @csrf
+                        <form action="{{ route('seller.products.search') }}" method="GET">
+
                             <input type="search" name="search" placeholder="Search..."
                                 class="form-control form-control-sm">
                         </form>
@@ -85,7 +85,6 @@
                                         @else
                                             No
                                         @endif
-                                        {{ $product->productDetail->is_fragile }}
                                     </td>
                                     <td>{{ $product->productDetail->weight }}</td>
                                     <td>{{ $product->productDetail->size }}</td>
@@ -109,6 +108,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {{ $products->links() }}
 
                 </div>
             </div>

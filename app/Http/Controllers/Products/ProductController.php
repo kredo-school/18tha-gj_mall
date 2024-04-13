@@ -43,7 +43,9 @@ class ProductController extends Controller
 
     public function show()
     {
-        $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->take(5)->get();
+        $products = $this->product->where('seller_id', Auth::guard('seller')->id())->paginate(5);
+
+        $products->withPath('/seller/dashboard');
 
         $products_ranking = $this->getProductsTotalOrderRank();
 
@@ -54,16 +56,21 @@ class ProductController extends Controller
 
     public function search(Request $request)
     {
-        $search = $request->search;
+        $search = $request->input('search');
 
-        $products = $this->product
-        ->where('seller_id', Auth::guard('seller')->id())
-        ->where(function ($query) use ($search) {
-            $query->where('name', 'LIKE', '%'.$search.'%')
-                  ->orWhere('description', 'LIKE', '%'.$search.'%');
-        })
-        ->orderBy('created_at','desc')
-        ->get();
+        if(!empty($search)){
+            $products = $this->product
+            ->where('seller_id', Auth::guard('seller')->id())
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'.$search.'%')
+                      ->orWhere('description', 'LIKE', '%'.$search.'%');
+            })
+            ->orderBy('created_at','desc')
+            ->get();
+        } else {
+            $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->paginate(5);
+        }
+
 
         $products_ranking = $this->getProductsTotalOrderRank();
 
@@ -330,16 +337,16 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-    
+
     private function calculateRatingProperties($product)
     {
         $totalReviews = $product->reviews->count();
         $averageRating = $totalReviews > 0 ? number_format($product->reviews->avg('rating'), 1) : 0;
-        
+
         $product->averageRating = $averageRating;
         $product->totalReviews = $totalReviews;
-        
+
         return $product;
     }
-    
+
 }

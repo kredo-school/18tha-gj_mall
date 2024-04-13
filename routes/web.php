@@ -11,6 +11,7 @@ use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Inquiries\InquiryController;
+use App\Http\Controllers\Users\ReviewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -62,24 +63,14 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         return view('auth.login');
     });
 
+    // Order History
+    Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
+
     // Profile
     Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
 
     Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
     Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
-
-    Route::get('profile', function () {
-        return view('customer.profile.profile');
-    });
-
-    Route::get('profile/editProfile', function () {
-        return view('customer.profile.profileEdit');
-    });
-
-
-    Route::get('profile/orderHistory', function () {
-        return view('customer.profile.orderHistory');
-    });
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -200,4 +191,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
     Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
     Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
+});
+
+Route::group(['prefix' => 'review', 'as' => 'review.'], function() {
+    Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
+    Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
+    Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
 });

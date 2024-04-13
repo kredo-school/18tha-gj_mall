@@ -46,6 +46,8 @@ Route::get('/productDetail', function () {
 Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
 Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 
+Route::get('/profile/{seller_id}', [SellerController::class, 'showProfile'])->name('seller.profile');
+
 // Payment
 Route::get('/customer/cart', function () {
     return view('customer.cart');

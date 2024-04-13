@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
@@ -12,15 +13,16 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 
 class SellerController extends Controller
 {
     const LOCAL_FOLDER_PATH = 'public/images/sellers/';
-    private $seller , $country , $address;
+    private $seller , $country , $address, $ad;
 
     public function __construct(Seller $seller , Country $country ,Address $address)
     {
-        $this->seller = $seller;
+        $this->seller  = $seller;
         $this->country = $country;
         $this->address = $address;
     }
@@ -166,5 +168,31 @@ class SellerController extends Controller
         } else {
             return null;
         }
+    }
+
+    public function showProfile($id)
+    {
+        $sellerProfile = $this->seller->findOrFail($id);
+        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id); ;
+
+        foreach ($sellerProducts as $product) {
+            $this->calculateRatingProperties($product);
+        }
+
+        return view('seller.profile.sellerProfile')
+                ->with('sellerProfile', $sellerProfile)
+                ->with('sellerProducts', $sellerProducts);
+    }
+
+    private function calculateRatingProperties($product)
+    {
+        $totalReviews = $product->reviews->count();
+        $averageRating = $product->reviews->avg('rating');
+        
+        // Add or update properties on the product object
+        $product->averageRating = $averageRating;
+        $product->totalReviews = $totalReviews;
+
+        return $product;
     }
 }

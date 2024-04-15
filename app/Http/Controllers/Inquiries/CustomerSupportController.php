@@ -51,12 +51,6 @@ class CustomerSupportController extends Controller
     {
         DB::beginTransaction();
         
-        // Validate the incoming request data (optional)
-        // $request->validate([
-        //     'answer'               => 'required|string|max:255',
-        //     'translated_answer'    => 'required|string|max:255',
-        //     'inquiry_status_id'    => 'required|integer',
-        // ]);
         $validateData = $request->validate([
             'answer'               => 'required|string|max:255',
             'translated_answer'    => 'required|string|max:255',
@@ -68,10 +62,6 @@ class CustomerSupportController extends Controller
             // Find the admin record by its ID
             $inquiry = Inquiry::findOrFail($id);
             
-            // Update the admin record with the new data
-            // $inquiry->answer               = $request->input('answer');
-            // $inquiry->translated_answer    = $request->input('translated_answer');
-            // $inquiry->inquiry_status_id    = $request->input('inquiry_status_id');
             $inquiry->answer               = $validateData['answer'];
             $inquiry->translated_answer    = $validateData['translated_answer'];
             $inquiry->inquiry_status_id    = $validateData['inquiry_status_id'];

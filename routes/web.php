@@ -1,18 +1,26 @@
 <?php
 
+use App\Http\Controllers\Products\AdController;
 
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\Users\AdminController;
-use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
+use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Products\ProductController;
+
+use App\Http\Controllers\Inquiries\CustomerSupportController;
+
 use App\Http\Controllers\Users\FavoriteController;
-use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
+use App\Http\Controllers\Users\ReviewController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +54,8 @@ Route::get('/productDetail', function () {
 Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
 Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
 
+Route::get('/profile/{seller_id}', [SellerController::class, 'showProfile'])->name('seller.profile');
+
 // Payment
 Route::get('/customer/cart', function () {
     return view('customer.cart');
@@ -62,6 +72,9 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         return view('auth.login');
     });
 
+    // Order History
+    Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
+
     // Profile
     Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
 
@@ -76,10 +89,16 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         return view('customer.profile.profileEdit');
     });
 
-
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
     });
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+    Route::get('/back', [CartController::class, 'back'])->name('back');
+    Route::get('/cart/update', [CartController::class, 'update']);
+    Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
+    Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -172,10 +191,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
+    // Management User
     Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
     Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
     Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
     Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+
+    // Customer Support
+    Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
+    Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
+    Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
+
 
     Route::get('/admin/delivery', function () {
         return view('admin.delivery.deliveryList');
@@ -193,14 +219,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('delivery', function () {
         return view('admin.delivery.deliveryList');
     });
-
-    Route::get('customerSupport', function () {
-        return view('admin.inquiry.customerSupport');
-    });
 });
 
 // Favorite
 Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
     Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
     Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
+});
+
+Route::group(['prefix' => 'review', 'as' => 'review.'], function() {
+    Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
+    Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
+    Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
 });

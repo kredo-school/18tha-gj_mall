@@ -90,7 +90,9 @@
                                                      
                                                         <div class="d-block">${{ $product->price }}</div>
                                                         
-                                                        <a href="" class="text-decoration-none" style="color: #FF3A3A;">{{ $product->seller->last_name }}{{ $product->seller->first_name }}</a>
+                                                        <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">
+                                                            {{ $product->seller->last_name }}{{ $product->seller->first_name }}
+                                                        </a>
                                                         
                                                         <ul class="list-group list-group-horizontal align-items-center my-2">
                                                             @for ($j = 0; $j < 5; $j++)
@@ -177,7 +179,7 @@
                                                         
                                                         <div class="d-block">${{ $favorite->price }}</div>
                                                         
-                                                        <a href="" class="text-decoration-none" style="color: #FF3A3A;">{{ $favorite->seller->last_name }}{{ $favorite->seller->first_name }}</a>
+                                                        <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">{{ $favorite->seller->last_name }}{{ $favorite->seller->first_name }}</a>
                                                         
                                                         <ul class="list-group list-group-horizontal align-items-center my-2">
                                                             @for ($j = 0; $j < 5; $j++)

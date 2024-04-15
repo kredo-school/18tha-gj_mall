@@ -14,28 +14,29 @@ $(function () {
         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
         startDate = start;
         endDate = end;
-    });
-    $('#daterange').on('apply.daterangepicker', function(ev, picker) {
-        console.log(picker.startDate.format('YYYY-MM-DD'));
-        console.log(picker.endDate.format('YYYY-MM-DD'));
+        $('#daterange').on('apply.daterangepicker', function(ev, picker) {
+            console.log(picker.startDate.format('YYYY-MM-DD'));
+            console.log(picker.endDate.format('YYYY-MM-DD'));
 
-        // Send data to Laravel controller via Ajax
-        $.ajax({
-            url: dashboardRoute,
-            type: 'GET',
-            data: {
-                startDate: picker.startDate.format('YYYY-MM-DD'),
-                endDate: picker.endDate.format('YYYY-MM-DD')
+            // Send data to Laravel controller via Ajax
+            $.ajax({
+                url: dashboardRoute,
+                type: 'GET',
+                data: {
+                    startDate: picker.startDate.format('YYYY-MM-DD'),
+                    endDate: picker.endDate.format('YYYY-MM-DD')
 
-            },
-            success: function(response) {
-                // Handle success response here
-                console.log(response);
-            },
-            error: function(xhr, status, error) {
-                // Handle error here
-                console.error(xhr.responseText);
-            }
+                },
+                success: function(response) {
+                    // Handle success response here
+                    console.log(response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle error here
+                    console.error(xhr.responseText);
+                }
+            });
         });
     });
+
 });

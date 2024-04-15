@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Query\JoinClause;
@@ -20,11 +22,11 @@ use Illuminate\Database\Query\JoinClause;
 class SellerController extends Controller
 {
     const LOCAL_FOLDER_PATH = 'public/images/sellers/';
-    private $seller, $country, $address, $order_line;
+    private $seller , $country , $address , $order_line;
 
     public function __construct(Seller $seller, Country $country, Address $address, OrderLine $order_line)
     {
-        $this->seller = $seller;
+        $this->seller  = $seller;
         $this->country = $country;
         $this->address = $address;
         $this->order_line = $order_line;
@@ -33,8 +35,15 @@ class SellerController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $startDate = $request->input('startDate');
-        $endDate = $request->input('endDate');
+        $dateRange = $request->input('daterange');
+        // Split the string by '+' and extract start and end dates
+        // $dates = explode('+-+', substr($dateRange, strpos($dateRange, '=') + 1));
+        $date1 = substr($dateRange, 1, 8);
+        $date2 = substr($dateRange, 11, 18);
+        // Extract start date
+        $startDate = substr($date1, 0, 4) . '-' . substr($date1, 4, 2) . '-' . substr($date1, 6, 2);
+        // Extract end date
+        $endDate = substr($date2, 0, 4) . '-' . substr($date2, 4, 2) . '-' . substr($date2, 6, 2);
 
         // define the dates
         $yesterday = date("Y-m-d", strtotime('-8 days'));
@@ -61,8 +70,9 @@ class SellerController extends Controller
         $amountCompare = round(($countYesterday[0]["total_amount"] / $countDayBeforeYesterday[0]["total_amount"] - 1) * 100, 2);
 
         // Get data For list
-        if (!empty($search)) {
-            $orders = $this->order_line
+        if (!empty($search) | !empty($datarange)) {
+            if(!empty($search) & !empty($datarange)){
+                $orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
                     $join->on('order_lines.product_id', '=', 'products.id')
                         ->where('seller_id', Auth::guard("seller")->id());
@@ -71,6 +81,8 @@ class SellerController extends Controller
                     $query->where('name', 'LIKE', '%' . $search . '%')
                         ->orWhere('description', 'LIKE', '%' . $search . '%');
                 })
+                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
+                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
                 ->select(
                     "products.name",
                     DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
@@ -80,8 +92,14 @@ class SellerController extends Controller
                 ->groupBy('name', 'date')
                 ->orderBy('date', 'desc')
                 ->paginate(5);
-        } elseif (!empty($startDate)) {
-            $orders = $this->getSellerOrders($startDate, $endDate)
+            } elseif(!empty($daterange)){
+                $orders = $this->order_line
+                ->join('products', function (JoinClause $join) {
+                    $join->on('order_lines.product_id', '=', 'products.id')
+                        ->where('seller_id', Auth::guard("seller")->id());
+                })
+                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
+                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
                 ->select(
                     "products.name",
                     DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
@@ -91,6 +109,29 @@ class SellerController extends Controller
                 ->groupBy('name', 'date')
                 ->orderBy('date', 'desc')
                 ->paginate(5);
+            } else {
+                $orders = $this->order_line
+                ->join('products', function (JoinClause $join) {
+                    $join->on('order_lines.product_id', '=', 'products.id')
+                        ->where('seller_id', Auth::guard("seller")->id());
+                })
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('description', 'LIKE', '%' . $search . '%');
+                })
+                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
+                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
+                ->select(
+                    "products.name",
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy('name', 'date')
+                ->orderBy('date', 'desc')
+                ->paginate(5);
+            }
+
         } else {
             $orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
@@ -149,7 +190,7 @@ class SellerController extends Controller
         }
 
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names','startDate'));
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names'));
     }
 
     private function getSellerOrders($start_date, $end_date)
@@ -341,5 +382,31 @@ class SellerController extends Controller
         } else {
             return null;
         }
+    }
+
+    public function showProfile($id)
+    {
+        $sellerProfile = $this->seller->findOrFail($id);
+        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id); ;
+
+        foreach ($sellerProducts as $product) {
+            $this->calculateRatingProperties($product);
+        }
+
+        return view('seller.profile.sellerProfile')
+                ->with('sellerProfile', $sellerProfile)
+                ->with('sellerProducts', $sellerProducts);
+    }
+
+    private function calculateRatingProperties($product)
+    {
+        $totalReviews = $product->reviews->count();
+        $averageRating = $product->reviews->avg('rating');
+
+        // Add or update properties on the product object
+        $product->averageRating = $averageRating;
+        $product->totalReviews = $totalReviews;
+
+        return $product;
     }
 }

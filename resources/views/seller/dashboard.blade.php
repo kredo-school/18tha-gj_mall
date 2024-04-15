@@ -67,27 +67,23 @@
         </div>
         <div class="col text-center py-3">
             {{-- Search bar --}}
-
-            <div class="row mb-4 align-items-center">
-                <form action="{{ route('seller.dashboard') }}" method="GET">
-                    <div class="col-6">
+            <form action="{{ route('seller.dashboard') }}" method="GET">
+                <div class="row mb-4 align-items-center">
+                    <div class="col">
                         <input type="search" name="search" placeholder="Search for the list below..."
                             class="form-control">
                     </div>
-                </form>
-                <form action="{{ route('seller.dashboard') }}" method="GET">
-                    <div class="col">
+                    <div class="col-auto">
                         <div class="p-3 input-group">
                             <label for="daterange" class="input-group-text">
                                 <i class="fa-solid fa-calendar-days icon text-primary"></i>
                             </label>
                             <input type="text" id="daterange" name="daterange" class="form-control" />
+                            <button type="submit" class="btn btn-primary"> GET </button>
                         </div>
                     </div>
-                </form>
-            </div>
-            {{$startDate}}
-
+                </div>
+            </form>
 
             <table class="table text-center table-hover align-middle bg-white border">
                 <thead class="small table-secondary text-light">

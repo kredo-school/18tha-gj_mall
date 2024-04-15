@@ -111,7 +111,7 @@
                                     </div>
                                 </div>
                             
-                                <a href="" class="text-muted text-decoration-none">
+                                <a href="{{ route('seller.profile', $item->seller->id ) }}" class="text-muted text-decoration-none">
                                     {{ $item->seller->last_name }}{{ $item->seller->first_name }}
                                 </a>
 

@@ -25,6 +25,10 @@ class Seller extends Model implements Authenticatable
         return $this->hasMany(Product::class);
     }
 
+    public function sellerProducts($seller_id) {
+        return $this->products()->where('seller_id', $seller_id)->paginate(12);
+    }
+
     public function address() {
         return $this->hasOne(Address::class , 'id' , 'address_id');
     }

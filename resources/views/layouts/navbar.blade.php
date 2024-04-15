@@ -88,10 +88,19 @@
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a href="{{ url('/customer/cart') }}" class="nav-link d-inline p-0">
-                        <i class="fa-solid fa-cart-shopping icon"></i>
-                        <span class="text-white m-0">Cart</span>
-                    </a>
+                    
+                    @if ( Auth::id() )
+                        <a href="{{ route('customer.cart') }}" class="nav-link d-inline p-0">
+                            <i class="fa-solid fa-cart-shopping icon"></i>
+                            <span class="text-white m-0">Cart</span>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="nav-link d-inline p-0">
+                            <i class="fa-solid fa-cart-shopping icon"></i>
+                            <span class="text-white m-0">Cart</span>
+                        </a>
+                    @endif
+
                 </li>
             </ul>            
         </div>

@@ -30,30 +30,27 @@ class SellerController extends Controller
         $this->order_line = $order_line;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        // Yesterday's Sales
-        // $yesterday = date("Y-m-d", strtotime('-1 days'));
-        // $day_before_yesterday = date("Y-m-d", strtotime('-2 days'));
+        $search = $request->input('search');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
 
         // define the dates
-        $yesterday = date("Y-m-d", strtotime('-5 days'));
-        $day_before_yesterday = date("Y-m-d", strtotime('-6 days'));
+        $yesterday = date("Y-m-d", strtotime('-8 days'));
+        $day_before_yesterday = date("Y-m-d", strtotime('-9 days'));
 
-        $currentDate = Carbon::now();
-        $oneYearBeforeNow = $currentDate->subYear();
-        // Set the day to 1 (first day of the month)
-        $firstMonthDateOneYearBeforeNow = $oneYearBeforeNow->startOfMonth();
+        $firstMonthDateOneYearBeforeNow = Carbon::now()->subYear()->startOfMonth();
+        $firstMonthDateOneMonthBeforeNow = Carbon::now()->subMonth()->startOfMonth();
 
-
-        $countYesterday = $this->getSellerProductsOrders($yesterday)
+        $countYesterday = $this->getSellerOrders($yesterday, $yesterday)
             ->select(
                 DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
                 DB::raw("SUM(order_lines.qty) as total_sales")
             )
             ->get();
 
-        $countDayBeforeYesterday = $this->getSellerProductsOrders($day_before_yesterday)
+        $countDayBeforeYesterday = $this->getSellerOrders($day_before_yesterday, $day_before_yesterday)
             ->select(
                 DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
                 DB::raw("SUM(order_lines.qty) as total_sales")
@@ -63,123 +60,133 @@ class SellerController extends Controller
         $countCompare = round(($countYesterday[0]["total_sales"] / $countDayBeforeYesterday[0]["total_sales"] - 1) * 100, 2);
         $amountCompare = round(($countYesterday[0]["total_amount"] / $countDayBeforeYesterday[0]["total_amount"] - 1) * 100, 2);
 
-        $orders = $this->order_line
-            ->join('products', function (JoinClause $join) {
-                $join->on('order_lines.product_id', '=', 'products.id')
-                    ->where('seller_id', Auth::guard("seller")->id());
-            })
-            ->select(
-                "products.name",
-                DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
-                DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                DB::raw("SUM(order_lines.qty) as total_sales")
-            )
-            ->groupBy('name', 'date')
-            ->orderBy('date', 'desc')
-            ->paginate(5);
-
-        $MonthlyData = $this->order_line
-            ->whereDate('order_lines.created_at', '>', $firstMonthDateOneYearBeforeNow)
-            ->join('products', function (JoinClause $join) {
-                $join->on('order_lines.product_id', '=', 'products.id')
-                    ->where('seller_id', Auth::guard("seller")->id());
-            })
-            ->select(
-                DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
-                DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                DB::raw("SUM(order_lines.qty) as total_sales")
-            )
-            ->groupBy('month')
-            ->orderBy('month', 'asc')
-            ->get();
-
-        $month = [];
-        $total_amount = [];
-        foreach ($MonthlyData as $data) {
-            $month[] = $data->month;
-            $total_amount[] = $data->total_amount;
+        // Get data For list
+        if (!empty($search)) {
+            $orders = $this->order_line
+                ->join('products', function (JoinClause $join) {
+                    $join->on('order_lines.product_id', '=', 'products.id')
+                        ->where('seller_id', Auth::guard("seller")->id());
+                })
+                ->where(function ($query) use ($search) {
+                    $query->where('name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('description', 'LIKE', '%' . $search . '%');
+                })
+                ->select(
+                    "products.name",
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy('name', 'date')
+                ->orderBy('date', 'desc')
+                ->paginate(5);
+        } else {
+            $orders = $this->order_line
+                ->join('products', function (JoinClause $join) {
+                    $join->on('order_lines.product_id', '=', 'products.id')
+                        ->where('seller_id', Auth::guard("seller")->id());
+                })
+                ->select(
+                    "products.name",
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy('name', 'date')
+                ->orderBy('date', 'desc')
+                ->paginate(5);
         }
 
-        $chart = $this->showChart();
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders','MonthlyData', 'month', 'total_amount','chart'));
-    }
+        // Monthly Sales Plot
 
-    private function showChart()
-    {
-        $currentDate = Carbon::now();
-        $oneYearBeforeNow = $currentDate->subYear();
-        // Set the day to 1 (first day of the month)
-        $firstMonthDateOneYearBeforeNow = $oneYearBeforeNow->startOfMonth();
-
-        $MonthlyData = $this->order_line
-            ->whereDate('order_lines.created_at', '>', $firstMonthDateOneYearBeforeNow)
-            ->join('products', function (JoinClause $join) {
-                $join->on('order_lines.product_id', '=', 'products.id')
-                    ->where('seller_id', Auth::guard("seller")->id());
-            })
-            ->select(
-                DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
-                DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                DB::raw("SUM(order_lines.qty) as total_sales")
-            )
-            ->groupBy('month')
-            ->orderBy('month', 'asc')
-            ->get();
+        $MonthlyData = $this->getPeriodData($this->getSellerOrders($firstMonthDateOneYearBeforeNow, Carbon::now()), "month");
 
         $month = [];
-        $total_amount = [];
+        $monthly_amount = [];
         foreach ($MonthlyData as $data) {
             $month[] = $data->month;
-            $total_amount[] = $data->total_amount;
+            $monthly_amount[] = $data->total_amount;
         }
 
-        $chart = app()
-            ->chartjs->name("MonthlyPlot")
-            ->type("line")
-            ->size(["width" => 400, "height" => 200])
-            ->labels($month)
-            ->datasets([
-                [
-                    "label" => "Total Amount",
-                    "backgroundColor" => "rgba(38, 185, 154, 0.31)",
-                    "borderColor" => "rgba(38, 185, 154, 0.7)",
-                    "data" => $total_amount
-                ]
-            ])
-            ->options([
-                'scales' => [
-                    'x' => [
-                        'type' => 'time',
-                        'time' => [
-                            'unit' => 'month'
-                        ],
-                        // 'min' => $month[0]->format("Y-m-d"),
-                    ]
-                ],
-                'plugins' => [
-                    'title' => [
-                        'display' => true,
-                        'text' => 'Monthly Order Total'
-                    ]
-                ]
-            ]);
+        // Daily Sales Plot
+        $DailyData = $this->getPeriodData($this->getSellerOrders($firstMonthDateOneMonthBeforeNow, Carbon::now()), "day");
 
-        return $chart;
+        $data = json_decode($DailyData, true);
+        $daily_output = [];
+        $output = [];
+        $names = [];
+        $accum_amount = 0;
 
+        foreach ($data as $keys => $values) {
+
+            foreach ($values as $value) {
+                $d = $value['day'];
+                $totalAmount = $value['total_amount'];
+                $daily_output['day'][] = $d;
+                $daily_output['total_amount'][] = $totalAmount;
+                $accum_amount = $accum_amount + $totalAmount;
+                $daily_output['accum_amount'][] = $accum_amount;
+            }
+            $names[] = $keys;
+            $output[$keys] = $daily_output;
+            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '');
+            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '');
+            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '');
+            $daily_output = [];
+            $accum_amount = 0;
+        }
+
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'startDate', 'output', 'names'));
     }
 
-
-    private function getSellerProductsOrders($yesterday)
+    private function getSellerOrders($start_date, $end_date)
     {
-        $recordsYesterday = $this->order_line
-            ->whereDate('order_lines.created_at', $yesterday)
+
+        $records = $this->order_line
+            ->whereDate('order_lines.created_at', '>=', $start_date)
+            ->whereDate('order_lines.created_at', '<=', $end_date)
             ->join('products', function (JoinClause $join) {
                 $join->on('order_lines.product_id', '=', 'products.id')
                     ->where('seller_id', Auth::guard("seller")->id());
             });
-        return $recordsYesterday;
+
+        return $records;
     }
+
+    private function getPeriodData($data, $period)
+    {
+
+        if ($period == "month") {
+            $output = $data
+                ->select(
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy("month")
+                ->orderBy('month', 'asc')
+                ->get();
+        } elseif ($period == "day") {
+            $output = $data
+                ->select(
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%d') as day"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy("date", "month", "day")
+                ->orderBy('date', 'asc')
+                ->get()
+                ->groupBy("month");
+        } else {
+            $output = [];
+        }
+        return $output;
+    }
+
 
     public function show()
     {

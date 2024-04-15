@@ -67,26 +67,27 @@
         </div>
         <div class="col text-center py-3">
             {{-- Search bar --}}
-            <form action="{{ route('seller.dashboard') }}" method="GET">
-                <div class="row mb-4 align-items-center">
 
+            <div class="row mb-4 align-items-center">
+                <form action="{{ route('seller.dashboard') }}" method="GET">
                     <div class="col-6">
-
                         <input type="search" name="search" placeholder="Search for the list below..."
                             class="form-control">
-
                     </div>
-
-                    {{-- <div class="col">
+                </form>
+                <form action="{{ route('seller.dashboard') }}" method="GET">
+                    <div class="col">
                         <div class="p-3 input-group">
                             <label for="daterange" class="input-group-text">
                                 <i class="fa-solid fa-calendar-days icon text-primary"></i>
                             </label>
                             <input type="text" id="daterange" name="daterange" class="form-control" />
                         </div>
-                    </div> --}}
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
+            {{$startDate}}
+
 
             <table class="table text-center table-hover align-middle bg-white border">
                 <thead class="small table-secondary text-light">
@@ -182,5 +183,9 @@
                 }
             }
         });
+    </script>
+    <script src="{{ asset('js/sellerDashboard.js') }}"></script>
+    <script>
+        var dashboardRoute = "{{ route('seller.dashboard') }}";
     </script>
 @endsection

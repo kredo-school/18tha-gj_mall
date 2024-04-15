@@ -80,6 +80,17 @@ class SellerController extends Controller
                 ->groupBy('name', 'date')
                 ->orderBy('date', 'desc')
                 ->paginate(5);
+        } elseif (!empty($startDate)) {
+            $orders = $this->getSellerOrders($startDate, $endDate)
+                ->select(
+                    "products.name",
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy('name', 'date')
+                ->orderBy('date', 'desc')
+                ->paginate(5);
         } else {
             $orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
@@ -138,7 +149,7 @@ class SellerController extends Controller
         }
 
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'startDate', 'output', 'names'));
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names','startDate'));
     }
 
     private function getSellerOrders($start_date, $end_date)

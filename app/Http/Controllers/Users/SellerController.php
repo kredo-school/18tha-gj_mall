@@ -19,10 +19,12 @@ use Illuminate\Support\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Query\JoinClause;
 
+use function PHPUnit\Framework\isEmpty;
+
 class SellerController extends Controller
 {
     const LOCAL_FOLDER_PATH = 'public/images/sellers/';
-    private $seller , $country , $address , $order_line;
+    private $seller, $country, $address, $order_line;
 
     public function __construct(Seller $seller, Country $country, Address $address, OrderLine $order_line)
     {
@@ -34,20 +36,19 @@ class SellerController extends Controller
 
     public function index(Request $request)
     {
+        // Get parameters from url
         $search = $request->input('search');
         $dateRange = $request->input('daterange');
         // Split the string by '+' and extract start and end dates
-        // $dates = explode('+-+', substr($dateRange, strpos($dateRange, '=') + 1));
         $date1 = substr($dateRange, 1, 8);
         $date2 = substr($dateRange, 11, 18);
-        // Extract start date
+        // Extract start date and end date
         $startDate = substr($date1, 0, 4) . '-' . substr($date1, 4, 2) . '-' . substr($date1, 6, 2);
-        // Extract end date
         $endDate = substr($date2, 0, 4) . '-' . substr($date2, 4, 2) . '-' . substr($date2, 6, 2);
 
         // define the dates
-        $yesterday = date("Y-m-d", strtotime('-8 days'));
-        $day_before_yesterday = date("Y-m-d", strtotime('-9 days'));
+        $yesterday = date("Y-m-d", strtotime('-1 days'));
+        $day_before_yesterday = date("Y-m-d", strtotime('-2 days'));
 
         $firstMonthDateOneYearBeforeNow = Carbon::now()->subYear()->startOfMonth();
         $firstMonthDateOneMonthBeforeNow = Carbon::now()->subMonth()->startOfMonth();
@@ -66,72 +67,76 @@ class SellerController extends Controller
             )
             ->get();
 
-        $countCompare = round(($countYesterday[0]["total_sales"] / $countDayBeforeYesterday[0]["total_sales"] - 1) * 100, 2);
-        $amountCompare = round(($countYesterday[0]["total_amount"] / $countDayBeforeYesterday[0]["total_amount"] - 1) * 100, 2);
+        if (!isEmpty($countDayBeforeYesterday)) {
+            $countCompare = round(($countYesterday[0]["total_sales"] / $countDayBeforeYesterday[0]["total_sales"] - 1) * 100, 2);
+            $amountCompare = round(($countYesterday[0]["total_amount"] / $countDayBeforeYesterday[0]["total_amount"] - 1) * 100, 2);
+        } else {
+            $countCompare = "No data";
+            $amountCompare = "No data";
+        }
 
         // Get data For list
         if (!empty($search) | !empty($datarange)) {
-            if(!empty($search) & !empty($datarange)){
+            if (!empty($search) & !empty($datarange)) {
                 $orders = $this->order_line
-                ->join('products', function (JoinClause $join) {
-                    $join->on('order_lines.product_id', '=', 'products.id')
-                        ->where('seller_id', Auth::guard("seller")->id());
-                })
-                ->where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('description', 'LIKE', '%' . $search . '%');
-                })
-                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
-                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
-                ->select(
-                    "products.name",
-                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
-                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                    DB::raw("SUM(order_lines.qty) as total_sales")
-                )
-                ->groupBy('name', 'date')
-                ->orderBy('date', 'desc')
-                ->paginate(5);
-            } elseif(!empty($daterange)){
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $search . '%');
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
+            } elseif (!empty($daterange)) {
                 $orders = $this->order_line
-                ->join('products', function (JoinClause $join) {
-                    $join->on('order_lines.product_id', '=', 'products.id')
-                        ->where('seller_id', Auth::guard("seller")->id());
-                })
-                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
-                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
-                ->select(
-                    "products.name",
-                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
-                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                    DB::raw("SUM(order_lines.qty) as total_sales")
-                )
-                ->groupBy('name', 'date')
-                ->orderBy('date', 'desc')
-                ->paginate(5);
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
             } else {
                 $orders = $this->order_line
-                ->join('products', function (JoinClause $join) {
-                    $join->on('order_lines.product_id', '=', 'products.id')
-                        ->where('seller_id', Auth::guard("seller")->id());
-                })
-                ->where(function ($query) use ($search) {
-                    $query->where('name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('description', 'LIKE', '%' . $search . '%');
-                })
-                ->whereDate('order_lines.created_at', '>=', date($startDate."00:00:00") )
-                ->whereDate('order_lines.created_at', '<=', date($endDate." 23:59:59") )
-                ->select(
-                    "products.name",
-                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
-                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
-                    DB::raw("SUM(order_lines.qty) as total_sales")
-                )
-                ->groupBy('name', 'date')
-                ->orderBy('date', 'desc')
-                ->paginate(5);
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $search . '%');
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
             }
-
         } else {
             $orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
@@ -387,15 +392,15 @@ class SellerController extends Controller
     public function showProfile($id)
     {
         $sellerProfile = $this->seller->findOrFail($id);
-        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id); ;
+        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id);;
 
         foreach ($sellerProducts as $product) {
             $this->calculateRatingProperties($product);
         }
 
         return view('seller.profile.sellerProfile')
-                ->with('sellerProfile', $sellerProfile)
-                ->with('sellerProducts', $sellerProducts);
+            ->with('sellerProfile', $sellerProfile)
+            ->with('sellerProducts', $sellerProducts);
     }
 
     private function calculateRatingProperties($product)

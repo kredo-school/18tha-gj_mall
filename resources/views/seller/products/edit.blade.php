@@ -28,10 +28,13 @@
                                 <img src="{{ asset('storage//images/items/' . $productImage->productImages->image) }}"
                                     alt="" class="image-md">
                             </div>
-                            <form action="{{ route('seller.products.image.destroy',  ["i_id"=>$productImage->image_id, "p_id"=>$productImage->product_id] ) }}" method="POST">
+                            <form
+                                action="{{ route('seller.products.image.destroy', ['i_id' => $productImage->image_id, 'p_id' => $productImage->product_id]) }}"
+                                method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="d-inline pen-trash-overlay border-0" onclick="return confirm('Do you really want to delete this image? If it is deleted and want to use the same image, you have to reupload the image again.')">
+                                <button type="submit" class="d-inline pen-trash-overlay border-0"
+                                    onclick="return confirm('Do you really want to delete this image? If it is deleted and want to use the same image, you have to reupload the image again.')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>
@@ -42,7 +45,8 @@
 
                 <div class="col ms-auto">
                     {{-- create images with JavascriptS --}}
-                    <form action="{{ route('seller.products.update', $product->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('seller.products.update', $product->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <div id="file_list" class="row">
@@ -154,7 +158,7 @@
             <div class="row my-4">
                 <div class="col-6"></div>
                 <div class="col-3">
-                    <a href="{{ route('seller.products.dashboard') }}"
+                    <a href="{{ url('/seller/products/dashboard') }}"
                         class="btn custom-edit-cancel w-100 text-decoration-none">Cancel</a>
                 </div>
                 <div class="col-3">

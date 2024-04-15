@@ -12,6 +12,7 @@ use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
+use App\Http\Controllers\Users\ReviewController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,9 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         return view('auth.login');
     });
 
+    // Order History
+    Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
+
     // Profile
     Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
 
@@ -84,7 +88,6 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/cart/update', [CartController::class, 'update']);
     Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
     Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
-
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -205,4 +208,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
     Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
     Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
+});
+
+Route::group(['prefix' => 'review', 'as' => 'review.'], function() {
+    Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
+    Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
+    Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
 });

@@ -62,7 +62,7 @@
                             <a class="nav-link dropdown-item" href="{{ route('customer.profile', Auth::user()->id) }}">
                                 <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                             </a>
-                            <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">
+                            <a class="nav-link dropdown-item" href="{{ route('customer.showOrderHistory', Auth::user()->id) }}">
                                 <i class="fa-solid fa-clock-rotate-left"></i> {{ __('OrderHistory') }}
                             </a>
                             <a class="nav-link dropdown-item" href="{{ route('logout') }}"

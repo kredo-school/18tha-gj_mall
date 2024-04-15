@@ -1,9 +1,5 @@
 <?php
 
-
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Products\AdController;
 
 use App\Http\Controllers\Auth\AdminLoginController;
@@ -13,15 +9,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
-use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Products\ProductController;
 
 use App\Http\Controllers\Inquiries\CustomerSupportController;
-use App\Http\Controllers\HomeController;
 
 use App\Http\Controllers\Users\FavoriteController;
-use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
@@ -132,6 +124,9 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
+
+    Route::get('products/dashboard', [ProductController::class, 'search'])
+        ->name('products.search');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');

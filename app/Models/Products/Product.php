@@ -5,6 +5,7 @@ namespace App\Models\Products;
 use App\Models\Orders\OrderLine;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
+use App\Models\Orders\ShoppingCartItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,7 +59,7 @@ class Product extends Model
             return false;
         }
     }
-    
+
     public function ads(){
         return $this->hasMany(Ad::class ,'product_id' , 'id');
     }
@@ -66,6 +67,7 @@ class Product extends Model
 
     public function orderLine() {
         return $this->hasMany(OrderLine::class);
+    }
 
     public function ShoppingCartItems(){
         return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');

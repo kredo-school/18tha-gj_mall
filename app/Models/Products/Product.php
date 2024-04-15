@@ -2,6 +2,7 @@
 
 namespace App\Models\Products;
 
+use App\Models\Orders\OrderLine;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -35,6 +36,17 @@ class Product extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function isReview() {
+        return $this->reviews()->where('customer_id', Auth::user()->id)->exists();
+    }
+
+    public function getReview($product_id) {
+        return $this->reviews()
+                    ->where('customer_id', Auth::user()->id)
+                    ->where('product_id', $product_id)
+                    ->first();
+    }
+
     public function favorites() {
         return $this->hasMany(Favorite::class);
     }
@@ -51,7 +63,13 @@ class Product extends Model
         return $this->hasMany(Ad::class ,'product_id' , 'id');
     }
 
-    public function orderLines(){
-        return $this->hasMany(OrderLine::class ,'product_id' , 'id');
+
+    public function orderLine() {
+        return $this->hasMany(OrderLine::class);
+    }
+
+    public function ShoppingCartItems(){
+        return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');
+
     }
 }

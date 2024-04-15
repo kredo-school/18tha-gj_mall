@@ -10,4 +10,8 @@ class OrderStatus extends Model
     use HasFactory;
 
     protected $table = 'order_status';
+
+    public function shopOrders() {
+        return $this->hasMany(ShopOrder::class);
+    }
 }

@@ -53,92 +53,59 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- No.1 --}}
-                        <tr>
-                            <td>1</td>
-                            <td>About Stock</td>
-                            <td>Question for the product</td>
-                            <td>Is there any bigger size. I find bigger size than S size.</td>
-                            <td>Taro Tanaka</td>
-                            <td>1:Unsolved</td>
-                            <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status">Answer</button>
-                                @include('admin.inquiry.modal.customerStatus')
-                            </td>
-                            <td>
-                                <button onclick="return confirm('外部のページへ移動します。よろしいですか？')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="button">Delete</button>
-                            </td>
-                        </tr>
-                        {{-- No.2 --}}
-                        <tr>
-                            <td>2</td>
-                            <td>About Color</td>
-                            <td>Question for the product</td>
-                            <td>I want to buy another color. Is there any color option?</td>
-                            <td>Will Smith</td>
-                            <td>2:Answer</td>
-                            <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status">Answer</button>
-                                @include('admin.inquiry.modal.customerStatus')
-                            </td>
-                            <td>
-                                <button onclick="return confirm('外部のページへ移動します。よろしいですか？')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="button">Delete</button>
-                            </td>
-                        </tr>
-                        {{-- No.3 --}}
-                        <tr>
-                            <td>3</td>
-                            <td>Shipment Cost</td>
-                            <td>Shipment</td>
-                            <td>How much is the shipment cost to UK?</td>
-                            <td>Mark Twain</td>
-                            <td>2:Answer</td>
-                            <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status">Answer</button>
-                                @include('admin.inquiry.modal.customerStatus')
-                            </td>
-                            <td>
-                                <button onclick="return confirm('外部のページへ移動します。よろしいですか？')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="button">Delete</button>
-                            </td>
-                        </tr>
-                        
-                        {{-- No.4 --}}
-                        <tr>
-                            <td>4</td>
-                            <td>New Product</td>
-                            <td>Question for the product</td>
-                            <td>I want to buy the latest product. When will be it restocked? </td>
-                            <td>John F. Kennedy</td>
-                            <td>3:Solved</td>
-                            <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status">Answer</button>
-                                @include('admin.inquiry.modal.customerStatus')
-                            </td>
-                            <td>
-                                <button onclick="return confirm('外部のページへ移動します。よろしいですか？')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="button">Delete</button>
-                            </td>
-                        </tr>
-    
-                        {{-- No.5 --}}
-                        <tr>
-                            <td>5</td>
-                            <td>Delivery Time</td>
-                            <td>Delivery Time</td>
-                            <td>I need to get the dishes for a party. How long will it take to get?</td>
-                            <td>Sutan Sjahrir</td>
-                            <td>1:Unsolved</td>
-                            <td>
-                                <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status">Answer</button>
-                                @include('admin.inquiry.modal.customerStatus')
-                            </td>
-                            <td>
-                                <button onclick="return confirm('外部のページへ移動します。よろしいですか？')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="button">Delete</button>
-                            </td>
-                        </tr>
+                        {{-- Show All Inquiries --}}
+                        @foreach ($inquiries as $inquiry)
+                            <tr>
+                                {{-- ID --}}
+                                <td>{{ $inquiry->id }}</td>
+
+                                {{-- Title --}}
+                                <td>{{ $inquiry->title }}</td>
+
+                                {{-- Genres --}}
+                                {{-- After connecting FK, Change name --}}
+                                {{-- <td>{{ $inquiry->inquiry_genres->name }}</td> --}}
+                                <td>{{ $inquiry->inquiry_genre_id }}</td>
+
+                                {{-- Content --}}
+                                <td>{{ $inquiry->content }}</td>
+
+                                {{-- Customer Name --}}
+                                {{-- After connecting FK, Change name --}}
+                                {{-- <td>{{ $inquiry->customers->first_name }} {{ $inquiry->customers->last_name}}</td> --}}
+                                <td>{{ $inquiry->customer_id }} {{ $inquiry->customer_id }}</td>
+
+                                {{-- Status --}}
+                                {{-- After connecting FK, Change name --}}
+                                {{-- <td>{{ $inquiry->inquiry_status->status }}</td> --}}
+                                <td>{{ $inquiry->inquiry_status_id }}</td>
+
+                                {{-- Change Status & Delete Button --}}
+                                <td>
+                                    @if ($inquiry->inquiry_status_id == '1')
+                                        <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#change-status-{{ $inquiry->id }}">Answer</button>
+                                        @include('admin.inquiry.modal.customerStatus')
+                                    @else
+                                        <button class="btn btn-sm custom-button2 rounded-pill shadow montserrat" type="button" data-bs-toggle="modal" data-bs-target="#translate-status-{{ $inquiry->id }}">Answer</button>
+                                        @include('admin.inquiry.modal.translateStatus')
+                                    @endif
+                                </td>
+                                <td>
+                                    <form action="{{ route('admin.customerSupport.destroy', $inquiry->id) }}" method="post">
+                                        @csrf
+                                        @method('delete')
+                                        
+                                        <button onclick="return confirm('Do you want to delete this inquiry?')" class="btn btn-sm custom-button3 rounded-pill shadow montserrat" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
+        {{ $inquiries->links() }}
+
 
         <div class="row banner mx-1">
             <div class="col-auto p-0">

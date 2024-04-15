@@ -62,7 +62,7 @@
                             <a class="nav-link dropdown-item" href="{{ route('customer.profile', Auth::user()->id) }}">
                                 <i class="fa-regular fa-address-card"></i> {{ __('Profile') }}
                             </a>
-                            <a class="nav-link dropdown-item" href="{{ url('/customer/profile/orderHistory') }}">
+                            <a class="nav-link dropdown-item" href="{{ route('customer.showOrderHistory', Auth::user()->id) }}">
                                 <i class="fa-solid fa-clock-rotate-left"></i> {{ __('OrderHistory') }}
                             </a>
                             <a class="nav-link dropdown-item" href="{{ route('logout') }}"
@@ -88,10 +88,19 @@
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a href="{{ url('/customer/cart') }}" class="nav-link d-inline p-0">
-                        <i class="fa-solid fa-cart-shopping icon"></i>
-                        <span class="text-white m-0">Cart</span>
-                    </a>
+                    
+                    @if ( Auth::id() )
+                        <a href="{{ route('customer.cart') }}" class="nav-link d-inline p-0">
+                            <i class="fa-solid fa-cart-shopping icon"></i>
+                            <span class="text-white m-0">Cart</span>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="nav-link d-inline p-0">
+                            <i class="fa-solid fa-cart-shopping icon"></i>
+                            <span class="text-white m-0">Cart</span>
+                        </a>
+                    @endif
+
                 </li>
             </ul>            
         </div>

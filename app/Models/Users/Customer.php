@@ -2,14 +2,19 @@
 
 namespace App\Models\Users;
 
+
+use App\Models\Inquiries\Inquiry;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 use App\Models\Orders\ShopOrder;
 use App\Models\Products\Review;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\Authenticatable;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
 class Customer extends Model implements Authenticatable
 {
@@ -34,8 +39,14 @@ class Customer extends Model implements Authenticatable
         return $this->hasOne(Address::class);
     }
 
+
+    public function inqruiry()
+    {
+        return $this->hasMany(Inquiry::class);
+
     public function reviews() {
         return $this->hasMany(Review::class);
+
     }
 
     public function shopOrders() {

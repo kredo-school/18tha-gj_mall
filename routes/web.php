@@ -1,13 +1,25 @@
 <?php
 
 
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Products\AdController;
+
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\Users\AdminController;
-use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
+use App\Http\Controllers\Users\CustomerController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\Products\ProductController;
+
+use App\Http\Controllers\Inquiries\CustomerSupportController;
+use App\Http\Controllers\HomeController;
+
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Orders\CartController;
@@ -16,6 +28,7 @@ use App\Http\Controllers\Users\ReviewController;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -183,10 +196,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
+    // Management User
     Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
     Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
     Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
     Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+
+    // Customer Support
+    Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
+    Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
+    Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
+
 
     Route::get('/admin/delivery', function () {
         return view('admin.delivery.deliveryList');
@@ -203,10 +223,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('delivery', function () {
         return view('admin.delivery.deliveryList');
-    });
-
-    Route::get('customerSupport', function () {
-        return view('admin.inquiry.customerSupport');
     });
 });
 

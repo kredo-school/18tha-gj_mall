@@ -26,11 +26,10 @@ class Inquiry extends Model
         'status'
     ];
 
-    public function getData()
-    {
-        $data = DB::table($this->table)->get('id', 'title', 'content', 'answer', 'translated_answer', 'customer_id', 'genre_id', 'inquiry_status_id');
-        return $data;
-    }
+   public static function getData()
+{
+    return self::select('id', 'title', 'content', 'answer', 'translated_answer', 'customer_id', 'genre_id', 'inquiry_status_id')->get();
+}
 
     public function inquiryGenre()
     {

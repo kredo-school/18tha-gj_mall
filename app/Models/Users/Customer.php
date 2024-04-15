@@ -7,6 +7,8 @@ use App\Models\Inquiries\Inquiry;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+
+use App\Models\Orders\ShopOrder;
 use App\Models\Products\Review;
 
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -45,5 +47,9 @@ class Customer extends Model implements Authenticatable
     public function reviews() {
         return $this->hasMany(Review::class);
 
+    }
+
+    public function shopOrders() {
+        return $this->hasMany(ShopOrder::class);
     }
 }

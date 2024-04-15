@@ -20,8 +20,8 @@ class CustomerSupportController extends Controller
 
     public function __construct(Inquiry $inquiry, InquiryGenre $inquiry_genre, InquiryStatus $inquiry_status)
     {
-        $this->inquiry        = $inquiry;
-        $this->inquiry_genre  = $inquiry_genre;
+        $this->inquiry = $inquiry;
+        $this->inquiry_genre = $inquiry_genre;
         $this->inquiry_status = $inquiry_status;
     }
 
@@ -30,15 +30,13 @@ class CustomerSupportController extends Controller
 
         $inquiries = Inquiry::select('id', 'title', 'content', 'answer', 'translated_answer', 'customer_id', 'genre_id', 'inquiry_status_id')->latest()->paginate(5);
 
-        return view('admin.inquiry.customerSupport')
-                ->with('inquiries', $inquiries);
+        return view('admin.inquiry.customerSupport')->with('inquiries', $inquiries);
     }
 
     public function editAnswer($id)
     {
         $inquiry = $this->inquiry->findOrFail(Inquiry::inquiry()->id);
-        return view('admin.inquiry.modal.customerStatus')
-                ->with('inquiries', $inquiries);
+        return view('admin.inquiry.modal.customerStatus')->with('inquiries', $inquiries);
     }
 
     public function editTranslate($id)

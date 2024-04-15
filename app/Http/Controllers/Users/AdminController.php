@@ -8,23 +8,70 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\Orders\OrderLine;
+use App\Models\Products\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
 
-    private $admin;
+    private $admin, $order_line;
 
-    public function __construct(Admin $admin)
+    public function __construct(Admin $admin, OrderLine $order_line)
     {
-        $this->admin = $admin;
+        $this->admin      = $admin;
+        $this->order_line = $order_line;
     }
 
     public function showDashboard()
     {
-        return view('admin.dashboard');
+        $admin = $this->admin->findOrFail(Auth::guard('admin')->id());
+
+        $yesterday            = Carbon::yesterday();
+        $day_before_yesterday = Carbon::yesterday()->subDays(1);
+
+        $yesterday_total_sales_quantity = DB::table('order_lines')
+            ->whereDate('created_at', $yesterday)
+            ->sum('qty');
+
+        $yesterday_total_sales_price = DB::table('order_lines')
+            ->whereDate('created_at', $yesterday)
+            ->sum(DB::raw('qty * price'));
+
+        $day_before_yesterday_total_sales_quantity = DB::table('order_lines')
+            ->whereDate('created_at', $day_before_yesterday)
+            ->sum('qty');
+
+        $day_before_yesterday_total_sales_price = DB::table('order_lines')
+            ->whereDate('created_at', $day_before_yesterday)
+            ->sum(DB::raw('qty * price'));
+
+        $sales_change_quantity = $yesterday_total_sales_quantity - $day_before_yesterday_total_sales_quantity;
+        $sales_change_price    = $yesterday_total_sales_price - $day_before_yesterday_total_sales_price;
+    
+        $percentage_change_quantity = ($sales_change_quantity != 0 && $day_before_yesterday_total_sales_quantity != 0) ? ($sales_change_quantity / $day_before_yesterday_total_sales_quantity) * 100 : 0;
+        $percentage_change_price    = ($sales_change_price != 0 && $day_before_yesterday_total_sales_price != 0) ? ($sales_change_price / $day_before_yesterday_total_sales_price) * 100 : 0;
+
+        // Calculate total sales for each product
+        $top_products = DB::table('order_lines')
+                        ->select('product_id', DB::raw('SUM(qty * price) as total_sales'))
+                        ->groupBy('product_id')
+                        ->orderByDesc('total_sales')
+                        ->limit(5)
+                        ->get();
+
+        $top_product_ids      = $top_products->pluck('product_id')->toArray();
+        $top_products_details = Product::whereIn('id', $top_product_ids)->get();
+
+        return view('admin.dashboard')
+                ->with('admin', $admin)
+                ->with('top_products', $top_products_details)
+                ->with('yesterday_total_sales_quantity', $yesterday_total_sales_quantity)
+                ->with('yesterday_total_sales_price', $yesterday_total_sales_price)
+                ->with('percentage_change_quantity', $percentage_change_quantity)
+                ->with('percentage_change_price', $percentage_change_price);
     }
 
     public function index()
@@ -82,7 +129,7 @@ class AdminController extends Controller
     {
         $admin = $this->admin->findOrFail(Admin::admin()->id);
         return view('admin.management.modal.edit')
-                ->with('admins', $admins);
+                ->with('admin', $admin);
     }
 
     // update() - edit admin information

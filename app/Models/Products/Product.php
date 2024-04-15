@@ -50,4 +50,8 @@ class Product extends Model
     public function ads(){
         return $this->hasMany(Ad::class ,'product_id' , 'id');
     }
+
+    public function ShoppingCartItems(){
+        return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');
+    }
 }

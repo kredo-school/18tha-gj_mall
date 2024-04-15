@@ -10,7 +10,9 @@ use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
+
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 /*
@@ -78,10 +80,17 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         return view('customer.profile.profileEdit');
     });
 
-
     Route::get('profile/orderHistory', function () {
         return view('customer.profile.orderHistory');
     });
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+    Route::get('/back', [CartController::class, 'back'])->name('back');
+    Route::get('/cart/update', [CartController::class, 'update']);
+    Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
+    Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
+
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

@@ -10,35 +10,26 @@
     @include('layouts.navbar')
     
     <div class="container-fluid">
-
         <div class="row mb-5">
             <div class="col p-0">
                 {{-- Carousel --}}
-                <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" style="height: 450px;">
-                            <img src="{{ asset('images/account/bgAdmin.svg') }}" class="d-block w-100" alt="...">
-                            <div id="content" class="carousel-caption d-block text-white">
-                                <h4>Ads Title</h4>
-                                <p class="lead">Description here.</p>
-                            </div>
+                @forelse ($sellerProducts as $product)                    
+                    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            @foreach ($product->ads as $ad)
+                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}" style="height: 450px;">
+                                    <img src="{{ asset('storage/images/ads/'. $ad->image_name) }}" class="d-block w-100 h-100" alt="Ad Image" style="object-fit: cover">
+                                    <div id="content" class="carousel-caption d-block text-white">
+                                        <h4>{{ $ad->title }}</h4>
+                                        <p class="lead text-truncate">{{ $ad->content }}</p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                        <div class="carousel-item" style="height: 450px;">
-                            <img src="{{ asset('images/account/bgSeller.svg') }}" class="d-block w-100" alt="...">
-                            <div id="content" class="carousel-caption d-none d-md-block text-white">
-                                <h4>Ads Title</h4>
-                                <p class="lead">Description here.</p>
-                            </div>
-                        </div>
-                        <div class="carousel-item" style="height: 450px;">
-                            <img src="{{ asset('images/account/bgCustomer.svg') }}" class="d-block w-100" alt="...">
-                            <div id="content" class="carousel-caption d-none d-md-block text-white">
-                                <h4>Ads Title</h4>
-                                <p class="lead">Description here.</p>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+                    </div>          
+                @empty
+                    <h1>No Advertisment yet.</h1>
+                @endforelse
                 {{-- Carousel end --}}
             </div>
         </div>
@@ -50,7 +41,11 @@
 
                     <div class="col-6">
                         <div class="text-center">
-                            <img src="{{ asset('images/account/bgCustomer.svg') }}" class="rounded img-fluid mx-auto d-block" alt="shopImage" style="width: 800px; height: 550px;">
+                            @if ($sellerProfile->avatar)
+                                <img src="{{ asset('storage/images/customer/') }}" class="rounded img-fluid mx-auto d-block" alt="shopImage" style="width: 800px; height: 550px;">                          
+                            @else
+                                <img src="{{ asset('images/seller/shopImg.svg') }}" class="rounded img-fluid mx-auto d-block" alt="shopImage" style="width: 800px; height: 550px;">                        
+                            @endif
                         </div>
                     </div>
 
@@ -58,28 +53,25 @@
 
                         <div class="row mx-auto mb-3">
                             <div class="col">
-                                <h4>Shop Name</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis sint earum rem veritatis culpa. Perspiciatis beatae molestias officia maiores numquam, pariatur inventore eius ipsam magnam consequatur vero sunt amet quae!
-                                Optio et vel eos? Odio, fugiat? Eaque eveniet sequi, tempora, dolorem inventore odit ab qui nam impedit delectus reiciendis, error nemo dolores dolorum quasi accusantium. Officia possimus perferendis commodi qui.
-                                Reiciendis dolorum ratione, necessitatibus, esse fuga aspernatur eligendi eos facere dolores mollitia nesciunt sapiente autem, doloribus est aut modi molestias laborum quibusdam impedit corrupti sed eaque voluptas expedita. Cum, asperiores?
-                                Impedit magni id consequuntur assumenda? Saepe minus suscipit, numquam a magni quos dolor impedit molestias corrupti totam assumenda illum earum voluptatum esse ratione ad ullam hic eum? Molestias, repudiandae perspiciatis!
-                                Beatae rerum praesentium eius tempora architecto omnis aliquid, repellat doloremque odio illum error, commodi minus! Doloremque possimus ad quibusdam dolores ullam atque reprehenderit, blanditiis aspernatur magni, distinctio sit voluptates excepturi.
-                                Molestias molestiae, corrupti dolorum nulla repudiandae eaque iusto ratione consectetur numquam minus, hic voluptatem, quas possimus aperiam adipisci in? Molestias, similique? Eveniet laboriosam officiis ducimus saepe odio. Totam, atque dolores!</p>
+                                <h4>{{ $sellerProfile->last_name}}{{ $sellerProfile->first_name}}</h4>
+                                <p>{{ $sellerProfile->description}}</p>
                             </div>
                         </div>
-
+                        
                         <div class="row mx-auto mb-3">
                             <div class="col">
                                 <h4>Address</h4>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                                <p>
+                                    {{ $sellerProfile?->address?->street_number }} {{ $sellerProfile?->address?->address_line1 }}, {{ $sellerProfile?->address?->city }}, {{ $sellerProfile?->address?->postal_code }}, {{ $sellerProfile?->address?->country->name }}
+                                </p>
                             </div>
                         </div>
 
                         <div class="row mx-auto mb-5">
                             <div class="col">
                                 <h4>Contact Us</h4>
-                                <p>Email : <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></p>
-                                <p>Phone Number : <span>Lorem ipsum dolor sit amet consectetur adipisicing elit.</span></p>
+                                <p>Email : <span>{{ $sellerProfile->email }}</span></p>
+                                <p>Phone Number : <span>{{ $sellerProfile->phone_number }}</span></p>
                             </div>
                         </div>
 
@@ -94,318 +86,66 @@
         <div class="row">
             <div class="col-12">
                 <div class="p-3">
-                    {{-- Search Results  --}}
                     <h1 class="mb-3">Shop Products List</h1>
 
-                    {{-- item --}}
-                    <div class="row row-cols-xxl-5 row-cols-lg-4 row-cols-md-3 row-cols-xs-1 g-3 mb-5" id="card-row">
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
+                    <div class="row row-cols-xxl-auto row-cols-lg-auto row-cols-md-auto row-cols-xs-1 g-3 mb-5" id="card-row">
+                        @forelse ($sellerProducts as $item)
+                            <div class="col">
+                                <div class="card h-100" id="card-item">
+                                    @if ($item->productImage->isNotEmpty())
+                                        <img src="{{ asset('storage/images/items/'. $item->productImage->first()->productImages->image) }}" class="card-img-top" alt="{{ $item->name }}">
+                                    @else
+                                        <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top">
+                                    @endif
         
-                                            <strong>(25)</strong>
+                                    @auth
+                                        @if ($item->isFavorite())
+                                            <form action="{{ route('favorite.destroy', $item->id) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                            
+                                                <button type="submit" class="btn btn-sm shadow-none p-0">
+                                                    <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('favorite.store', $item->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm shadow-none p-0">
+                                                    <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endauth
+        
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <a href="{{ route('productDetail', $item->id) }}" class="text-decoration-none text-dark">
+                                                    <h3 class="text-truncate">{{ $item->name }}</h3>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
+                                        <h4>${{ $item->price }}</h4>
+                         
+                                        <ul class="list-group list-group-horizontal align-items-center my-2">
+                                            @for ($i = 0; $i < 5; $i++)
+                                                <li class="list-group-item p-0 border-0">
+                                                    <i class="fa-solid fa-star{{ $i < $item->averageRating ? ' text-warning' : '' }}"></i>
+                                                </li>
+                                            @endfor
+                                            <li class="list-group-item p-0 border-0">
+                                                <strong>({{ $item->totalReviews }})</strong>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="card" id="card-item">
-                                <img src="https://images.unsplash.com/photo-1710185220451-53c7a9b00a78?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="product image">
-                                <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon-no-favorite"></i>
-                                
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col">
-                                            <a href="{{ url('/productDetail') }}" class="text-decoration-none text-dark">
-                                                <h3>Product Name</h3>
-                                            </a>
-                                        </div>
-                                        <div class="col-auto">
-                                            <h4>$50</h4>
-                                        </div>
-                                    </div>
-                                
-                                    <a href="{{ url('/seller/profile') }}" class="text-muted text-decoration-none">Shop Name</a>
-                                    
-                                    <div class="d-flex justify-content-between align-items-center mt-2">
-                                        <div class="ratings">
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star text-warning"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-        
-                                            <strong>(25)</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </div>   
+                        @empty
+                            <img src="{{ asset('images/common/noResults.svg') }}" alt="No Results" class="center">
+                        @endforelse
                     </div>
-                    {{-- Search Results End --}}
                 </div>
 
                 {{-- Todo: Pagination Here  --}}
@@ -414,6 +154,11 @@
         </div>
         {{-- Seller Products end --}}
 
+        <div class="row justify-content-center my-5">
+            <div class="col-auto">
+                {{ $sellerProducts->links() }}
+            </div>
+        </div>
     </div>
 
     @include('layouts.footer')

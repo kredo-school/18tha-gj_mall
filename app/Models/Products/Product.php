@@ -63,7 +63,12 @@ class Product extends Model
         return $this->hasMany(Ad::class ,'product_id' , 'id');
     }
 
+
     public function orderLine() {
         return $this->hasMany(OrderLine::class);
+
+    public function ShoppingCartItems(){
+        return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');
+
     }
 }

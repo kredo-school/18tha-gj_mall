@@ -39,7 +39,7 @@
 
             <div class="col">
                 <h1 class="fw-bold">{{ $product->name }}</h1>
-                <a href="" class="text-muted text-decoration-none">
+                <a href="{{ route('seller.profile', $product->seller->id ) }}" class="text-muted text-decoration-none">
                     {{ $product->seller->last_name }}{{ $product->seller->first_name }}
                 </a>
                 <span class="fs-3 mt-2 d-block text-danger">

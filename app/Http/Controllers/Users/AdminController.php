@@ -125,7 +125,7 @@ class AdminController extends Controller
     }
 
     // edit() - view the Edit page
-    public function edit()
+    public function edit($id)
     {
         $admin = $this->admin->findOrFail(Admin::admin()->id);
         return view('admin.management.modal.edit')

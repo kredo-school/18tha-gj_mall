@@ -41,14 +41,13 @@
                     </div>
 
                     <div class="pt-2">
-                    {{-- css - using style.css --}}
-                        <label for="content" class="form-label inquiry-title">Translation:</label>
-                        <textarea name="comment" id="comment" rows="5" class="form-control" placeholder="Please write the answer here...">{{ old('t',$inquiry->translated_answer) }}</textarea>
+                        <label  class="form-label inquiry-title">Translation:</label>
+                        <textarea name="translated_answer" id="translated_answer" rows="5" class="form-control" placeholder="Please write the answer here...">{{ old('translated_answer',$inquiry->translated_answer) }}</textarea>
                     </div>
 
                     {{-- Status - select the status --}}
                     <div class="status pt-2">
-                        <label for="inquiry_status_id" class="inquiry-title">Status:</label><br>
+                        <label class="inquiry-title">Status:</label><br>
                         <select name="inquiry_status_id" id="inquiry_status_id" class="inquiry-content form-control">
                             <option hidden>{{ old('inquiry_status_id', $inquiry->inquiry_status_id) }}</option>
                             <option value="1">1: Unsolved</option>

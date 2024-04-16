@@ -1,9 +1,5 @@
 <?php
 
-
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Products\AdController;
 
 use App\Http\Controllers\Auth\AdminLoginController;
@@ -123,6 +119,9 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
+
+    Route::get('products/dashboard', [ProductController::class, 'search'])
+        ->name('products.search');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');

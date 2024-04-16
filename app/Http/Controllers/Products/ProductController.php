@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
+use App\Models\Products\OrderLine;
 use App\Models\Products\Product;
 use App\Models\Products\ProductDetail;
 use App\Models\Products\ProductImage;
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Query\JoinClause;
+use Illuminate\Database\Eloquent\Builder;
 
 
 class ProductController extends Controller
@@ -26,21 +29,74 @@ class ProductController extends Controller
     private $product_image;
     private $product_images;
     private $category;
+    private $order_line;
 
-    public function __construct(Product $product, Category $category, ProductDetail $product_detail, ProductImage $product_image, ProductImages $product_images)
+    public function __construct(Product $product, Category $category, ProductDetail $product_detail, ProductImage $product_image, ProductImages $product_images, OrderLine $order_line)
     {
         $this->product = $product;
         $this->product_detail = $product_detail;
         $this->product_image = $product_image;
         $this->product_images = $product_images;
         $this->category = $category;
+        $this->order_line = $order_line;
     }
 
     public function show()
     {
-        $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->take(5)->get();
+        $products = $this->product->where('seller_id', Auth::guard('seller')->id())->paginate(5);
 
-        return view('seller.products.dashboard')->with('products', $products);
+        $products->withPath('/seller/dashboard');
+
+        $products_ranking = $this->getProductsTotalOrderRank();
+
+        return view('seller.products.dashboard')
+            ->with('products', $products)
+            ->with('products_ranking', $products_ranking);
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        if(!empty($search)){
+            $products = $this->product
+            ->where('seller_id', Auth::guard('seller')->id())
+            ->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', '%'.$search.'%')
+                      ->orWhere('description', 'LIKE', '%'.$search.'%');
+            })
+            ->orderBy('created_at','desc')
+            ->get();
+        } else {
+            $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->paginate(5);
+        }
+
+
+        $products_ranking = $this->getProductsTotalOrderRank();
+
+        return view('seller.products.dashboard')
+            ->with('products', $products)
+            ->with('products_ranking', $products_ranking);
+
+    }
+
+    private function getProductsTotalOrderRank()
+    {
+        $products_sales = $this->order_line
+        ->select('product_id', DB::raw('SUM(qty) as total_sales'))
+        ->groupBy('product_id');
+
+        $products_ranking = $this->product
+            ->joinSub($products_sales, 'products_sales', function (JoinClause $join) {
+                $join->on('products.id', '=', 'products_sales.product_id');
+            })
+            ->select('products.*', 'products_sales.total_sales')
+            ->where('seller_id', Auth::guard('seller')->id())
+            ->orderBy('total_sales','desc')
+            ->take(5)
+            ->get();
+
+        return $products_ranking;
     }
 
     public function showProductDetail($id) {
@@ -281,16 +337,16 @@ class ProductController extends Controller
 
         return redirect()->back();
     }
-    
+
     private function calculateRatingProperties($product)
     {
         $totalReviews = $product->reviews->count();
         $averageRating = $totalReviews > 0 ? number_format($product->reviews->avg('rating'), 1) : 0;
-        
+
         $product->averageRating = $averageRating;
         $product->totalReviews = $totalReviews;
-        
+
         return $product;
     }
-    
+
 }

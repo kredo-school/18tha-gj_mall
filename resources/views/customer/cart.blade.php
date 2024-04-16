@@ -50,7 +50,12 @@
                                                     <div class="col-1">
                                                         <div class="row align-items-center text-center h-100 border-end">
                                                             <div class="col">
-                                                                <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="checked item-checkbox" data-item-id="{{ $product->id }}" style="width: 23px; height: 23px;">
+                                                                @foreach ($cart_items as $item)
+                                                                    @if ( $item->product_id === $product->id )
+                                                                        <input class="form-check-input sync-checkbox" type="checkbox" name="sync-checkbox[{{ $item->id }}]" id="sync-checkbox" checked hidden>
+                                                                        <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="checked item-checkbox" data-item-id="{{ $product->id }}" style="width: 23px; height: 23px;">
+                                                                    @endif
+                                                                @endforeach
                                                             </div>
                                                         </div>
                                                     </div>
@@ -66,11 +71,7 @@
                                                             <h4 class="fw-bold">{{ $product->name }}</h4>
                                                         </a>
                                                         <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
-                                                            @foreach ( $sellers as $seller )
-                                                                @if ( $seller->id === $product->seller_id)
-                                                                    <p>{{ $seller->last_name. $seller->first_name }}</p>
-                                                                @endif
-                                                            @endforeach
+                                                            <p>{{ $product->seller->last_name. $product->seller->first_name }}</p>
                                                         </a>
                                                     </div>
                                                     <div class="col">
@@ -85,11 +86,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col">
-                                                        <div class="row align-items-center text-center h-100" style="display: none">
+                                                        <div class="row align-items-center text-center h-100" style="display: none;">
                                                             <div class="col text-end">
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
                                                                         <h4 class="mt-2">$ <span class="product_price">{{ $product->price }}</span></h4>
+                                                                        <input type="number" name="product_price[{{ $item->id }}]" id="product_price" class="form-control product_price" value="{{ $product->price }}">
                                                                     @endif
                                                                 @endforeach
                                                             </div>

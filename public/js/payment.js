@@ -16,3 +16,11 @@ document.getElementById('is_gift').addEventListener('change', function(e) {
     // // Update total amount display
     totalAmountElement.textContent = totalAmount.toFixed(2);
 });
+
+document.getElementById('confirm').addEventListener('click', function() {
+    let total = 0;
+    const totalElement = document.querySelector('.total_price');
+    if (totalElement) {
+        total = totalElement.textContent;
+    }
+});

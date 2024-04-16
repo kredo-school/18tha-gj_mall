@@ -13,14 +13,6 @@
                 <h1 class="fw-bold">Dashboard</h1>
                 <p>Hi {{ $admin->first_name }} {{ $admin->last_name }}! Welcome to Admin Dashboard!</p>
             </div>
-            <div class="col">
-                <div class="p-3 input-group">
-                    <label for="daterange" class="input-group-text">
-                        <i class="fa-solid fa-calendar-days icon text-primary"></i>
-                    </label>
-                    <input type="text" id="daterange" name="daterange" class="form-control"/>
-                </div>
-            </div>
         </div>
         {{-- DashBoard Header End --}}
 
@@ -31,14 +23,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-auto">
-                                <img src="{{ asset('images/seller/totalOrder.svg') }}" style="width: 88px; height: 88px;">
+                                <img src="{{ asset('images/seller/totalOrder.svg') }}" class="card-img-size">
                             </div>
                             <div class="col-auto">
-                                <h2 class="fw-bold">{{ $yesterday_total_sales_quantity }}</h2>
+                                <h2 class="fw-bold">{{ $yesterday_qty }}</h2>
                                 <h5>Total Sales</h5>
                                 <span class="text-muted">
-                                    <i class="fa-regular fa-circle-up text-success"></i> 
-                                    {{ round($percentage_change_quantity) }}%
+                                    @if ($percentage_change_qty < 0)
+                                        <i class="fa-regular fa-circle-down text-danger"></i>     
+                                    @else
+                                        <i class="fa-regular fa-circle-up text-success"></i> 
+                                    @endif
+                                    {{ round($percentage_change_qty) }}%
                                 </span>
                             </div>
                         </div>
@@ -51,14 +47,18 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-auto">
-                                <img src="{{ asset('images/seller/totalSales.svg') }}" style="width: 88px; height: 88px;">
+                                <img src="{{ asset('images/seller/totalSales.svg') }}" class="card-img-size">
                             </div>
                             <div class="col-auto">
-                                <h2 class="fw-bold">${{ number_format($yesterday_total_sales_price, 2) }}</h2>
+                                <h2 class="fw-bold">${{ number_format($yesterday_sales, 2) }}</h2>
                                 <h5>Total Sales</h5>
                                 <span class="text-muted">
-                                    <i class="fa-regular fa-circle-down text-danger"></i> 
-                                    {{ round($percentage_change_price) }}%
+                                    @if ($percentage_change_sales < 0)
+                                        <i class="fa-regular fa-circle-down text-danger"></i>                                       
+                                    @else
+                                        <i class="fa-regular fa-circle-up text-success"></i>     
+                                    @endif
+                                    {{ round($percentage_change_sales) }}%
                                 </span>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         @endif
 
                         <div class="product_detail mt-2">
-                            <h5 class="text-truncate">{{ $product->name }}</h5>
+                            <h5 class="text-truncate" style="width: 150px">{{ $product->name }}</h5>
                             <h5>${{ number_format($product->price, 2) }}</h5>
                         </div>
                     </div>  
@@ -98,19 +98,23 @@
         <div class="row">
             <div class="col-6">
                 <h3 class="fw-bold">Monthly Sales</h3>
-                <canvas id="monthlyPlot" style="width:100%;max-width:700px"></canvas>
+                <canvas id="monthlyPlot"
+                        class="graph-size" 
+                        monthlyYValues="{{ json_encode($monthlyYValues) }}"
+                        monthlyYValues2="{{ json_encode($monthlyYValues2) }}"
+                        data-year="{{ Carbon\Carbon::now()->format('Y') }}">
+                </canvas>
             </div>
             <div class="col-6">
                 <h3 class="fw-bold">Daily Sales</h3>
-                <canvas id="dailyPlot" style="width:100%;max-width:700px"></canvas>
+                <canvas id="dailyPlot" 
+                        class="graph-size" 
+                        data-sales-data="{{ json_encode($dailySalesData) }}">
+                </canvas>
             </div>
         </div>
         {{-- Graph end --}}
     </div>
     {{-- Date-Range  --}}
     <script src="{{ asset('js/adminDashboard.js') }}"></script>
-
-    <script>
-
-    </script>
 @endsection

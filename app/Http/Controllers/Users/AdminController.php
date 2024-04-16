@@ -17,61 +17,137 @@ use Carbon\Carbon;
 class AdminController extends Controller
 {
 
-    private $admin, $order_line;
+    private $admin;
 
-    public function __construct(Admin $admin, OrderLine $order_line)
+    public function __construct(Admin $admin)
     {
         $this->admin      = $admin;
-        $this->order_line = $order_line;
     }
 
     public function showDashboard()
     {
         $admin = $this->admin->findOrFail(Auth::guard('admin')->id());
 
-        $yesterday            = Carbon::yesterday();
-        $day_before_yesterday = Carbon::yesterday()->subDays(1);
+        // Get sales data for yesterday and the day before yesterday
+        list($yesterday_qty, $yesterday_sales) = $this->getSalesData(Carbon::yesterday());
+        list($day_before_yesterday_qty, $day_before_yesterday_sales) = $this->getSalesData(Carbon::yesterday()->subDays(1));
 
-        $yesterday_total_sales_quantity = DB::table('order_lines')
-            ->whereDate('created_at', $yesterday)
+        // Calculate sales change and percentage change
+        $sales_change_qty = $yesterday_qty - $day_before_yesterday_qty;
+        $sales_change_sales = $yesterday_sales - $day_before_yesterday_sales;
+
+        $percentage_change_qty = $this->calculatePercentageChange($sales_change_qty, $day_before_yesterday_qty);
+        $percentage_change_sales = $this->calculatePercentageChange($sales_change_sales, $day_before_yesterday_sales);
+
+        // Get top products based on total sales
+        $top_products_details = $this->getTopProducts(5);
+
+        // Graph Part
+        $currentYear = Carbon::now()->year;
+        $monthlyYValues = $this->getMonthlySalesData($currentYear);
+        $lastYear = $currentYear - 1;
+        $monthlyYValues2 = $this->getMonthlySalesData($lastYear);
+        $dailySalesData = $this->getDailySalesData();
+        // Graph Part End 
+
+        return view('admin.dashboard', [
+            'admin' => $admin,
+            'top_products' => $top_products_details,
+            'yesterday_qty' => $yesterday_qty,
+            'yesterday_sales' => $yesterday_sales,
+            'percentage_change_qty' => $percentage_change_qty,
+            'percentage_change_sales' => $percentage_change_sales,
+            'monthlyYValues' => $monthlyYValues,
+            'monthlyYValues2' => $monthlyYValues2,
+            'dailySalesData' => $dailySalesData,
+        ]);
+    }
+
+    // Using for Daily bar graph
+    private function getDailySalesData()
+    {
+        $dailySalesData = [];
+        $currentDay = Carbon::now()->startOfWeek();
+
+        for ($i = 0; $i < 7; $i++) {
+            $dayName = $currentDay->format('D');
+
+            $dailySalesTotal = $this->getTotalSalesByDate($currentDay);
+
+            $dailySalesData[$dayName] = $dailySalesTotal;
+
+            $currentDay->addDay();
+        }
+
+        return $dailySalesData;
+    }
+
+    // Using for Monthly plot graph
+    private function getMonthlySalesData($year)
+    {
+        $monthlySalesData = [];
+
+        for ($month = 1; $month <= 12; $month++) {
+            $monthlySalesQuantity = $this->getSalesTotalByMonth($year, $month);
+
+            $monthlySalesData[] = $monthlySalesQuantity;
+        }
+
+        return $monthlySalesData;
+    }
+
+    private function getSalesData($date)
+    {
+        $total_qty = $this->getTotalQuantityByDate($date);
+        $total_sales = $this->getTotalSalesByDate($date);
+
+        return [$total_qty, $total_sales];
+    }
+
+    private function calculatePercentageChange($change, $base)
+    {
+        if ($base != 0) {
+            return ($change / $base) * 100;
+        }
+
+        return 0;
+    }
+
+    private function getTotalQuantityByDate($date)
+    {
+        return DB::table('order_lines')
+            ->whereDate('created_at', $date)
             ->sum('qty');
+    }
 
-        $yesterday_total_sales_price = DB::table('order_lines')
-            ->whereDate('created_at', $yesterday)
+    private function getTotalSalesByDate($date)
+    {
+        return DB::table('order_lines')
+            ->whereDate('created_at', $date)
             ->sum(DB::raw('qty * price'));
+    }
 
-        $day_before_yesterday_total_sales_quantity = DB::table('order_lines')
-            ->whereDate('created_at', $day_before_yesterday)
-            ->sum('qty');
-
-        $day_before_yesterday_total_sales_price = DB::table('order_lines')
-            ->whereDate('created_at', $day_before_yesterday)
+    private function getSalesTotalByMonth($year, $month)
+    {
+        return DB::table('order_lines')
+            ->whereYear('created_at', $year)
+            ->whereMonth('created_at', $month)
             ->sum(DB::raw('qty * price'));
+    }
 
-        $sales_change_quantity = $yesterday_total_sales_quantity - $day_before_yesterday_total_sales_quantity;
-        $sales_change_price    = $yesterday_total_sales_price - $day_before_yesterday_total_sales_price;
-    
-        $percentage_change_quantity = ($sales_change_quantity != 0 && $day_before_yesterday_total_sales_quantity != 0) ? ($sales_change_quantity / $day_before_yesterday_total_sales_quantity) * 100 : 0;
-        $percentage_change_price    = ($sales_change_price != 0 && $day_before_yesterday_total_sales_price != 0) ? ($sales_change_price / $day_before_yesterday_total_sales_price) * 100 : 0;
-
-        // Calculate total sales for each product
+    private function getTopProducts($limit)
+    {
         $top_products = DB::table('order_lines')
-                        ->select('product_id', DB::raw('SUM(qty * price) as total_sales'))
-                        ->groupBy('product_id')
-                        ->orderByDesc('total_sales')
-                        ->limit(5)
-                        ->get();
+            ->select('product_id', DB::raw('SUM(qty * price) as total_sales'))
+            ->groupBy('product_id')
+            ->orderByDesc('total_sales')
+            ->limit($limit)
+            ->get();
 
-        $top_product_ids      = $top_products->pluck('product_id')->toArray();
+        $top_product_ids = $top_products->pluck('product_id')->toArray();
         $top_products_details = Product::whereIn('id', $top_product_ids)->get();
 
-        return view('admin.dashboard')
-                ->with('admin', $admin)
-                ->with('top_products', $top_products_details)
-                ->with('yesterday_total_sales_quantity', $yesterday_total_sales_quantity)
-                ->with('yesterday_total_sales_price', $yesterday_total_sales_price)
-                ->with('percentage_change_quantity', $percentage_change_quantity)
-                ->with('percentage_change_price', $percentage_change_price);
+        return $top_products_details;
     }
 
     public function index()

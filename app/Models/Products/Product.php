@@ -3,6 +3,7 @@
 namespace App\Models\Products;
 
 use App\Models\Orders\OrderLine;
+use App\Models\Orders\ShoppingCartItem;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -66,6 +67,7 @@ class Product extends Model
 
     public function orderLine() {
         return $this->hasMany(OrderLine::class);
+    }
 
     public function ShoppingCartItems(){
         return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');

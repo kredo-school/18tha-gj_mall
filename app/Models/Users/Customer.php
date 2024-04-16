@@ -43,6 +43,7 @@ class Customer extends Model implements Authenticatable
     public function inqruiry()
     {
         return $this->hasMany(Inquiry::class);
+    }
 
     public function reviews() {
         return $this->hasMany(Review::class);

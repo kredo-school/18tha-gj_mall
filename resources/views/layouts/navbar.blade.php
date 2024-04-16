@@ -44,14 +44,7 @@
             <!-- Search Bar End-->
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ms-auto align-items-center" style="display: flex; justify-content: space-between;">
-                <li class="nav-item text-center">
-                    <a href="" class="nav-link d-inline p-0">
-                        <i class="fa-solid fa-globe icon"></i>
-                        <span class="text-white m-0">EN</span>
-                    </a>
-                </li>
-                
+            <ul class="navbar-nav ms-auto align-items-center" style="display: flex; justify-content: space-between;">                
                 <li class="nav-item text-center dropdown">
                     <a id="navbarDropdown" class="d-inline nav-link text-white p-0" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <i class="fa-solid fa-user icon"></i>Account

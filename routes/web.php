@@ -179,38 +179,40 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     });
 });
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('signIn', [AdminLoginController::class, 'showLoginPage']);
-    Route::post('signIn', [AdminLoginController::class, 'signIn'])->name('signIn');
-
-    Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
-
-    // Management User
-    Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
-    Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
-    Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
-    Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
-
-    // Customer Support
-    Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
-    Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
-    Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
-
-
-    Route::get('/admin/delivery', function () {
-        return view('admin.delivery.deliveryList');
-    });
-
-    Route::get('/admin/customerSupport', function () {
-        return view('admin.inquiry.customerSupport');
-    });
-
-    Route::get('evaluation', function () {
-        return view('admin.assessor.evaluation');
-    });
-
-    Route::get('delivery', function () {
-        return view('admin.delivery.deliveryList');
+Route::group(['middleware' => 'admin'], function() {
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+        Route::get('signIn', [AdminLoginController::class, 'showLoginPage']);
+        Route::post('signIn', [AdminLoginController::class, 'signIn'])->name('signIn');
+    
+        Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
+    
+        // Management User
+        Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
+        Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
+        Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
+        Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+    
+        // Customer Support
+        Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
+        Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
+        Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
+    
+    
+        Route::get('/admin/delivery', function () {
+            return view('admin.delivery.deliveryList');
+        });
+    
+        Route::get('/admin/customerSupport', function () {
+            return view('admin.inquiry.customerSupport');
+        });
+    
+        Route::get('evaluation', function () {
+            return view('admin.assessor.evaluation');
+        });
+    
+        Route::get('delivery', function () {
+            return view('admin.delivery.deliveryList');
+        });
     });
 });
 

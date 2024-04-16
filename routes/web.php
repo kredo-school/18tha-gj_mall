@@ -1,11 +1,9 @@
 <?php
 
 use App\Http\Controllers\Products\AdController;
-
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
@@ -15,6 +13,9 @@ use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -101,9 +102,11 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
     Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
 
-    Route::get('/dashboard', function () {
-        return view('seller.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',  [SellerController::class, 'index'])
+        ->name('dashboard');
+
+    // Route::get('/dashboard?', [SellerController::class, 'daterange'])
+    //     ->name('dashboard.daterange');
 
     // Seller Profile
     Route::get('profile', function () {
@@ -119,9 +122,6 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
-
-    Route::get('products/dashboard', [ProductController::class, 'search'])
-        ->name('products.search');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');
@@ -204,7 +204,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/admin/customerSupport', function () {
         return view('admin.inquiry.customerSupport');
-
     });
 
     Route::get('evaluation', function () {
@@ -217,12 +216,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 });
 
 // Favorite
-Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
+Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function () {
     Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
     Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
 });
 
-Route::group(['prefix' => 'review', 'as' => 'review.'], function() {
+Route::group(['prefix' => 'review', 'as' => 'review.'], function () {
     Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
     Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
     Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');

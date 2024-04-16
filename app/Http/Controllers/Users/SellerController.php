@@ -7,6 +7,7 @@ use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
+use App\Models\Users\OrderLine;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,18 +15,235 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Carbon;
+use Carbon\CarbonPeriod;
+use Illuminate\Database\Query\JoinClause;
+
+use function PHPUnit\Framework\isEmpty;
 
 class SellerController extends Controller
 {
     const LOCAL_FOLDER_PATH = 'public/images/sellers/';
-    private $seller , $country , $address, $ad;
+    private $seller, $country, $address, $order_line;
 
-    public function __construct(Seller $seller , Country $country ,Address $address)
+    public function __construct(Seller $seller, Country $country, Address $address, OrderLine $order_line)
     {
         $this->seller  = $seller;
         $this->country = $country;
         $this->address = $address;
+        $this->order_line = $order_line;
     }
+
+    public function index(Request $request)
+    {
+        // Get parameters from url
+        $search = $request->input('search');
+        $dateRange = $request->input('daterange');
+        // Split the string by '+' and extract start and end dates
+        $date1 = substr($dateRange, 1, 8);
+        $date2 = substr($dateRange, 11, 18);
+        // Extract start date and end date
+        $startDate = substr($date1, 0, 4) . '-' . substr($date1, 4, 2) . '-' . substr($date1, 6, 2);
+        $endDate = substr($date2, 0, 4) . '-' . substr($date2, 4, 2) . '-' . substr($date2, 6, 2);
+
+        // define the dates
+        $yesterday = date("Y-m-d", strtotime('-1 days'));
+        $day_before_yesterday = date("Y-m-d", strtotime('-2 days'));
+
+        $firstMonthDateOneYearBeforeNow = Carbon::now()->subYear()->startOfMonth();
+        $firstMonthDateOneMonthBeforeNow = Carbon::now()->subMonth()->startOfMonth();
+
+        $countYesterday = $this->getSellerOrders($yesterday, $yesterday)
+            ->select(
+                DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                DB::raw("SUM(order_lines.qty) as total_sales")
+            )
+            ->get();
+
+        $countDayBeforeYesterday = $this->getSellerOrders($day_before_yesterday, $day_before_yesterday)
+            ->select(
+                DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                DB::raw("SUM(order_lines.qty) as total_sales")
+            )
+            ->get();
+
+        if (!isEmpty($countDayBeforeYesterday)) {
+            $countCompare = round(($countYesterday[0]["total_sales"] / $countDayBeforeYesterday[0]["total_sales"] - 1) * 100, 2);
+            $amountCompare = round(($countYesterday[0]["total_amount"] / $countDayBeforeYesterday[0]["total_amount"] - 1) * 100, 2);
+        } else {
+            $countCompare = "No data";
+            $amountCompare = "No data";
+        }
+
+        // Get data For list
+        if (!empty($search) | !empty($datarange)) {
+            if (!empty($search) & !empty($datarange)) {
+                $orders = $this->order_line
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $search . '%');
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
+            } elseif (!empty($daterange)) {
+                $orders = $this->order_line
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
+            } else {
+                $orders = $this->order_line
+                    ->join('products', function (JoinClause $join) {
+                        $join->on('order_lines.product_id', '=', 'products.id')
+                            ->where('seller_id', Auth::guard("seller")->id());
+                    })
+                    ->where(function ($query) use ($search) {
+                        $query->where('name', 'LIKE', '%' . $search . '%')
+                            ->orWhere('description', 'LIKE', '%' . $search . '%');
+                    })
+                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
+                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
+                    ->select(
+                        "products.name",
+                        DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                        DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                        DB::raw("SUM(order_lines.qty) as total_sales")
+                    )
+                    ->groupBy('name', 'date')
+                    ->orderBy('date', 'desc')
+                    ->paginate(5);
+            }
+        } else {
+            $orders = $this->order_line
+                ->join('products', function (JoinClause $join) {
+                    $join->on('order_lines.product_id', '=', 'products.id')
+                        ->where('seller_id', Auth::guard("seller")->id());
+                })
+                ->select(
+                    "products.name",
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy('name', 'date')
+                ->orderBy('date', 'desc')
+                ->paginate(5);
+        }
+
+
+        // Monthly Sales Plot
+
+        $MonthlyData = $this->getPeriodData($this->getSellerOrders($firstMonthDateOneYearBeforeNow, Carbon::now()), "month");
+
+        $month = [];
+        $monthly_amount = [];
+        foreach ($MonthlyData as $data) {
+            $month[] = $data->month;
+            $monthly_amount[] = $data->total_amount;
+        }
+
+        // Daily Sales Plot
+        $DailyData = $this->getPeriodData($this->getSellerOrders($firstMonthDateOneMonthBeforeNow, Carbon::now()), "day");
+
+        $data = json_decode($DailyData, true);
+        $daily_output = [];
+        $output = [];
+        $names = [];
+        $accum_amount = 0;
+
+        foreach ($data as $keys => $values) {
+
+            foreach ($values as $value) {
+                $d = $value['day'];
+                $totalAmount = $value['total_amount'];
+                $daily_output['day'][] = $d;
+                $daily_output['total_amount'][] = $totalAmount;
+                $accum_amount = $accum_amount + $totalAmount;
+                $daily_output['accum_amount'][] = $accum_amount;
+            }
+            $names[] = $keys;
+            $output[$keys] = $daily_output;
+            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '');
+            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '');
+            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '');
+            $daily_output = [];
+            $accum_amount = 0;
+        }
+
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names'));
+    }
+
+    private function getSellerOrders($start_date, $end_date)
+    {
+
+        $records = $this->order_line
+            ->whereDate('order_lines.created_at', '>=', $start_date)
+            ->whereDate('order_lines.created_at', '<=', $end_date)
+            ->join('products', function (JoinClause $join) {
+                $join->on('order_lines.product_id', '=', 'products.id')
+                    ->where('seller_id', Auth::guard("seller")->id());
+            });
+
+        return $records;
+    }
+
+    private function getPeriodData($data, $period)
+    {
+
+        if ($period == "month") {
+            $output = $data
+                ->select(
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy("month")
+                ->orderBy('month', 'asc')
+                ->get();
+        } elseif ($period == "day") {
+            $output = $data
+                ->select(
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m') as month"),
+                    DB::raw("DATE_FORMAT(order_lines.created_at ,'%d') as day"),
+                    DB::raw("SUM(products.price * order_lines.qty) as total_amount"),
+                    DB::raw("SUM(order_lines.qty) as total_sales")
+                )
+                ->groupBy("date", "month", "day")
+                ->orderBy('date', 'asc')
+                ->get()
+                ->groupBy("month");
+        } else {
+            $output = [];
+        }
+        return $output;
+    }
+
 
     public function show()
     {
@@ -33,8 +251,8 @@ class SellerController extends Controller
         $countries = $this->country->all();
 
         return view('seller.profile.editProfile')
-                ->with('seller', $target_seller)
-                ->with('countries', $countries);
+            ->with('seller', $target_seller)
+            ->with('countries', $countries);
     }
 
     public function update(Request $request)
@@ -64,7 +282,7 @@ class SellerController extends Controller
 
         $seller = Seller::findOrFail($id);
 
-        if($seller->address_id){
+        if ($seller->address_id) {
             try {
                 // Find the relevant models
                 $address = Address::findOrFail($seller->address_id);
@@ -76,7 +294,7 @@ class SellerController extends Controller
                 $seller->phone_number = $validatedData['phone'];
                 $seller->description = $validatedData['description'];
 
-                if($request->image) {
+                if ($request->image) {
                     $this->deleteImage($seller->image);
                     $seller->avatar = $this->saveImage($request);
                 }
@@ -112,7 +330,7 @@ class SellerController extends Controller
                 $seller->phone_number = $validatedData['phone'];
                 $seller->description = $validatedData['description'];
 
-                if($request->image) {
+                if ($request->image) {
                     $this->deleteImage($seller->avatar);
                     $seller->avatar = $this->saveImage($request);
                 }
@@ -141,27 +359,28 @@ class SellerController extends Controller
                 Log::error('Update failed: ' . $e->getMessage());
                 return back()->with('error', 'Failed to update seller information.');
             }
-
-            }
-
+        }
     }
 
-    private function saveImage($request) {
-        $img_name = time(). '.'. $request->image->extension();
+    private function saveImage($request)
+    {
+        $img_name = time() . '.' . $request->image->extension();
         $request->image->storeAs(self::LOCAL_FOLDER_PATH, $img_name);
 
         return $img_name;
     }
 
-    private function deleteImage($image_name) {
-        $image_name = self::LOCAL_FOLDER_PATH. $image_name;
+    private function deleteImage($image_name)
+    {
+        $image_name = self::LOCAL_FOLDER_PATH . $image_name;
 
-        if(Storage::disk('local')->exists($image_name)) {
+        if (Storage::disk('local')->exists($image_name)) {
             Storage::disk('local')->delete($image_name);
         }
     }
 
-    private function getRegion($country_code) {
+    private function getRegion($country_code)
+    {
         $country = $this->country->where('alpha3', $country_code)->first();
         if ($country) {
             return $country->region;
@@ -173,22 +392,22 @@ class SellerController extends Controller
     public function showProfile($id)
     {
         $sellerProfile = $this->seller->findOrFail($id);
-        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id); ;
+        $sellerProducts = $sellerProfile->sellerProducts($sellerProfile->id);;
 
         foreach ($sellerProducts as $product) {
             $this->calculateRatingProperties($product);
         }
 
         return view('seller.profile.sellerProfile')
-                ->with('sellerProfile', $sellerProfile)
-                ->with('sellerProducts', $sellerProducts);
+            ->with('sellerProfile', $sellerProfile)
+            ->with('sellerProducts', $sellerProducts);
     }
 
     private function calculateRatingProperties($product)
     {
         $totalReviews = $product->reviews->count();
         $averageRating = $product->reviews->avg('rating');
-        
+
         // Add or update properties on the product object
         $product->averageRating = $averageRating;
         $product->totalReviews = $totalReviews;

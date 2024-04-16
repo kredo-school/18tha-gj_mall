@@ -1,12 +1,12 @@
 .thumbnail {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
     object-fit: cover; 
 }
 
 .inner-image {
     width: 700px;
-    height: 500px;
+    height: 600px;
     object-fit: cover; 
 }
 
@@ -67,7 +67,7 @@ table {
 
 #product_detail_card {
     background-color: #f2f2f2;
-    height: 250px;
+    height: 350px;
 }
 
 .card {

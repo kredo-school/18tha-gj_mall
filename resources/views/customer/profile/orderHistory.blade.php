@@ -79,14 +79,24 @@
                                                     </a>
                                                     <p class="h3 mb-2">${{ number_format($order->product->price, 2) }}</p>
                                                     
-                                                    {{-- ToDo: After Chie-san created Cart page, I'm gonna make this part --}}
-                                                    <form action="" method="post">
-                                                        @csrf
-                                            
-                                                        <button type="submit" class="btn create-button">
-                                                            Buy it Again
-                                                        </button>
-                                                    </form>
+                                                    @if ($order->product->isCart())
+                                                        <form action="{{ route('customer.updateQty', $order->product->id) }}" method="post">
+                                                            @csrf
+                                                            @method('PATCH')
+                                                
+                                                            <button type="submit" class="btn create-button">
+                                                                Buy it Again
+                                                            </button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('customer.addToCart', $order->product->id) }}" method="post">
+                                                            @csrf
+                                                
+                                                            <button type="submit" class="btn create-button">
+                                                                Buy it Again
+                                                            </button>
+                                                        </form>
+                                                    @endif
                                                 </div>
 
                                                 @if ($order->product->isReview())

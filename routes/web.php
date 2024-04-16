@@ -99,6 +99,8 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/cart/update', [CartController::class, 'update']);
     Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
     Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
+    Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

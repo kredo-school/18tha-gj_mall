@@ -119,4 +119,39 @@ class CartController extends Controller
             }
         }
     }
+
+    public function addToCart(Request $request, $product_id) {
+        $quantity = $request->input('qty', 1);
+
+        if ($quantity <= 0) {
+            return redirect()->back()->with('error', 'Quantity must be greater than 0.');
+        }
+
+        $this->cart_item->customer_id = Auth::id();
+        $this->cart_item->product_id  = $product_id;
+        $this->cart_item->qty         = $quantity;
+        $this->cart_item->save();
+
+        return redirect()->route('customer.cart');
+    }
+
+    public function updateQty(Request $request, $product_id) {
+        $cart = $this->cart_item->where('customer_id', Auth::id())
+                                ->where('product_id',$product_id)
+                                ->latest()
+                                ->first();
+
+        $quantity = $request->input('qty', 1);
+
+        if ($quantity <= 0) {
+            return redirect()->back()->with('error', 'Quantity must be greater than 0.');
+        } elseif ($quantity + $cart->qty > 5 ) {
+            return redirect()->back()->with('error', 'You can only buy 5 items.');
+        }
+
+        $cart->qty = $cart->qty + $quantity;
+        $cart->save();
+
+        return redirect()->route('customer.cart');
+    }
 }

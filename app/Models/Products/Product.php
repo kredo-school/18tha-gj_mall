@@ -71,6 +71,9 @@ class Product extends Model
 
     public function ShoppingCartItems(){
         return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');
+    }
 
+    public function isCart() {
+        return $this->ShoppingCartItems()->where('customer_id', Auth::id())->exists();
     }
 }

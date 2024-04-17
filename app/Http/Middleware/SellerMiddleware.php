@@ -2,13 +2,13 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Users\Admin;
+use App\Models\Users\Seller;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminMiddleware
+class SellerMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,20 +16,20 @@ class AdminMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    {   
-        if (Auth::guard('admin')->check()) {
+    {
+        if (Auth::guard('seller')->check()) {
             // Get the authenticated user's email
-            $email = Auth::guard('admin')->user()->email;
+            $email = Auth::guard('seller')->user()->email;
 
             // Check if the email exists in the Admin table
-            $admin = Admin::where('email', $email)->first();
+            $seller = Seller::where('email', $email)->first();
 
-            if ($admin) {
+            if ($seller) {
                 // User's email exists in the Admin table
                 return $next($request);
             }
         }
 
-        return redirect()->route('home')->with('error', 'Please Login as Admin user!');
+        return redirect()->route('home')->with('error', 'Please Login as Seller user!');
     }
 }

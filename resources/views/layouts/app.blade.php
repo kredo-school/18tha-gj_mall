@@ -30,7 +30,7 @@
     <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
     <script>
         Weglot.initialize({
-            api_key: "wg_ce783eff4b714568923b0aaf2e75b5419"
+            api_key: "{{ config('app.weglot_api_key') }}"
         });
     </script>
 

@@ -1,24 +1,20 @@
 <?php
 
 use App\Http\Controllers\Products\AdController;
-
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
 use App\Http\Controllers\HomeController;
-
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Products\SellerEvaluationController;
-
 use App\Http\Controllers\Inquiries\CustomerSupportController;
-
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
-
+use App\Http\Controllers\Orders\SellerDeliveryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -100,6 +96,8 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::get('/cart/update', [CartController::class, 'update']);
     Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
     Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
+    Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
@@ -107,9 +105,11 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
     Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
 
-    Route::get('/dashboard', function () {
-        return view('seller.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard',  [SellerController::class, 'index'])
+        ->name('dashboard');
+
+    // Route::get('/dashboard?', [SellerController::class, 'daterange'])
+    //     ->name('dashboard.daterange');
 
     // Seller Profile
     Route::get('profile', function () {
@@ -125,9 +125,6 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
-
-    Route::get('products/dashboard', [ProductController::class, 'search'])
-        ->name('products.search');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');
@@ -180,11 +177,17 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         ->name('evaluation.search');
 
 
-    Route::get('delivery', function () {
-        return view('seller.delivery.show');
-    });
+    Route::get('delivery', [SellerDeliveryController::class, 'show'])
+        ->name('delivery.show');
 
+    Route::get('delivery', [SellerDeliveryController::class, 'search'])
+        ->name('delivery.search');
 
+    Route::get('delivery/{id}', [SellerDeliveryController::class, 'showDetail'])
+        ->name('delivery.showDetail');
+
+    Route::patch('delivery/{id}/update', [SellerDeliveryController::class, 'update'])
+        ->name('delivery.update');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

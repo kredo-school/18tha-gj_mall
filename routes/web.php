@@ -18,6 +18,7 @@ use App\Http\Controllers\Orders\SellerDeliveryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

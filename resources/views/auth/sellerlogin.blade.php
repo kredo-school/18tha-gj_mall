@@ -42,7 +42,7 @@
             </div>
 
             <!-- Sign-in Form -->
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ route('seller.signIn') }}">
                 @csrf
 
                 <!-- E-mail -->
@@ -96,7 +96,7 @@
             <!-- Go to Admin's Sign-in page -->
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
-                    <a href="{{ url('/admin/signIn') }}" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
+                    <a href="{{ url('/signIn/admin') }}" class="h5 fw-bold text-secondary">Are you Admin User ?</a>
                 </div>
             </div>
 

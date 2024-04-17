@@ -13,6 +13,7 @@ use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
+use App\Http\Controllers\Orders\PaymentController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -96,6 +97,11 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
     Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
     Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
+
+    // Payment
+    Route::post('/payment/transaction/editAddress', [PaymentController::class, 'editAddress'])->name('editAddress');
+    Route::post('/payment/transaction/editPayment', [PaymentController::class, 'editPayment'])->name('editPayment');
+    Route::post('/payment/transaction/confirmation', [PaymentController::class, 'confirmation'])->name('confirmation');
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

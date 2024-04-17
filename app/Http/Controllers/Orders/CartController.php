@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Orders;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Orders\PaymentController;
 use App\Models\Orders\ShoppingCartItem;
 use App\Models\Orders\ShippingMethod;
 use App\Models\Products\Product;
@@ -69,55 +70,109 @@ class CartController extends Controller
 
     public function checkOut(Request $request)
     {
-        // Save the cart conditions.
-        $this->update($request);
-
-        $user = $this->customer->findOrFail(Auth::id());
-        $shipping = $this->shipping_method->findOrFail(1);
-
-        $all_item = $this->cart_item->all();
+        // Get an array from JavaScript from an Ajax request.
+        dd($request);
+        $itemsData = json_decode($request->input('itemsData'), true);
+        // dd($itemsData);
+        $checkedItemId = [];
         $total_qty = 0;
         $subTotal = 0;
 
-        foreach ($all_item as $item)
-        {
-            if ( $item->customer_id === $user->id )
-            {
-                $total_qty += $item->qty;
 
-                $cart_products[] = $this->product->findOrFail($item->product_id);
-                foreach ($cart_products as $p)
-                {
-                    $subTotal += $p->price * $item->qty;
-                }
+        // Process the retrieved request array.
+        foreach ($itemsData as $item) 
+        {
+            $id = $item['id'];
+            $checkboxValue = $item['checkboxValue'];
+            $qty = $item['qty'];
+            $price = $item['price'];
+
+            if ($checkboxValue === 'on')
+            {
+                $checkedItemId[] = $id;
+                $total_qty += $qty;
+                $subTotal += $price;
             }
         }
+        // Save the cart quantities condition.
+        $this->updateQuantity($itemsData);
 
-        return view('customer.payment.transaction')
-            ->with('user', $user)
-            ->with('shipping', $shipping)
-            ->with('total_qty', $total_qty)
-            ->with('subTotal', $subTotal);
+        // $request->validate([
+        //     'sync-checkbox' => 'required|array',
+        //     'sync-checkbox.*' => 'required|string',
+        //     'quantity' => 'required|array',
+        //     'quantity.*' => 'required|integer|min:1',
+        //     'product_price' => 'required|array',
+        //     'product_price.*' => 'required|integer',
+        // ]);
+
+        // for checked items & total quantity & sub total extraction
+        // $checkboxItems = $request->input('sync-checkbox');
+        // $checkedItems = [];
+        // foreach ($checkboxItems as $id => $checkboxItem) {
+        //     if ($checkboxItem === 'on')
+        //     {
+        //         $checkedItems[] = [$id => $checkboxItem];
+        //     }
+        // }
+
+        // $quantities = $request->input('quantity');
+        // $product_prices = $request->input('product_price');
+        // $total_qty = 0;
+        // $subTotal = 0;
+
+        // foreach ($checkedItems as $id => $checkedItem) 
+        // {
+        //     foreach ($quantities as $itemId => $quantity) 
+        //     {
+        //         foreach ($product_prices as $p_id => $price) 
+        //         {
+        //             if ($id === $itemId && $id === $p_id ) 
+        //             {
+        //                 $total_qty += $quantity;
+        //                 $subTotal += $price * $quantity;
+        //             }
+        //         }
+
+        //     }
+        // }
+
+        $shipping = $this->shipping_method->findOrFail(1);
+
+        // Return response for Ajax request. 
+        return "Success";
+
+        // Go to payment page with cart argments.
+        PaymentController::showTransaction($shipping, $checkedItemId, $total_qty, $subTotal);
     }
 
-    public function update($request)
+    public function updateQuantity($itemsData)
     {
-        $request->validate([
-            'quantity' => 'required|array',
-            'quantity.*' => 'required|integer|min:1'
-        ]);
+        foreach ($itemsData as $item) {
+            $id = $item['id'];
+            $checkboxValue = $item['checkboxValue'];
+            $qty = $item['qty'];
+            $price = $item['price'];
 
-        $quantities = $request->input('quantity');
+            $cart_item = $this->cart_item->findOrFail($id);
 
-        foreach ($quantities as $itemId => $quantity) 
-        {
-            $cart_item = $this->cart_item->findOrFail($itemId);
-
-            if ($cart_item) 
+            if ($cart_item)
             {
-                $cart_item->update(['qty' => $quantity]);
+                $cart_item->update(['qty' => $qty]);
             }
         }
+
+        // $quantities = $request->input('quantity');
+
+        // foreach ($quantities as $itemId => $quantity) 
+        // {
+        //     $cart_item = $this->cart_item->findOrFail($itemId);
+
+        //     if ($cart_item) 
+        //     {
+        //         $cart_item->update(['qty' => $quantity]);
+        //     }
+        // }
     }
 
     public function addToCart(Request $request, $product_id) {

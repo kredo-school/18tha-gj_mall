@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     cartItems.forEach(function(item) { 
         const checkbox = item.querySelector('.item-checkbox'); 
         const syncCheckbox = item.querySelector('.sync-checkbox'); // Check box for synchronization.
-        console.log("Checkbox:", syncCheckbox);
         checkbox.addEventListener('click', function() { 
             toggleCheckbox(this, syncCheckbox);
         }); 
@@ -141,3 +140,68 @@ if (backButton) {
         window.history.back(); 
     }); 
 };
+
+// resources/js/custom.js
+$(document).ready(function(){
+    $('#submitButton').click(function(e){
+        e.preventDefault();
+        
+        var formData = $('#transaction-form').serialize();
+        
+        $.ajax({
+            url: "/customer/payment/transaction",
+            method: 'POST',
+            data: formData,
+            success: function(response){
+                alert(response.message);
+                // Do something with the response if needed
+            },
+            error: function(xhr){
+                // Handle error
+                console.log(xhr.responseText);
+            }
+        });
+    });
+});
+
+// document.getElementById('submitButton').addEventListener('click', function() {
+//     var itemsData = [];
+//     alert('test');
+//     const cartItems = document.querySelectorAll('.cartItem-card');
+//     if (cartItems !== null) 
+//     {
+//         cartItems.forEach(function(item) 
+//         {
+//             var id = item.querySelector('.itemId').value;
+//             var checkboxValue = item.querySelector('.sync-checkbox').checked;
+//             var qty = item.querySelector('.quantity').value;
+//             var price = item.querySelector('.total_price_for_item').textContent;
+            
+//             itemsData.push({
+//                 id: id,
+//                 checkboxValue: checkboxValue,
+//                 qty: qty,
+//                 price: price
+//             });
+//         });
+//     };
+
+//     // Send an Ajax request and pass an array to a controller method.
+//     $.ajax({
+//         url: '/payment/transaction',
+//         type: 'POST',
+//         data: {
+//             itemsData: JSON.stringify(itemsData)
+//         },
+//         success: function(response) {
+//             // Process the response from the controller.
+//             console.log(response);
+//             alert('success');
+//         },
+//         error: function(xhr, status, error) {
+//             // error.
+//             console.error(xhr.responseText);
+//             alert('error');
+//         }
+//     });
+// });

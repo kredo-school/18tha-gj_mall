@@ -11,7 +11,7 @@
     <div class="container-fluid p-0 vh-100">
 
             {{-- Cart --}}
-            <form action="{{ route('customer.transaction') }}" method="post">
+            <form method="post" id="transaction-form">
                 @csrf
                 <div class="row px-3 mb-4 mx-auto">
                     <div class="col-7">
@@ -52,6 +52,7 @@
                                                             <div class="col">
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
+                                                                        <input type="hidden" class="itemId" value="{{ $item->id }}">
                                                                         <input class="form-check-input sync-checkbox" type="checkbox" name="sync-checkbox[{{ $item->id }}]" id="sync-checkbox" checked hidden>
                                                                         <img src="{{ asset('images/customer/checkedIcon.svg') }}" alt="checked" class="checked item-checkbox" data-item-id="{{ $product->id }}" style="width: 23px; height: 23px;">
                                                                     @endif
@@ -167,9 +168,7 @@
                                         <div class="row text-center">
                                             <div class="col">
                                                 @if ( Auth::id() )
-                                                    {{-- <a href="{{ route('customer.transaction') }}"> --}}
-                                                        <button type="submit" class="btn create-button w-50 fw-bold">Checkout</button>
-                                                    {{-- </a> --}}
+                                                    <button type="submit" id="submitButton" class="btn create-button w-50 fw-bold">Checkout</button>
                                                 @else
                                                     <p class="text-danger small mb-1">Please Sign-in first.</p>
                                                     <button type="submit" class="btn create-button w-50 fw-bold" disabled>Checkout</button>

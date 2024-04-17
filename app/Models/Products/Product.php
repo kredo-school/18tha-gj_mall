@@ -6,6 +6,7 @@ use App\Models\Orders\OrderLine;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
 use App\Models\Orders\ShoppingCartItem;
+use App\Models\Products\ProductStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,6 +24,10 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function productStatus(){
+        return $this->belongsTo(ProductStatus::class , 'status_id' ,'id');
     }
 
     public function productImage(){
@@ -73,4 +78,6 @@ class Product extends Model
         return $this->hasMany(ShoppingCartItem::class ,'product_id' , 'id');
 
     }
+
+
 }

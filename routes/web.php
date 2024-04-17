@@ -10,6 +10,7 @@ use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\SellerEvaluationController;
 
 use App\Http\Controllers\Inquiries\CustomerSupportController;
 
@@ -172,17 +173,18 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         ->name('ads.destroy');
 
     // Seller Evaluation
-    Route::get('evaluation', function () {
-        return view('seller.evaluation.show');
-    });
+    Route::get('evaluation', [SellerEvaluationController::class, 'show'])
+        ->name('evaluation.show');
+
+    Route::get('evaluation', [SellerEvaluationController::class, 'search'])
+        ->name('evaluation.search');
+
 
     Route::get('delivery', function () {
         return view('seller.delivery.show');
     });
 
-    Route::get('customerSupport', function () {
-        return view('seller.inquiry.customerSupport');
-    });
+
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
@@ -209,7 +211,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 
     Route::get('/admin/customerSupport', function () {
         return view('admin.inquiry.customerSupport');
-
     });
 
     Route::get('evaluation', function () {
@@ -222,12 +223,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
 });
 
 // Favorite
-Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function() {
+Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function () {
     Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
     Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
 });
 
-Route::group(['prefix' => 'review', 'as' => 'review.'], function() {
+Route::group(['prefix' => 'review', 'as' => 'review.'], function () {
     Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
     Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
     Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');

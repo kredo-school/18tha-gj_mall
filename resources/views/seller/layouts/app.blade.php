@@ -130,7 +130,7 @@
                                 {{-- End Evaluation --}}
 
                                 {{-- Start Customer Support --}}
-                                <li class="list-group-item border-0 mt-4">
+                                {{-- <li class="list-group-item border-0 mt-4">
                                     <div class="row align-items-center">
                                         <div class="col-2 {{ request()->is('seller/customerSupport') || request()->is('sellercustomerSupport') ? 'active': '' }}">
                                             <i class="fa-solid fa-headset sidebar_icon me-3"></i>
@@ -141,7 +141,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 {{-- End Customer Support --}}
 
                                 {{-- Start Logout --}}

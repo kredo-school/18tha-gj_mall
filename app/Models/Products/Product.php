@@ -3,6 +3,7 @@
 namespace App\Models\Products;
 
 use App\Models\Orders\OrderLine;
+use App\Models\Orders\ShoppingCartItem;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
 use App\Models\Orders\ShoppingCartItem;

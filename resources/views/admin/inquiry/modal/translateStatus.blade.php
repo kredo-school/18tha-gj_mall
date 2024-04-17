@@ -26,7 +26,7 @@
 
                     <div class="pt-2">
                         <p class="inquiry-title">Inquiry Category:</p>
-                        <p class="inquiry-content">{{$inquiry->inquiry_genre_id}}</p>
+                        <p class="inquiry-content">{{ $inquiry->inquiryGenre->name }}</p>
                     </div>
 
                     <div class="pt-2">
@@ -50,9 +50,9 @@
                         <label class="inquiry-title">Status:</label><br>
                         <select name="inquiry_status_id" id="inquiry_status_id" class="inquiry-content form-control">
                             <option hidden>{{ old('inquiry_status_id', $inquiry->inquiry_status_id) }}</option>
-                            <option value="1">1: Unsolved</option>
-                            <option value="2">2: Answer</option>
-                            <option value="3">3: Solved</option>
+                            <option value="Unsolved">1: Unsolved</option>
+                            <option value="Answe">2: Answer</option>
+                            <option value="Solved">3: Solved</option>
                         </select>
                     </div>
                 </div>

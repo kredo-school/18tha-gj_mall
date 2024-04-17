@@ -31,8 +31,6 @@
         </div>
     </div>
 
-    {{-- ToDo: After Chie-san finishes Cart page, I'll add Store function on Add to cart --}}
-
     {{-- Recommend --}}
     <section class="pt-5 pb-5" id="my-favorite">
         <div class="container-fluid">
@@ -103,10 +101,19 @@
                                                             <li class="list-group-item p-0 border-0"><strong>({{ number_format($product->averageRating, 1) }})</strong></li>
                                                         </ul>
                                                         @auth
-                                                            <form action="" method="POST">
-                                                                @csrf
-                                                                <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
-                                                            </form>
+                                                            @if ($product->isCart())
+                                                                <form action="{{ route('customer.updateQty', $product->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PATCH')
+                                                                    
+                                                                    <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
+                                                                </form>
+                                                            @else
+                                                                <form action="{{ route('customer.addToCart', $product->id) }}" method="POST">
+                                                                    @csrf
+                                                                    <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
+                                                                </form>
+                                                            @endif
                                                         @endauth
                                                     </div>
                                                 </div>
@@ -190,10 +197,19 @@
                                                             <li class="list-group-item p-0 border-0"><strong>({{ number_format($favorite->averageRating, 1) }})</strong></li>
                                                         </ul>
                                                         
-                                                        <form action="" method="POST">
-                                                            @csrf
-                                                            <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
-                                                        </form>
+                                                        @if ($product->isCart())
+                                                            <form action="{{ route('customer.updateQty', $product->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('PATCH')
+
+                                                                <button type="submit" class="btn w-100">Add to Cart</button>
+                                                            </form>
+                                                        @else
+                                                            <form action="{{ route('customer.addToCart', $product->id) }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
+                                                            </form>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             @endif

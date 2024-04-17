@@ -23,32 +23,26 @@ class EvaluationController extends Controller
     public function index()
     {
         $products = Product::select('id', 'name', 'price', 'description', 'status_id', 'seller_id', 'category_id', 'product_detail_id')->latest()->paginate(5);
-        $product_statuses = ProductStatus::select('id','status')->latest()->paginate(5);
-
         return view('admin.assessor.evaluation')->with('products', $products);
     }
 
     public function edit($id)
     {
         $product = $this->product->findOrFail(Product::product()->id);
-        $produc_status = $this->product_status->findOrFail(ProductStatus::product_status()->id);
 
-        return view('admin.assessor.modal.status')->with('products', $products)->with('product_statuses', $product_statuses);
+        return view('admin.assessor.modal.status')->with('products', $products);
     }
 
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
 
-        
         $validateData = $request->validate([
-            'status_id' => 'required|integer',
-            'status'    => 'integer'
+            'status_id' => 'required|integer'
         ]);
 
         try {
             // Find the products record by its ID
-
             $product = Product::findOrFail($id);
             $product->status_id = $validateData['status_id'];
             

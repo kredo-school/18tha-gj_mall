@@ -28,10 +28,13 @@
                 </a>
                 
                 <ul class="dropdown-menu h4">
-                    <li><a class="dropdown-item" href="#">1: Waiting for Evaluation</a></li>
-                    <li><a class="dropdown-item" href="#">2: Evaluating</a></li>
-                    <li><a class="dropdown-item" href="#">3: Waiting for Display</a></li>
-                    <li><a class="dropdown-item" href="#">4: Suspended</a></li>
+                    <li><a class="dropdown-item" href="#">1: Exhibit Request</a></li>
+                    <li><a class="dropdown-item" href="#">2: Waiting for Evaluation</a></li>
+                    <li><a class="dropdown-item" href="#">3: Evaluating</a></li>
+                    <li><a class="dropdown-item" href="#">4: Waiting for Display</a></li>
+                    <li><a class="dropdown-item" href="#">5: Exhibited</a></li>
+                    <li><a class="dropdown-item" href="#">6: Sold Out</a></li>
+                    <li><a class="dropdown-item" href="#">7: Suspended</a></li>
                 </ul>
             </div>
 
@@ -42,11 +45,11 @@
                 </a>
                 
                 <ul class="dropdown-menu h4">
-                    <li><a class="dropdown-item" href="#">1: Cloth</a></li>
-                    <li><a class="dropdown-item" href="#">2: Dish</a></li>
-                    <li><a class="dropdown-item" href="#">3: Glass</a></li>
-                    <li><a class="dropdown-item" href="#">4: Doll</a></li>
-                    <li><a class="dropdown-item" href="#">5: Pot</a></li>
+                    <li><a class="dropdown-item" href="#">1: Food</a></li>
+                    <li><a class="dropdown-item" href="#">2: Cloth/Accessory</a></li>
+                    <li><a class="dropdown-item" href="#">3: Home Decor</a></li>
+                    <li><a class="dropdown-item" href="#">4: Kitchen</a></li>
+                    <li><a class="dropdown-item" href="#">5: Table</a></li>
                 </ul>
             </div>            
     
@@ -73,98 +76,53 @@
                     </tr>
                 </thead>
                 <tbody>
-                {{-- No.1 --}}
-                    <tr>
-                        <td>1</td>
-                        <td>Cloth</td>
-                        <td>Kimono</td>
-                        <td>$100</td>
-                        <td>160(S)</td>
-                        <td>1kg</td>
-                        <td>No</td>
-                        <td>Kimono Shop</td>
-                        <td>This is a tradistional cloth</td>
-                        <td>1: Waiting for Evaluation</td>
-                        <td>
-                            <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status">Change Status</button>
-                            @include('admin.assessor.modal.status')
-                        </td>
-                    </tr>
-                    {{-- No.2 --}}
-                    <tr>
-                        <td>2</td>
-                        <td>Dish</td>
-                        <td>Arita-yaki</td>
-                        <td>$50</td>
-                        <td>Φ20</td>
-                        <td>0.5kg</td>
-                        <td>Yes</td>
-                        <td>Dish Shop</td>
-                        <td>This is a tradistional dish</td>
-                        <td>2: Evaluating</td>
-    
-                        <td>
-                            <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status">Change Status</button>
-                            @include('admin.assessor.modal.status')
-                        </td>
-                    </tr>
-                    {{-- No.3 --}}
-                    <tr>
-                        <td>3</td>
-                        <td>Glass</td>
-                        <td>Yunomi</td>
-                        <td>$30</td>
-                        <td>Φ10</td>
-                        <td>0.7kg</td>
-                        <td>Yes</td>
-                        <td>Yunomi Shop</td>
-                        <td>This is a kind of glass</td>
-                        <td>3: Waiting for Display</td>
-                        <td>
-                            <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status">Change Status</button>
-                            @include('admin.assessor.modal.status')
-                        </td>
-                    </tr>
-    
-                    {{-- No.4 --}}
-                    <tr>
-                        <td>4</td>
-                        <td>Doll</td>
-                        <td>Hina Dolls</td>
-                        <td>$80</td>
-                        <td>20</td>
-                        <td>20kg</td>
-                        <td>No</td>
-                        <td>Doll Shop</td>
-                        <td>This is a tradistional Japanese culture</td>
-                        <td>3: Waiting for Display</td>
-                        <td>
-                            <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status">Change Status</button>
-                            @include('admin.assessor.modal.status')
-                        </td>
-                    </tr>
-    
-                    {{-- No.5 --}}
-                    <tr>
-                        <td>5</td>
-                        <td>Pot</td>
-                        <td>Hot Pot</td>
-                        <td>$200</td>
-                        <td>Φ30</td>
-                        <td>3kg</td>
-                        <td>Yes</td>
-                        <td>Pot Store</td>
-                        <td>This is a tradistional pot</td>
-                        <td>4: Suspended</td>
-                        <td>
-                            <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status">Change Status</button>
-                            @include('admin.assessor.modal.status')
-                        </td>
-                    </tr>
+                    @foreach ($products as $product)
+                        <tr>
+                            <td>{{ $product->id }}</td>
+                            <td>{{ $product->category->name }}</td>
+                            <td>{{ $product->name }}</td>
+                            <td>{{ $product->price }}</td>
+                            <td>{{ $product->productDetail->size }}</td>
+                            <td>{{ $product->productDetail->weight }}</td>
+                            <td>
+                                @if ($product->productDetail->is_fragile == 0)
+                                    No
+                                @elseif ($product->productDetail->is_fragile == 1)
+                                    Yes
+                                @endif
+                            </td>
+                            <td>{{ $product->seller->id }}</td>
+                            <td>{{ $product->description }}</td>
+                            <td>
+                                @if ($product->status_id == 1)
+                                    Exhibit Request 
+                                @elseif ($product->status_id == 2)
+                                    Waiting for Evaluation
+                                @elseif ($product->status_id == 3)
+                                    Evaluation
+                                    @if ($product->status_id == 7)
+                                        Suspended
+                                    @endif
+                                @elseif ($product->status_id == 4)
+                                    Waiting for Display
+                                @elseif ($product->status_id == 5)
+                                    Exhibited
+                                @elseif ($product->status_id == 6)
+                                    Sold Out
+                                @endif
+                            </td>
+                            <td>
+                                <button class="btn btn-sm custom-button3 rounded-pill shadow montserrat" data-bs-toggle="modal" data-bs-target="#change-status-{{ $product->id }}">Change Status</button>
+                                @include('admin.assessor.modal.status')
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    {{ $products->links() }}
+
 
     <div class="row banner mx-1">
         <div class="col-auto p-0">

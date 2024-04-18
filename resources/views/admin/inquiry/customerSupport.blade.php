@@ -63,22 +63,16 @@
                                 <td>{{ $inquiry->title }}</td>
 
                                 {{-- Genres --}}
-                                {{-- After connecting FK, Change name --}}
-                                {{-- <td>{{ $inquiry->inquiry_genres->name }}</td> --}}
-                                <td>{{ $inquiry->inquiry_genre_id }}</td>
+                                <td>{{ $inquiry->inquiryGenre->name }}</td>
 
                                 {{-- Content --}}
                                 <td>{{ $inquiry->content }}</td>
 
                                 {{-- Customer Name --}}
-                                {{-- After connecting FK, Change name --}}
-                                {{-- <td>{{ $inquiry->customers->first_name }} {{ $inquiry->customers->last_name}}</td> --}}
-                                <td>{{ $inquiry->customer_id }} {{ $inquiry->customer_id }}</td>
+                                <td>{{ $inquiry->customer->first_name }} {{ $inquiry->customer->last_name}}</td>
 
                                 {{-- Status --}}
-                                {{-- After connecting FK, Change name --}}
-                                {{-- <td>{{ $inquiry->inquiry_status->status }}</td> --}}
-                                <td>{{ $inquiry->inquiry_status_id }}</td>
+                                <td>{{ $inquiry->inquiryStatus->status }}</td>
 
                                 {{-- Change Status & Delete Button --}}
                                 <td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inquiries;
 
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Models\Inquiries\Inquiry;
@@ -50,42 +51,43 @@ class CustomerSupportController extends Controller
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
-        
+
         $validateData = $request->validate([
-            'answer'               => 'required|string|max:255',
-            'translated_answer'    => 'required|string|max:255',
+            'answer'               => 'string|max:255',
+            'translated_answer'    => 'string|max:255',
             'inquiry_status_id'    => 'required|integer',
         ]);
-
 
         try {
             // Find the admin record by its ID
             $inquiry = Inquiry::findOrFail($id);
-            
-            $inquiry->answer               = $validateData['answer'];
-            $inquiry->translated_answer    = $validateData['translated_answer'];
-            $inquiry->inquiry_status_id    = $validateData['inquiry_status_id'];
 
+            if (Arr::has($validateData, 'answer') && $validateData['answer'] !== null) {
+                $inquiry->answer = $validateData['answer'];
+                } else{
+                $inquiry->translated_answer = $validateData['translated_answer'];
+                }
+                $inquiry->inquiry_status_id    = $validateData['inquiry_status_id'];
             
-            // Save the changes
-            $inquiry->save();
+                // Save the changes
+                $inquiry->save();
 
-            // Commit the transaction
-            DB::commit();
+                // Commit the transaction
+                DB::commit();
 
-            // Redirect back with a success message
-            Log::info('Inquiry updated successfully.');
+                // Redirect back with a success message
+                Log::info('Inquiry updated successfully.');
 
-            return redirect()->back()->with('success', 'Inquiry updated successfully.');
-        } catch (Exception $e) {
-            // Rollback the transaction
-            DB::rollback();
-            
-            // Log the error
-            Log::error('Error updating inquiry: ' . $e->getMessage());
-            
-            // Redirect back with an error message
-            return back()->withInput()->withErrors(['error' => 'Error updating inquiry. Please try again.']);
+                return redirect()->back()->with('success', 'Inquiry updated successfully.');
+            } catch (Exception $e) {
+                // Rollback the transaction
+                DB::rollback();
+                
+                // Log the error
+                Log::error('Error updating inquiry: ' . $e->getMessage());
+                
+                // Redirect back with an error message
+                return back()->withInput()->withErrors(['error' => 'Error updating inquiry. Please try again.']);
         }
     }
 

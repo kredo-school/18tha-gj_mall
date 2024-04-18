@@ -6,7 +6,6 @@ use App\Models\Orders\OrderLine;
 use App\Models\Orders\ShoppingCartItem;
 use App\Models\Users\Favorite;
 use App\Models\Users\Seller;
-use App\Models\Orders\ShoppingCartItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

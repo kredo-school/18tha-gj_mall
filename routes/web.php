@@ -3,6 +3,7 @@
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
@@ -29,6 +30,10 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
+
+// Google Login only for customer
+Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/login/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 // Note: We might delete later
 Route::get('/', function () {

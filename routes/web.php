@@ -1,19 +1,22 @@
 <?php
 
-use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
-use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Users\AdminController;
-use App\Http\Controllers\Users\SellerController;
-use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\EvaluationController;
+use App\Http\Controllers\Products\SellerEvaluationController;
 use App\Http\Controllers\Inquiries\CustomerSupportController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
+use App\Http\Controllers\Orders\SellerDeliveryController;
+use App\Http\Controllers\Products\AdController;
+use App\Http\Controllers\Users\AdminController;
+use App\Http\Controllers\Users\CustomerController;
+use App\Http\Controllers\Users\SellerController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -178,7 +181,6 @@ Route::group(['middleware' => 'seller'], function() {
         });
     });
 });
-
 
 Route::group(['middleware' => 'admin'], function() {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {    

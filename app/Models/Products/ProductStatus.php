@@ -12,8 +12,15 @@ class ProductStatus extends Model
 
     protected $table = 'product_status';
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+
+    public function products(){
+        return $this->hasMany(Product::class ,'status_id','id');
     }
+
+    public function getSeller($id) {
+        return $this->products()
+                    ->where('seller_id', $id)
+                    ->paginate(5);
+    }
+
 }

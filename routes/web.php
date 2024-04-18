@@ -25,11 +25,13 @@ use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Products\EvaluationController;
 use App\Http\Controllers\Inquiries\CustomerSupportController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\SellerEvaluationController;
 use App\Http\Controllers\Inquiries\CustomerSupportController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
+use App\Http\Controllers\Orders\SellerDeliveryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -186,17 +188,24 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         ->name('ads.destroy');
 
     // Seller Evaluation
-    Route::get('evaluation', function () {
-        return view('seller.evaluation.show');
-    });
+    Route::get('evaluation', [SellerEvaluationController::class, 'show'])
+        ->name('evaluation.show');
 
-    Route::get('delivery', function () {
-        return view('seller.delivery.show');
-    });
+    Route::get('evaluation', [SellerEvaluationController::class, 'search'])
+        ->name('evaluation.search');
 
-    Route::get('customerSupport', function () {
-        return view('seller.inquiry.customerSupport');
-    });
+
+    Route::get('delivery', [SellerDeliveryController::class, 'show'])
+        ->name('delivery.show');
+
+    Route::get('delivery', [SellerDeliveryController::class, 'search'])
+        ->name('delivery.search');
+
+    Route::get('delivery/{id}', [SellerDeliveryController::class, 'showDetail'])
+        ->name('delivery.showDetail');
+
+    Route::patch('delivery/{id}/update', [SellerDeliveryController::class, 'update'])
+        ->name('delivery.update');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

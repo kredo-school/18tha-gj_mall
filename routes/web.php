@@ -8,13 +8,16 @@ use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Products\ProductController;
+use App\Http\Controllers\Products\SellerEvaluationController;
 use App\Http\Controllers\Inquiries\CustomerSupportController;
 use App\Http\Controllers\Users\FavoriteController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Users\ReviewController;
+use App\Http\Controllers\Orders\SellerDeliveryController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -171,6 +174,95 @@ Route::group(['middleware' => 'seller'], function() {
             return view('seller.inquiry.customerSupport');
         });
     });
+
+Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
+    // Seller
+    Route::get('signIn', [SellerLoginController::class, 'showLoginPage']);
+    Route::post('signIn', [SellerLoginController::class, 'signIn'])->name('signIn');
+
+    Route::get('/dashboard',  [SellerController::class, 'index'])
+        ->name('dashboard');
+
+    // Route::get('/dashboard?', [SellerController::class, 'daterange'])
+    //     ->name('dashboard.daterange');
+
+    // Seller Profile
+    Route::get('profile', function () {
+        return view('seller.profile.sellerProfile');
+    });
+
+    Route::get('profile/editProfile', [SellerController::class, 'show'])
+        ->name('profile.editProfile');
+
+    Route::patch('profile/updateProfile', [SellerController::class, 'update'])
+        ->name('profile.updateProfile');
+
+    // Seller Product
+    Route::get('products/dashboard', [ProductController::class, 'show'])
+        ->name('products.dashboard');
+
+    Route::get('/products/create',  [ProductController::class, 'create'])
+        ->name('products.create');
+
+    Route::post('products/store',  [ProductController::class, 'store'])
+        ->name('products.store');
+
+    Route::get('products/{id}/edit', [ProductController::class, 'edit'])
+        ->name('products.edit');
+
+    Route::patch('products/{id}/update', [ProductController::class, 'update'])
+        ->name('products.update');
+
+    Route::get('products/{id}/delete', [ProductController::class, 'delete'])
+        ->name('products.delete');
+
+    Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
+        ->name('products.destroy');
+
+    Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+        ->name('products.image.destroy');
+
+    // Seller Ads
+    Route::get('/ads/dashboard', [AdController::class, 'show'])
+        ->name('ads.dashboard');
+
+    Route::get('ads/create', [AdController::class, 'create'])
+        ->name('ads.create');
+
+    Route::post('ads/store', [AdController::class, 'store'])
+        ->name('ads.store');
+
+    Route::get('ads/{id}/edit', [AdController::class, 'edit'])
+        ->name('ads.edit');
+
+    Route::patch('ads/{id}/update', [AdController::class, 'update'])
+        ->name('ads.update');
+
+    Route::patch('ads/{id}/delete', [AdController::class, 'delete'])
+        ->name('ads.delete');
+
+    Route::delete('ads/{id}/destroy', [AdController::class, 'destroy'])
+        ->name('ads.destroy');
+
+    // Seller Evaluation
+    Route::get('evaluation', [SellerEvaluationController::class, 'show'])
+        ->name('evaluation.show');
+
+    Route::get('evaluation', [SellerEvaluationController::class, 'search'])
+        ->name('evaluation.search');
+
+
+    Route::get('delivery', [SellerDeliveryController::class, 'show'])
+        ->name('delivery.show');
+
+    Route::get('delivery', [SellerDeliveryController::class, 'search'])
+        ->name('delivery.search');
+
+    Route::get('delivery/{id}', [SellerDeliveryController::class, 'showDetail'])
+        ->name('delivery.showDetail');
+
+    Route::patch('delivery/{id}/update', [SellerDeliveryController::class, 'update'])
+        ->name('delivery.update');
 });
 
 

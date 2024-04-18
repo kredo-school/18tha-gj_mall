@@ -56,7 +56,19 @@
                             <td>{{ $admin->phone_number }}</td>
 
                             {{-- role --}}
-                            <td>{{ $admin->role }}</td>
+                            <td>
+                                @if ($admin->role == 1)
+                                    Admin
+                                @elseif ($admin->role == 2)
+                                    Stuff
+                                @elseif ($admin->role == 3)
+                                    Translator
+                                @elseif ($admin->role == 4)
+                                    Assessor
+                                @elseif ($admin->role == 5)
+                                    Delivery
+                                @endif
+                            </td>
 
                             {{-- Edit & Delete Button --}}
                             <td>

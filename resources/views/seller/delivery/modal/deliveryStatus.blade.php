@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/deliveryStatus.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade" id="change-status-">
+<div class="modal fade" id="change-status-{{ $order->id }}">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -12,57 +12,64 @@
             </div>
             <div class="modal-body">
                 <div class="pt-3">
-                    <p><strong class="fw-bold"> ID: </strong> #123456789</p>
+                    <p><strong class="fw-bold"> Order ID: </strong> {{ $order->order_id }}</p>
                 </div>
                 <div class="pt-3">
-                    <p><strong class="fw-bold"> Category: </strong> Cloth</p>
+                    <p><strong class="fw-bold"> Product Category: </strong> {{ $order->product->category->name }}</p>
                 </div>
                 <div class="pt-3">
-                    <p><strong class="fw-bold">Products Name: </strong>Kimono</p>
+                    <p><strong class="fw-bold">Products Name: </strong>{{ $order->product->name }}</p>
                 </div>
                 <div class="pt-3">
-                    <p><strong class="fw-bold">Price: </strong>$100</p>
-                </div>
-                <div class="pt-3">
-                    <p><strong class="fw-bold">Details(WxHxLxW): </strong>70cmx160cmx10cmx1kg</p>
-                </div>
-                <div class="pt-3">
-                    <p><strong class="fw-bold">Fragile: </strong>No</p>
-                </div>
-                <div class="pt-3">
-                    <p><strong class="fw-bold">Seller Shop: </strong>Kimono Shop</p>
-                </div>
-                <div class="pt-3">
-                    <p><strong class="fw-bold">Description: </strong><br>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure aliquid esse illo cum! Veniam at soluta, quas eaque odio laborum atque officiis numquam doloribus culpa dolor libero impedit veritatis voluptatem?</p>
-
+                    <p><strong class="fw-bold">Details(WxHxLxW): </strong>{{ $order->product->productDetail->size }}
+                        {{ $order->product->productDetail->weight }}</p>
                 </div>
 
-                <div class="status">
-                    <form action="#">
-                        <label for="status" class="h5 fw-bold">Status:</label>
-                        <select name="stauts" id="status" class="form-select">
-                            {{-- Seller can only change No.1 and No.2 status --}}
-                            <option value="select">Select the status here...</option>
-                            <option value="first">1: Waiting for Acceptance</option>
-                            <option value="second">2: Completing Acceptance</option>
+                <div class="pt-3">
+                    <p><strong class="fw-bold">Fragile: </strong>
+                        @if ($order->product->productDetail->is_fragile == 1)
+                            Yes
+                        @else
+                            No
+                        @endif
+                    </p>
+                </div>
+                <div class="pt-3">
+                    <p><strong class="fw-bold">Shipping method: </strong>{{ $order->shopOrder->shippingMethod->name }}
+                    </p>
+                </div>
+                <div class="pt-3">
+                    <p><strong class="fw-bold">Product Description: </strong>{{ $order->product->description }}</p>
+                </div>
+                <form action="{{ route('seller.delivery.update', $order->shopOrder->id) }}" method="POST">
+                    @csrf
+                    @method('PATCH')
 
-                            {{-- <option value="third">3: During Transportation</option>
-                            <option value="forth">4: Completing Shipment</option> --}}
-                        </select>
-                    </form>
-                </div>              
+                    <label for="status" class="h5 fw-bold">Status:</label>
+                    <select name="status" id="status" class="form-select">
+                        <option value="select">Select the status here...</option>
+                        @foreach ($order_statuses->take(2) as $order_status)
+                            @if ($order_status->id == $order->status_id)
+                                <option value="{{ $order_status->id }}" selected>{{ $order_status->status }}
+                                </option>
+                            @else
+                                <option value="{{ $order_status->id }}">{{ $order_status->status }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+
+
             </div>
 
             <div class="modal-footer border-0 mx-auto montserrat">
-                <form action="#" method="#">
-                    @csrf
-                    {{-- @method('') --}}
-                    <button type="button" class="btn btn-sm cancel-delivery-button shadow me-1" data-bs-dismiss="modal">
-                        Cancel
-                    </button>
-                    <button type="submit" class="btn btn-sm complete-delivery-button shadow ms-1">Complete</button>
-                </form>
+                <button type="button" class="btn btn-sm cancel-delivery-button shadow me-1" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="submit" class="btn btn-sm complete-delivery-button shadow ms-1">Complete</button>
+
             </div>
+            </form>
         </div>
+
     </div>
 </div>

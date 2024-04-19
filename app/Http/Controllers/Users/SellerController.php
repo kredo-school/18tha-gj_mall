@@ -174,7 +174,7 @@ class SellerController extends Controller
         $output = [];
         $names = [];
         $accum_amount = 0;
-
+        $i = 0;
         foreach ($data as $keys => $values) {
 
             foreach ($values as $value) {
@@ -185,17 +185,35 @@ class SellerController extends Controller
                 $accum_amount = $accum_amount + $totalAmount;
                 $daily_output['accum_amount'][] = $accum_amount;
             }
-            $names[] = $keys;
+            $names[$i] = $keys;
             $output[$keys] = $daily_output;
-            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '');
-            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '');
-            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '');
+            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '0');
+            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '0');
+            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '0');
             $daily_output = [];
             $accum_amount = 0;
+            $i++;
         }
 
+        if (!empty($names)) {
+            $Xvalues = $output[$names[0]]['day'];
+        } else {
+            $Xvalues = array_fill(0, 31, 0);
+        }
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names'));
+        if (!empty($names)) {
+            $LastMonthYvalues = $output[$names[0]]['accum_amount'];
+        } else {
+            $LastMonthYvalues = array_fill(0, 31, 0);
+        }
+
+        if (!empty($names)) {
+            $thisMonthYvalues = $output[$names[1]]['accum_amount'];
+        } else {
+            $thisMonthYvalues = array_fill(0, 31, 0);
+        }
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'LastMonthYvalues','thisMonthYvalues','Xvalues'));
     }
 
     private function getSellerOrders($start_date, $end_date)

@@ -109,6 +109,7 @@
 
         </div>
     </div>
+
     <div class="row mt-5">
         <div class="col-6">
             <h3>Monthly Sales</h3>
@@ -120,8 +121,8 @@
             <h6>Cumulative value from the first day of the month</h6>
             <canvas id="dailyPlot"></canvas>
         </div>
-
     </div>
+
     <script src="{{ asset('js/sellerDashboard.js') }}"></script>
     <script type="text/javascript">
         // Monthly Chart
@@ -153,19 +154,24 @@
         });
 
         // Daily Chart
+
+        // let numbers = [];
+        // for (let i = 1; i <= 31; i++) {
+        //     numbers.push(i);
+        // }
         new Chart("dailyPlot", {
             type: "line",
             data: {
-                labels: @json($output[$names[0]]['day']),
+                labels: @json($Xvalues),
                 datasets: [{
                         // backgroundColor: barColors2,
-                        label: @json($names[0]),
-                        data: @json($output[$names[0]]['accum_amount'])
+                        label: "Last Month",
+                        data: @json($LastMonthYvalues),
                     },
                     {
                         // backgroundColor: barColors2,
-                        label: @json($names[1]),
-                        data: @json($output[$names[1]]['accum_amount'])
+                        label: "This Month",
+                        data: @json($thisMonthYvalues),
                     }
                 ]
             },

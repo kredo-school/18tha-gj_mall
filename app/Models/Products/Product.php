@@ -82,4 +82,4 @@ class Product extends Model
     public function isCart() {
         return $this->ShoppingCartItems()->where('customer_id', Auth::id())->exists();
     }
-}
+};

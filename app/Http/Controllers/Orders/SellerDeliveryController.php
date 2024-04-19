@@ -21,19 +21,6 @@ class SellerDeliveryController extends Controller
         $this->shop_order = $shop_order;
     }
 
-    public function show()
-    {
-        $seller_orders = $this->order_line
-            ->join('products', function (JoinClause $join) {
-                $join->on('products.id', '=', 'order_lines.product_id')
-                    ->where('products.seller_id', Auth::guard("seller")->id());
-            })
-            ->paginate(5);
-        $order_statuses = $this->order_status->orderBy('id', 'asc')->get();
-
-        return view("seller.delivery.show", compact("order_statuses", "seller_orders"));
-    }
-
     public function showDetail($id)
     {
         $order = $this->order_line->findOrFail($id);

@@ -109,6 +109,7 @@
 
         </div>
     </div>
+
     <div class="row mt-5">
         <div class="col-6">
             <h3>Monthly Sales</h3>
@@ -120,52 +121,60 @@
             <h6>Cumulative value from the first day of the month</h6>
             <canvas id="dailyPlot"></canvas>
         </div>
-
     </div>
+
     <script src="{{ asset('js/sellerDashboard.js') }}"></script>
     <script type="text/javascript">
         // Monthly Chart
         // Pass Datas
-        const xValues = @json($month);
-        const yValues = @json($monthly_amount);
-        const barColors = Array.from({
-            length: xValues.length
-        }, () => "#0AA873");
         new Chart("monthlyPlot", {
             type: "bar",
             data: {
-                labels: xValues,
+                labels:  @json($month),
                 datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues,
-                    label: "Monthly Sales Amount Recent 12 months"
-                }]
+                        backgroundColor: Array.from({
+                            length:  @json($month).length
+                        }, () => "#0AA873"),
+                        data: @json($monthly_amount),
+                        label: "Monthly Sales Amount Recent 12 months",
+                        order: 1,
+                    },
+                    {
+                        backgroundColor: Array.from({
+                            length:  @json($month).length
+                        }, () => "#FF3A3A"),
+                        data: @json($forecast),
+                        label: "Monthly Sales Amount Forcast",
+                        type: "line",
+                        order: 0,
+                    }
+                ]
             },
             options: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: "Sales Recent 12 months"
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
                 }
-            }
+            },
         });
 
         // Daily Chart
+
         new Chart("dailyPlot", {
             type: "line",
             data: {
-                labels: @json($output[$names[0]]['day']),
+                labels: @json($Xvalues),
                 datasets: [{
                         // backgroundColor: barColors2,
-                        label: @json($names[0]),
-                        data: @json($output[$names[0]]['accum_amount'])
+                        label: "Last Month",
+                        data: @json($LastMonthYvalues),
                     },
                     {
                         // backgroundColor: barColors2,
-                        label: @json($names[1]),
-                        data: @json($output[$names[1]]['accum_amount'])
+                        label: "This Month",
+                        data: @json($thisMonthYvalues),
                     }
                 ]
             },

@@ -76,18 +76,18 @@ Route::group(['middleware' => 'customer'], function() {
     Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
         // Customer Register
         Route::get('register', function () { return view('auth.register');});
-    
+
         // Customer Login
         Route::get('signIn', function () { return view('auth.login'); });
-    
+
         // Order History
         Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
-    
+
         // Profile
         Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
         Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
         Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
-    
+
         // Cart
         Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
         Route::get('/back', [CartController::class, 'back'])->name('back');
@@ -112,71 +112,75 @@ Route::group(['middleware' => 'customer'], function() {
 });
 
 Route::group(['middleware' => 'seller'], function() {
-    Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {    
+    Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         Route::get('/dashboard',  [SellerController::class, 'index'])->name('dashboard');
-    
+
         Route::get('profile/editProfile', [SellerController::class, 'show'])
             ->name('profile.editProfile');
-    
+
         Route::patch('profile/updateProfile', [SellerController::class, 'update'])
             ->name('profile.updateProfile');
-    
+
         // Seller Product
         Route::get('products/dashboard', [ProductController::class, 'show'])
             ->name('products.dashboard');
-    
+
         Route::get('/products/create',  [ProductController::class, 'create'])
             ->name('products.create');
-    
+
         Route::post('products/store',  [ProductController::class, 'store'])
             ->name('products.store');
-    
+
         Route::get('products/{id}/edit', [ProductController::class, 'edit'])
             ->name('products.edit');
-    
+
         Route::patch('products/{id}/update', [ProductController::class, 'update'])
             ->name('products.update');
-    
+
         Route::get('products/{id}/delete', [ProductController::class, 'delete'])
             ->name('products.delete');
-    
+
         Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
             ->name('products.destroy');
-    
+
         Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
             ->name('products.image.destroy');
-    
+
         // Seller Ads
         Route::get('/ads/dashboard', [AdController::class, 'show'])
             ->name('ads.dashboard');
-    
+
         Route::get('ads/create', [AdController::class, 'create'])
             ->name('ads.create');
-    
+
         Route::post('ads/store', [AdController::class, 'store'])
             ->name('ads.store');
-    
+
         Route::get('ads/{id}/edit', [AdController::class, 'edit'])
             ->name('ads.edit');
-    
+
         Route::patch('ads/{id}/update', [AdController::class, 'update'])
             ->name('ads.update');
-    
+
         Route::patch('ads/{id}/delete', [AdController::class, 'delete'])
             ->name('ads.delete');
-    
+
         Route::delete('ads/{id}/destroy', [AdController::class, 'destroy'])
             ->name('ads.destroy');
-    
+
         // Seller Evaluation
         Route::get('evaluation', function () {
             return view('seller.evaluation.show');
         });
-    
+
         Route::get('delivery', function () {
             return view('seller.delivery.show');
         });
-    
+
+        Route::get('delivery', function () {
+            return view('seller.delivery.show');
+        });
+
         Route::get('customerSupport', function () {
             return view('seller.inquiry.customerSupport');
         });
@@ -207,6 +211,9 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     // Seller Product
     Route::get('products/dashboard', [ProductController::class, 'show'])
         ->name('products.dashboard');
+
+    Route::get('products/dashboard', [ProductController::class, 'search'])
+        ->name('products.search');
 
     Route::get('/products/create',  [ProductController::class, 'create'])
         ->name('products.create');
@@ -258,10 +265,6 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('evaluation', [SellerEvaluationController::class, 'search'])
         ->name('evaluation.search');
 
-
-    Route::get('delivery', [SellerDeliveryController::class, 'show'])
-        ->name('delivery.show');
-
     Route::get('delivery', [SellerDeliveryController::class, 'search'])
         ->name('delivery.search');
 
@@ -274,33 +277,33 @@ Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
 
 
 Route::group(['middleware' => 'admin'], function() {
-    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {    
+    Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
-    
+
         // Management User
         Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
         Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
         Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
         Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
-    
+
         // Customer Support
         Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
         Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
         Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
-    
-    
+
+
         Route::get('/admin/delivery', function () {
             return view('admin.delivery.deliveryList');
         });
-    
+
         Route::get('/admin/customerSupport', function () {
             return view('admin.inquiry.customerSupport');
         });
-    
+
         Route::get('evaluation', function () {
             return view('admin.assessor.evaluation');
         });
-    
+
         Route::get('delivery', function () {
             return view('admin.delivery.deliveryList');
         });

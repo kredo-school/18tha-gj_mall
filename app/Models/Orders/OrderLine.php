@@ -6,6 +6,7 @@ use App\Models\Products\Product;
 use App\Models\Products\Review;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class OrderLine extends Model
 {
@@ -26,7 +27,8 @@ class OrderLine extends Model
     }
 
     public function getSeller() {
-        return $this->product()->where("seller_id",Auth::guard("admin")->id())->get();
+
+        return $this->product()->where("seller_id",Auth::guard("seller")->id())->get();
     }
 
 }

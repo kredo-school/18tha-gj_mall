@@ -2,8 +2,9 @@
 
 namespace App\Models\Products;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Products\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductStatus extends Model
 {
@@ -20,5 +21,3 @@ class ProductStatus extends Model
                     ->where('seller_id', $id)
                     ->paginate(5);
     }
-
-}

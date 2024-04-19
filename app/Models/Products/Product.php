@@ -2,6 +2,7 @@
 
 namespace App\Models\Products;
 use App\Models\Users\Seller;
+
 use App\Models\Users\Favorite;
 use App\Models\Orders\OrderLine;
 use App\Models\Products\Category;
@@ -13,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Products\ProductImage;
+
 
 class Product extends Model
 {
@@ -94,8 +96,3 @@ class Product extends Model
         return $this->ShoppingCartItems()->where('customer_id', Auth::id())->exists();
     }
 
-    public static function getData()
-    {
-        return self::select('id', 'name', 'price', 'description', 'status_id', 'seller_id', 'category_id', 'product_detail_id')->get();
-    }
-}

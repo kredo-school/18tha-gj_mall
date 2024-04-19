@@ -1,19 +1,18 @@
 <?php
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Products\AdController;
-
 use App\Http\Controllers\Auth\AdminLoginController;
 use App\Http\Controllers\Auth\SellerLoginController;
-
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\ReviewController;
 use App\Http\Controllers\Users\SellerController;
-
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\FavoriteController;
-
-
+use App\Http\Controllers\Orders\DeliveryController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\Products\EvaluationController;
 use App\Http\Controllers\Inquiries\CustomerSupportController;
@@ -24,6 +23,7 @@ use App\Http\Controllers\Orders\SellerDeliveryController;
 use App\Http\Controllers\Products\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
 
 
 /*
@@ -322,9 +322,17 @@ Route::group(['middleware' => 'admin'], function() {
     Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
     Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
 
+
+    // Delivery Order List
+    Route::get('delivery', [DeliveryController::class, 'show'])->name('delivery.show'); //admin.delivery.show
+    Route::get('delivery', [DeliveryController::class, 'search'])->name('delivery.search'); //admin.delivery.search
+    Route::get('delivery/{id}', [DeliveryController::class, 'showDetail'])->name('delivery.showDetail'); //admin.delivery.showDetail
+    Route::patch('delivery/{id}/update', [DeliveryController::class, 'update']) ->name('delivery.update'); //admin.delivery.update
+
     // Evaluation
     Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation'); //admin.evaluation
     Route::patch('/evaluation/{id}/update', [EvaluationController::class, 'update'])->name('evaluation.update'); //admin.evaluation.update
+
 
 });
 

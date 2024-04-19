@@ -1,20 +1,21 @@
 <?php
 
-use App\Http\Controllers\Products\AdController;
-use App\Http\Controllers\Auth\AdminLoginController;
-use App\Http\Controllers\Auth\SellerLoginController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Orders\CartController;
+use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Users\AdminController;
+use App\Http\Controllers\Users\ReviewController;
 use App\Http\Controllers\Users\SellerController;
 use App\Http\Controllers\Users\CustomerController;
-use App\Http\Controllers\Products\ProductController;
-use App\Http\Controllers\Inquiries\CustomerSupportController;
 use App\Http\Controllers\Users\FavoriteController;
-use App\Http\Controllers\Orders\CartController;
+use App\Http\Controllers\Auth\AdminLoginController;
+use App\Http\Controllers\Orders\DeliveryController;
+use App\Http\Controllers\Auth\SellerLoginController;
+use App\Http\Controllers\Products\ProductController;
 use App\Http\Controllers\Inquiries\InquiryController;
-use App\Http\Controllers\Users\ReviewController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Inquiries\CustomerSupportController;
 
 
 /*
@@ -199,22 +200,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
     Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
 
+    // Delivery Order List
+    Route::get('delivery', [DeliveryController::class, 'show'])->name('delivery.show'); //admin.delivery.show
+    Route::get('delivery', [DeliveryController::class, 'search'])->name('delivery.search'); //admin.delivery.search
+    Route::get('delivery/{id}', [DeliveryController::class, 'showDetail'])->name('delivery.showDetail'); //admin.delivery.showDetail
+    Route::patch('delivery/{id}/update', [DeliveryController::class, 'update']) ->name('delivery.update'); //admin.delivery.update
 
-    Route::get('/admin/delivery', function () {
-        return view('admin.delivery.deliveryList');
-    });
-
-    Route::get('/admin/customerSupport', function () {
-        return view('admin.inquiry.customerSupport');
-    });
-
-    Route::get('evaluation', function () {
-        return view('admin.assessor.evaluation');
-    });
-
-    Route::get('delivery', function () {
-        return view('admin.delivery.deliveryList');
-    });
 });
 
 // Favorite

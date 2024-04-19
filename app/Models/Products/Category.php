@@ -15,4 +15,10 @@ class Category extends Model
     public function products() {
         return $this->hasMany(Product::class);
     }
+
+    public function getSeller($id) {
+        return $this->products()
+                    ->where('seller_id', $id)
+                    ->paginate(5);
+    }
 }

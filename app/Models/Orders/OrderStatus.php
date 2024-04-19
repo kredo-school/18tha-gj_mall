@@ -12,6 +12,8 @@ class OrderStatus extends Model
     protected $table = 'order_status';
 
     public function shopOrders() {
-        return $this->hasMany(ShopOrder::class);
+        return $this->hasMany(ShopOrder::class,"status_id","id");
     }
+
+
 }

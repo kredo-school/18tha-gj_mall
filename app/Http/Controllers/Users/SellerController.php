@@ -18,8 +18,9 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Query\JoinClause;
-
 use function PHPUnit\Framework\isEmpty;
+use Phpml\Regression\LeastSquares;
+use Phpml\Dataset\ArrayDataset;
 
 class SellerController extends Controller
 {
@@ -161,9 +162,22 @@ class SellerController extends Controller
 
         $month = [];
         $monthly_amount = [];
+        $samples = [];
+        $m = 0;
         foreach ($MonthlyData as $data) {
+            $m++;
+            $samples[] = [$m];
             $month[] = $data->month;
             $monthly_amount[] = $data->total_amount;
+        }
+
+        if(count($month) > 1){
+            $regression = new LeastSquares(); // https://php-ml.readthedocs.io/en/latest/machine-learning/regression/least-squares/
+            // Make the regresssion function  without this months
+            $regression->train(array_slice($samples, 0,count($samples)-1), array_slice($monthly_amount, 0,count($monthly_amount)-1));
+            $forecast = $regression->predict($samples); // Forecasting max recent 13 months
+        } else {
+            $forecast = array_fill(0, count($month), 0);
         }
 
         // Daily Sales Plot
@@ -213,7 +227,7 @@ class SellerController extends Controller
             $thisMonthYvalues = array_fill(0, 31, 0);
         }
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'LastMonthYvalues','thisMonthYvalues','Xvalues'));
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', ));
     }
 
     private function getSellerOrders($start_date, $end_date)

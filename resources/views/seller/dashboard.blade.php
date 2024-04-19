@@ -127,38 +127,41 @@
     <script type="text/javascript">
         // Monthly Chart
         // Pass Datas
-        const xValues = @json($month);
-        const yValues = @json($monthly_amount);
-        const barColors = Array.from({
-            length: xValues.length
-        }, () => "#0AA873");
         new Chart("monthlyPlot", {
             type: "bar",
             data: {
-                labels: xValues,
+                labels:  @json($month),
                 datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues,
-                    label: "Monthly Sales Amount Recent 12 months"
-                }]
+                        backgroundColor: Array.from({
+                            length:  @json($month).length
+                        }, () => "#0AA873"),
+                        data: @json($monthly_amount),
+                        label: "Monthly Sales Amount Recent 12 months",
+                        order: 1,
+                    },
+                    {
+                        backgroundColor: Array.from({
+                            length:  @json($month).length
+                        }, () => "#FF3A3A"),
+                        data: @json($forecast),
+                        label: "Monthly Sales Amount Forcast",
+                        type: "line",
+                        order: 0,
+                    }
+                ]
             },
             options: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: true,
-                    text: "Sales Recent 12 months"
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
                 }
-            }
+            },
         });
 
         // Daily Chart
 
-        // let numbers = [];
-        // for (let i = 1; i <= 31; i++) {
-        //     numbers.push(i);
-        // }
         new Chart("dailyPlot", {
             type: "line",
             data: {

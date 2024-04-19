@@ -22,40 +22,25 @@ class ProductStatusSeeder extends Seeder
     {
         $product_status = [
             [
-                'status' => '1',
+                'status' => '1: Waiting for Evaluation',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'status' => '2',
+                'status' => '2: Evaluating',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'status' => '3',
+                'status' => '3: Waiting for Display',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
-                'status' => '4',
+                'status' => '4: Suspended',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
-            [
-                'status' => '5',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'status' => '6',
-                'created_at' => now(),
-                'updated_at' => now()
-            ],
-            [
-                'status' => '7',
-                'created_at' => now(),
-                'updated_at' => now()
-            ]
         ];
 
         $this->table->insert($product_status); // insert the values to product_status table

@@ -96,7 +96,7 @@
             <div class="row mb-3">
                 <div class="col-auto mx-auto">
                     <div class="col-auto mx-auto">
-                        <a href="{{ url('/seller/signIn') }}" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
+                        <a href="{{ url('signIn/seller') }}" class="h5 fw-bold text-secondary">Sign in as Business Account.</a>
                     </div>
                 </div>
             </div>

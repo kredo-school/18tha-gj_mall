@@ -7,7 +7,7 @@ use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
-use App\Models\Users\OrderLine;
+use App\Models\Orders\OrderLine;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

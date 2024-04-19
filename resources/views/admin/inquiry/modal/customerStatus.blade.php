@@ -25,8 +25,7 @@
 
                     <div class="pt-2">
                         <p class="inquiry-title">Inquiry Category:</p>
-                        <p class="inquiry-content">{{$inquiry->inquiry_genre_id}}</p>
-                        {{-- <p>{{ $inquiry->inquiry_genres->name }}</p> --}}
+                        <p class="inquiry-content">{{ $inquiry->inquiryGenre->name }}</p>
                     </div>
 
                     <div class="pt-2">
@@ -36,17 +35,17 @@
 
                     <div class="pt-2">
                         {{-- css - style.css --}}
-                        <label for="content" class="form-label inquiry-title">Answer:</label>
-                        <textarea name="comment" id="comment" rows="5" class="form-control" placeholder="Please write the answer here..."></textarea>
+                        <label class="form-label inquiry-title">Answer:</label>
+                        <textarea name="answer" id="answer" rows="5" class="form-control" placeholder="Please write the answer here..."></textarea>
                     </div>
 
                     <div class="status pt-2">
-                        <label for="inquiry_status_id" class="inquiry-title">Status:</label><br>
+                        <label class="inquiry-title">Status:</label><br>
                         <select name="inquiry_status_id" id="inquiry_status_id" class="inquiry-content form-control">
                             <option hidden>{{ old('inquiry_status_id', $inquiry->inquiry_status_id) }}</option>
-                            <option value="1">1: Unsolved</option>
-                            <option value="2">2: Answer</option>
-                            <option value="3">3: Solved</option>
+                            <option value="Unsolved">1: Unsolved</option>
+                            <option value="Answer">2: Answer</option>
+                            <option value="Solved">3: Solved</option>
                         </select>
                     </div>
                 </div>             

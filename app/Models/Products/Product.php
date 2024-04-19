@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models\Products;
-use App\Models\Users\Seller;
 
 use App\Models\Users\Favorite;
 use App\Models\Orders\OrderLine;
@@ -10,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Products\ProductDetail;
 use App\Models\Products\ProductStatus;
 use App\Models\Orders\ShoppingCartItem;
+use App\Models\Users\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

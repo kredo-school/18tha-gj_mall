@@ -30,9 +30,9 @@
                                 <h5>Total Sales</h5>
                                 <span class="text-muted">
                                     @if ($percentage_change_qty < 0)
-                                        <i class="fa-regular fa-circle-down text-danger"></i>     
+                                        <i class="fa-regular fa-circle-down text-danger"></i>
                                     @else
-                                        <i class="fa-regular fa-circle-up text-success"></i> 
+                                        <i class="fa-regular fa-circle-up text-success"></i>
                                     @endif
                                     {{ round($percentage_change_qty) }}%
                                 </span>
@@ -54,9 +54,9 @@
                                 <h5>Total Sales</h5>
                                 <span class="text-muted">
                                     @if ($percentage_change_sales < 0)
-                                        <i class="fa-regular fa-circle-down text-danger"></i>                                       
+                                        <i class="fa-regular fa-circle-down text-danger"></i>
                                     @else
-                                        <i class="fa-regular fa-circle-up text-success"></i>     
+                                        <i class="fa-regular fa-circle-up text-success"></i>
                                     @endif
                                     {{ round($percentage_change_sales) }}%
                                 </span>
@@ -73,24 +73,25 @@
             <h2 class="fw-bold h3">Top5 BestSeller</h2>
 
             @forelse ($top_products as $product)
-                <div class="col">
+                <div class="col-auto">
                     <div class="border rounded-0 p-2 card-parent">
                         <div class="rank-num px-2">{{ $loop->index + 1 }}</div>
                         @if ($product->productImage->isNotEmpty())
-                            <img src="{{ asset('storage/images/items/'. $product->productImage->first()->productImages->image) }}" class="card-img-top rank-image" alt="{{ $product->name }}">
+                            <img src="{{ asset('storage/images/items/' . $product->productImage->first()->productImages->image) }}"
+                                class="card-img-top rank-image" alt="{{ $product->name }}">
                         @else
-                            <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top rank-image">
+                            <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image"
+                                class="card-img-top rank-image">
                         @endif
 
                         <div class="product_detail mt-2">
                             <h5 class="text-truncate" style="width: 150px">{{ $product->name }}</h5>
                             <h5>${{ number_format($product->price, 2) }}</h5>
                         </div>
-                    </div>  
-                </div>      
+                    </div>
+                </div>
             @empty
-                
-            @endforelse   
+            @endforelse
         </div>
         {{-- Top5 Ranking end --}}
 
@@ -98,23 +99,37 @@
         <div class="row">
             <div class="col-6">
                 <h3 class="fw-bold">Monthly Sales</h3>
-                <canvas id="monthlyPlot"
-                        class="graph-size" 
-                        monthlyYValues="{{ json_encode($monthlyYValues) }}"
-                        monthlyYValues2="{{ json_encode($monthlyYValues2) }}"
-                        data-year="{{ Carbon\Carbon::now()->format('Y') }}">
+                <canvas id="monthlyPlot" class="graph-size" monthlyYValues="{{ json_encode($monthlyYValues) }}"
+                    monthlyYValues2="{{ json_encode($monthlyYValues2) }}"
+                    data-year="{{ Carbon\Carbon::now()->format('Y') }}">
                 </canvas>
             </div>
             <div class="col-6">
                 <h3 class="fw-bold">Daily Sales</h3>
-                <canvas id="dailyPlot" 
-                        class="graph-size" 
-                        data-sales-data="{{ json_encode($dailySalesData) }}">
+                <canvas id="dailyPlot" class="graph-size" data-sales-data="{{ json_encode($dailySalesData) }}">
+                </canvas>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-6">
+                <h3 class="fw-bold">Daily Pageviews</h3>
+                <h6>Recent 7Days</h6>
+                <canvas id="pageViewPlot" class="graph-size" labels="{{ json_encode($labels) }}"
+                    pageviews="{{ json_encode($pageviews) }}">
+                </canvas>
+            </div>
+            <div class="col-6">
+                <h3 class="fw-bold">Page View Rankings</h3>
+                <canvas id="pageRankingPlot" class="graph-size" paths="{{ json_encode($paths) }}"
+                    ranking_pageviews="{{ json_encode($ranking_pageviews) }}">
                 </canvas>
             </div>
         </div>
         {{-- Graph end --}}
     </div>
+
+
+
     {{-- Date-Range  --}}
     <script src="{{ asset('js/adminDashboard.js') }}"></script>
 @endsection

@@ -22,3 +22,4 @@ class Category extends Model
                     ->where('seller_id', $id)
                     ->paginate(5);
     }
+}

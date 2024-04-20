@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'weglot_api_key' => env('WEGLOT_API_KEY'),
 ];

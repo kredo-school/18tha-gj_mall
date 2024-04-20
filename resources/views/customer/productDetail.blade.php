@@ -226,7 +226,7 @@
 
                 @foreach ($randomReviews as $review)
                     <div class="col mb-3">
-                        <div class="card card-body border-light-2">
+                        <div class="card card-body border-light-2" style="width: 1290px">
                             <div class="row">
                                 <div class="col-auto">
                                     @if ($review->customer->avatar)

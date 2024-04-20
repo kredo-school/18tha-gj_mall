@@ -27,6 +27,7 @@ class OrderLine extends Model
     }
 
     public function getSeller() {
+
         return $this->product()->where("seller_id",Auth::guard("seller")->id())->get();
     }
 

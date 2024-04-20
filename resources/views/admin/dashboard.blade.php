@@ -120,6 +120,7 @@
             </div>
             <div class="col-6">
                 <h3 class="fw-bold">Page View Rankings</h3>
+                <h6>Total views of Recent 7Days</h6>
                 <canvas id="pageRankingPlot" class="graph-size" paths="{{ json_encode($paths) }}"
                     ranking_pageviews="{{ json_encode($ranking_pageviews) }}">
                 </canvas>

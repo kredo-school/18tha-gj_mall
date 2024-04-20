@@ -8,7 +8,7 @@
 
     <div class="my-4">
         <h1>Sales Dashboard</h1>
-        <p>Hi User! Welcome to Sales Dashboard!</p>
+        <p>Hi {{Auth::guard("seller")->user()->last_name}} {{Auth::guard("seller")->user()->first_name}}! Welcome to Sales Dashboard!</p>
     </div>
 
     <div class="row mb-4">
@@ -132,6 +132,7 @@
         </div>
         <div class="col-6">
             <h3 class="fw-bold">Page View Rankings</h3>
+            <h6>Total views of Recent 7Days</h6>
             <canvas id="pageRankingPlot" class="graph-size" paths="{{ json_encode($paths) }}"
             ranking_pageviews="{{ json_encode($ranking_pageviews) }}">
             </canvas>

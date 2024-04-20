@@ -14,3 +14,4 @@ class OrderStatus extends Model
     public function shopOrders() {
         return $this->hasMany(ShopOrder::class,"status_id","id");
     }
+}

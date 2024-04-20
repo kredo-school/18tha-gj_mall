@@ -128,8 +128,6 @@
         {{-- Graph end --}}
     </div>
 
-
-
     {{-- Date-Range  --}}
     <script src="{{ asset('js/adminDashboard.js') }}"></script>
 @endsection

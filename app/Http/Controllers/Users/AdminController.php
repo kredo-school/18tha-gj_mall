@@ -50,8 +50,6 @@ class AdminController extends Controller
         $monthlyYValues2 = $this->getMonthlySalesData($lastYear);
         $dailySalesData = $this->getDailySalesData();
 
-
-
         $pageviews = PageView::select(
             DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"),
             DB::raw("COUNT(1) as pageviews"),

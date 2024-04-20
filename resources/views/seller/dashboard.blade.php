@@ -122,8 +122,22 @@
             <canvas id="dailyPlot"></canvas>
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="col-6">
+            <h3 class="fw-bold">Daily Pageviews</h3>
+            <h6>Recent 7Days</h6>
+            <canvas id="pageViewPlot" class="graph-size" labels="{{ json_encode($labels) }}"
+            pageviews="{{ json_encode($pageviews) }}">
+            </canvas>
+        </div>
+        <div class="col-6">
+            <h3 class="fw-bold">Page View Rankings</h3>
+            <canvas id="pageRankingPlot" class="graph-size" paths="{{ json_encode($paths) }}"
+            ranking_pageviews="{{ json_encode($ranking_pageviews) }}">
+            </canvas>
+        </div>
+    </div>
 
-    <script src="{{ asset('js/sellerDashboard.js') }}"></script>
     <script type="text/javascript">
         // Monthly Chart
         // Pass Datas

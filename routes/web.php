@@ -60,6 +60,9 @@ Route::group(['middleware' => LogPageViews::class], function () {
     // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    // LiveChat
+    Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
+
     //Search
     Route::get('/search', [HomeController::class, 'search'])->name('search');
 
@@ -88,9 +91,6 @@ Route::group(['middleware' => LogPageViews::class], function () {
             Route::get('signIn', function () {
                 return view('auth.login');
             });
-
-             // LiveChat
-            Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
 
             // Order History
             Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');

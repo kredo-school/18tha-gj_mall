@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function index($product_id) {
+    public function index($product_id, $user_id) {
         $product = Product::findOrFail($product_id); 
-
-        return view('customer.liveChat.index')->with('product', $product);
+        
+        return view('customer.liveChat.index')
+                ->with('product', $product)
+                ->with('user_id', $user_id);
     }
 }

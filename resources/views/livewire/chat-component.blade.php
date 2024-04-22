@@ -16,7 +16,6 @@
     @endforeach
 
     <form wire:submit="submitMessage">
-        <input type="hidden" name="product_id" value="{{ $product_id }}">
         <input type="text" wire:model="message" class="form-control d-inline w-50">
         <button type="submit" class="btn btn-primary">Send</button>
     </form>

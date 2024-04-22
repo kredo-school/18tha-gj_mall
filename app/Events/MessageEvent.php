@@ -26,10 +26,11 @@ class MessageEvent implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public function __construct($user_id, $message, $product_id)
+    public function __construct($user_id, $seller_id, $message, $product_id)
     {
         $newMessage = New Message();
-        $newMessage->user_id    = $user_id;
+        $newMessage->user_id    = empty($user_id) ? null : $user_id ;
+        $newMessage->seller_id  = empty($seller_id) ? null : $seller_id;
         $newMessage->product_id = $product_id;
         $newMessage->message    = $message;
         $newMessage->save();
@@ -40,7 +41,7 @@ class MessageEvent implements ShouldBroadcastNow
             $this->avatar   = $customer->avatar;
         } else {
             // seller 
-            $seller = Seller::find($user_id);
+            $seller = Seller::find($seller_id);
             $this->username = $seller->last_name. ' ' .$seller->first_name;
             $this->avatar   = $seller->avatar;
         }

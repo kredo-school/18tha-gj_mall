@@ -73,7 +73,7 @@ Route::get('/customer/cart', function () {
 });
 
 // LiveChat
-Route::get('/livechat/{product_id}', [MessageController::class, 'index'])->name('livechat');
+Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
 
 Route::group(['middleware' => 'customer'], function() {
     Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {

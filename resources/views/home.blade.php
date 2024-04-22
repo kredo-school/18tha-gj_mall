@@ -209,7 +209,7 @@
                                                                 @csrf
                                                                 @method('PATCH')
 
-                                                                <button type="submit" class="btn w-100">Add to Cart</button>
+                                                                <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
                                                             </form>
                                                         @else
                                                             <form action="{{ route('customer.addToCart', $product->id) }}" method="POST">

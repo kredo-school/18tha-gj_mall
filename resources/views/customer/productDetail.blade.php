@@ -10,7 +10,7 @@
 
     <div class="container">
         @auth
-            <a href="{{ route('livechat', $product->id) }}" id="fixedbutton" class="p-2">
+            <a href="{{ route('livechat', [$product->id, Auth::user()->id]) }}" id="fixedbutton" class="p-2">
                 <i class="fa-solid fa-comments text-primary" id="chaticon"></i>
             </a>            
         @endauth

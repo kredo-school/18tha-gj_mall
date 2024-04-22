@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Products\Product;
 use App\Models\Users\Customer;
 use App\Models\Users\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,10 @@ class Message extends Model
     }
 
     public function seller() {
-        return $this->belongsTo(Seller::class, 'user_id');
+        return $this->belongsTo(Seller::class, 'seller_id');
+    }
+
+    public function product() {
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

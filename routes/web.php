@@ -99,9 +99,11 @@ Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
     Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
 
     // Payment
-    Route::post('/payment/transaction/editAddress', [PaymentController::class, 'editAddress'])->name('editAddress');
-    Route::post('/payment/transaction/editPayment', [PaymentController::class, 'editPayment'])->name('editPayment');
+    Route::get('/payment/show-transaction', [PaymentController::class, 'showTransaction'])->name('showTransaction');
     Route::post('/payment/transaction/confirmation', [PaymentController::class, 'confirmation'])->name('confirmation');
+    Route::patch('/payment/transaction/{address_id}/editAddress', [PaymentController::class, 'editAddress'])->name('editAddress');
+    Route::patch('/payment/transaction/{payment_id}/editPayment', [PaymentController::class, 'editPayment'])->name('editPayment');
+    Route::get('/payment/payment/confirmation', [PaymentController::class, 'paymentConfirmation'])->name('payment.confirmation');
 });
 
 Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {

@@ -13,6 +13,7 @@ use App\Models\Products\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Models\PageView;
 
 class AdminController extends Controller
 {
@@ -48,7 +49,32 @@ class AdminController extends Controller
         $lastYear = $currentYear - 1;
         $monthlyYValues2 = $this->getMonthlySalesData($lastYear);
         $dailySalesData = $this->getDailySalesData();
-        // Graph Part End 
+
+        $pageviews = PageView::select(
+            DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        $labels = $pageviews->pluck('date');
+        $pageviews = $pageviews->pluck('pageviews');
+
+
+        $rankings = PageView::select(
+            DB::raw("SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 4), '/', -1) as path"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->groupBy('path')
+            ->orderBy('pageviews','desc')
+            ->get();
+        $paths = $rankings->pluck('path');
+        $ranking_pageviews = $rankings->pluck('pageviews');
+
+        // Graph Part End
+
 
         return view('admin.dashboard', [
             'admin' => $admin,
@@ -60,6 +86,10 @@ class AdminController extends Controller
             'monthlyYValues' => $monthlyYValues,
             'monthlyYValues2' => $monthlyYValues2,
             'dailySalesData' => $dailySalesData,
+            'labels' => $labels,
+            'pageviews' => $pageviews,
+            'paths' => $paths,
+            'ranking_pageviews' => $ranking_pageviews,
         ]);
     }
 
@@ -155,7 +185,7 @@ class AdminController extends Controller
         $admins = $this->admin->latest()->paginate(5);
 
         return view('admin.management.managementUser')
-                ->with('admins', $admins);
+            ->with('admins', $admins);
     }
 
     // create users
@@ -164,15 +194,14 @@ class AdminController extends Controller
         $admins = $this->admin->all();
 
         return view('admin.management.modal.create')
-                ->with('admins', $admins);
-
+            ->with('admins', $admins);
     }
 
     // store() - save admin user on the db
     public function store(Request $request)
     {
         DB::beginTransaction();
-        
+
         $request->validate([
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
@@ -189,12 +218,11 @@ class AdminController extends Controller
         $admin->phone_number = $request->input('phone_number');
         $admin->password     = Hash::make($request->input('password'));
         $admin->role         = $request->input('role');
-        
+
         try {
             $admin->save();
             DB::commit();
             return redirect()->back()->with('success', 'Admin user created successfully.');
-
         } catch (\Exception $e) {
             Log::error('Error saving admin user: ' . $e->getMessage());
         }
@@ -205,19 +233,19 @@ class AdminController extends Controller
     {
         $admin = $this->admin->findOrFail(Admin::admin()->id);
         return view('admin.management.modal.edit')
-                ->with('admin', $admin);
+            ->with('admin', $admin);
     }
 
     // update() - edit admin information
     public function update(Request $request, $id)
     {
         DB::beginTransaction();
-        
+
         // Validate the incoming request data (optional)
         $request->validate([
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
-            'email'        => ['required', 'string','email','max:255',Rule::unique('admin')->ignore($id),],
+            'email'        => ['required', 'string', 'email', 'max:255', Rule::unique('admin')->ignore($id),],
             'phone_number' => 'required|string|max:255',
             'password'     => 'required|string|max:255',
             'role'         => 'required|string|max:255'
@@ -226,7 +254,7 @@ class AdminController extends Controller
         try {
             // Find the admin record by its ID
             $admin = Admin::findOrFail($id);
-            
+
             // Update the admin record with the new data
             $admin->first_name   = $request->input('first_name');
             $admin->last_name    = $request->input('last_name');
@@ -234,7 +262,7 @@ class AdminController extends Controller
             $admin->phone_number = $request->input('phone_number');
             $admin->password     = Hash::make($request->input('password'));
             $admin->role         = $request->input('role');
-            
+
             // Save the changes
             $admin->save();
 
@@ -248,10 +276,10 @@ class AdminController extends Controller
         } catch (\Exception $e) {
             // Rollback the transaction
             // DB::rollback();
-            
+
             // Log the error
             Log::error('Error updating admin user: ' . $e->getMessage());
-            
+
             // Redirect back with an error message
             return back()->withInput()->withErrors(['error' => 'Error updating user. Please try again.']);
         }
@@ -264,7 +292,4 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
-
-
-
 }

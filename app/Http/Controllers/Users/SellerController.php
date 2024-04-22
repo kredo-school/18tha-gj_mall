@@ -39,10 +39,10 @@ class SellerController extends Controller
     {
         // Get parameters from url
         $search = $request->input('search');
-        $dateRange = $request->input('daterange');
+        $daterange = $request->input('daterange');
         // Split the string by '+' and extract start and end dates
-        $date1 = substr($dateRange, 1, 8);
-        $date2 = substr($dateRange, 11, 18);
+        $date1 = substr($daterange, 1, 8);
+        $date2 = substr($daterange, 11, 18);
         // Extract start date and end date
         $startDate = substr($date1, 0, 4) . '-' . substr($date1, 4, 2) . '-' . substr($date1, 6, 2);
         $endDate = substr($date2, 0, 4) . '-' . substr($date2, 4, 2) . '-' . substr($date2, 6, 2);
@@ -77,8 +77,8 @@ class SellerController extends Controller
         }
 
         // Get data For list
-        if (!empty($search) | !empty($datarange)) {
-            if (!empty($search) & !empty($datarange)) {
+        if (!empty($search) | !empty($daterange)) {
+            if (!empty($search) & !empty($daterange)) {
                 $orders = $this->order_line
                     ->join('products', function (JoinClause $join) {
                         $join->on('order_lines.product_id', '=', 'products.id')
@@ -99,6 +99,8 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
+
+                $orders->withPath('/seller/dashboard?search=' . $search . '&daterange=' . $date1 . "+-+" . $date2);
             } elseif (!empty($daterange)) {
                 $orders = $this->order_line
                     ->join('products', function (JoinClause $join) {
@@ -116,7 +118,9 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
-            } else {
+
+                $orders->withPath('/seller/dashboard?daterange='.$date1."+-+".$date2);
+            } elseif (!empty($search)) {
                 $orders = $this->order_line
                     ->join('products', function (JoinClause $join) {
                         $join->on('order_lines.product_id', '=', 'products.id')
@@ -126,8 +130,6 @@ class SellerController extends Controller
                         $query->where('name', 'LIKE', '%' . $search . '%')
                             ->orWhere('description', 'LIKE', '%' . $search . '%');
                     })
-                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
-                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
                     ->select(
                         "products.name",
                         DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
@@ -137,6 +139,8 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
+
+                $orders->withPath('/seller/dashboard?search='.$search);
             }
         } else {
             $orders = $this->order_line
@@ -153,6 +157,7 @@ class SellerController extends Controller
                 ->groupBy('name', 'date')
                 ->orderBy('date', 'desc')
                 ->paginate(5);
+            $orders->withPath('/seller/dashboard');
         }
 
 
@@ -171,10 +176,10 @@ class SellerController extends Controller
             $monthly_amount[] = $data->total_amount;
         }
 
-        if(count($month) > 1){
+        if (count($month) > 1) {
             $regression = new LeastSquares(); // https://php-ml.readthedocs.io/en/latest/machine-learning/regression/least-squares/
             // Make the regresssion function  without this months
-            $regression->train(array_slice($samples, 0,count($samples)-1), array_slice($monthly_amount, 0,count($monthly_amount)-1));
+            $regression->train(array_slice($samples, 0, count($samples) - 1), array_slice($monthly_amount, 0, count($monthly_amount) - 1));
             $forecast = $regression->predict($samples); // Forecasting max recent 13 months
         } else {
             $forecast = array_fill(0, count($month), 0);
@@ -227,7 +232,7 @@ class SellerController extends Controller
             $thisMonthYvalues = array_fill(0, 31, 0);
         }
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', ));
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast', 'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues',));
     }
 
     private function getSellerOrders($start_date, $end_date)

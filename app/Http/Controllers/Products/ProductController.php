@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $products = $this->product->where('seller_id', Auth::guard('seller')->id())->paginate(5);
 
-        $products->withPath('/seller/dashboard');
+        $products->withPath('/seller/products/dashboard');
 
         $products_ranking = $this->getProductsTotalOrderRank();
 

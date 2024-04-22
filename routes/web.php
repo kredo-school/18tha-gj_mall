@@ -18,6 +18,8 @@ use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Users\AdminController;
 use App\Http\Controllers\Users\CustomerController;
 use App\Http\Controllers\Users\SellerController;
+use App\Http\Controllers\Orders\DeliveryController;
+use App\Http\Middleware\LogPageViews;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,19 +35,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
-
-// Google Login only for customer
-Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/login/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
 // Note: We might delete later
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Home
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 // Seller
 Route::get('signIn/seller', [SellerLoginController::class, 'showLoginPage'])->name('seller.showLoginPage');
@@ -55,66 +49,84 @@ Route::post('signIn/seller', [SellerLoginController::class, 'signIn'])->name('se
 Route::get('signIn/admin', [AdminLoginController::class, 'showLoginPage'])->name('admin.showLoginPage');
 Route::post('signIn/admin', [AdminLoginController::class, 'signIn'])->name('admin.signIn');
 
-//Search
-Route::get('/search', [HomeController::class, 'search'])->name('search');
+Route::group(['middleware' => LogPageViews::class], function () {
 
-// Product Detail / {product_id}
-Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('productDetail');
+    Auth::routes();
 
-// Inquiry
-Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
-Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+    // Google Login only for customer
+    Route::get('/login/google', [GoogleLoginController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/login/callback', [GoogleLoginController::class, 'handleGoogleCallback']);
 
-Route::get('/profile/{seller_id}', [SellerController::class, 'showProfile'])->name('seller.profile');
+    // Home
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-// Payment
-Route::get('/customer/cart', function () {
-    return view('customer.cart');
+    //Search
+    Route::get('/search', [HomeController::class, 'search'])->name('search');
+
+    // Product Detail / {product_id}
+    Route::get('/productDetail/{id}', [ProductController::class, 'showProductDetail'])->name('productDetail');
+
+    // Inquiry
+    Route::get('/inquiry', [InquiryController::class, 'index'])->name('inquiry');
+    Route::post('/inquiry', [InquiryController::class, 'store'])->name('inquiry.store');
+
+    Route::get('/profile/{seller_id}', [SellerController::class, 'showProfile'])->name('seller.profile');
+
+    // Payment
+    Route::get('/customer/cart', function () {
+        return view('customer.cart');
+    });
+
+    Route::group(['middleware' => 'customer'], function () {
+        Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
+            // Customer Register
+            Route::get('register', function () {
+                return view('auth.register');
+            });
+
+            // Customer Login
+            Route::get('signIn', function () {
+                return view('auth.login');
+            });
+
+             // LiveChat
+            Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
+
+            // Order History
+            Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
+
+            // Profile
+            Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
+            Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
+            Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
+
+            // Cart
+            Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+            Route::get('/back', [CartController::class, 'back'])->name('back');
+            Route::get('/cart/update', [CartController::class, 'update']);
+            Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
+            Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
+            Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
+            Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
+        });
+
+        // Favorite
+        Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function () {
+            Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
+            Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
+        });
+
+        Route::group(['prefix' => 'review', 'as' => 'review.'], function () {
+            Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
+            Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
+            Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
+        });
+    });
 });
 
-// LiveChat
-Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
 
-Route::group(['middleware' => 'customer'], function() {
-    Route::group(['prefix' => 'customer', 'as' => 'customer.'], function () {
-        // Customer Register
-        Route::get('register', function () { return view('auth.register');});
 
-        // Customer Login
-        Route::get('signIn', function () { return view('auth.login'); });
-
-        // Order History
-        Route::get('profile/orderHistory/{id}', [CustomerController::class, 'showOrderHistory'])->name('showOrderHistory');
-
-        // Profile
-        Route::get('profile/{id}', [CustomerController::class, 'showProfile'])->name('profile');
-        Route::get('profile/editProfile/{id}', [CustomerController::class, 'showEditProfile'])->name('showEditProfile');
-        Route::patch('profile/update/{customer_id}/{address_id}/{payment_id}', [CustomerController::class, 'update'])->name('updateProfile');
-
-        // Cart
-        Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
-        Route::get('/back', [CartController::class, 'back'])->name('back');
-        Route::get('/cart/update', [CartController::class, 'update']);
-        Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
-        Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
-        Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
-        Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
-    });
-
-    // Favorite
-    Route::group(['prefix' => 'favorite', 'as' => 'favorite.'], function () {
-        Route::post('/{product_id}/store', [FavoriteController::class, 'store'])->name('store');
-        Route::delete('/{product_id}/destroy', [FavoriteController::class, 'destroy'])->name('destroy');
-    });
-
-    Route::group(['prefix' => 'review', 'as' => 'review.'], function () {
-        Route::post('/{order_line_id}/{product_id}/store', [ReviewController::class, 'store'])->name('store');
-        Route::patch('/{review_id}/{order_line_id}/{product_id}/update', [ReviewController::class, 'update'])->name('update');
-        Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
-    });
-});
-
-Route::group(['middleware' => 'seller'], function() {
+Route::group(['middleware' => 'seller'], function () {
     Route::group(['prefix' => 'seller', 'as' => 'seller.'], function () {
         Route::get('/dashboard',  [SellerController::class, 'index'])->name('dashboard');
 
@@ -125,72 +137,79 @@ Route::group(['middleware' => 'seller'], function() {
             ->name('profile.updateProfile');
 
         // Seller Product
-        Route::get('products/dashboard', [ProductController::class, 'show'])
-            ->name('products.dashboard');
+        Route::group(['prefix' => 'products', 'as' => 'products.'], function () {
+            Route::get('/dashboard', [ProductController::class, 'show'])
+                ->name('dashboard');
 
-        Route::get('/products/create',  [ProductController::class, 'create'])
-            ->name('products.create');
+            Route::get('/search',  [ProductController::class, 'search'])
+                ->name('search');
 
-        Route::post('products/store',  [ProductController::class, 'store'])
-            ->name('products.store');
+            Route::get('/create',  [ProductController::class, 'create'])
+                ->name('create');
 
-        Route::get('products/{id}/edit', [ProductController::class, 'edit'])
-            ->name('products.edit');
+            Route::post('/store',  [ProductController::class, 'store'])
+                ->name('store');
 
-        Route::patch('products/{id}/update', [ProductController::class, 'update'])
-            ->name('products.update');
+            Route::get('/{id}/edit', [ProductController::class, 'edit'])
+                ->name('edit');
 
-        Route::get('products/{id}/delete', [ProductController::class, 'delete'])
-            ->name('products.delete');
+            Route::patch('/{id}/update', [ProductController::class, 'update'])
+                ->name('update');
 
-        Route::delete('products/{id}/destroy', [ProductController::class, 'destroy'])
-            ->name('products.destroy');
+            Route::get('/{id}/delete', [ProductController::class, 'delete'])
+                ->name('delete');
 
-        Route::delete('products/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
-            ->name('products.image.destroy');
+            Route::delete('/{id}/destroy', [ProductController::class, 'destroy'])
+                ->name('destroy');
+
+            Route::delete('/{i_id}/{p_id}/image/destroy', [ProductController::class, 'imageDestroy'])
+                ->name('image.destroy');
+        });
 
         // Seller Ads
-        Route::get('/ads/dashboard', [AdController::class, 'show'])
-            ->name('ads.dashboard');
+        Route::group(['prefix' => 'ads', 'as' => 'ads.'], function () {
+            Route::get('/dashboard', [AdController::class, 'show'])
+                ->name('dashboard');
 
-        Route::get('ads/create', [AdController::class, 'create'])
-            ->name('ads.create');
+            Route::get('/create', [AdController::class, 'create'])
+                ->name('create');
 
-        Route::post('ads/store', [AdController::class, 'store'])
-            ->name('ads.store');
+            Route::post('/store', [AdController::class, 'store'])
+                ->name('store');
 
-        Route::get('ads/{id}/edit', [AdController::class, 'edit'])
-            ->name('ads.edit');
+            Route::get('/{id}/edit', [AdController::class, 'edit'])
+                ->name('edit');
 
-        Route::patch('ads/{id}/update', [AdController::class, 'update'])
-            ->name('ads.update');
+            Route::patch('/{id}/update', [AdController::class, 'update'])
+                ->name('update');
 
-        Route::patch('ads/{id}/delete', [AdController::class, 'delete'])
-            ->name('ads.delete');
+            Route::patch('/{id}/delete', [AdController::class, 'delete'])
+                ->name('delete');
 
-        Route::delete('ads/{id}/destroy', [AdController::class, 'destroy'])
-            ->name('ads.destroy');
-
-        // Seller Evaluation
-        Route::get('evaluation', function () {
-            return view('seller.evaluation.show');
+            Route::delete('/{id}/destroy', [AdController::class, 'destroy'])
+                ->name('destroy');
         });
 
-        Route::get('delivery', function () {
-            return view('seller.delivery.show');
-        });
+        Route::get('evaluation', [SellerEvaluationController::class, 'search'])
+            ->name('evaluation.search');
 
-        Route::get('delivery', function () {
-            return view('seller.delivery.show');
-        });
+        Route::group(['prefix' => 'delivery', 'as' => 'delivery.'], function () {
+            Route::get('/', [SellerDeliveryController::class, 'show'])
+                ->name('show');
 
-        Route::get('customerSupport', function () {
-            return view('seller.inquiry.customerSupport');
+            Route::get('/', [SellerDeliveryController::class, 'search'])
+                ->name('search');
+
+            Route::get('/{id}', [SellerDeliveryController::class, 'showDetail'])
+                ->name('showDetail');
+
+            Route::patch('/{id}/update', [SellerDeliveryController::class, 'update'])
+                ->name('update');
         });
     });
 });
 
-Route::group(['middleware' => 'admin'], function() {
+Route::group(['middleware' => 'admin'], function () {
     Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
@@ -205,21 +224,15 @@ Route::group(['middleware' => 'admin'], function() {
         Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
         Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
 
+        // Delivery Order List
+        Route::get('delivery', [DeliveryController::class, 'show'])->name('delivery.show'); //admin.delivery.show
+        Route::get('delivery', [DeliveryController::class, 'search'])->name('delivery.search'); //admin.delivery.search
+        Route::get('delivery/{id}', [DeliveryController::class, 'showDetail'])->name('delivery.showDetail'); //admin.delivery.showDetail
+        Route::patch('delivery/{id}/update', [DeliveryController::class, 'update'])->name('delivery.update'); //admin.delivery.update
 
-        Route::get('/admin/delivery', function () {
-            return view('admin.delivery.deliveryList');
-        });
+        // Evaluation
+        Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation'); //admin.evaluation
+        Route::patch('/evaluation/{id}/update', [EvaluationController::class, 'update'])->name('evaluation.update'); //admin.evaluation.update
 
-        Route::get('/admin/customerSupport', function () {
-            return view('admin.inquiry.customerSupport');
-        });
-
-        Route::get('evaluation', function () {
-            return view('admin.assessor.evaluation');
-        });
-
-        Route::get('delivery', function () {
-            return view('admin.delivery.deliveryList');
-        });
     });
 });

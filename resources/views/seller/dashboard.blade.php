@@ -25,7 +25,7 @@
 
     <div class="my-4">
         <h1>Sales Dashboard</h1>
-        <p>Hi User! Welcome to Sales Dashboard!</p>
+        <p>Hi {{Auth::guard("seller")->user()->last_name}} {{Auth::guard("seller")->user()->first_name}}! Welcome to Sales Dashboard!</p>
     </div>
 
     <div class="row mb-3">
@@ -165,8 +165,23 @@
             <canvas id="dailyPlot"></canvas>
         </div>
     </div>
+    <div class="row mt-5">
+        <div class="col-6">
+            <h3 class="fw-bold">Daily Pageviews</h3>
+            <h6>Recent 7Days</h6>
+            <canvas id="pageViewPlot" class="graph-size" labels="{{ json_encode($labels) }}"
+            pageviews="{{ json_encode($pageviews) }}">
+            </canvas>
+        </div>
+        <div class="col-6">
+            <h3 class="fw-bold">Page View Rankings</h3>
+            <h6>Total views of Recent 7Days</h6>
+            <canvas id="pageRankingPlot" class="graph-size" paths="{{ json_encode($paths) }}"
+            ranking_pageviews="{{ json_encode($ranking_pageviews) }}">
+            </canvas>
+        </div>
+    </div>
 
-    <script src="{{ asset('js/sellerDashboard.js') }}"></script>
     <script type="text/javascript">
         // Monthly Chart
         // Pass Datas

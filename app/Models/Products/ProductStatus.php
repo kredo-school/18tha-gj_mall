@@ -21,3 +21,4 @@ class ProductStatus extends Model
                     ->where('seller_id', $id)
                     ->paginate(5);
     }
+}

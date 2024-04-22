@@ -7,7 +7,9 @@ use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
-use App\Models\Users\OrderLine;
+use App\Models\Orders\OrderLine;
+use App\Models\PageView;
+use App\Models\Products\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +20,9 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Carbon;
 use Carbon\CarbonPeriod;
 use Illuminate\Database\Query\JoinClause;
-
 use function PHPUnit\Framework\isEmpty;
+use Phpml\Regression\LeastSquares;
+use Phpml\Dataset\ArrayDataset;
 
 class SellerController extends Controller
 {
@@ -161,9 +164,22 @@ class SellerController extends Controller
 
         $month = [];
         $monthly_amount = [];
+        $samples = [];
+        $m = 0;
         foreach ($MonthlyData as $data) {
+            $m++;
+            $samples[] = [$m];
             $month[] = $data->month;
             $monthly_amount[] = $data->total_amount;
+        }
+
+        if(count($month) > 1){
+            $regression = new LeastSquares(); // https://php-ml.readthedocs.io/en/latest/machine-learning/regression/least-squares/
+            // Make the regresssion function  without this months
+            $regression->train(array_slice($samples, 0,count($samples)-1), array_slice($monthly_amount, 0,count($monthly_amount)-1));
+            $forecast = $regression->predict($samples); // Forecasting max recent 13 months
+        } else {
+            $forecast = array_fill(0, count($month), 0);
         }
 
         // Daily Sales Plot
@@ -174,7 +190,7 @@ class SellerController extends Controller
         $output = [];
         $names = [];
         $accum_amount = 0;
-
+        $i = 0;
         foreach ($data as $keys => $values) {
 
             foreach ($values as $value) {
@@ -185,17 +201,65 @@ class SellerController extends Controller
                 $accum_amount = $accum_amount + $totalAmount;
                 $daily_output['accum_amount'][] = $accum_amount;
             }
-            $names[] = $keys;
+            $names[$i] = $keys;
             $output[$keys] = $daily_output;
-            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '');
-            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '');
-            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '');
+            $output[$keys]['day'] = array_pad($output[$keys]['day'], 31, '0');
+            $output[$keys]['total_amount'] = array_pad($output[$keys]['total_amount'], 31, '0');
+            $output[$keys]['accum_amount'] = array_pad($output[$keys]['accum_amount'], 31, '0');
             $daily_output = [];
             $accum_amount = 0;
+            $i++;
         }
 
+        if (!empty($names)) {
+            $Xvalues = $output[$names[0]]['day'];
+        } else {
+            $Xvalues = array_fill(0, 31, 0);
+        }
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'output', 'names'));
+        if (!empty($names)) {
+            $LastMonthYvalues = $output[$names[0]]['accum_amount'];
+        } else {
+            $LastMonthYvalues = array_fill(0, 31, 0);
+        }
+
+        if (!empty($names)) {
+            $thisMonthYvalues = $output[$names[1]]['accum_amount'];
+        } else {
+            $thisMonthYvalues = array_fill(0, 31, 0);
+        }
+
+        $seller_urls = ["http://127.0.0.1:8000/profile/".Auth::guard("seller")->id()];
+        $product_ids = Product::select("id")->where("seller_id",Auth::guard("seller")->id())->get();
+        foreach($product_ids as $product_id){
+            $seller_urls[] = "http://127.0.0.1:8000/productDetail/".$product_id->id;
+        }
+
+        $pageviews = PageView::select(
+            DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereIn("url",$seller_urls)
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        $labels = $pageviews->pluck('date');
+        $pageviews = $pageviews->pluck('pageviews');
+
+        $rankings = PageView::select(
+            DB::raw("CONCAT(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 4), '/', -1),'/',SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 5), '/', -1)) as path"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->whereIn("url",$seller_urls)
+            ->groupBy('path')
+            ->orderBy('pageviews','desc')
+            ->get();
+        $paths = $rankings->pluck('path');
+        $ranking_pageviews = $rankings->pluck('pageviews');
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues','labels','pageviews','paths','ranking_pageviews' ));
     }
 
     private function getSellerOrders($start_date, $end_date)

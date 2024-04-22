@@ -27,6 +27,7 @@ class Customer extends Model implements Authenticatable
         'password',
         'phone_number',
         'avatar',
+        'google_id',
     ];
 
     public function payment()

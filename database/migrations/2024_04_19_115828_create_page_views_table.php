@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_status', function (Blueprint $table) {
+        Schema::create('page_views', function (Blueprint $table) {
             $table->id();
-            $table->string('status',30)->unique()->comment('1:Exhibit request -> 2:Waiting for valuation -> 3:Evaluation -> (7:Suspended ->) 4:Waiting for display(Coming Soon) -> 5:Exhibited -> 6:Sold out');
+            $table->unsignedBigInteger("customer_id")->nullable();
+            $table->text("url");
             $table->timestamps();
+
+            $table->foreign('customer_id')->on('customers')->references('id');
         });
     }
 
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_status');
+        Schema::dropIfExists('page_views');
     }
 };

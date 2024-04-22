@@ -2,8 +2,6 @@
 
 namespace App\Models\Orders;
 
-use App\Models\Users\Address;
-use App\Models\Users\Customer;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +22,15 @@ class ShopOrder extends Model
     }
 
     public function orderStatus() {
-        return $this->belongsTo(OrderStatus::class, 'status_id', 'id');
+        return $this->belongsTo(OrderStatus::class, 'status_id','id');
+    }
+
+    public function getStatus($id) {
+        return $this->where('status_id',$id);
+    }
+
+    public function shippingMethod() {
+        return $this->belongsTo(ShippingMethod::class, 'shipping_method_id','id');
     }
 
     public function orderLines() {

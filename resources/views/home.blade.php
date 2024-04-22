@@ -11,6 +11,13 @@
 @include('layouts.navbar')
 
 <div class="container-fluid p-0">
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>{{ session('error') }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col p-0">
             {{-- Carousel --}}

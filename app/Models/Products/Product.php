@@ -2,14 +2,19 @@
 
 namespace App\Models\Products;
 
-use App\Models\Orders\OrderLine;
 use App\Models\Users\Favorite;
-use App\Models\Users\Seller;
+use App\Models\Orders\OrderLine;
+use App\Models\Products\Category;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Products\ProductDetail;
+use App\Models\Products\ProductStatus;
 use App\Models\Orders\ShoppingCartItem;
+use App\Models\Users\Seller;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Products\ProductImage;
+
 
 class Product extends Model
 {
@@ -17,12 +22,26 @@ class Product extends Model
 
     protected $table = 'products';
 
+    protected $fillable = [
+        'name',
+        'price',
+        'description',
+        'status_id',
+        'seller_id',
+        'category_id',
+        'product_detail_id'
+    ];
+
     public function productDetail(){
         return $this->hasOne(ProductDetail::class ,'id','product_detail_id');
     }
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+    public function productStatus(){
+        return $this->belongsTo(ProductStatus::class , 'status_id' ,'id');
     }
 
     public function productImage(){
@@ -76,4 +95,5 @@ class Product extends Model
     public function isCart() {
         return $this->ShoppingCartItems()->where('customer_id', Auth::id())->exists();
     }
+
 }

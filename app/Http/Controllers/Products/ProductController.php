@@ -66,9 +66,14 @@ class ProductController extends Controller
                       ->orWhere('description', 'LIKE', '%'.$search.'%');
             })
             ->orderBy('created_at','desc')
-            ->get();
+            ->paginate(5);
+
+            $products->withPath('/seller/products/dashboard');
+            $products->appends($request->all());
         } else {
             $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->paginate(5);
+            $products->withPath('/seller/products/dashboard');
+            $products->appends($request->all());
         }
 
 

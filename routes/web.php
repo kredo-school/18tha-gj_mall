@@ -212,25 +212,28 @@ Route::group(['middleware' => 'admin'], function () {
         Route::get('dashboard', [AdminController::class, 'showDashboard'])->name('dashboard');
 
         // Management User
-        Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); //admin.managementUser
-        Route::post('/store', [AdminController::class, 'store'])->name('store'); // admin.store
-        Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); //admin.update
-        Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy'); //admin.destroy
+        Route::get('/managementUser', [AdminController::class, 'index'])->name('managementUser'); 
+        Route::get('/managementUser', [AdminController::class, 'search'])->name('managementUser.search'); 
+        Route::post('/store', [AdminController::class, 'store'])->name('store'); 
+        Route::patch('/{id}/update', [AdminController::class, 'update'])->name('update'); 
+        Route::delete('/{id}/destroy', [AdminController::class, 'destroy'])->name('destroy');
 
         // Customer Support
-        Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); //admin.customerSupport
-        Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); //admin.customerSupport.update
-        Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy'); //admin.customerSupport.destroy
+        Route::get('/customerSupport', [CustomerSupportController::class, 'index'])->name('customerSupport'); 
+        Route::get('/customerSupport', [CustomerSupportController::class, 'search'])->name('customerSupport.search');         
+        Route::patch('/customerSupport/{id}/update', [CustomerSupportController::class, 'update'])->name('customerSupport.update'); 
+        Route::delete('customerSupport/{id}/destroy', [CustomerSupportController::class, 'destroy'])->name('customerSupport.destroy');
 
         // Delivery Order List
-        Route::get('delivery', [DeliveryController::class, 'show'])->name('delivery.show'); //admin.delivery.show
-        Route::get('delivery', [DeliveryController::class, 'search'])->name('delivery.search'); //admin.delivery.search
-        Route::get('delivery/{id}', [DeliveryController::class, 'showDetail'])->name('delivery.showDetail'); //admin.delivery.showDetail
-        Route::patch('delivery/{id}/update', [DeliveryController::class, 'update'])->name('delivery.update'); //admin.delivery.update
+        Route::get('delivery', [DeliveryController::class, 'show'])->name('delivery.show'); 
+        Route::get('delivery', [DeliveryController::class, 'search'])->name('delivery.search'); 
+        Route::get('delivery/{id}', [DeliveryController::class, 'showDetail'])->name('delivery.showDetail'); 
+        Route::patch('delivery/{id}/update', [DeliveryController::class, 'update'])->name('delivery.update'); 
 
         // Evaluation
-        Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation'); //admin.evaluation
-        Route::patch('/evaluation/{id}/update', [EvaluationController::class, 'update'])->name('evaluation.update'); //admin.evaluation.update
+        Route::get('/evaluation', [EvaluationController::class, 'index'])->name('evaluation'); 
+        Route::get('/evaluation', [EvaluationController::class, 'search'])->name('evaluation.search');
+        Route::patch('/evaluation/{id}/update', [EvaluationController::class, 'update'])->name('evaluation.update'); 
 
     });
 });

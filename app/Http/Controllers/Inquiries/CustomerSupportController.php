@@ -10,8 +10,10 @@ use App\Models\Inquiries\Inquiry;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Inquiries\InquiryGenre;
 use App\Models\Inquiries\InquiryStatus;
+use Illuminate\Database\Query\JoinClause;
 
 class CustomerSupportController extends Controller
 {
@@ -99,4 +101,45 @@ class CustomerSupportController extends Controller
         return redirect()->back();
     }
 
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $status = $request->input('status');
+
+        if(!empty($search)) {
+            $inquiries = $this->inquiry
+                ->join('inquiry_genres', function (JoinClause $join){
+                    $join->on('inquiry_genres.id', '=', 'inquiries.genre_id')
+                        ->where('inquiries.customer_id', Auth::guard("customer")->id());
+                })
+                ->join('inquiry_status', function(JoinClause $join){
+                    $join->on('inquiry_status.id', '=', 'inquiries.inquiry_status_id');
+                })
+                ->where(function ($query) use ($search){
+                    $query->where('inquiry_genres.name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('inquiry_status.status', 'LIKE', '%' . $search . '%')
+                        ->orWhere('inquiries.title', 'LIKE', '%' . $search . '%');
+                })
+                ->orderBy('inquiries.created_at', 'desc')->paginate(5);
+        } elseif(!empty($status)) {
+            $inquiry_statuses = $this->inquiry_status->findOrFail($status)
+                ->join('inquiries', function (JoinClause $join) {
+                    $join->on('inquiries.id', '=', 'inquiriy_status.id')
+                        ->where('inquiries.customer_id', Auth::guard("customer")->id());
+                })
+                ->where(function ($query) use ($status) {
+                    $query->where('inquiry.status',  $status);
+                })
+                ->orderBy('inquiries.created_at', 'desc')
+                ->paginate(5);
+        }
+
+        $inquiry_statuses = $this->inquiry_status->orderBy('id', 'asc')->get();
+        $inquiries = $this->inquiry->orderBy('id', 'asc')->get();
+
+
+        return view("admin.inquiry.customerSupport", compact("inquiries", "inquiry_statuses"));
+
+    }
 }
+

@@ -12,7 +12,7 @@
 
         {{-- Search bar --}}
         <div class="col-6 my-2">
-            <form action="#">
+            <form action="{{ route('admin.evaluation.search') }}" method="GET">
                 <input type="search" name="search" placeholder="Search..." class="form-control">
             </form>
         </div>
@@ -28,14 +28,14 @@
                 </a>
                 
                 <ul class="dropdown-menu h4">
-                    <li><a class="dropdown-item" href="#">1: Exhibit Request</a></li>
-                    <li><a class="dropdown-item" href="#">2: Waiting for Evaluation</a></li>
-                    <li><a class="dropdown-item" href="#">3: Evaluating</a></li>
-                    <li><a class="dropdown-item" href="#">4: Waiting for Display</a></li>
-                    <li><a class="dropdown-item" href="#">5: Exhibited</a></li>
-                    <li><a class="dropdown-item" href="#">6: Sold Out</a></li>
-                    <li><a class="dropdown-item" href="#">7: Suspended</a></li>
-                </ul>
+                    @foreach ($product_statuses as $product_status)
+                        <form action="{{ route('admin.evaluation.search') }}" method="GET">
+                            <input type="text" name="status" value="{{ $product_status->id }}"
+                                style="visibility: hidden; height:0px;">
+                            <button class="dropdown-item montserrat" type="submit">{{ $product_status->status }}</button>
+                        </form>
+                @endforeach
+            </ul>
             </div>
 
             {{-- Category --}}
@@ -45,11 +45,16 @@
                 </a>
                 
                 <ul class="dropdown-menu h4">
-                    <li><a class="dropdown-item" href="#">1: Food</a></li>
-                    <li><a class="dropdown-item" href="#">2: Cloth/Accessory</a></li>
-                    <li><a class="dropdown-item" href="#">3: Home Decor</a></li>
-                    <li><a class="dropdown-item" href="#">4: Kitchen</a></li>
-                    <li><a class="dropdown-item" href="#">5: Table</a></li>
+                    @foreach ($categories as $category)
+                        <li>
+                            <form action="{{ route('admin.evaluation.search') }}" method="GET">
+                                <input type="text" name="category" value="{{ $category->id }}"
+                                    style="visibility: hidden; height:0px;">
+                                <button class="dropdown-item montserrat" type="submit">{{ $category->id }}:
+                                    {{ $category->name }}</button>
+                            </form>
+                        </li>
+                    @endforeach
                 </ul>
             </div>            
     

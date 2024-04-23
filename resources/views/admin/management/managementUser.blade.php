@@ -11,7 +11,7 @@
     <div class="row mb-4">
         {{-- Search bar --}}
         <div class="col-8 my-2">
-            <form action="#">
+            <form action="{{ route('admin.managementUser.search') }}">
                 <input type="search" name="search" placeholder="Search..." class="form-control">
             </form>
         </div>

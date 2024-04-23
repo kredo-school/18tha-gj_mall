@@ -2,17 +2,18 @@
 
 namespace App\Http\Controllers\Users;
 
+use Exception;
+use Carbon\Carbon;
 use App\Models\Users\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Models\Orders\OrderLine;
+use App\Models\Products\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\Orders\OrderLine;
-use App\Models\Products\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -152,7 +153,7 @@ class AdminController extends Controller
 
     public function index()
     {
-        $admins = $this->admin->latest()->paginate(5);
+        $admins = $this->admin->findOrFail(Auth::guard('admin')->id())->latest()->paginate(5);
 
         return view('admin.management.managementUser')
                 ->with('admins', $admins);
@@ -161,7 +162,8 @@ class AdminController extends Controller
     // create users
     public function create()
     {
-        $admins = $this->admin->all();
+        $admin = $this->admin->all();
+        // $admins = $this->admin->where(Auth::guard("admin")->id())->all();
 
         return view('admin.management.modal.create')
                 ->with('admins', $admins);
@@ -171,16 +173,18 @@ class AdminController extends Controller
     // store() - save admin user on the db
     public function store(Request $request)
     {
+        // $id = Auth::guard("admin")->id();
         DB::beginTransaction();
-        
         $request->validate([
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
             'email'        => 'required|string|max:255|unique:admin',
             'phone_number' => 'required|string|max:255',
             'password'     => 'required|string|max:255',
-            'role'         => 'required|string|max:255'
+            'role'         => 'required|integer'
         ]);
+
+        // $admin = Admin::findOrFail($id);
 
         $admin = new Admin();
         $admin->first_name   = $request->input('first_name');
@@ -203,7 +207,8 @@ class AdminController extends Controller
     // edit() - view the Edit page
     public function edit($id)
     {
-        $admin = $this->admin->findOrFail(Admin::admin()->id);
+        // $admin = $this->admin->findOrFail(Admin::admin()->id);
+        $admin = $this->admin->findOrFail($id);
         return view('admin.management.modal.edit')
                 ->with('admin', $admin);
     }
@@ -211,16 +216,16 @@ class AdminController extends Controller
     // update() - edit admin information
     public function update(Request $request, $id)
     {
-        DB::beginTransaction();
+        // $id = Auth::guard("admin")->id();
         
-        // Validate the incoming request data (optional)
+        DB::beginTransaction();
         $request->validate([
             'first_name'   => 'required|string|max:255',
             'last_name'    => 'required|string|max:255',
             'email'        => ['required', 'string','email','max:255',Rule::unique('admin')->ignore($id),],
             'phone_number' => 'required|string|max:255',
             'password'     => 'required|string|max:255',
-            'role'         => 'required|string|max:255'
+            'role'         => 'required|integer'
         ]);
 
         try {
@@ -260,9 +265,55 @@ class AdminController extends Controller
     // destroy() - Delete admin user
     public function destroy($id)
     {
+        $admin = $this->admin->findOrFail($id);
         $this->admin->destroy($id);
 
         return redirect()->back();
+    }
+
+    // public function search(Request $request)
+    // {
+    //     $search = $request->input('search');
+
+    //     if(!empty($search)) {
+    //         $admins = $this->admin
+    //             ->where('admins', Auth::guard('admin')->id())
+    //             ->where(function ($query) use ($search) {
+    //                 $query->where('first_name', 'LIKE', '%' . $search . '%')
+    //                     ->orWhere('last_name', 'LIKE', '%' . $search . '%')
+    //                     ->orWhere('role', 'LIKE', '%' . $search . '%');
+    //             })
+    //             ->orderBy('created_at', 'desc')
+    //             ->paginate(5);
+    //     } else {
+    //         $admins = $this->admin->where('id', Auth::guard('admin')->id())->orderBy('created_at', 'desc')->paginate(5);
+    //     }
+    //     $admins = $this->admin->orderBy('created_at', 'desc')->paginate(5);
+
+    //     return view("admin.management.managementUser", compact("admins"));
+
+    // }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+    
+        if (!empty($search)) {
+            $admins = $this->admin
+                ->where(function ($query) use ($search) {
+                    $query->where('first_name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('last_name', 'LIKE', '%' . $search . '%')
+                        ->orWhere('role', 'LIKE', '%' . $search . '%');
+                })
+                ->orderBy('created_at', 'desc')
+                ->paginate(5);
+        } else {
+            $admins = $this->admin
+                ->orderBy('created_at', 'desc')
+                ->paginate(5);
+        }
+    
+        return view("admin.management.managementUser", compact("admins"));
     }
 
 

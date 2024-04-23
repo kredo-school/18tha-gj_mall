@@ -6,18 +6,22 @@ document.addEventListener('DOMContentLoaded', function() {
     //For each cart element, listen if it was "changed", if its checked then add the value, if its not then subtract
     cartItems.forEach(function(item) { 
         const checkbox = item.querySelector('.item-checkbox'); 
+        const syncCheckbox = item.querySelector('.sync-checkbox'); // Check box for synchronization.
         checkbox.addEventListener('click', function() { 
-            toggleCheckbox(this, item);  
+            toggleCheckbox(this, syncCheckbox);
         }); 
     }); 
 
-    function toggleCheckbox(checkbox, item) { 
+    function toggleCheckbox(checkbox, syncCheckbox) { 
+
         if (checkbox.classList.contains('checked')) { 
             checkbox.src = "../images/customer/uncheckedIcon.svg";
-            checkbox.classList.remove('checked');  
+            checkbox.classList.remove('checked');
+            syncCheckbox.checked = false;
         } else { 
             checkbox.src = "../images/customer/checkedIcon.svg"; 
-            checkbox.classList.add('checked'); 
+            checkbox.classList.add('checked');
+            syncCheckbox.checked = true;
         } 
         updateSubtotal();  
     } 

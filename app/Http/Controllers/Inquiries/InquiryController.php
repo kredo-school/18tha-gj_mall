@@ -22,7 +22,7 @@ class InquiryController extends Controller
 
     public function index()
     {
-        $inquiries = $this->inquiry->all();
+        $inquiries = $this->inquiry->where('inquiry_status_id', 3)->take(5)->get(); // Only solved.
         $inquiry_genres = $this->inquiry_genre->all();
 
         return view('inquiry')

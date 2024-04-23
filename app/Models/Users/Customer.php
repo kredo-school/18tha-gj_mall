@@ -4,6 +4,7 @@ namespace App\Models\Users;
 
 
 use App\Models\Inquiries\Inquiry;
+use App\Models\Message;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -53,5 +54,9 @@ class Customer extends Model implements Authenticatable
 
     public function shopOrders() {
         return $this->hasMany(ShopOrder::class);
+    }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
     }
 }

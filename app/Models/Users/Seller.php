@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Message;
 use App\Models\Products\Product;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -31,5 +32,9 @@ class Seller extends Model implements Authenticatable
 
     public function address() {
         return $this->hasOne(Address::class , 'id' , 'address_id');
+    }
+
+    public function messages() {
+        return $this->hasMany(Message::class);
     }
 }

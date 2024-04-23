@@ -61,6 +61,8 @@ Route::group(['middleware' => LogPageViews::class], function () {
     // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    // LiveChat
+    Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
 
     //Search
     Route::get('/search', [HomeController::class, 'search'])->name('search');

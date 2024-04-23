@@ -72,13 +72,13 @@
                                 <div class="col">
                                     <h4>Country</h4>
                                     <p class="border-bottom">
-                                        {{ $customer->address->country->name }}
+                                        {{ empty($customer->address->country->name) ? 'Non-registered' : $customer->address->country->name }}
                                     </p>
                                 </div>
                                 <div class="col">
                                     <h4>State/City</h4>
                                     <p class="border-bottom">
-                                        {{ $customer->address->city }}
+                                        {{ empty($customer->address->city) ? 'Non-registerd' : $customer->address->city }}
                                     </p>
                                 </div>
                             </div>
@@ -116,7 +116,7 @@
                                 <div class="col">
                                     <h4>Region</h4>
                                     <p class="border-bottom">
-                                        {{ $customer->address->country->region }}
+                                        {{ empty($customer->address->country->region) ? 'Non-registerd' : $customer->address->country->region }}
                                     </p>
                                 </div>
                                 <div class="col">
@@ -150,7 +150,7 @@
                                 <div class="col">
                                     <h4>Card Number</h4>
                                     <p class="border-bottom">
-                                        {{ $customer->payment->card_number ? $customer->payment->card_number : 'Non-registered' }}
+                                        {{ empty($customer->payment->card_number) ? 'Non-registered' : $customer->payment->card_number}}
                                     </p>
                                 </div>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
@@ -229,6 +230,13 @@ class SellerController extends Controller
             $thisMonthYvalues = array_fill(0, 31, 0);
         }
 
+        $productsWithMessages = Product::where('seller_id', Auth::guard('seller')->id())
+                                    ->with(['messages' => function($query) {
+                                        $query->whereNotNull('user_id');
+                                    }])
+                                    ->get();
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', 'productsWithMessages', ));
         $seller_urls = ["http://127.0.0.1:8000/profile/".Auth::guard("seller")->id()];
         $product_ids = Product::select("id")->where("seller_id",Auth::guard("seller")->id())->get();
         foreach($product_ids as $product_id){

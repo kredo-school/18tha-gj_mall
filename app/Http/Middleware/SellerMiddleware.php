@@ -17,7 +17,7 @@ class SellerMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::guard('seller')->check()) {
+        if (Auth::guard('seller')->user()) {
             // Get the authenticated user's email
             $email = Auth::guard('seller')->user()->email;
 

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Users\Address;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Users\Customer;
+use App\Models\Users\Payment;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -37,6 +39,28 @@ class GoogleLoginController extends Controller
             $newCustomer->password  = Hash::make('password');
 
             $newCustomer->save();
+
+            $customer_id = $newCustomer->id;
+
+            Address::create([
+                'unit_number'   => '',
+                'street_number' => '',
+                'address_line1' => '',
+                'address_line2' => '',
+                'region'        => '',
+                'postal_code'   => '', 
+                'city'          => 'Unknown', 
+                'country_code'  => 'NON',
+                'customer_id'   => $customer_id,
+            ]);
+    
+            Payment::create([
+                'card_name'   => '',
+                'card_number' => 0,
+                'expiry_date' => '1970-01-01',
+                'customer_id' => $customer_id,
+            ]);
+
             // Log in the new user.
             auth()->login($newCustomer);
         }

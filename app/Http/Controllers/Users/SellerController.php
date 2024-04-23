@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Users;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\Products\Ad;
 use App\Models\Users\Seller;
 use App\Models\Users\Country;
 use App\Models\Users\Address;
 use App\Models\Orders\OrderLine;
+use App\Models\PageView;
+use App\Models\Products\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -227,7 +230,44 @@ class SellerController extends Controller
             $thisMonthYvalues = array_fill(0, 31, 0);
         }
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', ));
+        $productsWithMessages = Product::where('seller_id', Auth::guard('seller')->id())
+                                    ->with(['messages' => function($query) {
+                                        $query->whereNotNull('user_id');
+                                    }])
+                                    ->get();
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', 'productsWithMessages', ));
+        $seller_urls = ["http://127.0.0.1:8000/profile/".Auth::guard("seller")->id()];
+        $product_ids = Product::select("id")->where("seller_id",Auth::guard("seller")->id())->get();
+        foreach($product_ids as $product_id){
+            $seller_urls[] = "http://127.0.0.1:8000/productDetail/".$product_id->id;
+        }
+
+        $pageviews = PageView::select(
+            DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereIn("url",$seller_urls)
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        $labels = $pageviews->pluck('date');
+        $pageviews = $pageviews->pluck('pageviews');
+
+        $rankings = PageView::select(
+            DB::raw("CONCAT(SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 4), '/', -1),'/',SUBSTRING_INDEX(SUBSTRING_INDEX(url, '/', 5), '/', -1)) as path"),
+            DB::raw("COUNT(1) as pageviews"),
+        )
+            ->whereDate('created_at', '>', Carbon::now()->subDays(7))
+            ->whereIn("url",$seller_urls)
+            ->groupBy('path')
+            ->orderBy('pageviews','desc')
+            ->get();
+        $paths = $rankings->pluck('path');
+        $ranking_pageviews = $rankings->pluck('pageviews');
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues','labels','pageviews','paths','ranking_pageviews' ));
     }
 
     private function getSellerOrders($start_date, $end_date)

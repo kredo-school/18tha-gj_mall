@@ -11,6 +11,8 @@ class ShopOrder extends Model
 
     protected $table = 'shop_orders';
 
+    protected $fillable = ['customer_id', 'address_id', 'shipping_method_id', 'status_id', 'order_total']; 
+
     public function customer() {
         return $this->belongsTo(Customer::class, 'customer_id', 'id');
     }

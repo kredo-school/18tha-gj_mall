@@ -7,22 +7,22 @@
             <div class="modal-header flex-column">
                 <h1 class="modal-title h4">Edit Payment Method</h1>
             </div>
-            <form action="" method="post">  
+            <form action="{{ route('customer.editPayment', $customer->payment->id) }}" method="post">  
                 <div class="modal-body">   
                     @csrf
+                    @method('PATCH')
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" name="name" id="name" class="form-control" value="John Doe" placeholder=" ">
+                        <input type="text" name="name" id="name" class="form-control" value="{{ $customer->payment->card_name }}" placeholder=" ">
                     </div>
 
                     <div class="mb-3">
                         <label for="card_number" class="form-label">Card Number</label>
                         <div class="input-with-icon">
-                            <input id="card_number" type="tel" class="form-control" inputmode="numeric" 
-                                   autocomplete="cc-number" maxlength="19" 
-                                   value="4538 6845 4587 1145"
-                                   placeholder="xxxx xxxx xxxx xxxx" required>
+                            <input id="card_number" type="tel" name="card_number" class="form-control" inputmode="numeric" 
+                                   maxlength="19" value="{{ $customer->payment->card_number }}"
+                                   placeholder=" " required autocomplete="off">
                             <div id="card_logo" class="card-logo icon text-primary"></div>
                         </div> 
                     </div>
@@ -30,18 +30,14 @@
                     <div class="row mb-3">
                         <div class="col">
                             <label for="expire_date" class="form-label">Expire Date</label>
-                            <input type="date" name="expire_date" id="expire_date" class="form-control">
-                        </div>
-                        <div class="col">
-                            <label for="cvv" class="form-label">CVV</label>
-                            <input type="password" name="cvv" id="cvv" class="form-control" value="123" placeholder=" " maxlength="3">
+                            <input type="date" name="expiry_date" id="expire_date" value="{{ $customer->payment->expiry_date }}" class="form-control">
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer d-flex justify-content-around">
                     <button type="button" class="btn edit-cancel-button px-5" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn edit-button px-5">Change</button>           
+                    <button type="submit" class="btn edit-button px-5">Change</button>           
                 </div>
             </form>   
 

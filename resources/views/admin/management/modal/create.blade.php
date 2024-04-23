@@ -7,7 +7,7 @@
         <div class="modal-content">
             <div class="modal-header edit-header">
                 <h2 class="text-light fw-bold m-auto">
-                    Create Seller or Admin Users
+                    Create Admin Users
                 </h2>
             </div>
 
@@ -50,12 +50,11 @@
                         <label for="role" id="role" class="fw-bold">Status:</label>
                         <select name="role" id="role" class="form-select">
                             <option value="select">Select the role here...</option>
-                            <option value="Seller">0: Seller</option>
-                            <option value="Admin">1: Admin</option>
-                            <option value="Stuff">2: Stuff</option>
-                            <option value="Translator">3: Translator</option>
-                            <option value="Assessor">4: Assessor</option>
-                            <option value="Delivery">5: Delivery</option>
+                            <option value="1">1: Admin</option>
+                            <option value="2">2: Stuff</option>
+                            <option value="3">3: Translator</option>
+                            <option value="4">4: Assessor</option>
+                            <option value="5">5: Delivery</option>
                         </select>
                     </div>
                 </div>

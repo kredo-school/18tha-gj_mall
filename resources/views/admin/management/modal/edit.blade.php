@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="{{ asset('css/admin/management/edit.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-<div class="modal fade " id="edit-user-{{ $admin->id }}">
+<div class="modal fade" id="edit-user-{{ $admin->id }}">
     <div class="modal-dialog main text-start">
         <div class="modal-content">
             <div class="modal-header edit-header">
@@ -51,12 +51,11 @@
                         <label for="role" id="role">Status:</label>
                         <select name="role" id="role" class="form-select">
                             <option hidden>{{old('role', $admin->role)}}</option>
-                            <option value="Seller">0: Seller</option>
-                            <option value="Admin">1: Admin</option>
-                            <option value="Stuff">2: Stuff</option>
-                            <option value="Translator">3: Translator</option>
-                            <option value="Assessor">4: Assessor</option>
-                            <option value="Delivery">5: Delivery</option>
+                            <option value="1">1: Admin</option>
+                            <option value="2">2: Stuff</option>
+                            <option value="3">3: Translator</option>
+                            <option value="4">4: Assessor</option>
+                            <option value="5">5: Delivery</option>
                         </select>
                     </div>
                 </div>

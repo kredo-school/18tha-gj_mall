@@ -13,7 +13,7 @@
         {{-- Search bar --}}
         <div class="col-8 my-2">
             <div class="navbar-nav">
-                <form action="#">
+                <form action="{{ route('admin.customerSupport.search') }}">
                     <input type="search" name="search" placeholder="Search..." class="form-control">
                 </form>
             </div>
@@ -28,9 +28,15 @@
                 </a>
               
                 <ul class="dropdown-menu h4">
-                    <li><a class="dropdown-item" href="#">1: Unsolved</a></li>
-                    <li><a class="dropdown-item" href="#">2: Answer</a></li>
-                    <li><a class="dropdown-item" href="#">3: Solved</a></li>  
+                    @foreach ($inquiry_statuses as $inquiry_status)
+                        <li>
+                            <form action="{{ route('admin.customerSupport.search') }}" method="GET">
+                                <input type="text" name="category" value="{{ $inquiry_status->id }}"
+                                    style="visibility: hidden; height:0px;">
+                                <button class="dropdown-item montserrat" type="submit">{{ $inquiry_status->id }}</button>
+                            </form>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </div>
@@ -72,7 +78,15 @@
                                 <td>{{ $inquiry->customer->first_name }} {{ $inquiry->customer->last_name}}</td>
 
                                 {{-- Status --}}
-                                <td>{{ $inquiry->inquiryStatus->status }}</td>
+                                <td>
+                                    @if ($inquiry->inquiryStatus->status == 1)
+                                        Unsolved
+                                    @elseif ($inquiry->inquiryStatus->status == 2)
+                                        Answer
+                                    @elseif ($inquiry->inquiryStatus->status == 3)
+                                        Solved
+                                    @endif
+                                </td>
 
                                 {{-- Change Status & Delete Button --}}
                                 <td>
@@ -98,7 +112,7 @@
                 </table>
             </div>
         </div>
-        {{ $inquiries->links() }}
+        {{-- {{ $inquiries->links() }} --}}
 
 
         <div class="row banner mx-1">

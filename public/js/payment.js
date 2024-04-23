@@ -68,3 +68,29 @@ document.getElementById('confirm').addEventListener('click', function() {
         }
     });
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Define the checkCVVInput function in the global scope
+    function checkCVVInput() {
+        // Get the value of the CVV input field
+        var cvvInput = document.getElementById('cvv');
+        var cvvValue = cvvInput.value.trim(); // Trim any leading/trailing whitespace
+
+        // Get a reference to the "Confirm the Order" button
+        var confirmButton = document.getElementById('confirm');
+
+        // Disable the button if CVV is empty or not exactly 3 digits
+        if (cvvValue === '' || cvvValue.length !== 3 || !/^\d+$/.test(cvvValue)) {
+            confirmButton.disabled = true; // Disable the button
+        } else {
+            confirmButton.disabled = false; // Enable the button
+        }
+    }
+
+    // Attach the checkCVVInput function to the "input" event of the CVV input field
+    var cvvInput = document.getElementById('cvv');
+    cvvInput.addEventListener('input', checkCVVInput);
+
+    // Call the checkCVVInput function initially to set the initial state of the button
+    checkCVVInput();
+});

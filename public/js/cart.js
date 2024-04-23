@@ -137,6 +137,27 @@ document.addEventListener('DOMContentLoaded', function() {
 const backButton = document.getElementById('btn--back'); 
 if (backButton) { 
     backButton.addEventListener('click', function() { 
-        window.history.back(); 
+        window.location.href = document.referrer;
     }); 
 };
+
+// Check if total is eual to 0 or not: total 0 => button disabled
+document.addEventListener('DOMContentLoaded', function() {
+    const checkoutButton  = document.getElementById('checkoutButton');
+    const subTotalElement = document.querySelector('.sub_total'); 
+    const cartItems       = document.querySelectorAll('.cartItem-card'); 
+    
+    function updateCheckoutButtonState() {
+        const total = parseFloat(subTotalElement.innerText); 
+        checkoutButton.disabled = (total === 0);
+    }
+
+    updateCheckoutButtonState();
+
+    cartItems.forEach(function(item) {
+        const checkbox = item.querySelector('.item-checkbox');
+        checkbox.addEventListener('click', function() {
+            updateCheckoutButtonState();
+        });
+    });
+});

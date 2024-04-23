@@ -66,7 +66,7 @@
 
                 <div class="row mb-5">
                     <div class="col">
-                        <table class="table w-75 mx-auto table-bordered text-center">
+                        <table class="table w-75 mx-auto table-bordered text-center align-middle">
                             <tr>
                                 <th id="table-header">Card Number</th>
                                 <th id="table-header">Expired Date</th>
@@ -81,7 +81,7 @@
                                 <td>
                                     <input type="password" name="cvv" id="cvv" class="form-control"
                                         placeholder=" " maxlength="3"
-                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                    >
                                 </td>
                             </tr>
                         </table>
@@ -172,8 +172,10 @@
                         </div>
                         <div class="row text-center">
                             <div class="col">
-                                <button type="submit" id="confirm" class="btn create-button w-50 fw-bold">Confirm
-                                    the Order</button>
+                                <button type="submit" id="confirm" class="btn create-button w-75 fw-bold" 
+                                        {{ $customer->payment->card_name && $customer->address->address_line1 ? '' : 'disabled' }}>
+                                    Confirm the Order
+                                </button>
                             </div>
                         </div>
                         

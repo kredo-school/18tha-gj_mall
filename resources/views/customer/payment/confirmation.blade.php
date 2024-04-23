@@ -36,7 +36,6 @@
                 <div class="row justify-content-center mt-2">
                     <div class="col-8">
                         <strong class="label">Total Amount :</strong>
-                        {{-- <span class="d-block">$ 20,000</span> --}}
                         <span class="d-block">$ {{ $orderTotal }}</span>
                     </div>
                 </div>
@@ -46,7 +45,7 @@
                         <a href="{{ url('/home') }}" class="btn normal-button ms-5 me-3">Go Home Page</a>
                     </div>
                     <div class="col">
-                        <a href="{{ url('/customer/profile/orderHistory') }}" class="btn edit-button ms-3">Go Ordered List</a>
+                        <a href="{{ route('customer.showOrderHistory', Auth::id()) }}" class="btn edit-button ms-3">Go Ordered List</a>
                     </div>
                 </div>
             </div>

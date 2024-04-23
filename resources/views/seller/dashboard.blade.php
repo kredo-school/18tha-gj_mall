@@ -6,9 +6,52 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/seller/sellerDashboard.css') }}">
 
+    @php
+        $uniqueMessages = [];
+
+        foreach ($productsWithMessages as $message) {
+            foreach ($message->messages as $item) {
+                $productId = $item->product->id;
+                $customerId = $item->customer->id;
+                $key = "{$productId}_{$customerId}";
+
+                // Store message if not already added
+                if (!isset($uniqueMessages[$key])) {
+                    $uniqueMessages[$key] = $item;
+                }
+            }
+        }
+    @endphp
+
     <div class="my-4">
         <h1>Sales Dashboard</h1>
         <p>Hi {{Auth::guard("seller")->user()->last_name}} {{Auth::guard("seller")->user()->first_name}}! Welcome to Sales Dashboard!</p>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <table class="table table-sm w-50 align-middle">
+                <thead class="table-secondary">
+                    <th scope="col">Product</th>
+                    <th scope="col">UserName</th>
+                    <th scope="col"></th>
+                </thead>
+                <tbody class="table-group-divider">
+                    @foreach ($uniqueMessages as $item)
+                        <tr>
+                            <td>{{ $item->product->name }}</td>
+                            <td>{{ $item->customer->first_name }} {{ $item->customer->last_name }}</td>
+                            <td>
+                                <a href="{{ route('livechat', ['product_id' => $item->product->id, 'user_id' => $item->customer->id]) }}">
+                                    <button class="btn btn-primary">Chat with customer</button>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+        </div>
     </div>
 
     <div class="row mb-4">
@@ -85,7 +128,7 @@
                 </div>
             </form>
 
-            <table class="table text-center table-hover align-middle bg-white border">
+            <table class="table text-center table-hover bg-white border">
                 <thead class="small table-secondary text-light">
                     <tr>
                         <th>Date</th>

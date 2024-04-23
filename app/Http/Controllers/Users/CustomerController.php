@@ -129,7 +129,7 @@ class CustomerController extends Controller
                 $payment->expiry_date = $validatedData['expiry_date'];
                 
                 // Check if CVV is empty (only required if updating payment information)
-                if (empty($validatedData['cvv'])) {
+                if (empty($request->cvv)) {
                     return back()->withErrors(['cvv' => 'CVV is required to register payment information.']);
                 }
             }

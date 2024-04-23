@@ -2,6 +2,7 @@
 
 namespace App\Models\Products;
 
+use App\Models\Message;
 use App\Models\Users\Favorite;
 use App\Models\Orders\OrderLine;
 use App\Models\Products\Category;
@@ -96,4 +97,7 @@ class Product extends Model
         return $this->ShoppingCartItems()->where('customer_id', Auth::id())->exists();
     }
 
+    public function messages() {
+        return $this->hasMany(Message::class);
+    }
 }

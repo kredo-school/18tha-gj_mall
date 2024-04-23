@@ -5,9 +5,14 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/customer/payment/transaction.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script>
+        var checkedItemIds = @json($checkedItemId);
+    </script>
 
     @include('layouts.navbar')
-    
+
     <div class="container-fluid p-0 min-vh-100">
         <div class="row px-3 ">
             {{-- address and payment info --}}
@@ -18,7 +23,8 @@
                         <h2 class="mb-0">Address Information</h2>
                     </div>
                     <div class="col text-end">
-                        <button class="btn edit-button" data-bs-toggle="modal" data-bs-target="#edit_address">Change</button>
+                        <button class="btn edit-button" data-bs-toggle="modal"
+                            data-bs-target="#edit_address">Change</button>
                     </div>
 
                     {{-- payment address modal  --}}
@@ -30,11 +36,14 @@
                         <table class="table w-75 mx-auto table-bordered">
                             <tr>
                                 <th id="table-header">Recipient</th>
-                                <td>John Doe</td>
+                                <td>{{ $customer->first_name }} {{ $customer->last_name }}</td>
                             </tr>
                             <tr>
                                 <th id="table-header">Address</th>
-                                <td>100 Bay View Drive Mountain View, CA 94043, United States</td>
+                                <td>{{ $customer?->address?->unit_number }} {{ $customer?->address?->street_number }}
+                                    {{ $customer?->address?->address_line1 }} {{ $customer?->address?->address_line2 }}
+                                    {{ $customer?->address?->city }} {{ $customer?->address?->postal_code }}
+                                    {{ $customer?->address?->country->name }}</td>
                             </tr>
                         </table>
                     </div>
@@ -61,12 +70,19 @@
                             <tr>
                                 <th id="table-header">Card Number</th>
                                 <th id="table-header">Expired Date</th>
+                                <th id="table-header">CVV</th>
                             </tr>
                             <tr>
                                 <td>
-                                    <i class="fa-brands fa-cc-visa icon text-dark"></i> <span>123-456-4-789</span>
+                                    <i class="fa-brands fa-cc-visa icon text-dark"></i>
+                                    <span>{{ $customer->payment->card_number }}</span>
                                 </td>
-                                <td>01/31</td>
+                                <td>{{ $customer->payment->expiry_date }}</td>
+                                <td>
+                                    <input type="password" name="cvv" id="cvv" class="form-control"
+                                        placeholder=" " maxlength="3"
+                                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                                </td>
                             </tr>
                         </table>
                     </div>
@@ -98,12 +114,13 @@
             <div class="col">
                 <div class="card mt-4 mx-auto order-card mb-5">
                     <div class="card-body">
+
                         <div class="row mx-auto mb-5">
                             <div class="col">
                                 <div class="row mt-3">
                                     <div class="col text-center">
                                         <h3 class="fw-bold text-decoration-underline">Order Detail</h3>
-                                        <p id="estimated_date_font">Estimated Delivery Date : March, 24, 2024</p>
+                                        <p id="estimated_date_font">Estimated Delivery Date : {{ $deliver_date }}</p>
                                     </div>
                                 </div>
 
@@ -112,16 +129,25 @@
                                         <h4 class="fw-bold text-start">Subtotal : </h4>
                                     </div>
                                     <div class="col">
-                                        <h4 class="text-end">$ <span id="sub_total">220.00</span></h4>
+                                        <h4 class="text-end">$ <span id="sub_total">{{ $subTotal }}</span></h4>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row mt-3 mx-auto">
                                     <div class="col-7">
                                         <h4 class="fw-bold text-start">Estimated Shipping : </h4>
                                     </div>
                                     <div class="col">
-                                        <h4 class="text-end">$ <span>10.00</span></h4>
+                                        <h4 class="text-end">$ <span id="shipping_cost">{{ $shipping }}</span></h4>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-3 mx-auto">
+                                    <div class="col-7">
+                                        <h4 class="fw-bold text-start">Qty : </h4>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="text-end"> <span>{{ $total_qty }}</span></h4>
                                     </div>
                                 </div>
 
@@ -134,30 +160,27 @@
                                     </div>
                                 </div>
 
-                                <div id="total_amout" class="row mt-3 mx-auto">
+                                <div id="total_amount" class="row mt-3 mx-auto" style="color: #FF3A3A;">
                                     <div class="col-7">
-                                        <h4 class="fw-bold text-start">Total : </h4>
+                                        <h4 class="fw-bold text-start">Total Amount : </h4>
                                     </div>
                                     <div class="col">
-                                        <h4 class="text-end">$ <span id="total">225.00</span></h4>
+                                        <h4 class="text-end">$ <span id="total">0</span></h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <form action="{{ url('/customer/transaction/confirmation') }}" method="#">
-                            @csrf
-
-                            <div class="row text-center">
-                                <div class="col">
-                                    <button type="submit" class="btn create-button w-50 fw-bold">Checkout</button>
-                                </div>
+                        <div class="row text-center">
+                            <div class="col">
+                                <button type="submit" id="confirm" class="btn create-button w-50 fw-bold">Confirm
+                                    the Order</button>
                             </div>
-                        </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
-            {{-- Checkout end --}}  
+            {{-- Checkout end --}}
         </div>
 
     </div>

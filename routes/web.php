@@ -13,6 +13,7 @@ use App\Http\Controllers\Orders\CartController;
 use App\Http\Controllers\Inquiries\InquiryController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\Users\ReviewController;
+use App\Http\Controllers\Orders\PaymentController;
 use App\Http\Controllers\Orders\SellerDeliveryController;
 use App\Http\Controllers\Products\AdController;
 use App\Http\Controllers\Users\AdminController;
@@ -60,6 +61,8 @@ Route::group(['middleware' => LogPageViews::class], function () {
     // Home
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+    // LiveChat
+    Route::get('/livechat/{product_id}/{user_id}', [MessageController::class, 'index'])->name('livechat');
 
     //Search
     Route::get('/search', [HomeController::class, 'search'])->name('search');
@@ -120,6 +123,22 @@ Route::group(['middleware' => LogPageViews::class], function () {
             Route::delete('/{review_id}/destory', [ReviewController::class, 'destroy'])->name('destroy');
         });
     });
+
+    // Cart
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart');
+    Route::get('/back', [CartController::class, 'back'])->name('back');
+    Route::get('/cart/update', [CartController::class, 'update']);
+    Route::get('/deleteItem/{id}', [CartController::class, 'destroy'])->name('cart.deleteItem');
+    Route::post('/payment/transaction', [CartController::class, 'checkOut'])->name('transaction');
+    Route::post('/cart/{product_id}', [CartController::class, 'addToCart'])->name('addToCart');
+    Route::patch('/cart/{product_id}', [CartController::class, 'updateQty'])->name('updateQty');
+
+    // Payment
+    Route::get('/payment/show-transaction', [PaymentController::class, 'showTransaction'])->name('showTransaction');
+    Route::post('/payment/transaction/confirmation', [PaymentController::class, 'confirmation'])->name('confirmation');
+    Route::patch('/payment/transaction/{address_id}/editAddress', [PaymentController::class, 'editAddress'])->name('editAddress');
+    Route::patch('/payment/transaction/{payment_id}/editPayment', [PaymentController::class, 'editPayment'])->name('editPayment');
+    Route::get('/payment/payment/confirmation', [PaymentController::class, 'paymentConfirmation'])->name('payment.confirmation');
 });
 
 

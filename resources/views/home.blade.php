@@ -96,7 +96,7 @@
                                                         <div class="d-block">${{ $product->price }}</div>
                                                         
                                                         <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">
-                                                            {{ $product->seller->last_name }}{{ $product->seller->first_name }}
+                                                            {{ $product->seller->last_name }} {{ $product->seller->first_name }}
                                                         </a>
                                                         
                                                         <ul class="list-group list-group-horizontal align-items-center my-2">
@@ -113,7 +113,7 @@
                                                                     @csrf
                                                                     @method('PATCH')
                                                                     
-                                                                    <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
+                                                                    <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
                                                                 </form>
                                                             @else
                                                                 <form action="{{ route('customer.addToCart', $product->id) }}" method="POST">
@@ -209,7 +209,7 @@
                                                                 @csrf
                                                                 @method('PATCH')
 
-                                                                <button type="submit" class="btn btn-dark w-100">Add to Cart</button>
+                                                                <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
                                                             </form>
                                                         @else
                                                             <form action="{{ route('customer.addToCart', $product->id) }}" method="POST">

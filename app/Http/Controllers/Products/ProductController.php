@@ -328,15 +328,13 @@ class ProductController extends Controller
         } else {
             Log::warning("File $filePath does not exist.");
         }
-
-        // delete the record in product_images
-        $image->delete();
-
         // delete the record in product_image
         $this->product_image
             ->where('product_id', $p_id)
             ->where('image_id', $i_id)
             ->delete();
+        // delete the record in product_images
+        $image->delete();
 
         // or set the ondeletecascade to the migration file
 

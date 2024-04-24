@@ -130,17 +130,6 @@ class CustomerSupportController extends Controller
                 ->where('inquiry_status.id', $status)
                 ->orderBy('inquiries.created_at', 'desc')
                 ->paginate(5);
-
-            // $inquiry_statuses = $this->inquiry_status->findOrFail($status)
-            //     ->join('inquiries', function (JoinClause $join) {
-            //         $join->on('inquiries.id', '=', 'inquiriy_status.id')
-            //             ->where('inquiries.customer_id', Auth::guard("customer")->id());
-            //     })
-            //     ->where(function ($query) use ($status) {
-            //         $query->where('inquiry.status',  $status);
-            //     })
-            //     ->orderBy('inquiries.created_at', 'desc')
-            //     ->paginate(5);
         }
         $inquiry_statuses = $this->inquiry_status->orderBy('id', 'asc')->paginate(5);
         $inquiries = $this->inquiry->orderBy('id', 'asc')->paginate(5);

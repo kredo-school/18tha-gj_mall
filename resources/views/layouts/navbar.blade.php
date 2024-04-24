@@ -17,11 +17,11 @@
                     <a class="nav-link">
                         <div class="row align-items-center">
                             <div class="col-2 px-0">
-                                <span class="fi fi-ph border"></span>
+                                <span class="fi fi-{{ empty(Auth::user()->address->country->alpha2) ? '' : Auth::user()->address->country->alpha2  }} border"></span>
                             </div>
                             <div class="col-10 p-2">
                                 <strong class="text-white">
-                                    Deliver to Philippines   
+                                    Deliver to {{ empty(Auth::user()->address->country->name) ? 'NON' : Auth::user()->address->country->name  }}   
                                 </strong>
                             </div>
                         </div>

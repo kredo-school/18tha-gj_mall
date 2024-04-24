@@ -31,6 +31,7 @@ class ChatComponent extends Component
                 // Display customer's message
                 $this->convo[] = [
                     'username' => $message->customer->last_name . ' ' . $message->customer->first_name,
+                    'target'  => 'customer', 
                     'message' => $message->message,
                     'avatar' => $message->customer->avatar
                 ];
@@ -38,6 +39,7 @@ class ChatComponent extends Component
                 // Display seller's message if it matches the current chat session
                 $this->convo[] = [
                     'username' => $message->seller->last_name . ' ' . $message->seller->first_name,
+                    'target'  => 'seller', 
                     'message' => $message->message,
                     'avatar' => $message->seller->avatar
                 ];
@@ -61,7 +63,8 @@ class ChatComponent extends Component
         $this->convo[] = [
             'username' => $data['username'],
             'message'  => $data['message'],
-            'avatar'   => $data['avatar']
+            'avatar'   => $data['avatar'],
+            'target'   => $data['target']
         ];
     }
 

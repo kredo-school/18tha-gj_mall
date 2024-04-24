@@ -40,6 +40,7 @@ class SellerController extends Controller
 
     public function index(Request $request)
     {
+
         // Get parameters from url
         $search = $request->input('search');
         $dateRange = $request->input('daterange');
@@ -102,6 +103,8 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
+                $orders->withPath('/seller/dashboard');
+                $orders->appends($request->all());
             } elseif (!empty($daterange)) {
                 $orders = $this->order_line
                     ->join('products', function (JoinClause $join) {
@@ -119,7 +122,9 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
-            } else {
+                $orders->withPath('/seller/dashboard');
+                $orders->appends($request->all());
+            } elseif (!empty($search)) {
                 $orders = $this->order_line
                     ->join('products', function (JoinClause $join) {
                         $join->on('order_lines.product_id', '=', 'products.id')
@@ -129,8 +134,6 @@ class SellerController extends Controller
                         $query->where('name', 'LIKE', '%' . $search . '%')
                             ->orWhere('description', 'LIKE', '%' . $search . '%');
                     })
-                    ->whereDate('order_lines.created_at', '>=', date($startDate . "00:00:00"))
-                    ->whereDate('order_lines.created_at', '<=', date($endDate . " 23:59:59"))
                     ->select(
                         "products.name",
                         DB::raw("DATE_FORMAT(order_lines.created_at ,'%Y-%m-%d') as date"),
@@ -140,6 +143,8 @@ class SellerController extends Controller
                     ->groupBy('name', 'date')
                     ->orderBy('date', 'desc')
                     ->paginate(5);
+                $orders->withPath('/seller/dashboard');
+                $orders->appends($request->all());
             }
         } else {
             $orders = $this->order_line
@@ -174,10 +179,10 @@ class SellerController extends Controller
             $monthly_amount[] = $data->total_amount;
         }
 
-        if(count($month) > 1){
+        if (count($month) > 1) {
             $regression = new LeastSquares(); // https://php-ml.readthedocs.io/en/latest/machine-learning/regression/least-squares/
             // Make the regresssion function  without this months
-            $regression->train(array_slice($samples, 0,count($samples)-1), array_slice($monthly_amount, 0,count($monthly_amount)-1));
+            $regression->train(array_slice($samples, 0, count($samples) - 1), array_slice($monthly_amount, 0, count($monthly_amount) - 1));
             $forecast = $regression->predict($samples); // Forecasting max recent 13 months
         } else {
             $forecast = array_fill(0, count($month), 0);
@@ -230,24 +235,17 @@ class SellerController extends Controller
             $thisMonthYvalues = array_fill(0, 31, 0);
         }
 
-        $productsWithMessages = Product::where('seller_id', Auth::guard('seller')->id())
-                                    ->with(['messages' => function($query) {
-                                        $query->whereNotNull('user_id');
-                                    }])
-                                    ->get();
-
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', 'productsWithMessages', ));
-        $seller_urls = ["http://127.0.0.1:8000/profile/".Auth::guard("seller")->id()];
-        $product_ids = Product::select("id")->where("seller_id",Auth::guard("seller")->id())->get();
-        foreach($product_ids as $product_id){
-            $seller_urls[] = "http://127.0.0.1:8000/productDetail/".$product_id->id;
+        $seller_urls = ["http://127.0.0.1:8000/profile/" . Auth::guard("seller")->id()];
+        $product_ids = Product::select("id")->where("seller_id", Auth::guard("seller")->id())->get();
+        foreach ($product_ids as $product_id) {
+            $seller_urls[] = "http://127.0.0.1:8000/productDetail/" . $product_id->id;
         }
 
         $pageviews = PageView::select(
             DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"),
             DB::raw("COUNT(1) as pageviews"),
         )
-            ->whereIn("url",$seller_urls)
+            ->whereIn("url", $seller_urls)
             ->whereDate('created_at', '>', Carbon::now()->subDays(7))
             ->groupBy('date')
             ->orderBy('date')
@@ -260,15 +258,22 @@ class SellerController extends Controller
             DB::raw("COUNT(1) as pageviews"),
         )
             ->whereDate('created_at', '>', Carbon::now()->subDays(7))
-            ->whereIn("url",$seller_urls)
+            ->whereIn("url", $seller_urls)
             ->groupBy('path')
-            ->orderBy('pageviews','desc')
+            ->orderBy('pageviews', 'desc')
             ->get();
         $paths = $rankings->pluck('path');
         $ranking_pageviews = $rankings->pluck('pageviews');
 
-        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast' ,'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues','labels','pageviews','paths','ranking_pageviews' ));
+        $productsWithMessages = Product::where('seller_id', Auth::guard('seller')->id())
+            ->with(['messages' => function ($query) {
+                $query->whereNotNull('user_id');
+            }])
+            ->get();
+
+        return view("seller.dashboard", compact('yesterday', 'day_before_yesterday', 'countYesterday', 'countDayBeforeYesterday', 'countCompare', 'amountCompare', 'orders', 'MonthlyData',  'month', 'monthly_amount', 'forecast', 'LastMonthYvalues', 'thisMonthYvalues', 'Xvalues', 'labels', 'pageviews', 'paths', 'ranking_pageviews', 'productsWithMessages'));
     }
+
 
     private function getSellerOrders($start_date, $end_date)
     {

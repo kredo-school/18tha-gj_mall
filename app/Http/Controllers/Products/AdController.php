@@ -26,13 +26,30 @@ class AdController extends Controller
         $this->product_image = $product_image;
     }
 
-    public function show()
+    public function show(Request $request)
     {
-        $ads =  Ad::select('ads.id', 'ads.title', 'ads.content', 'ads.image_name', 'ads.product_id')
+
+        $search = $request->input('search');
+
+        if (!empty($search)) {
+            $ads =  Ad::select('ads.id', 'ads.title', 'ads.content', 'ads.image_name', 'ads.product_id')
             ->join('products as p', 'ads.product_id', '=', 'p.id')
             ->where('p.seller_id', Auth::guard("seller")->id())
-            ->get();
-
+            ->where(function ($query) use ($search) {
+                $query->where('ads.title', 'LIKE', '%'.$search.'%')
+                      ->orWhere('ads.content', 'LIKE', '%'.$search.'%');
+            })
+            ->paginate(5);
+            $ads->withPath('/seller/ads/dashboard');
+            $ads->appends($request->all());
+        } else {
+            $ads =  Ad::select('ads.id', 'ads.title', 'ads.content', 'ads.image_name', 'ads.product_id')
+                ->join('products as p', 'ads.product_id', '=', 'p.id')
+                ->where('p.seller_id', Auth::guard("seller")->id())
+                ->paginate(5);
+                $ads->withPath('/seller/ads/dashboard');
+                $ads->appends($request->all());
+        }
         return view('seller.ads.dashboard')->with('ads', $ads);
     }
 

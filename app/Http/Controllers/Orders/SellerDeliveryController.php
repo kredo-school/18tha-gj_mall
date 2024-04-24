@@ -49,6 +49,8 @@ class SellerDeliveryController extends Controller
                 })
                 ->orderBy('order_lines.created_at', 'desc')
                 ->paginate(5);
+            $seller_orders->withPath('/seller/delivery');
+            $seller_orders->appends($request->all());
         } elseif (!empty($status)) {
             $seller_orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
@@ -63,6 +65,8 @@ class SellerDeliveryController extends Controller
                 })
                 ->orderBy('order_lines.created_at', 'desc')
                 ->paginate(5);
+            $seller_orders->withPath('/seller/delivery');
+            $seller_orders->appends($request->all());
         } else {
             $seller_orders = $this->order_line
                 ->join('products', function (JoinClause $join) {

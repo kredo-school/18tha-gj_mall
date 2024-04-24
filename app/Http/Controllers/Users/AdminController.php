@@ -193,7 +193,7 @@ class AdminController extends Controller
     // create users
     public function create()
     {
-        $admin = $this->admin->all();
+        $admins = $this->admin->all();
         // $admins = $this->admin->where(Auth::guard("admin")->id())->all();
 
         return view('admin.management.modal.create')
@@ -304,7 +304,7 @@ class AdminController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
-    
+
         if (!empty($search)) {
             $admins = $this->admin
                 ->where(function ($query) use ($search) {
@@ -319,7 +319,7 @@ class AdminController extends Controller
                 ->orderBy('created_at', 'desc')
                 ->paginate(5);
         }
-    
+
         return view("admin.management.managementUser", compact("admins"));
     }
 

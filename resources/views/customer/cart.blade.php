@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('css/cart.css') }}">
 
     @include('layouts.navbar')
-    
+
     <div class="container-fluid p-0 vh-100" style="min-height: 100vh">
 
             {{-- Cart --}}
@@ -96,7 +96,7 @@
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
                                                                         <h5>Price :</h5>
-                                                                        <h4 class="mt-2">$ <span class="product_price">{{ number_format($product->price, 0) }}</span></h4>
+                                                                        <h4 class="mt-2">$ <span class="product_price">{{$product->price}}</span></h4>
                                                                         <input type="number" name="product_price[{{ $item->id }}]" id="product_price" class="form-control product_price" value="{{ $product->price }}" style="display: none;">
                                                                     @endif
                                                                 @endforeach
@@ -109,7 +109,7 @@
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
                                                                         <h5>Sum :</h5>
-                                                                        <h4 class="mt-2">$ <span class="total_price_for_item">{{ number_format($item->qty * $product->price, 0) }}</span></h4>
+                                                                        <h4 class="mt-2">$ <span class="total_price_for_item">{{ number_format($item->qty * $product->price, 2) }}</span></h4>
                                                                     @endif
                                                                 @endforeach
                                                             </div>
@@ -174,8 +174,8 @@
                                         <div class="row text-center">
                                             <div class="col">
                                                 @if ( Auth::id() )
-                                                    <button type="submit" 
-                                                            id="checkoutButton" 
+                                                    <button type="submit"
+                                                            id="checkoutButton"
                                                             class="btn create-button w-50 fw-bold"
                                                             {{ count($cart_products) > 0 ? '' : 'disabled' }}
                                                     >
@@ -188,18 +188,18 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-        
+
     </div>
 
     @include('layouts.footer')
 
-    <script src="{{ asset('js/cart.js') }}"></script>    
+    <script src="{{ asset('js/cart.js') }}"></script>
 @endsection
 

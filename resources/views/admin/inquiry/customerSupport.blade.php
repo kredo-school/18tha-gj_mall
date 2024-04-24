@@ -13,7 +13,7 @@
         {{-- Search bar --}}
         <div class="col-8 my-2">
             <div class="navbar-nav">
-                <form action="{{ route('admin.customerSupport.search') }}">
+                <form action="{{ route('admin.customerSupport.search') }}" method="GET">
                     <input type="search" name="search" placeholder="Search..." class="form-control">
                 </form>
             </div>
@@ -112,7 +112,7 @@
                 </table>
             </div>
         </div>
-        {{-- {{ $inquiries->links() }} --}}
+        {{ $inquiries->links() }}
 
 
         <div class="row banner mx-1">

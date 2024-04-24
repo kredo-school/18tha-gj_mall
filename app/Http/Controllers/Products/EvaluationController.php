@@ -89,14 +89,23 @@ class EvaluationController extends Controller
                 })
                 ->orderBy('created_at', 'desc')
                 ->paginate(5);
+            $products->withPath('/admin/evaluation');
+            $products->appends($request->all());
+    
         } elseif (!empty($status)) {
             $product_status = $this->product_status->findOrFail($status);
-            $products = $product_status->getSeller(Auth::guard('seller')->id());
+            $products = $product_status->getSeller(Auth::guard('seller')->id())->paginate(5);
+            $products->withPath('/admin/evaluation');
+            $products->appends($request->all());
         } elseif (!empty($category)) {
             $category = $this->category->findOrFail($category);
-            $products = $category->getSeller(Auth::guard("seller")->id());
+            $products = $category->getSeller(Auth::guard("seller")->id())->paginate(5);
+            $products->withPath('/admin/evaluation');
+            $products->appends($request->all());
         } else {
             $products = $this->product->where('seller_id', Auth::guard('seller')->id())->orderBy('created_at', 'desc')->paginate(5);
+            $products->withPath('/admin/evaluation');
+            $products->appends($request->all());
         }
 
         $categories = $this->category->orderBy('id', 'asc')->get();

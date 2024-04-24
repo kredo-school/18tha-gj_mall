@@ -8,7 +8,7 @@
 
     @include('layouts.navbar')
     
-    <div class="container-fluid p-0 vh-100">
+    <div class="container-fluid p-0 vh-100" style="min-height: 100vh">
 
             {{-- Cart --}}
             <form action="{{ route('customer.transaction') }}" method="post" id="transaction-form">
@@ -63,7 +63,11 @@
                                                     <div class="col">
                                                         <div class="row align-items-center text-center h-100">
                                                             <div class="col">
-                                                                <img src="{{ asset('images/items/item1.svg') }}" alt="product image" style="width: 140px; height: 100px;">
+                                                                @if ($product->productImage->isNotEmpty())
+                                                                    <img src="{{ asset('storage/images/items/'. $product->productImage->first()->productImages->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                                                                @else
+                                                                    <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top">
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -72,7 +76,7 @@
                                                             <h4 class="fw-bold">{{ $product->name }}</h4>
                                                         </a>
                                                         <a href="{{ url('seller/profile') }}" class="text-decoration-none text-dark">
-                                                            <p>{{ $product->seller->last_name. $product->seller->first_name }}</p>
+                                                            <p>{{ $product->seller->last_name. ' ' .$product->seller->first_name }}</p>
                                                         </a>
                                                     </div>
                                                     <div class="col">
@@ -80,7 +84,7 @@
                                                             <div class="col text-end">
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
-                                                                        <input type="number" name="quantity[{{ $item->id }}]" class="quantity form-control" min="1" max="{{ $product->qty_in_stock }}" value="{{ $item->qty }}">
+                                                                        <input type="number" name="quantity[{{ $item->id }}]" class="quantity form-control" min="1" max="5" value="{{ $item->qty }}">
                                                                     @endif
                                                                 @endforeach
                                                             </div>
@@ -92,7 +96,7 @@
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
                                                                         <h5>Price :</h5>
-                                                                        <h4 class="mt-2">$ <span class="product_price">{{ $product->price }}</span></h4>
+                                                                        <h4 class="mt-2">$ <span class="product_price">{{ number_format($product->price, 0) }}</span></h4>
                                                                         <input type="number" name="product_price[{{ $item->id }}]" id="product_price" class="form-control product_price" value="{{ $product->price }}" style="display: none;">
                                                                     @endif
                                                                 @endforeach
@@ -105,7 +109,7 @@
                                                                 @foreach ($cart_items as $item)
                                                                     @if ( $item->product_id === $product->id )
                                                                         <h5>Sum :</h5>
-                                                                        <h4 class="mt-2">$ <span class="total_price_for_item">{{ number_format($item->qty * $product->price, 2) }}</span></h4>
+                                                                        <h4 class="mt-2">$ <span class="total_price_for_item">{{ number_format($item->qty * $product->price, 0) }}</span></h4>
                                                                     @endif
                                                                 @endforeach
                                                             </div>
@@ -170,7 +174,13 @@
                                         <div class="row text-center">
                                             <div class="col">
                                                 @if ( Auth::id() )
-                                                    <button type="submit" id="submitButton" class="btn create-button w-50 fw-bold">Checkout</button>
+                                                    <button type="submit" 
+                                                            id="checkoutButton" 
+                                                            class="btn create-button w-50 fw-bold"
+                                                            {{ count($cart_products) > 0 ? '' : 'disabled' }}
+                                                    >
+                                                            Checkout
+                                                    </button>
                                                 @else
                                                     <p class="text-danger small mb-1">Please Sign-in first.</p>
                                                     <button type="submit" class="btn create-button w-50 fw-bold" disabled>Checkout</button>
@@ -186,9 +196,10 @@
                 </div>
             </form>
         
-        @include('layouts.footer')
     </div>
 
-    <script src="{{ asset('js/cart.js') }}"></script>
+    @include('layouts.footer')
+
+    <script src="{{ asset('js/cart.js') }}"></script>    
 @endsection
 

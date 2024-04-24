@@ -74,8 +74,8 @@
                                                 </div>
                                                 <div class="col-xl-4 col-lg-auto">
                                                     <a href="{{ route('productDetail', $order->product->id) }}" class="mb-2 d-block">{{ $order->product->name }}</a>
-                                                    <a href="" class="mb-2 d-block">
-                                                        {{ $order->product->seller->first_name }}{{ $order->product->seller->last_name }}
+                                                    <a href="{{ route('seller.profile', $order->product->seller_id) }}" class="mb-2 d-block">
+                                                        {{ $order->product->seller->last_name }} {{ $order->product->seller->first_name }}
                                                     </a>
                                                     <p class="h3 mb-2">${{ number_format($order->product->price, 2) }}</p>
                                                     

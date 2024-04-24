@@ -27,7 +27,7 @@ class DeliveryController extends Controller
             ->join('products', function (JoinClause $join) {
                 $join->on('products.id', '=', 'order_lines.product_id')->where('products.seller_id', Auth::guard("admin")->id());
             })
-            ->paginate(5);
+            ->paginate(10);
 
         $order_statuses = $this->order_status->orderBy('id', 'asc')->get();
 
@@ -75,14 +75,14 @@ class DeliveryController extends Controller
                     $query->where('shop_orders.status_id',  $status);
                 })
                 ->orderBy('order_lines.created_at', 'desc')
-                ->paginate(5);
+                ->paginate(10);
         } else {
             $admin_orders = $this->order_line
                 ->join('products', function (JoinClause $join) {
                     $join->on('products.id', '=', 'order_lines.product_id')
                         ->where('products.seller_id', Auth::guard("admin")->id());
                 })
-                ->orderBy('order_lines.created_at', 'desc')->paginate(5);
+                ->orderBy('order_lines.created_at', 'desc')->paginate(10);
         }
 
         $order_statuses = $this->order_status->orderBy('id', 'asc')->get();

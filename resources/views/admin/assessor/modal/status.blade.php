@@ -54,13 +54,13 @@
                         <label class="h5 fw-bold">Status:</label>
                         <select name="status_id" id="status_id" class="form-select">
                             <option hidden>{{ old('product->status_id', $product->status_id) }}</option>
-                            <option value="Exhibit Request">1: Exhibit Request</option>
-                            <option value="Waiting for Evaluation">2: Waiting for Evaluation</option>
-                            <option value="Evaluation">3: Evaluation</option>
-                            <option value="Suspended">7: Suspended</option>
-                            <option value="Waiting for Display">4: Waiting for Display</option>
-                            <option value="Exhibited">5: Exhibited</option>
-                            <option value="Sold Out">6: Sold Out</option>
+                            <option value="1">1: Exhibit Request</option>
+                            <option value="2">2: Waiting for Evaluation</option>
+                            <option value="3">3: Evaluation</option>
+                            <option value="4">4: Waiting for Display</option>
+                            <option value="5">5: Exhibited</option>
+                            <option value="6">6: Sold Out</option>
+                            <option value="7">7: Suspended</option>
                         </select>
                     </div>
                     

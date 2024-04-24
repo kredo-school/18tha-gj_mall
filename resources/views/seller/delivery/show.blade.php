@@ -40,16 +40,6 @@
 
     <table class="table table-hover align-middle bg-white border">
         <thead class="table-secondary text-light fw-bold">
-            {{-- <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Price</th>
-                <th>Seller Name</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Status</th>
-                <th></th>
-            </tr> --}}
             <tr>
                 <th>Order ID</th>
                 <th>Product Name</th>

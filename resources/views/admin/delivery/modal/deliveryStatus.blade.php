@@ -48,8 +48,7 @@
                     <div class="status">
                         <label for="status" class="h5 fw-bold">Status:</label>
                         <select name="status" id="status" class="form-select">
-                            <option value="select">Select the status here...</option>
-                            @foreach ($order_statuses->take(2) as $order_status)
+                            @foreach ($order_statuses->take(7) as $order_status)
                                 @if ($order_status->id == $order->status_id)
                                     <option value="{{ $order_status->id }}" selected>{{ $order_status->status }}
                                     </option>

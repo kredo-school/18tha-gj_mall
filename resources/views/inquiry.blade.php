@@ -22,7 +22,7 @@
         <div class="row mb-5">
             <div class="col px-5">
                 <h1 class="my-3">Most Asked Questions</h1>
-                @forelse ($inquiries->take(5) as $inquiry)
+                @forelse ($inquiries as $inquiry)
                     <div class="accordion" id="accordionPanels">
                         <div class="accordion-item">
                             <h2 class="accordion-header">

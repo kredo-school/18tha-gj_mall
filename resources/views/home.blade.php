@@ -48,12 +48,12 @@
                 <div class="col-12 p-0 mb-3">
                     <div id="carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                    
+
                             @php
                                 $productsCount = count($products);
                                 $itemsCount    = ceil($productsCount / 6);
                             @endphp
-                    
+
                             @for ($i = 0; $i < $itemsCount; $i++)
                                 <div class="carousel-item @if ($i === 0) active @endif" id="carousel-recommended-item-{{ $i + 1 }}">
                                     <div class="row g-6 border border-dark-3">
@@ -71,7 +71,7 @@
                                                             <form action="{{ route('favorite.destroy', $product->id) }}" method="post">
                                                                 @csrf
                                                                 @method('DELETE')
-                                            
+
                                                                 <button type="submit" class="btn btn-sm shadow-none p-0">
                                                                     <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                                                                 </button>
@@ -85,20 +85,20 @@
                                                             </form>
                                                         @endif
                                                     @endauth
-                                                                                                        
-                                                    <div class="card-body p-2">    
+
+                                                    <div class="card-body p-2">
                                                         <a href="{{ route('productDetail', $product->id) }}" class="text-decoration-none text-dark">
                                                             <h4 class="card-title mb-0 text-truncate">
                                                                 {{ $product->name }}
                                                             </h4>
                                                         </a>
-                                                     
+
                                                         <div class="d-block">${{ $product->price }}</div>
-                                                        
+
                                                         <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">
                                                             {{ $product->seller->last_name }} {{ $product->seller->first_name }}
                                                         </a>
-                                                        
+
                                                         <ul class="list-group list-group-horizontal align-items-center my-2">
                                                             @for ($j = 0; $j < 5; $j++)
                                                                 <li class="list-group-item p-0 border-0">
@@ -112,7 +112,7 @@
                                                                 <form action="{{ route('customer.updateQty', $product->id) }}" method="POST">
                                                                     @csrf
                                                                     @method('PATCH')
-                                                                    
+
                                                                     <button type="submit" class="btn btn-primary w-100">Add to Cart</button>
                                                                 </form>
                                                             @else
@@ -136,7 +136,7 @@
             <div class="col-12 text-center">
                 @php
                     // Maximum of 5 buttons or total items count
-                    $maxButtons = min(5, $itemsCount); 
+                    $maxButtons = min(5, $itemsCount);
                 @endphp
                 @for ($j = 0; $j < $maxButtons; $j++)
                     <div class="form-check form-check-inline m-0">
@@ -162,7 +162,7 @@
                             $favoritesCount = count($favorites);
                             $itemsCount = ceil($favoritesCount / 6);
                         @endphp
-            
+
                         @for ($i = 0; $i < $itemsCount; $i++)
                             <div class="carousel-item @if ($i === 0) active @endif" id="carousel-favorites-item-{{ $i + 1 }}">
                                 <div class="row g-6 border border-dark-3">
@@ -175,7 +175,7 @@
                                                     @else
                                                         <img src="{{ asset('images/items/no-image.svg') }}" alt="Product Image" class="card-img-top custom-card-img-top">
                                                     @endif
-                                                    
+
                                                     <form action="{{ route('favorite.destroy', $favorite->id) }}" method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -183,18 +183,18 @@
                                                             <i class="fa-solid fa-heart position-absolute top-0 end-0 m-3 heart-icon"></i>
                                                         </button>
                                                     </form>
-            
-                                                    <div class="card-body p-2">    
+
+                                                    <div class="card-body p-2">
                                                         <a href="{{ route('productDetail', $product->id) }}" class="text-decoration-none text-dark">
                                                             <h4 class="card-title mb-0 text-truncate">
                                                                 {{ $favorite->name }}
                                                             </h4>
                                                         </a>
-                                                        
+
                                                         <div class="d-block">${{ $favorite->price }}</div>
-                                                        
-                                                        <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">{{ $favorite->seller->last_name }}{{ $favorite->seller->first_name }}</a>
-                                                        
+
+                                                        <a href="{{ route('seller.profile', $product->seller_id) }}" class="text-decoration-none" style="color: #FF3A3A;">{{ $favorite->seller->last_name }} {{ $favorite->seller->first_name }}</a>
+
                                                         <ul class="list-group list-group-horizontal align-items-center my-2">
                                                             @for ($j = 0; $j < 5; $j++)
                                                                 <li class="list-group-item p-0 border-0">
@@ -203,7 +203,7 @@
                                                             @endfor
                                                             <li class="list-group-item p-0 border-0"><strong>({{ number_format($favorite->averageRating, 1) }})</strong></li>
                                                         </ul>
-                                                        
+
                                                         @if ($product->isCart())
                                                             <form action="{{ route('customer.updateQty', $product->id) }}" method="POST">
                                                                 @csrf

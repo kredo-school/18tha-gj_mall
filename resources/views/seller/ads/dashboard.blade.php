@@ -12,7 +12,7 @@
     {{-- Search bar --}}
     <div class="row mb-4">
         <div class="col-8 my-2">
-            <form action="#">
+            <form action="{{ route('seller.ads.dashboard') }}">
                 <input type="search" name="search" placeholder="Search..." class="form-control">
             </form>
         </div>
@@ -66,6 +66,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{$ads->links()}}
         </div>
     </div>
 

@@ -2,8 +2,10 @@
     @foreach ($convo as $convoItem)
         <div class="row mb-2">
             <div class="col-auto">
-                @if ($convoItem['avatar'])
+                @if ($convoItem['avatar'] && $convoItem['target'] == 'customer')
                     <img src="{{ asset('storage/images/customer/'. $convoItem['avatar']) }}" alt="user_avatar" class="rounded-circle" style="object-fit: cover; width: 50px; height: 50px;">
+                @elseif ($convoItem['avatar'] && $convoItem['target'] == 'seller')
+                    <img src="{{ asset('storage/images/sellers/'. $convoItem['avatar']) }}" alt="user_avatar" class="rounded-circle" style="object-fit: cover; width: 50px; height: 50px;">
                 @else
                     <img src="{{ asset('images/customer/no_user.svg') }}" alt="user_avatar" class="rounded-5" style="object-fit: cover; width: 50px; height: 50px;">            
                 @endif 

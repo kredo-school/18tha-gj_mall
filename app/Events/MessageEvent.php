@@ -21,6 +21,7 @@ class MessageEvent implements ShouldBroadcastNow
     public $username;
     public $message;
     public $avatar;
+    public $target;
     public $product_id;
 
     /**
@@ -39,11 +40,13 @@ class MessageEvent implements ShouldBroadcastNow
         if ($customer) {
             $this->username = $customer->last_name. ' ' .$customer->first_name;
             $this->avatar   = $customer->avatar;
+            $this->target   = 'customer';
         } else {
             // seller 
             $seller = Seller::find($seller_id);
             $this->username = $seller->last_name. ' ' .$seller->first_name;
             $this->avatar   = $seller->avatar;
+            $this->target   = 'seller';
         }
 
         $this->message = $message;

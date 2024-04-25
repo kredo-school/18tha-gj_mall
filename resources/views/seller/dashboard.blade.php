@@ -35,6 +35,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">UserName</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
                 </thead>
                 <tbody class="table-group-divider">
                     @foreach ($uniqueMessages as $item)
@@ -42,9 +43,19 @@
                             <td>{{ $item->product->name }}</td>
                             <td>{{ $item->customer->first_name }} {{ $item->customer->last_name }}</td>
                             <td>
-                                <a href="{{ route('livechat', ['product_id' => $item->product->id, 'user_id' => $item->customer->id]) }}">
+                                <a href="{{ route('livechat', ['product_id' => $item->product->id, 'user_id' => $item->customer->id]) }}" class="text-decoration-none">
                                     <button class="btn btn-primary">Chat with customer</button>
                                 </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('seller.message.delete', ['customer_id' => $item->customer->id, 'product_id' => $item->product->id, 'seller_id' =>  $item->product->seller_id ]) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger" >
+                                        Solved
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

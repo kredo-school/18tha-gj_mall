@@ -214,6 +214,10 @@ Route::group(['middleware' => 'seller'], function () {
             Route::patch('/{id}/update', [SellerDeliveryController::class, 'update'])
                 ->name('update');
         });
+
+        // Live Chat Delete
+        Route::delete('/{customer_id}/{seller_id}/{product_id}/delete', [MessageController::class, 'delete'])
+                ->name('message.delete');
     });
 });
 
